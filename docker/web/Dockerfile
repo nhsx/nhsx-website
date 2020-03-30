@@ -167,3 +167,14 @@ RUN apk update && \
 
 # Expose the dev server
 EXPOSE 5000
+
+
+# We'll eventually want these or similar for the production container
+# RUN python manage.py migrate
+
+# RUN useradd wagtail
+# RUN chown -R wagtail /code
+# USER wagtail
+
+# EXPOSE 8000
+# CMD exec gunicorn nhsx.wsgi:application --bind 0.0.0.0:8000 --workers 3
