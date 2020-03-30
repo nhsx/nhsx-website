@@ -85,9 +85,9 @@ ENV SHELL /bin/zsh
 # Install oh-my-zsh and set zsh as the default shell
 RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
-COPY conf/zshrc /tmp/.zshrc
-COPY conf/hactar.zsh-theme /tmp/hactar.zsh-theme
-COPY conf/zsh-auto-suggest.cfg /tmp/config.zsh
+COPY ./docker/web/conf/zshrc /tmp/.zshrc
+COPY ./docker/web/conf/hactar.zsh-theme /tmp/hactar.zsh-theme
+COPY ./docker/web/conf/zsh-auto-suggest.cfg /tmp/config.zsh
 
 RUN mv /tmp/.zshrc ~/.zshrc && \
     mv /tmp/hactar.zsh-theme ~/.oh-my-zsh/themes/hactar.zsh-theme && \
@@ -100,7 +100,7 @@ CMD ["zsh", "--version"]
 
 # Add fish config
 RUN mkdir -p ~/.config/fish
-COPY conf/config.fish /tmp/config.fish
+COPY ./docker/web/conf/config.fish /tmp/config.fish
 RUN mv /tmp/config.fish ~/.config/fish/config.fish
 
 # Install envkey-source
@@ -128,8 +128,8 @@ RUN mkdir -p /usr/srv/app/
 WORKDIR /usr/srv/app/
 
 # Ensure docker-compose build web is able to pass these env vars in
-ARG ENVKEY \
-    SERVER_ENV
+ARG ENVKEY
+ARG SERVER_ENV
 
 ####################################################################################################
 # ENVKEY STUFF
@@ -138,20 +138,6 @@ ARG ENVKEY \
 ENV DOCKERFILE_VERSION=1.1
 
 RUN eval $(envkey-source)
-
-# Add Github to our known hosts then...
-# Test SSH access (this returns false even when successful, but prints results)
-RUN touch /root/.ssh/known_hosts && \
-    ssh-keyscan github.com >> /root/.ssh/known_hosts && \
-    chmod 700 /root/.ssh/id_rsa* && \
-    chown -R root:root /root/.ssh && \
-    ssh -i /root/.ssh/id_rsa -o StrictHostKeyChecking=no -vvvT git@github.com 2>&1 | grep -i auth
-
-# Add fish config
-RUN mkdir -p ~/.config/fish
-COPY ./docker/web/conf/config.fish /tmp/config.fish
-RUN mv /tmp/config.fish ~/.config/fish/config.fish
-
 
 ####################################################################################################
 # PROJECT STUFF
@@ -162,7 +148,6 @@ ENV PYTHONUNBUFFERED 1
 
 # POETRY (working and installed in django-base)
 WORKDIR /usr/srv/app/
-COPY ./app/config.toml /usr/srv/app/config.toml
 COPY ./app/pyproject.toml /usr/srv/app/pyproject.toml
 COPY ./app/poetry.lock /usr/srv/app/poetry.lock
 RUN source $HOME/.poetry/env && \

@@ -3,5 +3,4 @@ app/media/**/*
 devops/**/*
 docker/db/**/*
 docker/redis/**/*
-docker/web/**/*
 fabfile/**/*
