@@ -97,7 +97,10 @@ WAGTAIL_APPS = [
 SITE_APPS = [
     'modules.home',
     'modules.search',
-    'modules.core'
+    'modules.core',
+    'modules.images',
+    'modules.documents',
+    'modules.users',
 ]
 
 INSTALLED_APPS = WAGTAIL_APPS + DJANGO_APPS + SITE_APPS
@@ -137,7 +140,7 @@ BASE_MIDDLEWARE = [
 ROOT_URLCONF = "config.urls"
 WSGI_APPLICATION = "config.wsgi.application"
 BASE_URL = "https://globalwitness.org"
-SECRET_KEY = os.environ.get("SECRET_KEY", None)
+SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", None)
 INTERNAL_IPS = ["127.0.0.1"]
 APPEND_SLASH = True
 
