@@ -10,3 +10,4 @@
 | POSTGRES_HOST     | The hostname where postgres is running       | Yes      |
 | REDIS_PASSWORD    | The auth password for redis                  | Yes      |
 | REDIS_HOST        | The hostname where redis is running          | Yes      |
+| MEMCACHED_LOCATION| host:port for talking to memcached           | Yes      |

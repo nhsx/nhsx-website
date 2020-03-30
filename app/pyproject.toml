@@ -25,6 +25,7 @@ arrow = "^0.15.2"
 wagtail-modelchooser = "^2.2"
 consoler = "^0.1.2"
 wagtail_cache = "^1.0.0"
+python-memcached = "^1.59"
 
 
 

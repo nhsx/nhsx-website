@@ -10,5 +10,30 @@ Once inside, you can...
 
 * run the application with `runserver` which is an alias to `python manage.py runserver 0.0.0.0:5000`
 * Get a python shell with all the application's models pre-imported with `sp` (an alias to `python manage.py shell_plus`)
+* There's also a handy alias `manpy` which is just short for `python manage.py`
 
+
+## First Run
+
+You'll have no database tables set up in the DB when you first bring up the containers, so the first thing you'll need to do is run migrations...
+
+```
+manpy migrate
+```
+
+You also then need a superuser account so that you can log in to the wagtail admin interface.
+
+```
+manpy createsuperuser
+```
+
+We have overridden the User model to allow login with email / password as usernames are not useful here. The `createsuperuser` command will still ask you for a username here, but you should give it an email address.
+
+We also need to add a sane hostname to our hosts file. Open /etc/hosts and add...
+
+```
+0.0.0.0    nhsx.test
+```
+
+Finally, open http://nhsx.test:5000 in your browser, or http://nhsx.test:5000/admin to go straight to the Wagtail admin interface.
 

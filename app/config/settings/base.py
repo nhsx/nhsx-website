@@ -111,7 +111,7 @@ INSTALLED_APPS = WAGTAIL_APPS + DJANGO_APPS + SITE_APPS
 ####################################################################################################
 
 
-BASE_MIDDLEWARE = [
+MIDDLEWARE = [
     # FIRST
     'wagtailcache.cache.UpdateCacheMiddleware',  # MUST BE FIRST
     "django.middleware.security.SecurityMiddleware",  # SHOULD BE SECOND
