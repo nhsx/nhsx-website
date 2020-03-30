@@ -1,0 +1,50 @@
+ZSH=$HOME/.oh-my-zsh
+
+ZSH_THEME="hactar"
+
+plugins=(zsh-256color git autojump fabric pip python wd zsh-autosuggestions)
+
+source $ZSH/oh-my-zsh.sh
+
+# Customize to your needs...
+export PATH=$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
+
+alias runserver="python manage.py runserver 0.0.0.0:5000"
+alias manpy="python manage.py"
+alias sp="python manage.py shell_plus"
+
+eval $(envkey-source)
+
+static () {
+    if [ $# -eq 0 ]
+      then
+        echo "pass either staging or production to the static call"
+        exit 1
+    fi
+    export SERVER_ENV=$1
+    python manage.py assets clean
+    python manage.py assets build
+    python manage.py collectstatic --no-input -v 2 -i node_modules
+    export SERVER_ENV=development
+}
+
+static_app () {
+    if [ $# -eq 0 ]
+      then
+        echo "pass either staging or production to the static call"
+        exit 1
+    fi
+    export SERVER_ENV=$1
+    python manage.py assets clean
+    python manage.py assets build
+    python manage.py collectstatic --no-input -v 2 -i node_modules -i admin -i 'django**' -i 'wagtail**' -i _dev
+    export SERVER_ENV=development
+}
+
+
+ZSH_AUTOSUGGEST_STRATEGY=history
+source $HOME/.poetry/env
+
+if [ -e ".venv/bin/activate" ]; then
+    source .venv/bin/activate
+fi

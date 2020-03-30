@@ -1,0 +1,62 @@
+version: '3.3'
+
+services:
+  # Postgres
+  db:
+    image: postgres:10-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+    volumes:
+      - ./docker/db/data/:/var/lib/postgresql/data
+
+  # memcached
+  memcached:
+    image: memcached:1.5-alpine
+    ports:
+      - "11211:11211"
+
+  # Redis
+  redis:
+    restart: always
+    image: sameersbn/redis:latest
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./docker/redis:/var/lib/redis
+    environment:
+      - REDIS_PASSWORD=${REDIS_PASSWORD}
+
+
+  # Application
+  web:
+    image: nhsx:latest
+    environment:
+      - SERVER_ENV=development
+      - ENVKEY=${ENVKEY}
+
+    restart: always
+    build:
+      context: ./
+      dockerfile: ./docker/web/Dockerfile
+      args:
+        - SERVER_ENV=development
+        - ENVKEY=${ENVKEY}
+    volumes:
+      - ./app/:/usr/srv/app:Z
+      - ./app/media:/usr/srv/app/media:Z
+
+    ports:
+      - "5000:5000"
+    links:
+      - db
+      - redis
+      - memcached
+    depends_on:
+      - db
+      - redis
+      - memcached
+
+    command: sleep 1000000

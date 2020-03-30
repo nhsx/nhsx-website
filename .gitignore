@@ -1,0 +1,38 @@
+.env
+TEMP/**/*
+*.pyc
+*.scssc
+.DS_Store
+media/**/*
+_db/**/*
+node_modules
+npm-debug.log
+
+# Caches
+.mypy_cache/**/*
+.pytest_cache/**/*
+.webassets-cache
+.webassets-cache/*
+app/assets/.webassets-cache
+app/assets/.webassets-cache/*
+
+# Coverage
+.coverage
+coverage.xml
+htmlcov/**/*
+app/htmlcov/**/*
+
+# Project
+app/media/**/*
+
+# Docker
+docker/db/**/*
+docker/redis/**/*
+
+# Tests
+tests/.cache/*
+tests/__pycache__/*
+app/.pytest_cache/**/*
+
+# Devops
+devops/*.retry

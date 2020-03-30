@@ -1,0 +1,35 @@
+site_name: NHSX Wagtail
+repo_url:
+repo_name: Github
+edit_uri:
+site_dir: build/html
+docs_dir: source
+use_directory_urls: true
+dev_addr: 127.0.0.1:8008
+theme: readthedocs
+
+nav:
+- Getting Started: index.md
+- Documentation Help: help.md
+- Development:
+  - Getting Started: development/index.md
+  - Environment Variables: development/environment-variables.md
+
+
+markdown_extensions:
+  - admonition
+  - footnotes
+  - def_list
+  - toc:
+      permalink: true
+  - pymdownx.betterem:
+        smart_enable: all
+  - pymdownx.magiclink
+  - pymdownx.mark
+  - pymdownx.superfences
+  - pymdownx.tilde
+  - pymdownx.details
+
+# Extensions that might prove useful in the future.
+# - codehilite
+# - pymdownx.mark
