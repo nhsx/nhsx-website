@@ -17,13 +17,13 @@ boto3 = "^1.9"
 whitenoise = "^4.1"
 envkey = "^1.2"
 bugsnag = "^3.6"
-loguru = "^0.3.2"
 wagtail-cache = "^0.5.2"
 wagtailfontawesome = "^1.1"
 django_extensions = "^2.2"
 django-cacheops = "^4.2"
 arrow = "^0.15.2"
 wagtail-modelchooser = "^2.2"
+consoler = "^0.1.2"
 
 
 
