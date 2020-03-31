@@ -36,3 +36,4 @@ app/.pytest_cache/**/*
 
 # Devops
 devops/*.retry
+/docker-compose.env

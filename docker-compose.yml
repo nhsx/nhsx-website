@@ -5,10 +5,8 @@ services:
   db:
     image: postgres:10-alpine
     restart: always
-    environment:
-      - POSTGRES_USER=${POSTGRES_USER}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-      - POSTGRES_DB=${POSTGRES_DB}
+    env_file:
+      - docker-compose.env
     volumes:
       - ./docker/db/data/:/var/lib/postgresql/data
 
@@ -22,21 +20,20 @@ services:
   redis:
     restart: always
     image: sameersbn/redis:latest
+    env_file:
+      - docker-compose.env
     ports:
       - "6379:6379"
     volumes:
       - ./docker/redis:/var/lib/redis
-    environment:
-      - REDIS_PASSWORD=${REDIS_PASSWORD}
-
 
   # Application
   web:
     image: nhsx:latest
     environment:
-      - SERVER_ENV=development
       - ENVKEY=${ENVKEY}
-
+    env_file:
+      - docker-compose.env
     restart: always
     build:
       context: ./
