@@ -128,16 +128,9 @@ RUN mkdir -p /usr/srv/app/
 WORKDIR /usr/srv/app/
 
 # Ensure docker-compose build web is able to pass these env vars in
-ARG ENVKEY
 ARG SERVER_ENV
 
-####################################################################################################
-# ENVKEY STUFF
-####################################################################################################
-
 ENV DOCKERFILE_VERSION=1.1
-
-RUN eval $(envkey-source)
 
 ####################################################################################################
 # PROJECT STUFF
