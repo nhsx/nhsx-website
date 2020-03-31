@@ -14,6 +14,7 @@ nav:
 - Development:
   - Getting Started: development/index.md
   - Environment Variables: development/environment-variables.md
+  - Testing: development/testing.md
 
 
 markdown_extensions:
