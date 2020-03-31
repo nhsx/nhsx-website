@@ -1,6 +1,6 @@
 The `docker-compose.yml` file at the root of the project defines containers for PostgreSQL, Redis, Memcached and the web applications.
 
-To bring up the development environment, you'll first need to ensure all of the required [environment variables](development/environment-variables.md) are exported into your shell session. The easiest way to do this is to copy the `docker-compose.env.example`
+To bring up the development environment, you'll first need to ensure all of the required [environment variables](environment-variables.md) are exported into your shell session. The easiest way to do this is to copy the `docker-compose.env.example`
 file to create a `docker-compose.env` file, and replace the empty variables with your
 own.
 
