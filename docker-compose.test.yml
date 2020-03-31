@@ -1,0 +1,20 @@
+version: '3.7'
+
+services:
+  # Application
+  test:
+    image: nhsx:latest
+    environment:
+      - DJANGO_SECRET_KEY=entersecretkeyhere
+    restart: always
+    build:
+      context: ./
+      target: app
+      dockerfile: ./docker/web/Dockerfile
+      args:
+        - SERVER_ENV=test
+    volumes:
+      - ./app/:/usr/srv/app:Z
+      - ./app/media:/usr/srv/app/media:Z
+
+    command: pytest -s

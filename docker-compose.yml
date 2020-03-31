@@ -1,4 +1,4 @@
-version: '3.3'
+version: '3.7'
 
 services:
   # Postgres
@@ -37,6 +37,7 @@ services:
     restart: always
     build:
       context: ./
+      target: dev
       dockerfile: ./docker/web/Dockerfile
       args:
         - SERVER_ENV=development
