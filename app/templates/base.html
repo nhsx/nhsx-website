@@ -18,7 +18,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
         {# Global stylesheets #}
-        <link rel="stylesheet" type="text/css" href="{% static 'css/nhsx.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'wagtailnhsukfrontend/css/wagtail-nhsuk-frontend.min.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/main.min.css' %}">
 
         {% block extra_css %}
             {# Override this in templates to add extra stylesheets #}
@@ -31,7 +32,8 @@
         {% block content %}{% endblock %}
 
         {# Global javascript #}
-        <script type="text/javascript" src="{% static 'js/nhsx.js' %}"></script>
+        <script type="text/javascript" src="{% static 'wagtailnhsukfrontend/js/nhsuk-3.0.2.min.js' %}" defer></script>
+        <script type="text/javascript" src="{% static 'js/main.min.js' %}"></script>
 
         {% block extra_js %}
             {# Override this in templates to add extra javascript #}

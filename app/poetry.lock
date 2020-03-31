@@ -1100,6 +1100,20 @@ wagtail = ">=2.2"
 
 [[package]]
 category = "main"
+description = "NHSUK Frontend Styles for Wagtail"
+name = "wagtail-nhsuk-frontend"
+optional = false
+python-versions = "*"
+version = "0.4.1"
+
+[package.dependencies]
+Wagtail = ">=2.0"
+
+[package.extras]
+testing = ["beautifulsoup4 (4.7.1)"]
+
+[[package]]
+category = "main"
 description = "Add FontAwesome icons to StreamField."
 name = "wagtailfontawesome"
 optional = false
@@ -1191,7 +1205,7 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["jaraco.itertools", "func-timeout"]
 
 [metadata]
-content-hash = "3bdc9689d0b62d00bbf9400e8fd5ff7dc992aa6c69835d299ce1c7a5e5280b50"
+content-hash = "ad0d261f4b31a32bd5714c2768915f6c9873ff7cbf709d84895a7ae66b37daf2"
 python-versions = "^3.6"
 
 [metadata.files]
@@ -1669,6 +1683,9 @@ wagtail-cache = [
 wagtail-modelchooser = [
     {file = "wagtail-modelchooser-2.3.0.tar.gz", hash = "sha256:cab342ca5512a1682c9c785acd95972eee2cebe74f374738102123623fe81b19"},
     {file = "wagtail_modelchooser-2.3.0-py2.py3-none-any.whl", hash = "sha256:1ea1daccb3e1a562214bc00bbecd5aa2450ab49256f6f5f4b107bd12571336ac"},
+]
+wagtail-nhsuk-frontend = [
+    {file = "wagtail-nhsuk-frontend-0.4.1.tar.gz", hash = "sha256:6e36338f25f581f5ae0ab7ca97a33ee88f3cf70f7e19b9fd889ce280010d609c"},
 ]
 wagtailfontawesome = [
     {file = "wagtailfontawesome-1.2.1-py2.py3-none-any.whl", hash = "sha256:76b1c64c4f1042d468a83e4352f74b57bda4a4aa09cdfeeb8663dead5ed632be"},
