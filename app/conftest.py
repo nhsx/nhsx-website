@@ -8,7 +8,6 @@
 
 import pytest
 from consoler import console  # NOQA
-from mixer.backend.django import mixer  # NOQA
 
 try:
     import envkey  # NOQA
@@ -18,6 +17,7 @@ except Exception:
 
 from tests.setup import setup
 from tests.fixtures import *  # NOQA
+from modules.core.tests.fixtures import *  # NOQA
 from modules.home.tests.fixtures import *  # NOQA
 
 

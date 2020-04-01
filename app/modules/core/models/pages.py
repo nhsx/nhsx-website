@@ -21,10 +21,10 @@ class SectionPage(BasePage, HeroImageContentMixin):
 
     """
 
-    parent_page_types = ['home.HomePage', ]
-    child_page_types = ['core.ArticlePage', ]
+    parent_page_types: list = ['home.HomePage', ]
+    subpage_types: list = ['core.ArticlePage', ]
 
-    hero_panels = HeroImageContentMixin.hero_panels
+    hero_panels: list = HeroImageContentMixin.hero_panels
 
     @cached_classmethod
     def get_admin_tabs(cls):
