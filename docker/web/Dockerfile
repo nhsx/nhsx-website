@@ -1,4 +1,4 @@
-FROM alpine:3.7
+FROM alpine:3.7 as base
 
 ENV VERSION 1.9.1
 
@@ -49,19 +49,6 @@ RUN apk update && apk add --no-cache \
     rm -f /tmp/* /etc/apk/cache/* /root/.cache
 
 ####################################################################################################
-# Install latest Fish shell from source
-####################################################################################################
-
-WORKDIR /tmp
-RUN wget https://github.com/fish-shell/fish-shell/releases/download/3.1.0/fish-3.1.0.tar.gz && \
-    tar -xvzf fish-3.1.0.tar.gz && \
-    cd fish-3.1.0 && \
-    cmake . && \
-    make && \
-    make install && \
-    rm -rf /tmp/*
-
-####################################################################################################
 # Install static asset compilers
 ####################################################################################################
 
@@ -80,28 +67,7 @@ RUN pip install --no-cache-dir \
     libsass \
     closure
 
-ENV SHELL /bin/zsh
-
-# Install oh-my-zsh and set zsh as the default shell
-RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-
-COPY ./docker/web/conf/zshrc /tmp/.zshrc
-COPY ./docker/web/conf/hactar.zsh-theme /tmp/hactar.zsh-theme
-COPY ./docker/web/conf/zsh-auto-suggest.cfg /tmp/config.zsh
-
-RUN mv /tmp/.zshrc ~/.zshrc && \
-    mv /tmp/hactar.zsh-theme ~/.oh-my-zsh/themes/hactar.zsh-theme && \
-    mv /tmp/config.zsh ~/.oh-my-zsh/custom/config.zsh && \
-    git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions && \
-    rm -rf /tmp/*
-
-
-CMD ["zsh", "--version"]
-
-# Add fish config
-RUN mkdir -p ~/.config/fish
-COPY ./docker/web/conf/config.fish /tmp/config.fish
-RUN mv /tmp/config.fish ~/.config/fish/config.fish
+FROM base AS app
 
 # Install envkey-source
 RUN curl -s https://raw.githubusercontent.com/envkey/envkey-source/master/install.sh | bash
@@ -161,6 +127,44 @@ RUN apk update && \
 # Expose the dev server
 EXPOSE 5000
 
+FROM app as dev
+
+####################################################################################################
+# Install latest Fish shell from source
+####################################################################################################
+
+WORKDIR /tmp
+RUN wget https://github.com/fish-shell/fish-shell/releases/download/3.1.0/fish-3.1.0.tar.gz && \
+    tar -xvzf fish-3.1.0.tar.gz && \
+    cd fish-3.1.0 && \
+    cmake . && \
+    make && \
+    make install && \
+    rm -rf /tmp/*
+
+ENV SHELL /bin/zsh
+
+# Install oh-my-zsh and set zsh as the default shell
+RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+COPY ./docker/web/conf/zshrc /tmp/.zshrc
+COPY ./docker/web/conf/hactar.zsh-theme /tmp/hactar.zsh-theme
+COPY ./docker/web/conf/zsh-auto-suggest.cfg /tmp/config.zsh
+
+RUN mv /tmp/.zshrc ~/.zshrc && \
+    mv /tmp/hactar.zsh-theme ~/.oh-my-zsh/themes/hactar.zsh-theme && \
+    mv /tmp/config.zsh ~/.oh-my-zsh/custom/config.zsh && \
+    git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions && \
+    rm -rf /tmp/*
+
+CMD ["zsh", "--version"]
+
+# Add fish config
+RUN mkdir -p ~/.config/fish
+COPY ./docker/web/conf/config.fish /tmp/config.fish
+RUN mv /tmp/config.fish ~/.config/fish/config.fish
+
+WORKDIR /usr/srv/app/
 
 # We'll eventually want these or similar for the production container
 # RUN python manage.py migrate

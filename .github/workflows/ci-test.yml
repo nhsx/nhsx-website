@@ -1,0 +1,12 @@
+name: CI
+
+on: [push]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Run tests in Docker
+        run: docker-compose -f docker-compose.test.yml up --exit-code-from=test
+
