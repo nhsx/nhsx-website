@@ -124,7 +124,7 @@ class HeroImageMixin(HeroMixin):
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
-        related_name='hero_image'
+        related_name='%(class)s_hero_image'
     )
 
     hero_panels = [
@@ -158,7 +158,7 @@ class HeroImageContentMixin(HeroMixin):
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
-        related_name='hero_image'
+        related_name='%(class)s_hero_image'
     )
 
     hero_panels = [
