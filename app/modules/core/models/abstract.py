@@ -13,15 +13,17 @@
 """
 
 from typing import List
-from consoler import console
 
 # 3rd party
+from django.db import models
+from django.conf import settings
 from wagtail.core import fields
 from django.utils.text import slugify
 from wagtail.core.models import Page
 from django.utils.translation import ugettext_lazy as _  # NOQA
 from wagtail.utils.decorators import cached_classmethod
-from wagtail.admin.edit_handlers import ObjectList, TabbedInterface, StreamFieldPanel
+from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtail.admin.edit_handlers import ObjectList, TabbedInterface, StreamFieldPanel, FieldPanel
 
 # Project
 from modules.core.blocks import nhsx_blocks
@@ -77,10 +79,90 @@ class BasePage(Page):
 
     @cached_classmethod
     def get_edit_handler(cls) -> TabbedInterface:  # NOQA
-        """s
+        """
         """
         tabs = cls.get_admin_tabs()
         edit_handler = TabbedInterface([
             ObjectList(tab[0], heading=tab[1], classname=slugify(tab[1])) for tab in tabs
         ])
         return edit_handler.bind_to(model=cls)
+
+
+################################################################################
+# Mixins
+################################################################################
+
+
+class HeroMixin(models.Model):
+
+    """Abstract mixin for use by other Hero mixins.
+
+    Attributes:
+        has_hero (bool): Tells the page templates that we have a hero.
+    """
+
+    class Meta:
+        abstract = True
+
+    has_hero = True
+
+
+class HeroImageMixin(HeroMixin):
+
+    """A Hero with an Image. Add this to your page class to add a hero with an image.
+
+    Attributes:
+        image (models.ForeignKey): Link to the image we want to use
+        hero_panels (list): Panels to show for the hero
+    """
+
+    class Meta:
+        abstract = True
+
+    image = models.ForeignKey(
+        settings.WAGTAILIMAGES_IMAGE_MODEL,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='hero_image'
+    )
+
+    hero_panels = [
+        ImageChooserPanel('image')
+    ]
+
+
+class HeroContentMixin(HeroMixin):
+
+    class Meta:
+        abstract = True
+
+    headline = models.CharField(max_length=255, blank=False, null=True)
+    sub_head = models.CharField(max_length=255, blank=False, null=True)
+
+    hero_panels = [
+        FieldPanel('headline', classname="title"),
+        FieldPanel('sub_head'),
+    ]
+
+
+class HeroImageContentMixin(HeroMixin):
+
+    class Meta:
+        abstract = True
+
+    headline = models.CharField(max_length=255, blank=False, null=True)
+    sub_head = models.CharField(max_length=255, blank=False, null=True)
+    image = models.ForeignKey(
+        settings.WAGTAILIMAGES_IMAGE_MODEL,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='hero_image'
+    )
+
+    hero_panels = [
+        FieldPanel('headline', classname="title"),
+        FieldPanel('sub_head'),
+        ImageChooserPanel('image')
+    ]
