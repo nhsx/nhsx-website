@@ -6,6 +6,7 @@ services:
     image: nhsx:latest
     environment:
       - DJANGO_SECRET_KEY=entersecretkeyhere
+      - SERVER_ENV=test
     restart: always
     build:
       context: ./
@@ -17,4 +18,9 @@ services:
       - ./app/:/usr/srv/app:Z
       - ./app/media:/usr/srv/app/media:Z
 
-    command: pytest -s
+    command:
+      - /bin/bash
+      - -c
+      - |
+        python manage.py collectstatic --no-input -i node_modules
+        pytest -s
