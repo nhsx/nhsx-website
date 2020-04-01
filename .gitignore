@@ -24,6 +24,7 @@ app/htmlcov/**/*
 
 # Project
 app/media/**/*
+app/static/**/*
 
 # Docker
 docker/db/**/*
