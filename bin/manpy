@@ -1,0 +1,3 @@
+#!/bin/bash
+
+docker exec -it nhsx-website_web_1 python manage.py "$@"
