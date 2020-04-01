@@ -16,11 +16,15 @@ from typing import List
 from consoler import console
 
 # 3rd party
+from wagtail.core import fields
 from django.utils.text import slugify
 from wagtail.core.models import Page
 from django.utils.translation import ugettext_lazy as _  # NOQA
 from wagtail.utils.decorators import cached_classmethod
 from wagtail.admin.edit_handlers import ObjectList, TabbedInterface, StreamFieldPanel
+
+# Project
+from modules.core.blocks import nhsx_blocks
 
 
 ################################################################################
@@ -37,9 +41,16 @@ class BasePage(Page):
     class Meta:
         abstract = True
 
-    content_panels = Page.content_panels
     promote_panels = Page.promote_panels
     settings_panels = Page.settings_panels
+
+    body = fields.StreamField(
+        nhsx_blocks, blank=True, verbose_name="Body blocks"
+    )
+
+    content_panels = Page.content_panels + [
+        StreamFieldPanel('body'),
+    ]
 
     @cached_classmethod
     def get_admin_tabs(cls) -> List[tuple]:

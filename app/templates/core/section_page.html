@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags static wagtailuserbar nhsukfrontend_tags %}
+
+{% block body_class %}template-section{% endblock %}
+
+{% block extra_css %}
+{% endblock extra_css %}
+
+{% block content %}
+{% include 'wagtailnhsukfrontend/header.html' with show_search=True %}
+{% include_block page.body %}
+{% endblock content %}

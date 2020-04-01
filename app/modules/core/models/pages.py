@@ -1,5 +1,6 @@
 # 3rd party
 from wagtail.core import fields
+from wagtail.admin.edit_handlers import StreamFieldPanel
 
 # Project
 from modules.core.blocks import nhsx_blocks
@@ -14,9 +15,13 @@ from .abstract import BasePage
 
 
 class SectionPage(BasePage):
-    body = fields.StreamField(
-        nhsx_blocks, blank=True, verbose_name="Body blocks"
-    )
+
+    """SectionPage is a top level page for containing grouped articles.
+
+    """
+
+    parent_page_types = ['home.HomePage', ]
+    child_page_types = ['core.ArticlePage', ]
 
 
 ################################################################################
@@ -25,6 +30,8 @@ class SectionPage(BasePage):
 
 
 class ArticlePage(BasePage):
-    body = fields.StreamField(
-        nhsx_blocks, blank=True, verbose_name="Body blocks"
-    )
+
+    """ArticlePage is a generic content page.
+
+    """
+    pass

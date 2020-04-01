@@ -9,10 +9,9 @@ from wagtail.admin.edit_handlers import StreamFieldPanel
 
 class HomePage(BasePage):
 
-    body = fields.StreamField(
-        nhsx_blocks, blank=True, verbose_name="Body blocks"
-    )
-
-    content_panels = BasePage.content_panels + [
-        StreamFieldPanel('body'),
-    ]
+    @classmethod
+    def can_create_at(cls, parent):
+        """This stops admin users from creating more than one HomePage.
+        """
+        return super().can_create_at(parent) \
+            and not cls.objects.exists()
