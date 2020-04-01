@@ -1,3 +1,10 @@
+# 3rd party
+from wagtail.core import fields
+
+# Project
+from modules.core.blocks import nhsx_blocks
+
+# Module
 from .abstract import BasePage
 
 
@@ -7,7 +14,9 @@ from .abstract import BasePage
 
 
 class SectionPage(BasePage):
-    pass
+    body = fields.StreamField(
+        nhsx_blocks, blank=True, verbose_name="Body blocks"
+    )
 
 
 ################################################################################
@@ -16,4 +25,6 @@ class SectionPage(BasePage):
 
 
 class ArticlePage(BasePage):
-    pass
+    body = fields.StreamField(
+        nhsx_blocks, blank=True, verbose_name="Body blocks"
+    )

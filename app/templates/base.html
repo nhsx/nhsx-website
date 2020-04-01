@@ -1,4 +1,4 @@
-{% load static wagtailuserbar %}
+{% load wagtailcore_tags static wagtailuserbar nhsukfrontend_tags %}
 
 <!DOCTYPE html>
 <html class="no-js" lang="en">
@@ -29,7 +29,9 @@
     <body class="{% block body_class %}{% endblock %}">
         {% wagtailuserbar %}
 
-        {% block content %}{% endblock %}
+        {% block content %}
+
+        {% endblock %}
 
         {# Global javascript #}
         <script type="text/javascript" src="{% static 'wagtailnhsukfrontend/js/nhsuk-3.0.2.min.js' %}" defer></script>
