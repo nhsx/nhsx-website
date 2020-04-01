@@ -17,10 +17,9 @@ services:
     volumes:
       - ./app/:/usr/srv/app:Z
       - ./app/media:/usr/srv/app/media:Z
-
     command:
       - /bin/bash
       - -c
       - |
         python manage.py collectstatic --no-input -i node_modules
-        pytest -s
+        pytest
