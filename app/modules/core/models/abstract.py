@@ -57,7 +57,6 @@ class BasePage(Page):
         Returns:
             list: List of tuples
         """
-        console.warn('WUT', cls)
         tabs = [
             (cls.content_panels, 'Content'),
             (cls.promote_panels, 'Promote'),
