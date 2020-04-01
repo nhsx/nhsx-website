@@ -43,4 +43,6 @@ class ArticlePage(BasePage):
     """ArticlePage is a generic content page.
 
     """
-    pass
+
+    parent_page_types: list = ['core.SectionPage', ]
+    subpage_types: list = []
