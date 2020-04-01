@@ -166,3 +166,12 @@ class HeroImageContentMixin(HeroMixin):
         FieldPanel('sub_head'),
         ImageChooserPanel('image')
     ]
+
+################################################################################
+# Base Index Page
+################################################################################
+
+class BaseIndexPage(BasePage):
+
+    class Meta:
+        abstract = True
