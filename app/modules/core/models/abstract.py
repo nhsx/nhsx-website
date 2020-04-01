@@ -137,8 +137,8 @@ class HeroContentMixin(HeroMixin):
     class Meta:
         abstract = True
 
-    headline = models.CharField(max_length=255, blank=False, null=True)
-    sub_head = models.CharField(max_length=255, blank=False, null=True)
+    headline = models.CharField(max_length=255, blank=True, null=True)
+    sub_head = models.CharField(max_length=255, blank=True, null=True)
 
     hero_panels = [
         FieldPanel('headline', classname="title"),
@@ -151,8 +151,8 @@ class HeroImageContentMixin(HeroMixin):
     class Meta:
         abstract = True
 
-    headline = models.CharField(max_length=255, blank=False, null=True)
-    sub_head = models.CharField(max_length=255, blank=False, null=True)
+    headline = models.CharField(max_length=255, blank=True, null=True)
+    sub_head = models.CharField(max_length=255, blank=True, null=True)
     image = models.ForeignKey(
         settings.WAGTAILIMAGES_IMAGE_MODEL,
         null=True,
