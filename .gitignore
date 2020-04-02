@@ -26,6 +26,10 @@ app/htmlcov/**/*
 app/media/**/*
 app/static/**/*
 
+# Something
+app/.config/
+app/.local/
+
 # Docker
 docker/db/**/*
 docker/redis/**/*

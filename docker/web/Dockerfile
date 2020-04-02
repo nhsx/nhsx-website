@@ -169,9 +169,12 @@ WORKDIR /usr/srv/app/
 # We'll eventually want these or similar for the production container
 # RUN python manage.py migrate
 
-# RUN useradd wagtail
-# RUN chown -R wagtail /code
+COPY ./docker/web/conf/uwsgi.ini /etc/uwsgi.ini
+
+RUN addgroup -S wagtail
+RUN adduser -S -D -h /usr/srv/app wagtail wagtail
+RUN chown -R wagtail /usr/srv/app/
 # USER wagtail
 
-# EXPOSE 8000
-# CMD exec gunicorn nhsx.wsgi:application --bind 0.0.0.0:8000 --workers 3
+EXPOSE 8000
+CMD exec uwsgi --static-map /static=/src/app/static --ini /etc/uwsgi.ini
