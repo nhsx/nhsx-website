@@ -9,7 +9,11 @@ class HomePage(BasePage, HeroImageContentMixin):
 
     hero_panels = HeroImageContentMixin.hero_panels
 
-    subpage_types: list = ['core.SectionPage', ]
+    subpage_types: list = [
+        'core.SectionPage',
+        'blog_posts.BlogPostIndexPage',
+        'news.NewsIndexPage',
+    ]
 
     @cached_classmethod
     def get_admin_tabs(cls):
