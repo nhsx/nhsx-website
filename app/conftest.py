@@ -15,7 +15,7 @@ except Exception:
     pass
 
 
-from tests.setup import setup
+from tests.init import setup
 from tests.fixtures import *  # NOQA
 from modules.core.tests.fixtures import *  # NOQA
 from modules.home.tests.fixtures import *  # NOQA
