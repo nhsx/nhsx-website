@@ -267,3 +267,13 @@ class BasePage(Page, SocialMetaMixin):
             ObjectList(tab[0], heading=tab[1], classname=slugify(tab[1])) for tab in tabs
         ])
         return edit_handler.bind_to(model=cls)
+
+
+################################################################################
+# Base Index Page
+################################################################################
+
+class BaseIndexPage(BasePage):
+
+    class Meta:
+        abstract = True
