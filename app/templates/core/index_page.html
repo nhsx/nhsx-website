@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags static wagtailuserbar nhsukfrontend_tags %}
+
+{% block body_class %}template-homepage{% endblock %}
+
+{% block extra_css %}
+{% endblock extra_css %}
+
+{% block content %}
+
+{% include 'wagtailnhsukfrontend/header.html' with show_search=True %}
+{% include '_partials/hero.html' with hero_text=hero_text hero_heading=hero_heading hero_image=hero_image %}
+<div class="nhsuk-width-container">
+  <main class="nhsuk-main-wrapper" id="maincontent">
+    <div class="nhsuk-grid-row">
+        {% for page in self.get_children %}
+          <div class="nhsuk-grid-column-{{column_size}}">
+            <h3 class="nhsuk-heading-m">
+              <a href="{% pageurl page %}">{{page.title}}</a>
+            </h3>
+            <p>
+              <span>{{page.first_published_at|date:"j F Y"}}</span>
+              {% if show_user %}
+                <span>{{page.owner.full_name}}</span>
+              {% endif %}
+            </p>
+            <p>
+              {{page.specific.body|striptags|truncatewords:30}}
+            </p>
+            <p>
+              <a href="{% pageurl page %}">Read More</a>
+            </p>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </main>
+</div>
+{% endblock content %}
+{% include 'wagtailnhsukfrontend/footer.html' %}
