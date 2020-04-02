@@ -14,3 +14,9 @@ def test_blog_post_index_page_get_children(blog_post_index_page, blog_posts):
     """Check that blog_post_index_page has 10 children
     """
     assert len(blog_post_index_page.get_children()) == 10
+
+def test_blog_post_index_200(blog_post_index_page):
+    """Test that we have a blog post index page created by the fixture
+    """
+    rv = client.get(blog_post_index_page.url)
+    assert rv.status_code == 200
