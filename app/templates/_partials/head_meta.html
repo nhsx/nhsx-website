@@ -1,0 +1,30 @@
+{% load static wagtailuserbar wagtailcore_tags wagtailimages_tags social_tags %}
+
+<meta charset="utf-8" />
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>{% block title_prefix %}{{ TITLE_PREFIX }}{% endblock %}{% block title %}{% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }}{% endif %}{% endblock %}{% block title_suffix %} | NHSX{% endblock %}</title>
+<meta name="description" content="{% if page.search_description %}{{ page.search_description }}{% else %}{{ page|fb_og_description:request.site }}{% endif %}" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!-- favicons -->
+<link rel="icon" type="image/png" href="{% static 'images/favicons/favicon-32x32.png' %}" sizes="32x32">
+<link rel="icon" type="image/png" href="{% static 'images/favicons/favicon-16x16.png' %}" sizes="16x16">
+
+{% if not request.is_preview %}
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@{{ settings.SocialMediaSettings.twitter }}" />
+<meta name="twitter:title" content="{{ page.title }}" />
+<meta name="twitter:description" content="{{ page|twitter_card_description:request.site }}">
+<meta property="og:image" content="{{ page|twitter_image:request.site }}" />
+<meta property="fb:app_id" content="{{ settings.SocialMediaSettings.facebook_app_id }}" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="{{ page.url }}" />
+<meta property="og:title" content="{{ page.title }}" />
+<meta property="og:image" content="{{ page|fb_image:request.site }}" />
+<meta property="og:description" content="{{ page|fb_og_description:request.site }}" />
+<meta property="og:site_name" content="{{ settings.utils.SocialMediaSettings.site_name }}" />
+{% endif %}
+{% block extra_css %}{% endblock %}
+{% if server_env == 'staging' %}
+    <meta name="robots" content="noindex">
+{% endif %}
