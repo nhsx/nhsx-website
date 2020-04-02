@@ -1,3 +1,5 @@
+import os
+from django.http import HttpResponse
 from django.conf import settings
 from django.conf.urls import include, url
 from django.contrib import admin
@@ -5,18 +7,38 @@ from django.contrib import admin
 from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.core import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
+from wagtail.contrib.sitemaps.views import sitemap
 
 from modules.search import views as search_views
 
 
+PROD_ROBOTS = """
+User-agent: *
+Disallow: /admin/
+
+User-agent: *
+Allow: /
+
+Sitemap: https://nhsx.nhs.uk/sitemap.xml
+"""
+
+
+def robots(request):
+    server_env = os.environ.get('SERVER_ENV')
+    if server_env == 'production' or server_env == 'development':
+        return HttpResponse(PROD_ROBOTS, content_type="text/plain")
+    else:
+        return HttpResponse(
+            "User-agent: *\nDisallow: /", content_type="text/plain")
+
+
 urlpatterns = [
     url(r'^django-admin/', admin.site.urls),
-
     url(r'^admin/', include(wagtailadmin_urls)),
     url(r'^documents/', include(wagtaildocs_urls)),
-
     url(r'^search/$', search_views.search, name='search'),
-
+    url(r'^sitemap\.xml$', sitemap),
+    url(r'^robots\.txt$', robots),
 ]
 
 
