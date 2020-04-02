@@ -102,6 +102,7 @@ SITE_APPS = [
     'modules.images',
     'modules.documents',
     'modules.users',
+    'modules.blog_posts',
 ]
 
 INSTALLED_APPS = WAGTAIL_APPS + DJANGO_APPS + SITE_APPS
