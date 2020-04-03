@@ -27,6 +27,7 @@ consoler = "^0.1.2"
 wagtail_cache = "^1.0.0"
 python-memcached = "^1.59"
 wagtail-nhsuk-frontend = "^0.4.1"
+gunicorn = "^20.0.4"
 
 
 
