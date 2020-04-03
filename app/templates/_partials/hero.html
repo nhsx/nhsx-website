@@ -1,0 +1,43 @@
+{% load static %}
+
+{% comment %} Hero text {% endcomment %}
+{% if hero_text and not hero_image %}
+  <section class="nhsuk-hero">
+    <div class="nhsuk-width-container nhsuk-hero--border">
+      <div class="nhsuk-grid-row">
+        <div class="nhsuk-grid-column-two-thirds">
+          <div class="nhsuk-hero__wrapper">
+            <h1 class="nhsuk-u-margin-bottom-3">{{ hero_heading }}</h1>
+            <p class="nhsuk-body-l nhsuk-u-margin-bottom-0">{{ hero_text }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% comment %} Hero Image + text {% endcomment%}
+{% elif hero_text and hero_image %}
+  <section class="nhsuk-hero nhsuk-hero--image nhsuk-hero--image-description " style="background-image: url('{% static "images/"|add:hero_image }}" %}');">
+    <div class="nhsuk-hero__overlay">
+      <div class="nhsuk-width-container">
+        <div class="nhsuk-grid-row">
+          <div class="nhsuk-grid-column-two-thirds">
+            <div class="nhsuk-hero-content">
+              <h1 class="nhsuk-u-margin-bottom-3">{{ hero_heading }}</h1>
+              <p class="nhsuk-body-l nhsuk-u-margin-bottom-0">{{ hero_text }}</p>
+              <span class="nhsuk-hero__arrow" aria-hidden="true"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% comment %} Hero Image only {% endcomment %}
+{% elif not hero_text and hero_image %}
+  <section class="nhsuk-hero nhsuk-hero--image" style="background-image: url('{% static hero_image %}');">
+    <div class="nhsuk-hero__overlay">
+    </div>
+  </section>
+
+{% endif %}
