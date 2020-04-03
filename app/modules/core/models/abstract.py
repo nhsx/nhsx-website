@@ -21,6 +21,7 @@ from wagtail.core import fields
 from django.utils.text import slugify
 from wagtail.core.models import Page
 from wagtail.search import index
+from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _  # NOQA
 from wagtail.utils.decorators import cached_classmethod
 from wagtail.images.edit_handlers import ImageChooserPanel
