@@ -17,8 +17,6 @@ from typing import List
 from datetime import date, timedelta
 
 # 3rd party
-import redis
-from loguru import logger as guru
 from consoler import console  # NOQA
 
 
@@ -69,6 +67,7 @@ DJANGO_APPS = [
     "modelcluster",
     "taggit",
     "storages",
+    'django_assets',
     "cacheops"
 ]
 
@@ -439,12 +438,20 @@ REFERRER_POLICY = os.environ.get(
 
 
 ####################################################################################################
-# TODO
+# Static assets
 ####################################################################################################
+
+ASSETS_ROOT = '{}/assets'.format(BASE_DIR)
+ASSETS_DEBUG = False
+ASSETS_AUTO_BUILD = False
+ASSETS_MODULES = [
+    'config.assets'
+]
 
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 STATICFILES_FINDERS = [
+    'django_assets.finders.AssetsFinder',
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 ]
