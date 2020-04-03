@@ -3,6 +3,7 @@ from django.test import Client
 
 from modules.core.models import ArticlePage
 
+from .blocks import assert_rich_text
 
 pytestmark = pytest.mark.django_db
 
@@ -31,6 +32,5 @@ def test_article_page_with_body(article_page_with_body):
     assert p is not None
     rv = client.get(p.url)
     rendered = p.body.render_as_block()
-    '<div class="block-rich_text">' in rendered
-    assert 'Nullam quis risus eget' in rendered
+    assert_rich_text(rendered)
     assert rv.status_code == 200

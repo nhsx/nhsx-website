@@ -5,7 +5,7 @@ import pytest
 from wagtail.core.models import Page
 from modules.core.models import SectionPage, ArticlePage
 
-from .blocks import RICHTEXT_BLOCK
+from .blocks import RICHTEXT_BLOCK, PROMO_BLOCK
 
 pytestmark = pytest.mark.django_db
 
@@ -73,7 +73,8 @@ def article_pages(section_page) -> List[ArticlePage]:
 def article_page_with_body(section_page) -> ArticlePage:
     p = _create_article_page('Test Article Page', section_page)
     p.body = json.dumps([
-        RICHTEXT_BLOCK
+        RICHTEXT_BLOCK,
+        PROMO_BLOCK
     ])
     p.save_revision().publish()
     return p
