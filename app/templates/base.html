@@ -1,5 +1,4 @@
-{% load wagtailcore_tags static wagtailuserbar nhsukfrontend_tags %}
-
+{% load wagtailcore_tags static wagtailuserbar nhsukfrontend_tags nhsukfrontendsettings_tags %}
 <!DOCTYPE html>
 <html class="no-js" lang="en">
     <head>
@@ -19,11 +18,12 @@
     <body class="{% block body_class %}{% endblock %}">
         {% wagtailuserbar %}
 
-        {% include 'wagtailnhsukfrontend/header.html' with show_search=True %}
+        {% header %}
         {% block content %}
 
         {% endblock %}
 
+        {% footer %}
         {# Global javascript #}
         <script type="text/javascript" src="{% static 'wagtailnhsukfrontend/js/nhsuk-3.0.2.min.js' %}" defer></script>
         <script type="text/javascript" src="{% static 'js/main.min.js' %}"></script>
