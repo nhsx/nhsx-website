@@ -28,6 +28,7 @@ wagtail_cache = "^1.0.0"
 python-memcached = "^1.59"
 wagtail-nhsuk-frontend = "^0.4.1"
 uwsgi = "^2.0.18"
+django-assets = "^2.0"
 
 
 

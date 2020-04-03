@@ -251,6 +251,18 @@ bcrypt = ["bcrypt"]
 
 [[package]]
 category = "main"
+description = "Asset management for Django, to compress and merge CSS and Javascript files."
+name = "django-assets"
+optional = false
+python-versions = "*"
+version = "2.0"
+
+[package.dependencies]
+Django = ">=1.7"
+webassets = ">=2.0"
+
+[[package]]
+category = "main"
 description = "A slick ORM cache with automatic granular event-driven invalidation for Django."
 name = "django-cacheops"
 optional = false
@@ -1142,6 +1154,14 @@ version = "0.1.9"
 
 [[package]]
 category = "main"
+description = "Media asset management for Python, with glue code for various web frameworks"
+name = "webassets"
+optional = false
+python-versions = "*"
+version = "2.0"
+
+[[package]]
+category = "main"
 description = "Character encoding aliases for legacy web content"
 name = "webencodings"
 optional = false
@@ -1213,7 +1233,7 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["jaraco.itertools", "func-timeout"]
 
 [metadata]
-content-hash = "1fe13dba66ef57ab8b31f27927b5f43ace82f0ad72f4cf04535ce9c848bbaf71"
+content-hash = "7e1835b0b200e7f31cd7a1632169fb284b7bf09c51e884bce8d4212f1ef6b13f"
 python-versions = "^3.6"
 
 [metadata.files]
@@ -1331,6 +1351,10 @@ decorator = [
 django = [
     {file = "Django-3.0.4-py3-none-any.whl", hash = "sha256:89e451bfbb815280b137e33e454ddd56481fdaa6334054e6e031041ee1eda360"},
     {file = "Django-3.0.4.tar.gz", hash = "sha256:50b781f6cbeb98f673aa76ed8e572a019a45e52bdd4ad09001072dfd91ab07c8"},
+]
+django-assets = [
+    {file = "django-assets-2.0.tar.gz", hash = "sha256:8abb81e66b4db602bb7b5e5d1f1b5c6511c3e7d8d4804be50bbb77e5ce898639"},
+    {file = "django_assets-2.0-py3-none-any.whl", hash = "sha256:3e4267a453bb6a30a4bcfb4f971a6876a542b5f500167afda892973335c8ac60"},
 ]
 django-cacheops = [
     {file = "django-cacheops-4.2.tar.gz", hash = "sha256:56ea95ad4eb1b61b6c014b7b23f3203ef8816611c9e8a097a7e99628810e9f16"},
@@ -1705,6 +1729,10 @@ wagtailfontawesome = [
 wcwidth = [
     {file = "wcwidth-0.1.9-py2.py3-none-any.whl", hash = "sha256:cafe2186b3c009a04067022ce1dcd79cb38d8d65ee4f4791b8888d6599d1bbe1"},
     {file = "wcwidth-0.1.9.tar.gz", hash = "sha256:ee73862862a156bf77ff92b09034fc4825dd3af9cf81bc5b360668d425f3c5f1"},
+]
+webassets = [
+    {file = "webassets-2.0-py3-none-any.whl", hash = "sha256:a31a55147752ba1b3dc07dee0ad8c8efff274464e08bbdb88c1fd59ffd552724"},
+    {file = "webassets-2.0.tar.gz", hash = "sha256:167132337677c8cedc9705090f6d48da3fb262c8e0b2773b29f3352f050181cd"},
 ]
 webencodings = [
     {file = "webencodings-0.5.1-py2.py3-none-any.whl", hash = "sha256:a0af1213f3c2226497a97e2b3aa01a7e4bee4f403f95be16fc9acd2947514a78"},
