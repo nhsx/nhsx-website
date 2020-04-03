@@ -8,18 +8,38 @@
 
 from __future__ import absolute_import, unicode_literals
 
-from django.conf import settings
+# 3rd party
+from cacheops import cached  # NOQA
 from django.db import models
-from wagtail.contrib.settings.models import BaseSetting, register_setting
-from cacheops import cached
-
-from wagtail.admin.edit_handlers import FieldPanel
+from django.conf import settings
+from wagtail.core import blocks, fields
+from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
 from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtail.contrib.settings.models import BaseSetting, register_setting
 
 
 ################################################################################
 # Settings models
 ################################################################################
+
+
+class PageLinkBlock(blocks.StructBlock):
+    link_page = blocks.PageChooserBlock(required=True)
+    title_override = blocks.CharBlock(required=False)
+
+
+@register_setting
+class NavigationSettings(BaseSetting):
+    primary = fields.StreamField([
+        ('page', PageLinkBlock()),
+    ], blank=True)
+    footer = fields.StreamField([
+        ('page', PageLinkBlock()),
+    ], blank=True)
+    panels = [
+        StreamFieldPanel('primary'),
+        StreamFieldPanel('footer')
+    ]
 
 
 class CachedSetting(BaseSetting):
