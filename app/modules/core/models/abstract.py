@@ -15,13 +15,12 @@
 from typing import List
 
 # 3rd party
-from cacheops import cached
+from cacheops import cached  # NOQA
 from django.db import models
 from django.conf import settings
 from wagtail.core import fields
 from django.utils.text import slugify
 from wagtail.core.models import Page
-from wagtail.core import blocks
 from wagtail.search import index
 from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _  # NOQA
