@@ -12,7 +12,7 @@
 <div class="nhsuk-width-container">
   <main class="nhsuk-main-wrapper" id="maincontent">
     <div class="nhsuk-grid-row">
-        {% for page in self.get_children %}
+        {% for page in pages %}
           <div class="nhsuk-grid-column-{{column_size}}">
             <h3 class="nhsuk-heading-m">
               <a href="{% pageurl page %}">{{page.title}}</a>

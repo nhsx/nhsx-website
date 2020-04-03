@@ -7,9 +7,26 @@ from wagtail.admin.edit_handlers import FieldPanel
 
 from modules.core.models.abstract import BasePage, BaseIndexPage
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 class BlogPostIndexPage(BaseIndexPage):
     subpage_types = [ 'BlogPost' ]
     max_count = 1
+
+    def get_context(self, request):
+        ctx = super().get_context(request)
+        children = BlogPost.objects.live().public().order_by('-first_published_at')
+
+        if request.GET.get('tag', None):
+            tags = request.GET.get('tag')
+            children = children.filter(tags__slug__in=[tags])
+
+        ctx.update({
+            'children': children
+        })
+        return ctx
 
 class BlogTag(TaggedItemBase):
 	content_object = ParentalKey(

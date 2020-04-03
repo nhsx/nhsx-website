@@ -39,5 +39,16 @@ def test_blog_post_index_shows_tags(blog_post):
 
     assert rv.content.find(str.encode("This is a tag"))
 
+def test_blog_post_index_filters_by_tag(blog_post_index_page, blog_posts):
+
+    blog_posts[0].tags.add("tag1")
+    blog_posts[1].tags.add("tag2")
+
+    rv = client.get(blog_post_index_page.url + "?tag=tag1")
+
+    assert rv.content.find(str.encode(blog_posts[0].title))
+    assert rv.content.find(str.encode(blog_posts[1].title)) < 0
+
+
 
 
