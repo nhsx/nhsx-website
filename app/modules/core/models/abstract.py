@@ -15,11 +15,13 @@
 from typing import List
 
 # 3rd party
+from cacheops import cached
 from django.db import models
 from django.conf import settings
 from wagtail.core import fields
 from django.utils.text import slugify
 from wagtail.core.models import Page
+from wagtail.core import blocks
 from wagtail.search import index
 from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _  # NOQA
@@ -30,12 +32,77 @@ from wagtail.admin.edit_handlers import (
 )
 
 # Project
-from modules.core.blocks import nhsx_blocks
+from modules.core.blocks import nhsx_blocks, sidebar_blocks
 
 
 ################################################################################
 # Mixins
 ################################################################################
+
+
+class SidebarMixin(models.Model):
+
+    """Adds a sidebar to a page containing the content-list component from here:
+    https://nhsuk.github.io/nhsuk-frontend/components/contents-list/index.html
+
+    We should attempt to build the list automatically based on sibling pages, but also
+    have options to show no sidebar at all, or a curated list of pages.
+    """
+
+    class Meta:
+        abstract = True
+
+    has_sidebar = True
+
+    automatic = models.BooleanField(
+        default=False,
+        help_text="Build automatically from sibling pages"
+    )
+
+    sidebar_links = fields.StreamField(sidebar_blocks, blank=True)
+
+    panels = [
+        FieldPanel('automatic'),
+        StreamFieldPanel('sidebar_links')
+    ]
+
+    def _find_url(self, val):
+        try:
+            link = val['link']
+            if link['link_page'] is not None:
+                return link['link_page'].url
+            if link['link_external'] is not None and link['link_external'] != '':
+                return link['link_external']
+            if link['link_document'] is not None:
+                return link['link_document'].url
+        except Exception:
+            return '/'
+        return '/'
+
+    @cached_property
+    def _siblings(self):
+        sibs = self.get_siblings()
+        return [{'title': _.title, 'url': _.url} for _ in sibs]
+
+    @cached_property
+    def _streamed(self):
+        rv = []
+        for item in self.sidebar_links:
+            rv.append(
+                {
+                    'title': item.value.get('label', ""),
+                    'url': self._find_url(item.value)
+                }
+            )
+
+        return rv
+
+    @cached_property
+    def sidebar_pages(self):
+        if self.automatic:
+            return self._siblings
+        else:
+            return self._streamed
 
 
 class SocialMetaMixin(models.Model):

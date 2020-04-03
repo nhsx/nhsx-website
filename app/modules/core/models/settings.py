@@ -23,25 +23,6 @@ from wagtail.contrib.settings.models import BaseSetting, register_setting
 ################################################################################
 
 
-class PageLinkBlock(blocks.StructBlock):
-    link_page = blocks.PageChooserBlock(required=True)
-    title_override = blocks.CharBlock(required=False)
-
-
-@register_setting
-class NavigationSettings(BaseSetting):
-    primary = fields.StreamField([
-        ('page', PageLinkBlock()),
-    ], blank=True)
-    footer = fields.StreamField([
-        ('page', PageLinkBlock()),
-    ], blank=True)
-    panels = [
-        StreamFieldPanel('primary'),
-        StreamFieldPanel('footer')
-    ]
-
-
 class CachedSetting(BaseSetting):
 
     class Meta:

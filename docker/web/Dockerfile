@@ -169,12 +169,12 @@ WORKDIR /usr/srv/app/
 # We'll eventually want these or similar for the production container
 # RUN python manage.py migrate
 
-COPY ./docker/web/conf/uwsgi.ini /etc/uwsgi.ini
+# COPY ./docker/web/conf/uwsgi.ini /etc/uwsgi.ini
 
-RUN addgroup -S wagtail
-RUN adduser -S -D -h /usr/srv/app wagtail wagtail
-RUN chown -R wagtail /usr/srv/app/
+# RUN addgroup -S wagtail
+# RUN adduser -S -D -h /usr/srv/app wagtail wagtail
+# RUN chown -R wagtail /usr/srv/app/
 # USER wagtail
 
-EXPOSE 8000
-CMD exec uwsgi --static-map /static=/src/app/static --ini /etc/uwsgi.ini
+# EXPOSE 8000
+# CMD exec uwsgi --static-map /static=/src/app/static --ini /etc/uwsgi.ini

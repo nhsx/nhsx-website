@@ -15,6 +15,26 @@
         <h1 class="nhsuk-heading-xl">{{ page.title }}</h1>
         {% include_block page.body %}
       </div>
+      {% if page.has_sidebar %}
+      <div class="nhsuk-grid-column-one-third">
+        <nav class="nhsuk-contents-list" role="navigation" aria-label="Pages in this section">
+          <h2 class="nhsuk-u-visually-hidden">Contents</h2>
+          <ol class="nhsuk-contents-list__list">
+                {% for p in page.sidebar_pages %}
+                {% if page.url == p.url %}
+                <li class="nhsuk-contents-list__item" aria-current="page">
+                  <span class="nhsuk-contents-list__current">{{ p.title }}</span>
+                </li>
+                {% else %}
+                <li class="nhsuk-contents-list__item">
+                  <a class="nhsuk-contents-list__link" href="{{ p.url }}">{{ p.title }}</a>
+                </li>
+                {% endif %}
+            {% endfor %}
+          </ol>
+        </nav>
+      </div>
+      {% endif %}
     </div>
   </main>
 </div>

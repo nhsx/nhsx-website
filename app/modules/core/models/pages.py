@@ -7,7 +7,7 @@ from wagtail.utils.decorators import cached_classmethod
 from modules.core.blocks import nhsx_blocks
 
 # Module
-from .abstract import BasePage, HeroImageContentMixin
+from .abstract import BasePage, HeroImageContentMixin, SidebarMixin
 
 
 ################################################################################
@@ -38,7 +38,7 @@ class SectionPage(BasePage, HeroImageContentMixin):
 ################################################################################
 
 
-class ArticlePage(BasePage):
+class ArticlePage(BasePage, SidebarMixin):
 
     """ArticlePage is a generic content page.
 
@@ -46,3 +46,11 @@ class ArticlePage(BasePage):
 
     parent_page_types: list = ['core.SectionPage', ]
     subpage_types: list = []
+
+    sidebar_panels: list = SidebarMixin.panels
+
+    @cached_classmethod
+    def get_admin_tabs(cls):
+        tabs = super().get_admin_tabs()
+        tabs.insert(1, (cls.sidebar_panels, 'Sidebar'))
+        return tabs
