@@ -20,3 +20,12 @@ def test_news_index_200(news_index_page):
     """
     rv = client.get(news_index_page.url)
     assert rv.status_code == 200
+
+def test_news_index_lists_news(news_index_page, news_items):
+    """Test that the index page lists all of the news items
+    """
+    rv = client.get(news_index_page.url)
+
+    for news_item in news_items:
+        assert rv.content.find(str.encode(news_item.title))
+

@@ -7,6 +7,15 @@
 {% endblock extra_css %}
 
 {% block content %}
-{% include 'wagtailnhsukfrontend/header.html' with show_search=True %}
-{% include_block page.body %}
+{% breadcrumb %}
+<div class="nhsuk-width-container">
+  <main class="nhsuk-main-wrapper" id="maincontent">
+    <div class="nhsuk-grid-row">
+      <div class="nhsuk-grid-column-two-thirds">
+        <h1 class="nhsuk-heading-xl">{{ page.title }}</h1>
+        {% include_block page.body %}
+      </div>
+    </div>
+  </main>
+</div>
 {% endblock content %}

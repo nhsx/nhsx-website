@@ -17,6 +17,7 @@
     <body class="{% block body_class %}{% endblock %}">
         {% wagtailuserbar %}
 
+        {% include 'wagtailnhsukfrontend/header.html' with show_search=True %}
         {% block content %}
 
         {% endblock %}
