@@ -23,6 +23,7 @@
                 <span>{{page.owner.full_name}}</span>
               {% endif %}
             </p>
+            {% include '_partials/tags.html' %}
             <p>
               {{page.specific.body|striptags|truncatewords:30}}
             </p>

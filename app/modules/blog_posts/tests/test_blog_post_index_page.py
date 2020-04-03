@@ -29,3 +29,15 @@ def test_blog_post_index_lists_blog_posts(blog_post_index_page, blog_posts):
     for blog_post in blog_posts:
         assert rv.content.find(str.encode(blog_post.title))
 
+def test_blog_post_index_shows_tags(blog_post):
+    """Test that we can see a blog post's tags
+    """
+    blog_post.tags.add("This is a tag")
+    blog_post.save_revision().publish()
+
+    rv = client.get(blog_post.get_parent().url)
+
+    assert rv.content.find(str.encode("This is a tag"))
+
+
+
