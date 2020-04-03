@@ -3,7 +3,7 @@ from django.test import Client
 
 from modules.core.models import ArticlePage
 
-from .blocks import assert_rich_text
+from .blocks import assert_rich_text, assert_promo, assert_small_promo
 
 pytestmark = pytest.mark.django_db
 
@@ -33,4 +33,6 @@ def test_article_page_with_body(article_page_with_body):
     rv = client.get(p.url)
     rendered = p.body.render_as_block()
     assert_rich_text(rendered)
+    assert_promo(rendered)
+    assert_small_promo(rendered)
     assert rv.status_code == 200
