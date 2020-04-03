@@ -42,12 +42,32 @@ def test_blog_post_index_shows_tags(blog_post):
 def test_blog_post_index_filters_by_tag(blog_post_index_page, blog_posts):
 
     blog_posts[0].tags.add("tag1")
+    blog_posts[0].save_revision().publish()
+
     blog_posts[1].tags.add("tag2")
+    blog_posts[1].save_revision().publish()
 
     rv = client.get(blog_post_index_page.url + "?tag=tag1")
 
     assert rv.content.find(str.encode(blog_posts[0].title))
     assert rv.content.find(str.encode(blog_posts[1].title)) < 0
+
+def test_blog_post_index_filters_by_multiple_tags(blog_post_index_page, blog_posts):
+
+    blog_posts[0].tags.add("tag1")
+    blog_posts[0].save_revision().publish()
+
+    blog_posts[1].tags.add("tag2")
+    blog_posts[1].save_revision().publish()
+
+    blog_posts[2].tags.add("tag3")
+    blog_posts[2].save_revision().publish()
+
+    rv = client.get(blog_post_index_page.url + "?tag=tag1,tag2")
+
+    assert rv.content.find(str.encode(blog_posts[0].title))
+    assert rv.content.find(str.encode(blog_posts[1].title))
+    assert rv.content.find(str.encode(blog_posts[2].title)) < 0
 
 
 

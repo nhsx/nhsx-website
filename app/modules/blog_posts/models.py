@@ -20,8 +20,8 @@ class BlogPostIndexPage(BaseIndexPage):
         children = BlogPost.objects.live().public().order_by('-first_published_at')
 
         if request.GET.get('tag', None):
-            tags = request.GET.get('tag')
-            children = children.filter(tags__slug__in=[tags])
+            tags = request.GET.get('tag').split(',')
+            children = children.filter(tags__slug__in=tags).distinct()
 
         ctx.update({
             'children': children
