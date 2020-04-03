@@ -1,0 +1,15 @@
+
+//Fullwidth white section
+.nhsx-section--white {
+  background-color: $white;
+}
+@media screen and (min-width: $medium-screen) {
+  .nhsx-section {
+    padding-bottom: nhsuk-spacing(8);
+    padding-top: nhsuk-spacing(8);
+  }
+}
+.nhsx-section {
+  padding-bottom: nhsuk-spacing(5);
+  padding-top: nhsuk-spacing(5);
+}

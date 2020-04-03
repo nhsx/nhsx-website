@@ -10,32 +10,33 @@
 
 {% image page.image width-1000 as hero_image %}
 {% include '_partials/hero.html' with hero_text=page.sub_head hero_heading=page.headline hero_image=hero_image.url %}
-<div class="nhsuk-width-container">
-  <main class="nhsuk-main-wrapper" id="maincontent">
-    <div class="nhsuk-grid-row">
-        {% for page in pages %}
-          <div class="nhsuk-grid-column-{{column_size}}">
-            <h3 class="nhsuk-heading-m">
-              <a href="{% pageurl page %}">{{page.title}}</a>
-            </h3>
-            <p>
-              <span>{{page.first_published_at|date:"j F Y"}}</span>
-              {% if show_user %}
-                <span>{{page.owner.full_name}}</span>
-              {% endif %}
-            </p>
-            {% include '_partials/tags.html' %}
-            <p>
-              {{page.specific.body|striptags|truncatewords:30}}
-            </p>
-            <p>
-              <a href="{% pageurl page %}">Read More</a>
-            </p>
-          </div>
-        {% endfor %}
-      </div>
-    </div>
-  </main>
-</div>
+<section class="nhsx-section nhsx-section--white">
+  <div class="nhsuk-width-container">
+    <main class="nhsuk-main-wrapper" id="maincontent">
+        <div class="nhsuk-grid-row nhsuk-u-margin-top-6">
+          {% for page in pages %}
+            <div class="nhsuk-grid-column-{{column_size}} nhsuk-u-margin-bottom-5">
+              <h3 class="nhsuk-heading-m">
+                <a href="{% pageurl page %}">{{page.title}}</a>
+              </h3>
+              <p>
+                <span>{{page.first_published_at|date:"j F Y"}}</span>
+                {% if show_user %}
+                  <span>{{page.owner.full_name}}</span>
+                {% endif %}
+              </p>
+              {% include '_partials/tags.html' %}
+              <p>
+                {{page.specific.body|striptags|truncatewords:30}}
+              </p>
+              <p>
+                <a href="{% pageurl page %}">Read More</a>
+              </p>
+            </div>
+          {% endfor %}
+        </div>
+    </main>
+  </div>
+</section>
 {% endblock content %}
 {% include 'wagtailnhsukfrontend/footer.html' %}

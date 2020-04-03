@@ -1,1 +1,7 @@
 // This is the main scss file, add new files for components and import them here
+// Main CSS
+@import "helpers/_mixins";
+
+@import "settings/_colours";
+
+@import "base/_site";
