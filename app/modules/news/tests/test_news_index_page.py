@@ -1,4 +1,6 @@
 import pytest
+import re
+
 from django.test import Client
 
 pytestmark = pytest.mark.django_db
@@ -27,5 +29,5 @@ def test_news_index_lists_news(news_index_page, news_items):
     rv = client.get(news_index_page.url)
 
     for news_item in news_items:
-        assert rv.content.find(str.encode(news_item.title))
+        assert news_item.title in str(rv.content)
 

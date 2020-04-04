@@ -24,4 +24,4 @@ def test_blog_post_shows_tags(blog_post):
 
     rv = client.get(blog_post.url)
 
-    assert rv.content.find(str.encode("This is a tag"))
+    assert "This is a tag" in str(rv.content)

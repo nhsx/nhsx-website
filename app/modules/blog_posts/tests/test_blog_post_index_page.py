@@ -27,7 +27,7 @@ def test_blog_post_index_lists_blog_posts(blog_post_index_page, blog_posts):
     rv = client.get(blog_post_index_page.url)
 
     for blog_post in blog_posts:
-        assert rv.content.find(str.encode(blog_post.title))
+        assert blog_post.title in str(rv.content)
 
 def test_blog_post_index_shows_tags(blog_post):
     """Test that we can see a blog post's tags
@@ -37,7 +37,7 @@ def test_blog_post_index_shows_tags(blog_post):
 
     rv = client.get(blog_post.get_parent().url)
 
-    assert rv.content.find(str.encode("This is a tag"))
+    assert "This is a tag" in str(rv.content)
 
 def test_blog_post_index_filters_by_tag(blog_post_index_page, blog_posts):
 
@@ -49,8 +49,8 @@ def test_blog_post_index_filters_by_tag(blog_post_index_page, blog_posts):
 
     rv = client.get(blog_post_index_page.url + "?tag=tag1")
 
-    assert rv.content.find(str.encode(blog_posts[0].title))
-    assert rv.content.find(str.encode(blog_posts[1].title)) < 0
+    assert blog_posts[0].title in str(rv.content)
+    assert blog_posts[1].title not in str(rv.content)
 
 def test_blog_post_index_filters_by_multiple_tags(blog_post_index_page, blog_posts):
 
@@ -65,9 +65,9 @@ def test_blog_post_index_filters_by_multiple_tags(blog_post_index_page, blog_pos
 
     rv = client.get(blog_post_index_page.url + "?tag=tag1,tag2")
 
-    assert rv.content.find(str.encode(blog_posts[0].title))
-    assert rv.content.find(str.encode(blog_posts[1].title))
-    assert rv.content.find(str.encode(blog_posts[2].title)) < 0
+    assert blog_posts[0].title in str(rv.content)
+    assert blog_posts[1].title in str(rv.content)
+    assert blog_posts[2].title not in str(rv.content)
 
 
 
