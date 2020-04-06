@@ -172,7 +172,7 @@ class UserProfile(ClusterableModel):
         on_delete=models.SET_NULL,
         related_name='profile'
     )
-
+    job_title = models.CharField(_('Job title'), max_length=255, blank=True, null=True)
     bio = fields.RichTextField(_('Bio'), blank=True, null=True)
     short_bio = fields.RichTextField(_('Short bio'), blank=True, null=True)
     photo = models.ForeignKey(
