@@ -27,6 +27,15 @@ def test_blog_post_index_page_can_have_hero_content(blog_post_index_page):
     assert blog_post_index_page.headline == "This is a headline"
     assert blog_post_index_page.sub_head == "Some subheading"
 
+def test_blog_post_index_page_has_a_hero_tab(blog_post_index_page):
+    """Check that hero content can be editable in the admin section
+    """
+    assert blog_post_index_page.get_admin_tabs()[1][0][0].field_name == "headline"
+    assert blog_post_index_page.get_admin_tabs()[1][0][1].field_name == "sub_head"
+    assert blog_post_index_page.get_admin_tabs()[1][0][2].field_name == "image"
+
+    assert blog_post_index_page.get_admin_tabs()[1][1] == "Hero"
+
 def test_blog_post_index_page_get_children(blog_post_index_page, blog_posts):
     """Check that blog_post_index_page has 10 children
     """
