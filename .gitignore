@@ -15,6 +15,7 @@ npm-debug.log
 .webassets-cache/*
 app/assets/.webassets-cache
 app/assets/.webassets-cache/*
+app/assets/dist/*
 
 # Coverage
 .coverage
