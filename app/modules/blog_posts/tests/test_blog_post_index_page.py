@@ -1,6 +1,8 @@
 import pytest, re
 from django.test import Client
 
+from modules.blog_posts.models import BlogPostIndexPage
+
 pytestmark = pytest.mark.django_db
 
 client = Client()
@@ -9,6 +11,21 @@ def test_blog_post_index_page_gets_created(blog_post_index_page):
     """Test that we have a blog post index page created by the fixture
     """
     assert blog_post_index_page is not None
+
+def test_blog_post_index_page_can_have_hero_content(blog_post_index_page):
+    """Test that blog post index pages can have hero content
+    """
+    blog_post_index_page.headline = "This is a headline"
+    blog_post_index_page.sub_head = "Some subheading"
+
+    # TODO: How do we test this?
+    # blog_post_index_page.image = ???
+    blog_post_index_page.save_revision().publish()
+
+    blog_post_index_page.refresh_from_db()
+
+    assert blog_post_index_page.headline == "This is a headline"
+    assert blog_post_index_page.sub_head == "Some subheading"
 
 def test_blog_post_index_page_get_children(blog_post_index_page, blog_posts):
     """Check that blog_post_index_page has 10 children

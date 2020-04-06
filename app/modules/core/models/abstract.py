@@ -342,7 +342,9 @@ class BasePage(Page, SocialMetaMixin):
 # Base Index Page
 ################################################################################
 
-class BaseIndexPage(BasePage):
+class BaseIndexPage(BasePage, HeroImageContentMixin):
 
     class Meta:
         abstract = True
+
+    hero_panels = HeroImageContentMixin.hero_panels

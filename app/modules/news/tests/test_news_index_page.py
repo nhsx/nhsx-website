@@ -12,6 +12,21 @@ def test_news_index_page_gets_created(news_index_page):
     """
     assert news_index_page is not None
 
+def test_news_index_page_can_have_hero_content(news_index_page):
+    """Test that news index pages can have hero content
+    """
+    news_index_page.headline = "This is a headline"
+    news_index_page.sub_head = "Some subheading"
+
+    # TODO: How do we test this?
+    # news_index_page.image = ???
+    news_index_page.save_revision().publish()
+
+    news_index_page.refresh_from_db()
+
+    assert news_index_page.headline == "This is a headline"
+    assert news_index_page.sub_head == "Some subheading"
+
 def test_news_index_page_get_children(news_index_page, news_items):
     """Check that news_index_page has 10 children
     """
