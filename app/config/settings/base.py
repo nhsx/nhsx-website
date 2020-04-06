@@ -48,7 +48,7 @@ SECURE_BROWSER_XSS_FILTER = True
 X_FRAME_OPTIONS = "DENY"
 CSRF_USE_SESSIONS = False
 
-WAGTAIL_2FA_REQUIRED = True
+WAGTAIL_2FA_REQUIRED = False
 
 
 ####################################################################################################

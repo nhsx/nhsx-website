@@ -5,4 +5,4 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-WAGTAIL_2FA_REQUIRED = True
+WAGTAIL_2FA_REQUIRED = False
