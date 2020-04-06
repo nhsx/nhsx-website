@@ -1,0 +1,18 @@
+
+//Badges
+
+.tags .tag a {
+    padding: 3px 7px;
+    background:$offwhite;
+    border-radius: 5px;
+    border: 1px solid $nhs-pale-grey;
+    color: $nhs-dark-grey;
+    text-decoration: none;
+    &:hover {
+      background: $nhs-blue;
+      border-color:$nhs-bright-blue;
+      color: $white;
+      text-decoration: none;
+      @include transition(all);
+    }
+}

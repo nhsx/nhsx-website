@@ -19,7 +19,7 @@
               <h3 class="nhsuk-heading-m">
                 <a href="{% pageurl page %}">{{page.title}}</a>
               </h3>
-              <p>
+              <p class="topics">
                 <span>{{page.first_published_at|date:"j F Y"}}</span>
                 {% if show_user %}
                   <span>{{page.owner.full_name}}</span>
@@ -27,7 +27,7 @@
               </p>
               {% include '_partials/tags.html' %}
               <p>
-                {{page.specific.body|striptags|truncatewords:30}}
+                {{page.specific.body|striptags|truncatechars:70}}
               </p>
               <p>
                 <a href="{% pageurl page %}">Read More</a>
