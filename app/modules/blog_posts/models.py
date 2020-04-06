@@ -1,18 +1,20 @@
 from django.db import models
 
+from dal_select2.widgets import ModelSelect2Multiple
 from modelcluster.fields import ParentalKey
 from taggit.models import TaggedItemBase
 from modelcluster.contrib.taggit import ClusterTaggableManager
 from wagtail.admin.edit_handlers import FieldPanel
 
-from modules.core.models.abstract import BasePage, BaseIndexPage
+from modules.core.models.abstract import BasePage, BaseIndexPage, PageAuthorsMixin
 
 import logging
 
 logger = logging.getLogger(__name__)
 
+
 class BlogPostIndexPage(BaseIndexPage):
-    subpage_types = [ 'BlogPost' ]
+    subpage_types = ['BlogPost']
     max_count = 1
 
     def get_context(self, request):
@@ -28,14 +30,16 @@ class BlogPostIndexPage(BaseIndexPage):
         })
         return ctx
 
-class BlogTag(TaggedItemBase):
-	content_object = ParentalKey(
-	    'BlogPost',
-	    related_name='tagged_items',
-	    on_delete=models.CASCADE,
-	)
 
-class BlogPost(BasePage):
+class BlogTag(TaggedItemBase):
+    content_object = ParentalKey(
+        'BlogPost',
+        related_name='tagged_items',
+        on_delete=models.CASCADE,
+    )
+
+
+class BlogPost(BasePage, PageAuthorsMixin):
     parent_page_types = ['BlogPostIndexPage']
 
     tags = ClusterTaggableManager(through=BlogTag, blank=True)
@@ -44,4 +48,10 @@ class BlogPost(BasePage):
         *BasePage.page_promote_panels,
         FieldPanel("tags"),
         *BasePage.social_promote_panels
+    ]
+    content_panels = BasePage.content_panels + [
+        FieldPanel(
+            'authors',
+            widget=ModelSelect2Multiple(url='author-autocomplete')
+        )
     ]

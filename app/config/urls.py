@@ -10,6 +10,7 @@ from wagtail.documents import urls as wagtaildocs_urls
 from wagtail.contrib.sitemaps.views import sitemap
 
 from modules.search import views as search_views
+from modules.core.views import AuthorAutocomplete
 
 
 PROD_ROBOTS = """
@@ -39,6 +40,11 @@ urlpatterns = [
     url(r'^search/$', search_views.search, name='search'),
     url(r'^sitemap\.xml$', sitemap),
     url(r'^robots\.txt$', robots),
+    url(
+        r'^author-autocomplete/$',
+        AuthorAutocomplete.as_view(),
+        name='author-autocomplete',
+    ),
 ]
 
 

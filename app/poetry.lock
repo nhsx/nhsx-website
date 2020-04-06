@@ -263,6 +263,23 @@ webassets = ">=2.0"
 
 [[package]]
 category = "main"
+description = "Fresh autocompletes for Django"
+name = "django-autocomplete-light"
+optional = false
+python-versions = "*"
+version = "3.5.1"
+
+[package.dependencies]
+six = "*"
+
+[package.extras]
+genericm2m = ["django-generic-m2m"]
+gfk = ["django-querysetsequence (>=0.11)"]
+nested = ["django-nested-admin (>=3.0.21)"]
+tags = ["django-taggit"]
+
+[[package]]
+category = "main"
 description = "A slick ORM cache with automatic granular event-driven invalidation for Django."
 name = "django-cacheops"
 optional = false
@@ -1233,7 +1250,7 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["jaraco.itertools", "func-timeout"]
 
 [metadata]
-content-hash = "7e1835b0b200e7f31cd7a1632169fb284b7bf09c51e884bce8d4212f1ef6b13f"
+content-hash = "0b1f31132fe47526acdd308c82fb498499182f25e028bc17650129ef694efe6e"
 python-versions = "^3.6"
 
 [metadata.files]
@@ -1355,6 +1372,9 @@ django = [
 django-assets = [
     {file = "django-assets-2.0.tar.gz", hash = "sha256:8abb81e66b4db602bb7b5e5d1f1b5c6511c3e7d8d4804be50bbb77e5ce898639"},
     {file = "django_assets-2.0-py3-none-any.whl", hash = "sha256:3e4267a453bb6a30a4bcfb4f971a6876a542b5f500167afda892973335c8ac60"},
+]
+django-autocomplete-light = [
+    {file = "django-autocomplete-light-3.5.1.tar.gz", hash = "sha256:52e8d468060a5911c44300a374d74058c90e65bfdf87ace151abac67279c4ae5"},
 ]
 django-cacheops = [
     {file = "django-cacheops-4.2.tar.gz", hash = "sha256:56ea95ad4eb1b61b6c014b7b23f3203ef8816611c9e8a097a7e99628810e9f16"},

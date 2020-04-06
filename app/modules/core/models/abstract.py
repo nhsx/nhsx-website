@@ -17,11 +17,13 @@ from typing import List
 # 3rd party
 from cacheops import cached  # NOQA
 from django.db import models
+from django.db.models import F
 from django.conf import settings
 from wagtail.core import fields
 from django.utils.text import slugify
 from wagtail.core.models import Page
 from wagtail.search import index
+from modelcluster.fields import ParentalManyToManyField
 from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _  # NOQA
 from wagtail.utils.decorators import cached_classmethod
@@ -102,6 +104,37 @@ class SidebarMixin(models.Model):
             return self._siblings
         else:
             return self._streamed
+
+
+class PageAuthorsMixin(models.Model):
+    """
+    This class can be used to add authors to a page.
+    """
+    class Meta:
+        abstract = True
+    authors = ParentalManyToManyField(
+        'users.User',
+        blank=True,
+        related_name='pages_%(class)s'
+    )
+    @cached_property
+    def author_list(self):
+        ordering_model = 'core_articlepage_authors.id'
+        authors = self.authors.prefetch_related(
+            'profile__photo').order_by(
+            ordering_model).annotate(
+            avatar_id=F('profile__photo__id')).values_list(
+            'first_name', 'last_name', 'slug', 'avatar_id')
+        return [
+            {
+                'full_name': f'{author[0]} {author[1]}',
+                'first_name': author[0],
+                'last_name': author[1],
+                'slug': author[2],
+                'avatar': None
+            }
+            for author in authors
+        ]
 
 
 class SocialMetaMixin(models.Model):
