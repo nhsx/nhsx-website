@@ -181,7 +181,7 @@ class SocialMetaMixin(models.Model):
         ], heading=_('Common page configuration')),
     ]
 
-    promote_panels = page_promote_panels + [
+    social_promote_panels = [
         MultiFieldPanel([
             ImageChooserPanel('twitter_card_image'),
             FieldPanel('twitter_card_alt_text'),
@@ -194,6 +194,8 @@ class SocialMetaMixin(models.Model):
             FieldPanel('fb_og_description'),
         ], heading=_("Facebook Meta"))
     ]
+
+    promote_panels = page_promote_panels + social_promote_panels
 
 
 class HeroMixin(models.Model):

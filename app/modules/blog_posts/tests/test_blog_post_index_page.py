@@ -27,5 +27,48 @@ def test_blog_post_index_lists_blog_posts(blog_post_index_page, blog_posts):
     rv = client.get(blog_post_index_page.url)
 
     for blog_post in blog_posts:
-        assert rv.content.find(str.encode(blog_post.title))
+        assert blog_post.title in str(rv.content)
+
+def test_blog_post_index_shows_tags(blog_post):
+    """Test that we can see a blog post's tags
+    """
+    blog_post.tags.add("This is a tag")
+    blog_post.save_revision().publish()
+
+    rv = client.get(blog_post.get_parent().url)
+
+    assert "This is a tag" in str(rv.content)
+
+def test_blog_post_index_filters_by_tag(blog_post_index_page, blog_posts):
+
+    blog_posts[0].tags.add("tag1")
+    blog_posts[0].save_revision().publish()
+
+    blog_posts[1].tags.add("tag2")
+    blog_posts[1].save_revision().publish()
+
+    rv = client.get(blog_post_index_page.url + "?tag=tag1")
+
+    assert blog_posts[0].title in str(rv.content)
+    assert blog_posts[1].title not in str(rv.content)
+
+def test_blog_post_index_filters_by_multiple_tags(blog_post_index_page, blog_posts):
+
+    blog_posts[0].tags.add("tag1")
+    blog_posts[0].save_revision().publish()
+
+    blog_posts[1].tags.add("tag2")
+    blog_posts[1].save_revision().publish()
+
+    blog_posts[2].tags.add("tag3")
+    blog_posts[2].save_revision().publish()
+
+    rv = client.get(blog_post_index_page.url + "?tag=tag1,tag2")
+
+    assert blog_posts[0].title in str(rv.content)
+    assert blog_posts[1].title in str(rv.content)
+    assert blog_posts[2].title not in str(rv.content)
+
+
+
 

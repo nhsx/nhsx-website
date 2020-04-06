@@ -1,0 +1,9 @@
+{% if page.specific.tags.count %}
+<p>
+  {% for tag in page.specific.tags.all %}
+    <span>
+      <a href="{{ page.specific.get_parent.url }}?tag={{ tag.slug }}">{{ tag }}</a>
+    </span>
+  {% endfor %}
+</p>
+{% endif %}
