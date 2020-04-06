@@ -39,7 +39,7 @@ THE_FUTURE = date.today() + timedelta(days=365 * 10)
 
 
 ####################################################################################################
-# Django Dev Panel recommendations
+# Django Dev Panel recommendations and other security
 ####################################################################################################
 
 
@@ -47,6 +47,8 @@ SECURE_CONTENT_TYPE_NOSNIFF = True
 SECURE_BROWSER_XSS_FILTER = True
 X_FRAME_OPTIONS = "DENY"
 CSRF_USE_SESSIONS = False
+
+WAGTAIL_2FA_REQUIRED = True
 
 
 ####################################################################################################
@@ -70,7 +72,9 @@ DJANGO_APPS = [
     "taggit",
     "storages",
     'django_assets',
-    "cacheops"
+    "cacheops",
+    'django_otp',
+    'django_otp.plugins.otp_totp',
 ]
 
 WAGTAIL_APPS = [
@@ -94,7 +98,8 @@ WAGTAIL_APPS = [
     "wagtail.contrib.routable_page",
     "wagtailnhsukfrontend",
     "wagtailnhsukfrontend.settings",
-    "wagtailcache"
+    "wagtailcache",
+    'wagtail_2fa',
 ]
 
 SITE_APPS = [
@@ -130,6 +135,7 @@ MIDDLEWARE = [
     # SECURITY
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "wagtail_2fa.middleware.VerifyUserMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     # WAGTAIL
     "wagtail.core.middleware.SiteMiddleware",

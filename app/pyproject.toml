@@ -30,6 +30,7 @@ wagtail-nhsuk-frontend = "^0.4.1"
 uwsgi = "^2.0.18"
 django-assets = "^2.0"
 django-autocomplete-light = "^3.5"
+wagtail-2fa = "^1.4.2"
 
 
 

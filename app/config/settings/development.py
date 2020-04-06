@@ -4,3 +4,5 @@ from .base import *  # NOQA
 DEBUG = True
 ALLOWED_HOSTS = ['*']
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+WAGTAIL_2FA_REQUIRED = True
