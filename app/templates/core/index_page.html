@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags static wagtailuserbar nhsukfrontend_tags %}
+{% load wagtailcore_tags static wagtailuserbar nhsukfrontend_tags wagtailimages_tags %}
 
 {% block body_class %}template-homepage{% endblock %}
 
@@ -8,7 +8,8 @@
 
 {% block content %}
 
-{% include '_partials/hero.html' with hero_text=hero_text hero_heading=hero_heading hero_image=hero_image %}
+{% image page.image width-1000 as hero_image %}
+{% include '_partials/hero.html' with hero_text=page.sub_head hero_heading=page.headline hero_image=hero_image.url %}
 <div class="nhsuk-width-container">
   <main class="nhsuk-main-wrapper" id="maincontent">
     <div class="nhsuk-grid-row">
