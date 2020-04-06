@@ -123,6 +123,7 @@ RUN apk update && \
 # RUN python manage.py migrate
 
 COPY ./docker/web/conf/uwsgi.ini /etc/uwsgi.ini
+COPY ./docker-entrypoint.sh docker-entrypoint.sh
 
 RUN addgroup -S wagtail
 RUN adduser -S -D -h /usr/srv/app wagtail wagtail
