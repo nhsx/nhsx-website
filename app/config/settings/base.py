@@ -296,6 +296,7 @@ REDIS_PORT = os.environ.get('REDIS_PORT', '6379')
 REDIS_HOST_FULL = f"redis://{REDIS_HOST}:{REDIS_PORT}"
 REDIS_HOST_CACHEOPS = f"{REDIS_HOST_FULL}/1"
 REDIS_HOST_PAGECACHE = f"{REDIS_HOST_FULL}/2"
+REDIS_HOST_SESSIONS = f"{REDIS_HOST_FULL}/3"
 
 
 CACHES = {
@@ -321,9 +322,15 @@ CACHES = {
         }
     },
     'session_cache': {
-        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
-        'LOCATION': os.environ.get('MEMCACHED_LOCATION', '127.0.0.1:11211'),
-    }
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': REDIS_HOST_SESSIONS,
+        'OPTIONS': {
+            "PARSER_CLASS": "redis.connection.HiredisParser",
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+            'PASSWORD': os.environ.get('REDIS_PASSWORD'),
+            "IGNORE_EXCEPTIONS": True,
+        }
+    },
 }
 
 

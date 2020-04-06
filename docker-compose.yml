@@ -10,12 +10,6 @@ services:
     volumes:
       - ./docker/db/data/:/var/lib/postgresql/data
 
-  # memcached
-  memcached:
-    image: memcached:1.5-alpine
-    ports:
-      - "11211:11211"
-
   # Redis
   redis:
     restart: always
@@ -52,10 +46,8 @@ services:
     links:
       - db
       - redis
-      - memcached
     depends_on:
       - db
       - redis
-      - memcached
 
     command: sleep 1000000
