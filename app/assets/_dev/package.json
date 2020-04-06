@@ -21,6 +21,6 @@
   },
   "homepage": "https://github.com/dxw/nhsx-website#readme",
   "dependencies": {
-    "nhsuk-frontend": "^3.0.4"
+    "nhsuk-frontend": "dxw/nhsuk-frontend"
   }
 }
