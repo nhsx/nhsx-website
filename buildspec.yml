@@ -1,0 +1,30 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo Build started on `date`
+      - echo Entered the pre_build phase...
+      - echo Logging in to Amazon ECR...
+      - $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
+      - echo Building the Docker image...
+      - chmod +x docker-entrypoint.sh
+      - docker build -t $CONTAINER_NAME:test -f docker/web/Dockerfile-prod .
+  build:
+    commands:
+      - echo not Testing the newly built Docker image...
+  post_build:
+    commands:
+      - IMAGE_TAG=commit-$CODEBUILD_RESOLVED_SOURCE_VERSION
+      - REPOSITORY_URI=$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$CONTAINER_NAME
+      - echo Tagging the successfully tested image as latest...
+      - docker tag $CONTAINER_NAME:test $REPOSITORY_URI:latest
+      - docker tag $CONTAINER_NAME:test $REPOSITORY_URI:$IMAGE_TAG
+      - echo Pushing the Docker image...
+      - docker push $REPOSITORY_URI:latest
+      - docker push $REPOSITORY_URI:$IMAGE_TAG
+      - echo Build completed on `date`
+      - echo Writing image definitions file...
+      - printf '[{"name":"%s","imageUri":"%s"}]' $CONTAINER_NAME $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
+artifacts:
+  files: imagedefinitions.json
