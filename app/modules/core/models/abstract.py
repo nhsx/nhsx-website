@@ -119,10 +119,9 @@ class PageAuthorsMixin(models.Model):
     )
     @cached_property
     def author_list(self):
-        ordering_model = 'core_articlepage_authors.id'
+        from modules.images.service import _images
         authors = self.authors.prefetch_related(
-            'profile__photo').order_by(
-            ordering_model).annotate(
+            'profile__photo').annotate(
             avatar_id=F('profile__photo__id')).values_list(
             'first_name', 'last_name', 'slug', 'avatar_id')
         return [
@@ -131,7 +130,7 @@ class PageAuthorsMixin(models.Model):
                 'first_name': author[0],
                 'last_name': author[1],
                 'slug': author[2],
-                'avatar': None
+                'avatar': _images.first(id=author[3])
             }
             for author in authors
         ]
