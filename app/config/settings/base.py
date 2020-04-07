@@ -134,6 +134,9 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     # WAGTAIL
     "wagtail.core.middleware.SiteMiddleware",
+    # ROLLBAR
+    'rollbar.contrib.django.middleware.RollbarNotifierMiddleware',
+    # CACHE
     'wagtailcache.cache.FetchFromCacheMiddleware',  # MUST BE LAST
 ]
 
@@ -211,20 +214,15 @@ FORM_RENDERER = "django.forms.renderers.TemplatesSetting"
 
 
 ####################################################################################################
-# Bugsnag
+# Rollbar
 ####################################################################################################
 
 
-BUGSNAG = {
-    "api_key": os.environ.get("BUGSNAG_API_KEY", ''),
-    "project_root": BASE_DIR,
-    "ignore_classes": [
-        "django.http.Http404",
-        "django.http.response.Http404",
-        "django.core.exceptions.PermissionDenied",
-    ],
-    "release_stage": os.environ.get("SERVER_ENV"),
-    "notify_release_stages": ["production", "staging"],
+ROLLBAR = {
+    'access_token': os.environ.get('POST_SERVER_ITEM_ACCESS_TOKEN', ''),
+    'environment': os.environ.get('SERVER_ENV', 'development'),
+    'branch': 'master',
+    'root': '/usr/srv/app',
 }
 
 
