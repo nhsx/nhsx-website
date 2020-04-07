@@ -25,3 +25,16 @@ def test_blog_post_shows_tags(blog_post):
     rv = client.get(blog_post.url)
 
     assert "This is a tag" in str(rv.content)
+
+def test_blog_post_users_list(blog_post, users):
+    """Test that blog posts can list a user's full names
+    """
+    blog_post.authors.add(users[0])
+    blog_post.authors.add(users[1])
+
+    blog_post.save()
+
+    assert blog_post.author_names == "User 0, User 1"
+
+
+
