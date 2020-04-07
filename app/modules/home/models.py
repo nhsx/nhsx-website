@@ -11,6 +11,7 @@ class HomePage(BasePage, HeroImageContentMixin):
 
     subpage_types: list = [
         'core.SectionPage',
+        'core.ArticlePage',
         'blog_posts.BlogPostIndexPage',
         'news.NewsIndexPage',
     ]
