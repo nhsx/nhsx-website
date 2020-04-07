@@ -41,7 +41,7 @@ class LinkBlock(blocks.StructBlock, LinkStructBlockMixin):
     link = LinkFields(required=False, label="Link to (choose one)")
 
 
-sidebar_blocks = [
+page_link_blocks = [
     ('link', LinkBlock()),
 ]
 

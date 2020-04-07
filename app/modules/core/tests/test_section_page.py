@@ -1,6 +1,8 @@
 import pytest
-from django.test import Client
+import json
 
+from django.test import Client
+from .blocks import LINK_BLOCK
 
 pytestmark = pytest.mark.django_db
 
@@ -24,3 +26,27 @@ def test_section_page_get_children(section_page, article_pages):
     """Check that section_page has 10 children
     """
     assert len(section_page.get_children()) == 10
+
+def test_section_page_can_have_automatic_subnav_pages(section_page, article_pages):
+    section_page.automatic = True
+
+    assert len(section_page.subnav_pages) == 10
+
+    for index, article_page in enumerate(article_pages):
+        assert section_page.subnav_pages[index]['title'] == article_page.title
+        assert section_page.subnav_pages[index]['url'] == article_page.url
+
+def test_section_page_can_have_manually_specified_subnav_pages(section_page, article_pages):
+    section_page.automatic = False
+
+    section_page.page_links = json.dumps([
+        LINK_BLOCK,
+        LINK_BLOCK
+    ])
+
+    assert len(section_page.subnav_pages) == 2
+
+
+
+
+
