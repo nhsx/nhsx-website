@@ -1,1 +1,14 @@
 // This is the main scss file, add new files for components and import them here
+@import "nhsuk-frontend/packages/nhsuk";
+
+// Main CSS
+@import "helpers/_mixins";
+
+@import "settings/_colours";
+@import "settings/_grid";
+
+@import "base/_site";
+@import "base/_buttons";
+
+
+@import "componants/_blog_news";

@@ -1,0 +1,26 @@
+// padding or margin Spacing unit usage
+//https://service-manual.nhs.uk/design-system/styles/spacing
+
+   //nhsuk-spacing()   //Large screens Small screens
+                // 9   64px            56px
+                // 8   56px            48px
+                // 7   48px            40px
+                // 6   40px            32px
+                // 5   32px            24px
+                // 4   24px            16px
+                // 3   16px            8px
+                // 2   8px             8px
+                // 1   4px             4px
+                // 0   0               0
+
+//  @include nhsuk-responsive-margin(7, 'top');
+
+
+
+// Site Width
+$site-max-width:960px;
+
+// Breakpoints
+$big-screen: $site-max-width;
+$medium-screen:640px;
+$small-screen: 480px;
