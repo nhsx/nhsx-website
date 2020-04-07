@@ -374,7 +374,15 @@ class BasePage(Page, SocialMetaMixin):
 # Base Index Page
 ################################################################################
 
-class BaseIndexPage(BasePage):
+class BaseIndexPage(BasePage, HeroImageContentMixin):
 
     class Meta:
         abstract = True
+
+    hero_panels = HeroImageContentMixin.hero_panels
+
+    @cached_classmethod
+    def get_admin_tabs(cls):
+        tabs = super().get_admin_tabs()
+        tabs.insert(1, (cls.hero_panels, 'Hero'))
+        return tabs
