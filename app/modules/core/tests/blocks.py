@@ -311,3 +311,14 @@ SUMMARY_LIST = {
         "no_border": False
     }
 }
+
+LINK_BLOCK = {
+    "type": "link",
+    "value": {
+        "label": "Foo",
+        "link": {
+            "link_external": "http://example.com"
+        }
+    }
+}
+

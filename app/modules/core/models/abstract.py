@@ -33,39 +33,28 @@ from wagtail.admin.edit_handlers import (
 )
 
 # Project
-from modules.core.blocks import nhsx_blocks, sidebar_blocks
+from modules.core.blocks import nhsx_blocks, page_link_blocks
 
 
 ################################################################################
 # Mixins
 ################################################################################
 
-
-class SidebarMixin(models.Model):
-
-    """Adds a sidebar to a page containing the content-list component from here:
-    https://nhsuk.github.io/nhsuk-frontend/components/contents-list/index.html
-
-    We should attempt to build the list automatically based on sibling pages, but also
-    have options to show no sidebar at all, or a curated list of pages.
-    """
-
+class PageLinksMixin(models.Model):
     class Meta:
         abstract = True
 
-    has_sidebar = True
+    page_links = fields.StreamField(page_link_blocks, blank=True)
+
+    panels = [
+        FieldPanel('automatic'),
+        StreamFieldPanel('page_links')
+    ]
 
     automatic = models.BooleanField(
         default=False,
         help_text="Build automatically from sibling pages"
     )
-
-    sidebar_links = fields.StreamField(sidebar_blocks, blank=True)
-
-    panels = [
-        FieldPanel('automatic'),
-        StreamFieldPanel('sidebar_links')
-    ]
 
     def _find_url(self, val):
         try:
@@ -81,14 +70,9 @@ class SidebarMixin(models.Model):
         return '/'
 
     @cached_property
-    def _siblings(self):
-        sibs = self.get_siblings()
-        return [{'title': _.title, 'url': _.url} for _ in sibs]
-
-    @cached_property
     def _streamed(self):
         rv = []
-        for item in self.sidebar_links:
+        for item in self.page_links:
             rv.append(
                 {
                     'title': item.value.get('label', ""),
@@ -97,6 +81,40 @@ class SidebarMixin(models.Model):
             )
 
         return rv
+
+class SubNavMixin(PageLinksMixin):
+    class Meta:
+        abstract = True
+
+    @cached_property
+    def _children(self):
+        children = self.get_children()
+        return [{'title': _.title, 'url': _.url} for _ in children]
+
+    @cached_property
+    def subnav_pages(self):
+        if self.automatic:
+            return self._children
+        else:
+            return self._streamed
+
+class SidebarMixin(PageLinksMixin):
+
+    """Adds a sidebar to a page containing the content-list component from here:
+    https://nhsuk.github.io/nhsuk-frontend/components/contents-list/index.html
+
+    We should attempt to build the list automatically based on sibling pages, but also
+    have options to show no sidebar at all, or a curated list of pages.
+    """
+    class Meta:
+        abstract = True
+
+    has_sidebar = True
+
+    @cached_property
+    def _siblings(self):
+        sibs = self.get_siblings()
+        return [{'title': _.title, 'url': _.url} for _ in sibs]
 
     @cached_property
     def sidebar_pages(self):
