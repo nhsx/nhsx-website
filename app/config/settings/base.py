@@ -491,9 +491,10 @@ BASE_URL = 'http://nhsx.test'
 # Postmark
 ####################################################################################################
 
-WAGTAILADMIN_NOTIFICATION_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL', 'nhsx@clients.dxw.net')
-DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL', 'nhsx@clients.dxw.net')
-SERVER_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL', 'nhsx@clients.dxw.net')
+WAGTAILADMIN_NOTIFICATION_FROM_EMAIL = os.environ.get(
+    'DEFAULT_FROM_EMAIL', 'nhsx-website@clients.dxw.com')
+DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL', 'nhsx-website@clients.dxw.com')
+SERVER_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL', 'nhsx-website@clients.dxw.com')
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = str(os.environ.get('EMAIL_HOST_URL', ''))
