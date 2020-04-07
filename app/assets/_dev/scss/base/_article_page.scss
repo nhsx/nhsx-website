@@ -1,0 +1,21 @@
+
+//article page
+.template-article {
+  .topics {
+    margin-bottom:  nhsuk-spacing(3);
+  }
+}
+.block-block_quote {
+  @include nhsuk-responsive-margin(5, 'left');
+  &:before {
+    content: "\201C";
+    font-size: 30px;
+    float: left;
+    clear: both;
+    margin-right:nhsuk-spacing(3);
+    line-height: 38px;
+  }
+  blockquote {
+    margin-left: nhsuk-spacing(5);
+  }
+}
