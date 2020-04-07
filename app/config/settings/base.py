@@ -13,12 +13,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 # stdlib
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
-from typing import List
 from datetime import date, timedelta
-
-# 3rd party
-from consoler import console  # NOQA
-
 
 # Try to import envkey, otherwise trust that the environment variables
 # are being injected another way
@@ -490,3 +485,19 @@ WAGTAIL_SITE_NAME = "nhsx"
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
 BASE_URL = 'http://nhsx.test'
+
+
+####################################################################################################
+# Postmark
+####################################################################################################
+
+WAGTAILADMIN_NOTIFICATION_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL', 'nhsx@clients.dxw.net')
+DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL', 'nhsx@clients.dxw.net')
+SERVER_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL', 'nhsx@clients.dxw.net')
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = str(os.environ.get('EMAIL_HOST_URL', ''))
+EMAIL_HOST_USER = str(os.environ.get('EMAIL_HOST_USER', ''))
+EMAIL_HOST_PASSWORD = str(os.environ.get('EMAIL_HOST_PASSWORD', ''))
+EMAIL_PORT = str(os.environ.get('EMAIL_HOST_PORT', '587'))
+EMAIL_USE_TLS = True

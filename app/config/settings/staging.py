@@ -4,7 +4,7 @@ from .base import MEDIA_ROOT, BASE_DIR  # NOQA
 
 DEBUG = False
 
-BASE_URL = ''  # TODO - Update with a staging URL once we know it
+BASE_URL = 'https://web.staging.nhsx-website.dalmatian.dxw.net'
 
 ####################################################################################################
 # Static assets served by Whitenoise
