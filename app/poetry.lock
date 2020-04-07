@@ -1036,6 +1036,18 @@ socks = ["PySocks (>=1.5.6,<1.5.7 || >1.5.7)", "win-inet-pton"]
 
 [[package]]
 category = "main"
+description = "Easy and powerful exception tracking with Rollbar. Send messages and exceptions with arbitrary context, get back aggregates, and debug production issues quickly."
+name = "rollbar"
+optional = false
+python-versions = "*"
+version = "0.15.0"
+
+[package.dependencies]
+requests = ">=0.12.1"
+six = ">=1.9.0"
+
+[[package]]
+category = "main"
 description = "An Amazon S3 Transfer Manager"
 name = "s3transfer"
 optional = false
@@ -1309,7 +1321,7 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["jaraco.itertools", "func-timeout"]
 
 [metadata]
-content-hash = "092b0138e550a17c3af4aca33b85c356c829e17b8e5a70defaf0df59937d756b"
+content-hash = "d7de5f8849babf678e71a9515a8e82f9ed68452dc6e691717a643166eac08b89"
 python-versions = "^3.6"
 
 [metadata.files]
@@ -1763,6 +1775,9 @@ redis = [
 requests = [
     {file = "requests-2.23.0-py2.py3-none-any.whl", hash = "sha256:43999036bfa82904b6af1d99e4882b560e5e2c68e5c4b0aa03b655f3d7d73fee"},
     {file = "requests-2.23.0.tar.gz", hash = "sha256:b3f43d496c6daba4493e7c431722aeb7dbc6288f52a6e04e7b6023b0247817e6"},
+]
+rollbar = [
+    {file = "rollbar-0.15.0.tar.gz", hash = "sha256:75add43e634f3f75e069e1edd2b793b8d1e8800f16419a1d83065b49dd5d1372"},
 ]
 s3transfer = [
     {file = "s3transfer-0.3.3-py2.py3-none-any.whl", hash = "sha256:2482b4259524933a022d59da830f51bd746db62f047d6eb213f2f8855dcb8a13"},

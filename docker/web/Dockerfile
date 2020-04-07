@@ -122,10 +122,6 @@ RUN source $HOME/.poetry/env && \
     poetry install
 
 
-RUN whoami
-RUN ls -la
-
-
 VOLUME /usr/srv/app/media
 
 
@@ -138,34 +134,14 @@ EXPOSE 5000
 FROM app as dev
 
 ####################################################################################################
-# Install latest Fish shell from source
+# Install fish quickly from apk
 ####################################################################################################
 
-WORKDIR /tmp
-RUN wget https://github.com/fish-shell/fish-shell/releases/download/3.1.0/fish-3.1.0.tar.gz && \
-    tar -xvzf fish-3.1.0.tar.gz && \
-    cd fish-3.1.0 && \
-    cmake . && \
-    make && \
-    make install && \
-    rm -rf /tmp/*
+RUN apk update && \
+    apk add --no-cache fish && \
+    rm -rf /tmp/* /etc/apk/cache/*
 
 ENV SHELL /bin/zsh
-
-# Install oh-my-zsh and set zsh as the default shell
-RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-
-COPY ./docker/web/conf/zshrc /tmp/.zshrc
-COPY ./docker/web/conf/hactar.zsh-theme /tmp/hactar.zsh-theme
-COPY ./docker/web/conf/zsh-auto-suggest.cfg /tmp/config.zsh
-
-RUN mv /tmp/.zshrc ~/.zshrc && \
-    mv /tmp/hactar.zsh-theme ~/.oh-my-zsh/themes/hactar.zsh-theme && \
-    mv /tmp/config.zsh ~/.oh-my-zsh/custom/config.zsh && \
-    git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions && \
-    rm -rf /tmp/*
-
-CMD ["zsh", "--version"]
 
 # Add fish config
 RUN mkdir -p ~/.config/fish
