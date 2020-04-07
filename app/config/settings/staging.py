@@ -2,7 +2,7 @@ import os
 from .remote import *  # NOQA
 from .base import MEDIA_ROOT, BASE_DIR  # NOQA
 
-DEBUG = False
+DEBUG = True
 
 BASE_URL = 'https://web.staging.nhsx-website.dalmatian.dxw.net'
 
