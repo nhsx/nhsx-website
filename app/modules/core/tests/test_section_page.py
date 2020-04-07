@@ -46,6 +46,21 @@ def test_section_page_can_have_manually_specified_subnav_pages(section_page, art
 
     assert len(section_page.subnav_pages) == 2
 
+def test_section_page_shows_subnav_pages(section_page):
+    section_page.automatic = False
+
+    section_page.page_links = json.dumps([
+        LINK_BLOCK,
+        LINK_BLOCK
+    ])
+
+    section_page.save_revision().publish()
+
+    rv = client.get(section_page.url)
+
+    assert "http://example.com" in str(rv.content)
+
+
 
 
 
