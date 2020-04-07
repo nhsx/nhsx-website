@@ -105,8 +105,16 @@ ENV DOCKERFILE_VERSION=1.1
 # Not really sure what this is for. Best leave it alone.
 ENV PYTHONUNBUFFERED 1
 
-# POETRY (working and installed in django-base)
 WORKDIR /usr/srv/app/
+
+# npm install
+COPY ./package.json package.json
+COPY ./package-lock.json package-lock.json
+RUN npm install
+RUN mkdir -p /usr/srv/deps
+RUN mv ./node_modules/ /usr/srv/deps
+
+# POETRY (working and installed in django-base)
 COPY ./app/pyproject.toml /usr/srv/app/pyproject.toml
 COPY ./app/poetry.lock /usr/srv/app/poetry.lock
 RUN source $HOME/.poetry/env && \

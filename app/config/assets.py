@@ -1,10 +1,13 @@
+from os import path
 from django_assets import Bundle, register
 from webassets.filter import get_filter
 from django.conf import settings
 
-
 LIBSASS = get_filter(
-    'libsass'
+    'libsass',
+    includes=[
+        path.join('/', 'usr', 'srv', 'deps', 'node_modules')
+    ]
 )
 
 uglify_js = get_filter(
