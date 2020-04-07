@@ -89,6 +89,14 @@ lxml = ["lxml"]
 
 [[package]]
 category = "main"
+description = "Amazon Web Services Library"
+name = "boto"
+optional = false
+python-versions = "*"
+version = "2.49.0"
+
+[[package]]
+category = "main"
 description = "The AWS SDK for Python"
 name = "boto3"
 optional = false
@@ -1301,7 +1309,7 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["jaraco.itertools", "func-timeout"]
 
 [metadata]
-content-hash = "de07ad13fc197ab917fbb28a292b39a3ce77e2a299dacce1bc70ffc127df64a5"
+content-hash = "092b0138e550a17c3af4aca33b85c356c829e17b8e5a70defaf0df59937d756b"
 python-versions = "^3.6"
 
 [metadata.files]
@@ -1337,6 +1345,10 @@ beautifulsoup4 = [
     {file = "beautifulsoup4-4.6.0-py2-none-any.whl", hash = "sha256:7015e76bf32f1f574636c4288399a6de66ce08fb7b2457f628a8d70c0fbabb11"},
     {file = "beautifulsoup4-4.6.0-py3-none-any.whl", hash = "sha256:11a9a27b7d3bddc6d86f59fb76afb70e921a25ac2d6cc55b40d072bd68435a76"},
     {file = "beautifulsoup4-4.6.0.tar.gz", hash = "sha256:808b6ac932dccb0a4126558f7dfdcf41710dd44a4ef497a0bb59a77f9f078e89"},
+]
+boto = [
+    {file = "boto-2.49.0-py2.py3-none-any.whl", hash = "sha256:147758d41ae7240dc989f0039f27da8ca0d53734be0eb869ef16e3adcfa462e8"},
+    {file = "boto-2.49.0.tar.gz", hash = "sha256:ea0d3b40a2d852767be77ca343b58a9e3a4b00d9db440efb8da74b4e58025e5a"},
 ]
 boto3 = [
     {file = "boto3-1.12.31-py2.py3-none-any.whl", hash = "sha256:8bf7e3611d46e8214bf225169ac55de762d9d341514f81ebae885dd601138fcf"},

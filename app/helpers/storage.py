@@ -11,7 +11,7 @@ from boto.s3.connection import S3Connection
 # SEA hosts we need to change the DefaultHost with our own custom
 # Connection Class.
 class LondonConnection(S3Connection):
-    DefaultHost = "s3-eu-west-2.amazonaws.com"
+    DefaultHost = f"s3-{os.environ.get('AWS_DEFAULT_REGION', 'eu-west-1')}.amazonaws.com"
 
 
 def safe_join(base, *paths):

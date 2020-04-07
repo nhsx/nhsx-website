@@ -20,6 +20,6 @@ STATIC_URL = '/static/'
 ####################################################################################################
 
 
-AWS_S3_CUSTOM_DOMAIN = ''  # TODO - add the staging media URL
-AWS_STORAGE_BUCKET_NAME = ""  # TODO - add the staging media bucket here
+AWS_S3_CUSTOM_DOMAIN = os.environ.get('AWS_CDN_URI', '')
+AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_BUCKET_NAME', '')
 MEDIA_URL = '{}{}/'.format(AWS_S3_CUSTOM_DOMAIN, MEDIA_ROOT)
