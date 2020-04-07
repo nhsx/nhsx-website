@@ -6,14 +6,14 @@
 {% block extra_css %}
 {% endblock extra_css %}
 
-{% block content %} 
+{% block content %}
 {% breadcrumb %}
 <div class="nhsuk-width-container">
   <main class="nhsuk-main-wrapper" id="maincontent">
     <div class="nhsuk-grid-row">
       <div class="nhsuk-grid-column-two-thirds">
         <h1 class="nhsuk-heading-xl">{{ page.title }}</h1>
-        {% include '_partials/tags.html' %}
+        {% include '_partials/page_meta.html' %}
         {% include_block page.body %}
       </div>
       {% if page.has_sidebar %}

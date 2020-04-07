@@ -1,17 +1,11 @@
-
-
 //blog section
-
-// p.topics {
-//   @include nhsuk-responsive-margin(3, "bottom");
-// }
 
 h3 {
   margin-bottom:  nhsuk-spacing(3);
 }
 .entry-meta__posts, .summary__posts{
   margin-bottom:  nhsuk-spacing(3);
-  .tags {
+  .topics {
     margin-top:  nhsuk-spacing(3);
   }
 }
@@ -19,12 +13,12 @@ h3 {
 
 //blog author
 svg {
-    width: 16px;
-    height: 16px;
-    top: 2px;
-    position: relative;
-    margin: 0;
-    margin-right: nhsuk-spacing(1);
+  width: 16px;
+  height: 16px;
+  top: 2px;
+  position: relative;
+  margin: 0;
+  margin-right: nhsuk-spacing(1);
 }
 
 
