@@ -135,6 +135,12 @@ class PageAuthorsMixin(models.Model):
             for author in authors
         ]
 
+    @cached_property
+    def author_names(self):
+        return ", ".join(
+            [author.full_name for author in self.authors.all()]
+        )
+
 
 class SocialMetaMixin(models.Model):
     """

@@ -95,6 +95,16 @@ def test_blog_post_index_filters_by_multiple_tags(blog_post_index_page, blog_pos
     assert blog_posts[1].title in str(rv.content)
     assert blog_posts[2].title not in str(rv.content)
 
+def test_blog_post_index_page_shows_user_names(blog_post_index_page, blog_posts, user):
+    """Test that we can see a blog post's tags
+    """
+    blog_posts[0].authors.add(user)
+    blog_posts[0].save_revision().publish()
+
+    rv = client.get(blog_post_index_page.url)
+
+    assert user.full_name in str(rv.content)
+
 
 
 
