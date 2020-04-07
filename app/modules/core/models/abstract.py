@@ -117,6 +117,7 @@ class PageAuthorsMixin(models.Model):
         blank=True,
         related_name='pages_%(class)s'
     )
+
     @cached_property
     def author_list(self):
         from modules.images.service import _images
