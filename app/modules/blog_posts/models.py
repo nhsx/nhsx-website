@@ -4,7 +4,8 @@ from dal_select2.widgets import ModelSelect2Multiple
 from modelcluster.fields import ParentalKey
 from taggit.models import TaggedItemBase
 from modelcluster.contrib.taggit import ClusterTaggableManager
-from wagtail.admin.edit_handlers import FieldPanel
+from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
+from wagtail.core.models import Page
 
 from modules.core.models.abstract import BasePage, BaseIndexPage, PageAuthorsMixin
 
@@ -44,14 +45,12 @@ class BlogPost(BasePage, PageAuthorsMixin):
 
     tags = ClusterTaggableManager(through=BlogTag, blank=True)
 
-    promote_panels = [
-        *BasePage.page_promote_panels,
-        FieldPanel("tags"),
-        *BasePage.social_promote_panels
-    ]
-    content_panels = BasePage.content_panels + [
+    content_panels = [
+        *Page.content_panels,
         FieldPanel(
             'authors',
             widget=ModelSelect2Multiple(url='author-autocomplete')
-        )
+        ),
+        StreamFieldPanel("body"),
+        FieldPanel("tags"),
     ]

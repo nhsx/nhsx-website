@@ -114,7 +114,7 @@ class PageAuthorsMixin(models.Model):
         abstract = True
     authors = ParentalManyToManyField(
         'users.User',
-        blank=True,
+        blank=False,
         related_name='pages_%(class)s'
     )
 
