@@ -28,7 +28,4 @@ class Migration(migrations.Migration):
             name='page_links',
             field=wagtail.core.fields.StreamField([('link', wagtail.core.blocks.StructBlock([('label', wagtail.core.blocks.CharBlock(required=False)), ('link', wagtail.core.blocks.StructBlock([('link_page', wagtail.core.blocks.PageChooserBlock(label='Page', required=False)), ('link_document', wagtail.documents.blocks.DocumentChooserBlock(label='Document', required=False)), ('link_external', wagtail.core.blocks.URLBlock(label='URL', required=False))], label='Link to (choose one)', required=False))]))], blank=True),
         ),
-        migrations.DeleteModel(
-            name='NavigationSettings',
-        ),
     ]

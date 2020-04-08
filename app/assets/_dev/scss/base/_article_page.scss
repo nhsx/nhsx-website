@@ -19,3 +19,22 @@
     margin-left: nhsuk-spacing(5);
   }
 }
+
+
+//Rich text first paragraph selector
+.block-rich_text:first-child {
+  p:first-child {
+    font-size: 24px;
+  }
+  div.rich-text :last-child {
+    margin-bottom: 24px;
+  }
+}
+
+
+//sidebar
+.nhsuk-contents-list {
+  h2 {
+    margin-bottom:13px;
+  }
+}
