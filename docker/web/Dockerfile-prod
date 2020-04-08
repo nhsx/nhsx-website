@@ -56,12 +56,13 @@ RUN apk add closure-compiler --update-cache --repository http://dl-3.alpinelinux
     rm -f /tmp/* /etc/apk/cache/* /root/.cache
 
 # Install babel?
+RUN npm config set unsafe-perm true
 RUN npm install --no-cache --global babel-cli \
     babel-preset-es2015 \
     uglify-js \
     wait-for && \
     rm -f /usr/lib/node_modules/npm/node_modules/update-notifier/node_modules/configstore/node_modules/dot-prop/license
-
+RUN npm config set unsafe-perm false
 # Install libsass
 RUN pip install --no-cache-dir \
     libsass \
