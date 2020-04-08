@@ -60,6 +60,46 @@ def test_section_page_shows_subnav_pages(section_page):
 
     assert "http://example.com" in str(rv.content)
 
+def test_section_page_with_two_page_links_has_half_width(section_page):
+    section_page.automatic = False
+
+    section_page.page_links = json.dumps([
+        LINK_BLOCK,
+        LINK_BLOCK
+    ])
+
+    assert section_page.subnav_items_per_row() == 2
+    assert section_page.subnav_column_class() == "one-half"
+
+def test_section_page_with_three_page_links_has_third_width(section_page):
+    section_page.automatic = False
+
+    section_page.page_links = json.dumps([
+        LINK_BLOCK,
+        LINK_BLOCK,
+        LINK_BLOCK
+    ])
+
+    assert section_page.subnav_items_per_row() == 3
+    assert section_page.subnav_column_class() == "one-third"
+
+def test_section_page_with_four_page_links_has_half_width(section_page):
+    section_page.automatic = False
+
+    section_page.page_links = json.dumps([
+        LINK_BLOCK,
+        LINK_BLOCK,
+        LINK_BLOCK,
+        LINK_BLOCK
+    ])
+    section_page.save_revision().publish()
+
+    assert section_page.subnav_items_per_row() == 2
+    assert section_page.subnav_column_class() == "one-half"
+
+
+
+
 
 
 

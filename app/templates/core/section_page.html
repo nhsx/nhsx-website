@@ -17,10 +17,10 @@
       </div>
     </div>
 
-    {% for row in page.subnav_pages|chunk:2 %}
+    {% for row in page.subnav_pages|chunk:page.subnav_items_per_row %}
       <div class="nhsuk-grid-row nhsuk-promo-group">
         {% for promo in row %}
-          <div class="nhsuk-grid-column-one-half nhsuk-promo-group__item nhsuk-promo-group__item">
+          <div class="nhsuk-grid-column-{{ page.subnav_column_class }} nhsuk-promo-group__item nhsuk-promo-group__item">
             <div class="nhsuk-promo">
               <a class="nhsuk-promo__link-wrapper" href="{{ promo.url }}">
                 <div class="nhsuk-promo__content">
