@@ -93,7 +93,7 @@ WAGTAIL_APPS = [
     "wagtail.contrib.routable_page",
     "wagtailnhsukfrontend",
     "wagtailcache",
-    'wagtail_2fa',
+    'wagtail_2fa'
 ]
 
 SITE_APPS = [

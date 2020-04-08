@@ -1,3 +1,5 @@
+
+from wagtail.core import hooks
 from cacheops import invalidate_all
 from wagtailcache.cache import clear_cache
 

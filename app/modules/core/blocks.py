@@ -2,11 +2,16 @@
 from wagtail.core import blocks
 from wagtail.embeds.blocks import EmbedBlock
 from wagtail.documents.blocks import DocumentChooserBlock
+from wagtail.contrib.table_block.blocks import TableBlock as OGTableBlock
 
 from wagtailnhsukfrontend.blocks import (  # NOQA
     ImageBlock, PanelBlock, PromoBlock, ExpanderBlock, GreyPanelBlock, InsetTextBlock,
     PanelListBlock, PromoGroupBlock, WarningCalloutBlock
 )
+
+
+class TableBlock(OGTableBlock):
+    pass
 
 
 class LinkStructBlockMixin(object):
@@ -62,6 +67,7 @@ nhs_blocks = [
     ('panel_list', PanelListBlock(group=" NHS Components")),
     ('promo_group', PromoGroupBlock(group=" NHS Components")),
     ('warning_callout', WarningCalloutBlock(group=" NHS Components")),
+    ('table', TableBlock(group=" NHS Components")),
 ]
 
 nhsx_blocks = content_blocks + nhs_blocks
