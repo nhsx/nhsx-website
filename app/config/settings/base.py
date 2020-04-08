@@ -336,7 +336,7 @@ CACHES = {
 # CacheOps Config
 ####################################################################################################
 
-
+CACHEOPS_ENABLED = True
 CACHEOPS_LRU = True
 
 CACHEOPS_REDIS = {
@@ -370,7 +370,7 @@ CACHEOPS = {
     #  or Tags.objects.filter(...).order_by(...).cache()
     # to cache particular ORM request.
     # Invalidation is still automatic
-    "*.*": {"ops": (), "timeout": 60 * 60},
+    # "*.*": {"ops": (), "timeout": 60 * 60},g
     # Disable caching on migrations
     "migrations.*": {"ops": (), "timeout": 0},
 }

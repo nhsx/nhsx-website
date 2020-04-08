@@ -174,6 +174,7 @@ class HeaderSettings(ClusterableModel, BaseSetting):
 class AbstractLink(Orderable):
     class Meta:
         abstract = True
+        ordering = ['sort_order']
 
     label = models.CharField(max_length=255)
     page = models.ForeignKey(
