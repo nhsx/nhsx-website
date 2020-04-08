@@ -1,5 +1,5 @@
 {% if page.specific.tags.count %}
-<div class="tags">
+<div class="topics">
   {% for tag in page.specific.tags.all %}
     <span class="tag">
       <a href="{{ page.specific.get_parent.url }}?tag={{ tag.slug }}" rel="tags">{{ tag }}</a>

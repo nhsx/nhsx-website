@@ -7,7 +7,7 @@ from wagtail.utils.decorators import cached_classmethod
 from modules.core.blocks import nhsx_blocks
 
 # Module
-from .abstract import BasePage, HeroImageContentMixin, SidebarMixin
+from .abstract import BasePage, HeroImageContentMixin, SidebarMixin, SubNavMixin
 
 
 ################################################################################
@@ -15,7 +15,7 @@ from .abstract import BasePage, HeroImageContentMixin, SidebarMixin
 ################################################################################
 
 
-class SectionPage(BasePage, HeroImageContentMixin):
+class SectionPage(BasePage, HeroImageContentMixin, SubNavMixin):
 
     """SectionPage is a top level page for containing grouped articles.
 
@@ -25,11 +25,13 @@ class SectionPage(BasePage, HeroImageContentMixin):
     subpage_types: list = ['core.ArticlePage', ]
 
     hero_panels: list = HeroImageContentMixin.hero_panels
+    subnav_panels: list = SubNavMixin.panels
 
     @cached_classmethod
     def get_admin_tabs(cls):
         tabs = super().get_admin_tabs()
         tabs.insert(1, (cls.hero_panels, 'Hero'))
+        tabs.insert(2, (cls.subnav_panels, 'Subnavigation'))
         return tabs
 
 
