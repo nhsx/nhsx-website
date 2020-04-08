@@ -38,19 +38,6 @@ from modules.core.blocks import nhsx_blocks, page_link_blocks
 
 
 ################################################################################
-# Tags
-################################################################################
-
-
-class PageTag(TaggedItemBase):
-    content_object = ParentalKey(
-        'wagtailcore.Page',
-        on_delete=models.CASCADE,
-        related_name="%(app_label)s_%(class)s_items",
-    )
-
-
-################################################################################
 # Mixins
 ################################################################################
 

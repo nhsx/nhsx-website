@@ -8,7 +8,7 @@ from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
 from wagtail.core.models import Page
 
 from modules.core.models.abstract import (
-    BasePage, BaseIndexPage, PageAuthorsMixin, CanonicalMixin, PageTag
+    BasePage, BaseIndexPage, PageAuthorsMixin, CanonicalMixin
 )
 
 import logging
@@ -34,18 +34,18 @@ class BlogPostIndexPage(BaseIndexPage):
         return ctx
 
 
-class BlogTag(TaggedItemBase):
+class BlogTags(TaggedItemBase):
     content_object = ParentalKey(
-        'BlogPost',
-        related_name='tagged_items',
+        'blog_posts.BlogPost',
         on_delete=models.CASCADE,
+        related_name="%(app_label)s_%(class)s_items",
     )
 
 
 class BlogPost(BasePage, PageAuthorsMixin, CanonicalMixin):
     parent_page_types = ['BlogPostIndexPage']
 
-    tags = ClusterTaggableManager(through=PageTag, blank=True)
+    tags = ClusterTaggableManager(through=BlogTags, blank=True)
 
     content_panels = [
         *Page.content_panels,
