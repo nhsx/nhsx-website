@@ -9,8 +9,8 @@ class Migration(migrations.Migration):
         ('core', '0011_auto_20200407_1448'),
     ]
 
-    operations = [
-        migrations.DeleteModel(
-            name='NavigationSettings',
-        ),
-    ]
+    # operations = [
+    #     migrations.DeleteModel(
+    #         name='NavigationSettings',
+    #     ),
+    # ]
