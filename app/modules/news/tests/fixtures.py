@@ -47,7 +47,7 @@ def news_index_page(home_page) -> NewsIndexPage:
 
 @pytest.fixture(scope="function")
 def news_page(news_index_page) -> News:
-    p = _create_news_index_page('Test News Item', news_index_page)
+    p = _create_news_page('Test News Item', news_index_page)
     return p
 
 @pytest.fixture(scope="function")
