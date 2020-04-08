@@ -20,6 +20,31 @@ img.richtext-image, img.full-width{
   }
 }
 
+.responsive-embed, .responsive-object {
+    height: 100%;
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    margin: 0 auto;
+    max-height: 100vh;
+    width: 100%;
+    @include max-width(sm) {
+        width: 100%;
+    }
+    video, iframe, img, a {
+      position: absolute;
+      min-width: 100%;
+      min-height: 100%;
+      width: 100%;
+      height: auto;
+      max-height: 100vh;
+      overflow: hidden;
+    }
+    video, iframe {
+      z-index: 1;
+    }
+}
+
 
 //Fullwidth white section
 .nhsx-section--white {

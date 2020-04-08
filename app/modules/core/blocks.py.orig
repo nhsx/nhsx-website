@@ -12,6 +12,7 @@ from wagtailnhsukfrontend.blocks import (  # NOQA
 )
 
 
+<<<<<<< HEAD
 class BasePromoBlock(FlattenValueContext, blocks.StructBlock):
 
     class Meta:
@@ -102,6 +103,7 @@ class PanelTableBlock(blocks.StructBlock):
     title = blocks.CharBlock()
     table = TableBlock()
 
+=======
 class EmbedBlock(WagtailEmbedBlock):
 
     """Overriding the built in Wagtail embed so that we can have proper
@@ -122,6 +124,7 @@ class EmbedBlock(WagtailEmbedBlock):
 
         return context
 
+>>>>>>> f8edf54... (WIP) Make embed blocks responsive.
 
 class LinkStructBlockMixin(object):
     def get_context(self, value, parent_context=None):
