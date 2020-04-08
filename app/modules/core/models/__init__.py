@@ -1,4 +1,4 @@
-from .abstract import BasePage
+from .abstract import BasePage, PageTag
 from .pages import SectionPage, ArticlePage
 from .settings import (  # NOQA
     MetaTagSettings, AnalyticsSettings, SocialMediaSettings, DefaultImageSettings
@@ -6,6 +6,7 @@ from .settings import (  # NOQA
 
 
 __all__ = [
+    'PageTag',
     'BasePage',
     'SectionPage',
     'ArticlePage',
