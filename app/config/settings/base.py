@@ -383,9 +383,9 @@ CACHEOPS = {
 
 
 SHELL_PLUS = "ipython"
-SHELL_PLUS_POST_IMPORTS = (
-    ("modules.home.service", "*"),
-)
+# SHELL_PLUS_POST_IMPORTS = (
+#     ("modules.home.service", "*"),
+# )
 
 
 ####################################################################################################
