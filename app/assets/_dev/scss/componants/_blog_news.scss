@@ -1,0 +1,28 @@
+//blog section
+
+h3 {
+  margin-bottom:  nhsuk-spacing(3);
+}
+.entry-meta__posts, .summary__posts{
+  margin-bottom:  nhsuk-spacing(3);
+  .topics {
+    margin-top:  nhsuk-spacing(3);
+  }
+}
+
+
+//blog author
+svg {
+  width: 16px;
+  height: 16px;
+  top: 2px;
+  position: relative;
+  margin: 0;
+  margin-right: nhsuk-spacing(1);
+}
+
+
+//time
+.time  {
+  margin-right: nhsuk-spacing(1);
+}

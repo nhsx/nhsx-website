@@ -1,24 +1,15 @@
-{% load static wagtailuserbar %}
-
+{% load wagtailcore_tags static wagtailuserbar nhsukfrontend_tags nhsukfrontendsettings_tags %}
 <!DOCTYPE html>
 <html class="no-js" lang="en">
     <head>
-        <meta charset="utf-8" />
-        <title>
-            {% block title %}
-                {% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}
-            {% endblock %}
-            {% block title_suffix %}
-                {% with self.get_site.site_name as site_name %}
-                    {% if site_name %}- {{ site_name }}{% endif %}
-                {% endwith %}
-            {% endblock %}
-        </title>
-        <meta name="description" content="" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        {% include '_partials/head_meta.html' with page=self %}
 
         {# Global stylesheets #}
-        <link rel="stylesheet" type="text/css" href="{% static 'css/nhsx.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'wagtailnhsukfrontend/css/wagtail-nhsuk-frontend.min.css' %}">
+        {% load assets %}
+        {% assets "css_core" %}
+            <link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}">
+        {% endassets %}
 
         {% block extra_css %}
             {# Override this in templates to add extra stylesheets #}
@@ -28,10 +19,19 @@
     <body class="{% block body_class %}{% endblock %}">
         {% wagtailuserbar %}
 
-        {% block content %}{% endblock %}
+        {% header %}
+        {% block content %}
 
+        {% endblock %}
+
+        {% footer %}
         {# Global javascript #}
-        <script type="text/javascript" src="{% static 'js/nhsx.js' %}"></script>
+        <script type="text/javascript" src="{% static 'wagtailnhsukfrontend/js/nhsuk-3.0.2.min.js' %}" defer></script>
+
+        {% load assets %}
+        {% assets "js_core" %}
+            <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+        {% endassets %}
 
         {% block extra_js %}
             {# Override this in templates to add extra javascript #}

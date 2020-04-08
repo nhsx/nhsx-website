@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags static wagtailuserbar nhsukfrontend_tags wagtailimages_tags %}
+
+{% block body_class %}template-section{% endblock %}
+
+{% block extra_css %}
+{% endblock extra_css %}
+
+{% block content %}
+{% image page.image width-1000 as hero_image %}
+{% include '_partials/hero.html' with hero_text=page.sub_head hero_heading=page.title hero_image=hero_image.url %}
+<div class="nhsuk-width-container">
+  <main class="nhsuk-main-wrapper" id="maincontent">
+    <div class="nhsuk-grid-row">
+      <div class="nhsuk-grid-column-two-thirds">
+        {% include_block page.body %}
+      </div>
+    </div>
+
+    {% for row in page.subnav_pages|chunk:2 %}
+      <div class="nhsuk-grid-row nhsuk-promo-group">
+        {% for promo in row %}
+          <div class="nhsuk-grid-column-one-half nhsuk-promo-group__item nhsuk-promo-group__item">
+            <div class="nhsuk-promo">
+              <a class="nhsuk-promo__link-wrapper" href="{{ promo.url }}">
+                <div class="nhsuk-promo__content">
+                  <h2 class="nhsuk-promo__heading">{{ promo.title }}</h2>
+                </div>
+              </a>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% endfor %}
+  </main>
+</div>
+{% endblock content %}

@@ -1,0 +1,28 @@
+{% extends "authors/admin/base.html" %}
+{% load wagtailadmin_tags i18n static wagtailimages_tags %}
+{% block inner_content %}
+<div class="nice-padding">
+    <h2>{% if form.instance.id %}Editing profile: {{form.instance}}{% else %}Adding a new author{% endif %}</h2>
+    <form method="post">
+        {% csrf_token %}
+        <ul class="fields">
+            {% for field in form %}
+                {% include "wagtailadmin/shared/field_as_li.html" %}
+            {% endfor %}
+            <li><input type="submit" class="button" value="Save"></li>
+        </ul>
+    </form>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+    {% include "wagtailadmin/pages/_editor_css.html" %}
+    {{ view.media.css }}
+    {{ form.media.css}}
+{% endblock %}
+
+{% block extra_js %}
+    {% include "wagtailadmin/pages/_editor_js.html" %}
+    {{ view.media.js }}
+    {{ form.media.js}}
+{% endblock %}

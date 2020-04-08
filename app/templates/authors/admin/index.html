@@ -1,0 +1,42 @@
+{% extends "authors/admin/base.html" %}
+{% load wagtailimages_tags static %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'wagtailmodeladmin/css/index.css' %}" type="text/css" />
+    {{ user_filter_form.media.css }}
+{% endblock %}
+{% block extra_js %}
+    {{ user_filter_form.media.js }}
+{% endblock %}
+
+{% block inner_content %}
+<div>
+    <div class="row">
+    {% if objects %}
+        <div class="result-list col9">
+            {% csrf_token %}
+            <table class="listing full-width">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Profile</th>
+                    </tr>
+                </thead>
+            {% for obj in objects %}
+                <tr>
+                    <td>{{obj.full_name}}</td>
+                    <td>{{obj.email}}</td>
+                    {% if obj.profile %}
+                    <td><a href="{% url 'authors_admin:edit' obj.slug %}" class="button">View</a></td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+            </table>
+            {% include "wagtailadmin/shared/pagination_nav.html" with items=page_obj linkurl="authors_admin:list" %}
+        </div>
+        {% else %}
+            <h3 class="nice-padding">No {{title|lower}}</h3>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,40 @@
+
+//article page
+.template-article {
+  .topics {
+    margin-bottom:  nhsuk-spacing(3);
+  }
+}
+.block-block_quote {
+  @include nhsuk-responsive-margin(5, 'left');
+  &:before {
+    content: "\201C";
+    font-size: 30px;
+    float: left;
+    clear: both;
+    margin-right:nhsuk-spacing(3);
+    line-height: 38px;
+  }
+  blockquote {
+    margin-left: nhsuk-spacing(5);
+  }
+}
+
+
+//Rich text first paragraph selector
+.block-rich_text:first-child {
+  p:first-child {
+    font-size: 24px;
+  }
+  div.rich-text :last-child {
+    margin-bottom: 24px;
+  }
+}
+
+
+//sidebar
+.nhsuk-contents-list {
+  h2 {
+    margin-bottom:13px;
+  }
+}

@@ -156,42 +156,39 @@ class User(AbstractBaseUser, PermissionsMixin):
             return self.email
 
 
-# class UserProfile(ClusterableModel):
-#     """User profile model. 1to1 with the custom User model.
+class UserProfile(ClusterableModel):
+    """User profile model. 1to1 with the custom User model.
 
-#     TODO Decide if we want / need all / any of these fields.
+    TODO Decide if we want / need all / any of these fields.
 
-#     Attributes:
-#         user (User): The user whose profile this is.
-#     """
+    Attributes:
+        user (User): The user whose profile this is.
+    """
 
-#     user = models.OneToOneField(
-#         User,
-#         null=True,
-#         blank=True,
-#         on_delete=models.SET_NULL,
-#         related_name='profile'
-#     )
+    user = models.OneToOneField(
+        User,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='profile'
+    )
+    job_title = models.CharField(_('Job title'), max_length=255, blank=True, null=True)
+    bio = fields.RichTextField(_('Bio'), blank=True, null=True)
+    short_bio = fields.RichTextField(_('Short bio'), blank=True, null=True)
+    photo = models.ForeignKey(
+        settings.WAGTAILIMAGES_IMAGE_MODEL,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
 
-#     city = models.CharField(_('City'), max_length=255, blank=True, null=True)
-#     country = models.CharField(_('Country'), max_length=255, blank=True, null=True)
-#     bio = fields.RichTextField(_('Bio'), blank=True, null=True)
-#     short_bio = fields.RichTextField(_('Short bio'), blank=True, null=True)
-#     photo = models.ForeignKey(
-#         settings.WAGTAILIMAGES_IMAGE_MODEL,
-#         null=True,
-#         blank=True,
-#         on_delete=models.SET_NULL,
-#         related_name='+'
-#     )
-#     organisation = models.CharField(_('Organisation'), max_length=255, blank=True, null=True)
+    @property
+    def avatar(self):
+        """Returns the author's profile pic, or None"""
+        if self.photo is None:
+            return None
+        return self.photo
 
-#     @property
-#     def avatar(self):
-#         """Returns the author's profile pic, or a default image"""
-#         if self.photo is None:
-#             return None
-#         return self.photo
-
-#     def __str__(self):
-#         return self.user.full_name
+    def __str__(self):
+        return self.user.full_name

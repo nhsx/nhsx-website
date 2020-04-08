@@ -1,0 +1,10 @@
+{% extends "wagtailusers/users/edit.html" %}
+
+{% block fields %}
+    {% if form.instance.is_author and form.instance.has_profile %}
+    <li>
+        <a href="{% url 'authors_admin:edit' form.instance.slug %}" class="button">Edit author profile &gt;</a>
+    </li>
+    {% endif %}
+    {{ block.super }}
+{% endblock %}

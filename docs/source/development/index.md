@@ -1,6 +1,6 @@
 The `docker-compose.yml` file at the root of the project defines containers for PostgreSQL, Redis, Memcached and the web applications.
 
-To bring up the development environment, you'll first need to ensure all of the required [environment variables](development/environment-variables.md) are exported into your shell session. The easiest way to do this is to copy the `docker-compose.env.example`
+To bring up the development environment, you'll first need to ensure all of the required [environment variables](environment-variables.md) are exported into your shell session. The easiest way to do this is to copy the `docker-compose.env.example`
 file to create a `docker-compose.env` file, and replace the empty variables with your
 own.
 
@@ -14,6 +14,13 @@ Once inside, you can...
 * Get a python shell with all the application's models pre-imported with `sp` (an alias to `python manage.py shell_plus`)
 * There's also a handy alias `manpy` which is just short for `python manage.py`
 
+Alternatively, there are some convenience scripts that allow you to run commands from
+your local shell:
+
+```
+bin/runserver # Runs the server at port 5000
+bin/manpy # Alias for `manpy`
+```
 
 ## First Run
 
@@ -23,10 +30,22 @@ You'll have no database tables set up in the DB when you first bring up the cont
 manpy migrate
 ```
 
+or:
+
+```
+bin/manpy migrate
+```
+
 You also then need a superuser account so that you can log in to the wagtail admin interface.
 
 ```
 manpy createsuperuser
+```
+
+or:
+
+```
+bin/manpy createsuperuser
 ```
 
 We have overridden the User model to allow login with email / password as usernames are not useful here. The `createsuperuser` command will still ask you for a username here, but you should give it an email address.

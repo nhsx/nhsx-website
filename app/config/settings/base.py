@@ -13,14 +13,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 # stdlib
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
-from typing import List
 from datetime import date, timedelta
-
-# 3rd party
-import redis
-from loguru import logger as guru
-from consoler import console  # NOQA
-
 
 # Try to import envkey, otherwise trust that the environment variables
 # are being injected another way
@@ -41,7 +34,7 @@ THE_FUTURE = date.today() + timedelta(days=365 * 10)
 
 
 ####################################################################################################
-# Django Dev Panel recommendations
+# Django Dev Panel recommendations and other security
 ####################################################################################################
 
 
@@ -50,6 +43,8 @@ SECURE_BROWSER_XSS_FILTER = True
 X_FRAME_OPTIONS = "DENY"
 CSRF_USE_SESSIONS = False
 
+WAGTAIL_2FA_REQUIRED = False
+
 
 ####################################################################################################
 # Installed Apps
@@ -57,6 +52,8 @@ CSRF_USE_SESSIONS = False
 
 DJANGO_APPS = [
     'whitenoise.runserver_nostatic',
+    'dal',
+    'dal_select2',
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -69,7 +66,10 @@ DJANGO_APPS = [
     "modelcluster",
     "taggit",
     "storages",
-    "cacheops"
+    'django_assets',
+    "cacheops",
+    'django_otp',
+    'django_otp.plugins.otp_totp',
 ]
 
 WAGTAIL_APPS = [
@@ -91,7 +91,9 @@ WAGTAIL_APPS = [
     "wagtailfontawesome",
     "wagtail.contrib.search_promotions",
     "wagtail.contrib.routable_page",
-    "wagtailcache"
+    "wagtailnhsukfrontend",
+    "wagtailcache",
+    'wagtail_2fa',
 ]
 
 SITE_APPS = [
@@ -101,6 +103,8 @@ SITE_APPS = [
     'modules.images',
     'modules.documents',
     'modules.users',
+    'modules.blog_posts',
+    'modules.news',
 ]
 
 INSTALLED_APPS = WAGTAIL_APPS + DJANGO_APPS + SITE_APPS
@@ -125,9 +129,13 @@ MIDDLEWARE = [
     # SECURITY
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "wagtail_2fa.middleware.VerifyUserMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     # WAGTAIL
     "wagtail.core.middleware.SiteMiddleware",
+    # ROLLBAR
+    'rollbar.contrib.django.middleware.RollbarNotifierMiddleware',
+    # CACHE
     'wagtailcache.cache.FetchFromCacheMiddleware',  # MUST BE LAST
 ]
 
@@ -186,7 +194,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            os.path.join(PROJECT_DIR, 'templates'),
+            os.path.join(BASE_DIR, 'templates'),
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -195,6 +203,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                "django.template.context_processors.static"
             ],
         },
     },
@@ -204,20 +213,15 @@ FORM_RENDERER = "django.forms.renderers.TemplatesSetting"
 
 
 ####################################################################################################
-# Bugsnag
+# Rollbar
 ####################################################################################################
 
 
-BUGSNAG = {
-    "api_key": os.environ.get("BUGSNAG_API_KEY", ''),
-    "project_root": BASE_DIR,
-    "ignore_classes": [
-        "django.http.Http404",
-        "django.http.response.Http404",
-        "django.core.exceptions.PermissionDenied",
-    ],
-    "release_stage": os.environ.get("SERVER_ENV"),
-    "notify_release_stages": ["production", "staging"],
+ROLLBAR = {
+    'access_token': os.environ.get('POST_SERVER_ITEM_ACCESS_TOKEN', ''),
+    'environment': os.environ.get('SERVER_ENV', 'development'),
+    'branch': 'master',
+    'root': '/usr/srv/app',
 }
 
 
@@ -290,6 +294,7 @@ REDIS_PORT = os.environ.get('REDIS_PORT', '6379')
 REDIS_HOST_FULL = f"redis://{REDIS_HOST}:{REDIS_PORT}"
 REDIS_HOST_CACHEOPS = f"{REDIS_HOST_FULL}/1"
 REDIS_HOST_PAGECACHE = f"{REDIS_HOST_FULL}/2"
+REDIS_HOST_SESSIONS = f"{REDIS_HOST_FULL}/3"
 
 
 CACHES = {
@@ -315,9 +320,15 @@ CACHES = {
         }
     },
     'session_cache': {
-        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
-        'LOCATION': os.environ.get('MEMCACHED_LOCATION', '127.0.0.1:11211'),
-    }
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': REDIS_HOST_SESSIONS,
+        'OPTIONS': {
+            "PARSER_CLASS": "redis.connection.HiredisParser",
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+            'PASSWORD': os.environ.get('REDIS_PASSWORD'),
+            "IGNORE_EXCEPTIONS": True,
+        }
+    },
 }
 
 
@@ -371,9 +382,9 @@ CACHEOPS = {
 
 
 SHELL_PLUS = "ipython"
-SHELL_PLUS_POST_IMPORTS = (
-    ("modules.home.service", "*"),
-)
+# SHELL_PLUS_POST_IMPORTS = (
+#     ("modules.home.service", "*"),
+# )
 
 
 ####################################################################################################
@@ -435,26 +446,27 @@ REFERRER_POLICY = os.environ.get(
 
 
 ####################################################################################################
-# TODO
+# Static assets
 ####################################################################################################
 
+ASSETS_ROOT = '{}/assets'.format(BASE_DIR)
+ASSETS_DEBUG = False
+ASSETS_AUTO_BUILD = False
+ASSETS_MODULES = [
+    'config.assets'
+]
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.0/howto/static-files/
 
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 STATICFILES_FINDERS = [
+    'django_assets.finders.AssetsFinder',
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 ]
-
 STATICFILES_DIRS = [
-    os.path.join(PROJECT_DIR, 'static'),
+    os.path.join(BASE_DIR, 'assets', 'dist'),
 ]
 
-# ManifestStaticFilesStorage is recommended in production, to prevent outdated
-# Javascript / CSS assets being served from cache (e.g. after a Wagtail upgrade).
-# See https://docs.djangoproject.com/en/3.0/ref/contrib/staticfiles/#manifeststaticfilesstorage
-STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
@@ -470,3 +482,20 @@ WAGTAIL_SITE_NAME = "nhsx"
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
 BASE_URL = 'http://nhsx.test'
+
+
+####################################################################################################
+# Postmark
+####################################################################################################
+
+WAGTAILADMIN_NOTIFICATION_FROM_EMAIL = os.environ.get(
+    'DEFAULT_FROM_EMAIL', 'nhsx-website@clients.dxw.com')
+DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL', 'nhsx-website@clients.dxw.com')
+SERVER_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL', 'nhsx-website@clients.dxw.com')
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = str(os.environ.get('EMAIL_HOST_URL', ''))
+EMAIL_HOST_USER = str(os.environ.get('EMAIL_HOST_USER', ''))
+EMAIL_HOST_PASSWORD = str(os.environ.get('EMAIL_HOST_PASSWORD', ''))
+EMAIL_PORT = str(os.environ.get('EMAIL_HOST_PORT', '587'))
+EMAIL_USE_TLS = True

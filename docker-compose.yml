@@ -1,4 +1,4 @@
-version: '3.3'
+version: '3.7'
 
 services:
   # Postgres
@@ -9,12 +9,6 @@ services:
       - docker-compose.env
     volumes:
       - ./docker/db/data/:/var/lib/postgresql/data
-
-  # memcached
-  memcached:
-    image: memcached:1.5-alpine
-    ports:
-      - "11211:11211"
 
   # Redis
   redis:
@@ -37,6 +31,7 @@ services:
     restart: always
     build:
       context: ./
+      target: dev
       dockerfile: ./docker/web/Dockerfile
       args:
         - SERVER_ENV=development
@@ -47,13 +42,12 @@ services:
 
     ports:
       - "5000:5000"
+      - "8000:8000"
     links:
       - db
       - redis
-      - memcached
     depends_on:
       - db
       - redis
-      - memcached
 
     command: sleep 1000000

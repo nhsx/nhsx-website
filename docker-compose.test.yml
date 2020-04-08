@@ -1,0 +1,27 @@
+version: '3.7'
+
+services:
+  # Application
+  test:
+    image: nhsx:latest
+    environment:
+      - DJANGO_SECRET_KEY=entersecretkeyhere
+      - SERVER_ENV=test
+    restart: always
+    build:
+      context: ./
+      target: app
+      dockerfile: ./docker/web/Dockerfile
+      args:
+        - SERVER_ENV=test
+    volumes:
+      - ./app/:/usr/srv/app:Z
+      - ./app/media:/usr/srv/app/media:Z
+    command:
+      - /bin/bash
+      - -c
+      - |
+        python manage.py assets clean
+        python manage.py assets build
+        python manage.py collectstatic --no-input -i node_modules
+        pytest

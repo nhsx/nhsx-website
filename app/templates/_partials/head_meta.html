@@ -1,0 +1,39 @@
+{% load static wagtailuserbar wagtailcore_tags wagtailimages_tags social_tags %}
+
+<meta charset="utf-8" />
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>{% block title_prefix %}{{ TITLE_PREFIX }}{% endblock %}{% block title %}{% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }}{% endif %}{% endblock %}{% block title_suffix %} - NHSX{% endblock %}</title>
+<meta name="description" content="{% if page.search_description %}{{ page.search_description }}{% else %}{{ page|fb_og_description:request.site }}{% endif %}" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+{% if page.canonical_rel %}
+<link rel="canonical" href="{{ page.canonical_rel }}" />
+{% endif %}
+
+<!-- favicons -->
+
+<link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicons/apple-touch-icon.png' %}">
+<link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicons/favicon-32x32.png' %}">
+<link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicons/favicon-16x16.png' %}">
+<link rel="manifest" href="{% static 'favicons/site.webmanifest' %}">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+
+{% if not request.is_preview %}
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@{{ settings.SocialMediaSettings.twitter }}" />
+<meta name="twitter:title" content="{{ page.title }}" />
+<meta name="twitter:description" content="{{ page|twitter_card_description:request.site }}">
+<meta property="og:image" content="{{ page|twitter_image:request.site }}" />
+<meta property="fb:app_id" content="{{ settings.SocialMediaSettings.facebook_app_id }}" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="{{ page.url }}" />
+<meta property="og:title" content="{{ page.title }}" />
+<meta property="og:image" content="{{ page|fb_image:request.site }}" />
+<meta property="og:description" content="{{ page|fb_og_description:request.site }}" />
+<meta property="og:site_name" content="{{ settings.utils.SocialMediaSettings.site_name }}" />
+{% endif %}
+{% block extra_css %}{% endblock %}
+{% if server_env == 'staging' %}
+    <meta name="robots" content="noindex">
+{% endif %}
