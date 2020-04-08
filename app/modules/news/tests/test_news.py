@@ -15,3 +15,13 @@ def test_news_200(news_page):
     """
     rv = client.get(news_page.url)
     assert rv.status_code == 200
+
+def test_news_shows_tags(news_page):
+    """Test that we can see a news item's tags
+    """
+    news_page.tags.add("This is a tag")
+    news_page.save_revision().publish()
+
+    rv = client.get(news_page.url)
+
+    assert "This is a tag" in str(rv.content)
