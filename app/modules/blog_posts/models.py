@@ -47,6 +47,7 @@ class BlogPost(BasePage, PageAuthorsMixin):
 
     content_panels = [
         *Page.content_panels,
+        FieldPanel('first_published_at'),
         FieldPanel(
             'authors',
             widget=ModelSelect2Multiple(url='author-autocomplete')
