@@ -92,7 +92,6 @@ WAGTAIL_APPS = [
     "wagtail.contrib.search_promotions",
     "wagtail.contrib.routable_page",
     "wagtailnhsukfrontend",
-    "wagtailnhsukfrontend.settings",
     "wagtailcache",
     'wagtail_2fa',
 ]
