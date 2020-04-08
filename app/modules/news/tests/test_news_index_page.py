@@ -55,3 +55,12 @@ def test_news_index_lists_news(news_index_page, news_items):
     for news_item in news_items:
         assert news_item.title in str(rv.content)
 
+def test_news_index_shows_tags(news_index_page, news_items):
+    """Test that we can see a blog post's tags
+    """
+    news_items[0].tags.add("This is a tag")
+    news_items[0].save_revision().publish()
+
+    rv = client.get(news_index_page.url)
+
+    assert "This is a tag" in str(rv.content)
