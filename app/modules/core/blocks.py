@@ -11,7 +11,11 @@ from wagtailnhsukfrontend.blocks import (  # NOQA
 
 
 class TableBlock(OGTableBlock):
-    pass
+
+    class Meta:
+        template = 'core/blocks/table.html'
+
+
 
 
 class LinkStructBlockMixin(object):
