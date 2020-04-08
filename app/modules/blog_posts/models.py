@@ -7,7 +7,7 @@ from modelcluster.contrib.taggit import ClusterTaggableManager
 from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
 from wagtail.core.models import Page
 
-from modules.core.models.abstract import BasePage, BaseIndexPage, PageAuthorsMixin
+from modules.core.models.abstract import BasePage, BaseIndexPage, PageAuthorsMixin, CanonicalMixin
 
 import logging
 
@@ -40,7 +40,7 @@ class BlogTag(TaggedItemBase):
     )
 
 
-class BlogPost(BasePage, PageAuthorsMixin):
+class BlogPost(BasePage, PageAuthorsMixin, CanonicalMixin):
     parent_page_types = ['BlogPostIndexPage']
 
     tags = ClusterTaggableManager(through=BlogTag, blank=True)
@@ -55,3 +55,5 @@ class BlogPost(BasePage, PageAuthorsMixin):
         StreamFieldPanel("body"),
         FieldPanel("tags"),
     ]
+
+    settings_panels = CanonicalMixin.panels + BasePage.settings_panels

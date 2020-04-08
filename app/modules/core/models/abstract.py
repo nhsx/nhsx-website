@@ -40,6 +40,24 @@ from modules.core.blocks import nhsx_blocks, page_link_blocks
 # Mixins
 ################################################################################
 
+
+class CanonicalMixin(models.Model):
+
+    class Meta:
+        abstract = True
+
+    canonical_rel = models.URLField(
+        "Canonical link",
+        null=True,
+        blank=True,
+        help_text="If this article was first published elsewhere, put that link here to help SEO"
+    )
+
+    panels = [
+        FieldPanel('canonical_rel'),
+    ]
+
+
 class PageLinksMixin(models.Model):
     class Meta:
         abstract = True
@@ -82,6 +100,7 @@ class PageLinksMixin(models.Model):
 
         return rv
 
+
 class SubNavMixin(PageLinksMixin):
     class Meta:
         abstract = True
@@ -97,6 +116,7 @@ class SubNavMixin(PageLinksMixin):
             return self._children
         else:
             return self._streamed
+
 
 class SidebarMixin(PageLinksMixin):
 
