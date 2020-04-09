@@ -115,6 +115,11 @@ class SubNavMixin(PageLinksMixin):
     class Meta:
         abstract = True
 
+    automatic = models.BooleanField(
+        default=False,
+        help_text="Build automatically from child pages"
+    )
+
     @cached_property
     def _children(self):
         children = self.get_children()
