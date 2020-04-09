@@ -36,6 +36,18 @@ class SectionPage(BasePage, HeroImageContentMixin, SubNavMixin):
         tabs.insert(2, (cls.subnav_panels, 'Subnavigation'))
         return tabs
 
+    def subnav_items_per_row(self):
+        if (len(self.subnav_pages) % 3 == 0):
+            return 3
+        else:
+            return 2
+
+    def subnav_column_class(self):
+        if (len(self.subnav_pages) % 3 == 0):
+           return  "one-third"
+        else:
+            return "one-half"
+
 
 ################################################################################
 # ArticlePage
