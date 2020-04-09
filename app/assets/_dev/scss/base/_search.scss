@@ -22,3 +22,9 @@
   margin-bottom:13px;
 }
 
+@media screen and (max-width: $medium-screen) {
+  .nhsuk-search__submit {
+    background-color: $nhsx-dark-blue;
+  }
+
+}
