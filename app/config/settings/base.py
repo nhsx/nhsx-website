@@ -120,6 +120,7 @@ MIDDLEWARE = [
     'wagtailcache.cache.UpdateCacheMiddleware',  # MUST BE FIRST
     "django.middleware.security.SecurityMiddleware",  # SHOULD BE SECOND
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    'wagtail.contrib.redirects.middleware.RedirectMiddleware',
     # SESSION
     "django.contrib.sessions.middleware.SessionMiddleware",
     # COMMON
