@@ -63,9 +63,18 @@ class PageLinksMixin(models.Model):
     class Meta:
         abstract = True
 
+    sidebar_title = models.CharField(
+        "Title",
+        max_length=255,
+        blank=False,
+        null=False,
+        default="Related Pages",
+        help_text="The title to appear above the links in the sidebar"
+    )
     page_links = fields.StreamField(page_link_blocks, blank=True)
 
     panels = [
+        FieldPanel('sidebar_title'),
         FieldPanel('automatic'),
         StreamFieldPanel('page_links')
     ]
