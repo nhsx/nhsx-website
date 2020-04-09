@@ -21,7 +21,7 @@
               </h3>
               {% include '_partials/page_meta.html' %}
               <p class="summary__posts">
-                {{page.specific.body|striptags|truncatechars:70}}
+                {{page.specific.body|striptags|truncatechars:200}}
               </p>
               <p>
                 <a href="{% pageurl page %}">Read More</a>
