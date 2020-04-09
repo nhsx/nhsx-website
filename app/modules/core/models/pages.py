@@ -21,8 +21,8 @@ class SectionPage(BasePage, HeroImageContentMixin, SubNavMixin):
 
     """
 
-    parent_page_types: list = ['home.HomePage', ]
-    subpage_types: list = ['core.ArticlePage', ]
+    parent_page_types: list = ['home.HomePage', 'core.SectionPage', ]
+    subpage_types: list = ['core.ArticlePage', 'core.SectionPage', ]
 
     hero_panels: list = HeroImageContentMixin.hero_panels
     subnav_panels: list = SubNavMixin.panels

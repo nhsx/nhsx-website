@@ -27,6 +27,11 @@ def test_section_page_get_children(section_page, article_pages):
     """
     assert len(section_page.get_children()) == 10
 
+def section_page_can_have_section_pages_as_children(section_page, section_pages):
+    """Check that section_page can have other section pages as children
+    """
+    assert len(section_page.get_children()) == 10
+
 def test_section_page_can_have_automatic_subnav_pages(section_page, article_pages):
     section_page.automatic = True
 
