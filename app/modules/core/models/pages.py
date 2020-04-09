@@ -1,13 +1,15 @@
 # 3rd party
 from wagtail.core import fields
-from wagtail.admin.edit_handlers import StreamFieldPanel
+from wagtail.admin.edit_handlers import StreamFieldPanel, FieldPanel
+from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.utils.decorators import cached_classmethod
+from wagtail.core.models import Page
 
 # Project
 from modules.core.blocks import nhsx_blocks
 
 # Module
-from .abstract import BasePage, HeroImageContentMixin, SidebarMixin, SubNavMixin
+from .abstract import BasePage, InlineHeroMixin, SidebarMixin, SubNavMixin
 
 
 ################################################################################
@@ -15,7 +17,7 @@ from .abstract import BasePage, HeroImageContentMixin, SidebarMixin, SubNavMixin
 ################################################################################
 
 
-class SectionPage(BasePage, HeroImageContentMixin, SubNavMixin):
+class SectionPage(BasePage, InlineHeroMixin, SubNavMixin):
 
     """SectionPage is a top level page for containing grouped articles.
 
@@ -24,15 +26,13 @@ class SectionPage(BasePage, HeroImageContentMixin, SubNavMixin):
     parent_page_types: list = ['home.HomePage', 'core.SectionPage', ]
     subpage_types: list = ['core.ArticlePage', 'core.SectionPage', ]
 
-    hero_panels: list = HeroImageContentMixin.hero_panels
     subnav_panels: list = SubNavMixin.panels
 
-    search_fields = BasePage.search_fields + HeroImageContentMixin.extra_search_fields
+    search_fields = BasePage.search_fields + InlineHeroMixin.extra_search_fields
 
     @cached_classmethod
     def get_admin_tabs(cls):
         tabs = super().get_admin_tabs()
-        tabs.insert(1, (cls.hero_panels, 'Hero'))
         tabs.insert(2, (cls.subnav_panels, 'Subnavigation'))
         return tabs
 
@@ -48,6 +48,12 @@ class SectionPage(BasePage, HeroImageContentMixin, SubNavMixin):
         else:
             return "one-half"
 
+    content_panels = [
+        *Page.content_panels,
+        FieldPanel("sub_head"),
+        ImageChooserPanel("image"),
+        StreamFieldPanel("body"),
+    ]
 
 ################################################################################
 # ArticlePage

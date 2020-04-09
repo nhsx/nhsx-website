@@ -360,6 +360,24 @@ class HeroImageContentMixin(HeroMixin):
         index.SearchField('sub_head'),
     ]
 
+class InlineHeroMixin(HeroMixin):
+
+    class Meta:
+        abstract = True
+
+    sub_head = models.CharField(max_length=255, blank=True, null=True)
+    image = models.ForeignKey(
+        settings.WAGTAILIMAGES_IMAGE_MODEL,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='%(class)s_hero_image'
+    )
+
+    extra_search_fields = [
+        index.SearchField('sub_head'),
+    ]
+
 
 ################################################################################
 # Base Page
@@ -430,17 +448,21 @@ class BasePage(Page, SocialMetaMixin):
 # Base Index Page
 ################################################################################
 
-class BaseIndexPage(BasePage, HeroImageContentMixin):
+class BaseIndexPage(BasePage, InlineHeroMixin):
 
     class Meta:
         abstract = True
 
-    hero_panels = HeroImageContentMixin.hero_panels
+    search_fields = BasePage.search_fields + InlineHeroMixin.extra_search_fields
 
-    search_fields = BasePage.search_fields + HeroImageContentMixin.extra_search_fields
+    content_panels = [
+        *Page.content_panels,
+        FieldPanel("sub_head"),
+        ImageChooserPanel("image"),
+        StreamFieldPanel("body"),
+    ]
 
     @cached_classmethod
     def get_admin_tabs(cls):
         tabs = super().get_admin_tabs()
-        tabs.insert(1, (cls.hero_panels, 'Hero'))
         return tabs
