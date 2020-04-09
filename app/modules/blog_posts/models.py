@@ -6,6 +6,7 @@ from taggit.models import TaggedItemBase
 from modelcluster.contrib.taggit import ClusterTaggableManager
 from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
 from wagtail.core.models import Page
+from wagtail.search import index
 
 from modules.core.models.abstract import (
     BasePage, BaseIndexPage, PageAuthorsMixin, CanonicalMixin
@@ -44,8 +45,13 @@ class BlogTags(TaggedItemBase):
 
 class BlogPost(BasePage, PageAuthorsMixin, CanonicalMixin):
     parent_page_types = ['BlogPostIndexPage']
+    subpage_types = []
 
     tags = ClusterTaggableManager(through=BlogTags, blank=True)
+
+    search_fields = BasePage.search_fields + [
+        index.SearchField('tags', boost=10),
+    ]
 
     content_panels = [
         *Page.content_panels,

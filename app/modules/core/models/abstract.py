@@ -63,9 +63,18 @@ class PageLinksMixin(models.Model):
     class Meta:
         abstract = True
 
+    sidebar_title = models.CharField(
+        "Title",
+        max_length=255,
+        blank=False,
+        null=False,
+        default="Related Pages",
+        help_text="The title to appear above the links in the sidebar"
+    )
     page_links = fields.StreamField(page_link_blocks, blank=True)
 
     panels = [
+        FieldPanel('sidebar_title'),
         FieldPanel('automatic'),
         StreamFieldPanel('page_links')
     ]
@@ -105,6 +114,11 @@ class PageLinksMixin(models.Model):
 class SubNavMixin(PageLinksMixin):
     class Meta:
         abstract = True
+
+    automatic = models.BooleanField(
+        default=False,
+        help_text="Build automatically from child pages"
+    )
 
     @cached_property
     def _children(self):
@@ -328,6 +342,11 @@ class HeroContentMixin(HeroMixin):
         FieldPanel('sub_head'),
     ]
 
+    extra_search_fields = [
+        index.SearchField('headline'),
+        index.SearchField('sub_head'),
+    ]
+
 
 class HeroImageContentMixin(HeroMixin):
 
@@ -348,6 +367,29 @@ class HeroImageContentMixin(HeroMixin):
         FieldPanel('headline', classname="title"),
         FieldPanel('sub_head'),
         ImageChooserPanel('image')
+    ]
+
+    extra_search_fields = [
+        index.SearchField('headline'),
+        index.SearchField('sub_head'),
+    ]
+
+class InlineHeroMixin(HeroMixin):
+
+    class Meta:
+        abstract = True
+
+    sub_head = models.CharField(max_length=255, blank=True, null=True)
+    image = models.ForeignKey(
+        settings.WAGTAILIMAGES_IMAGE_MODEL,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='%(class)s_hero_image'
+    )
+
+    extra_search_fields = [
+        index.SearchField('sub_head'),
     ]
 
 
@@ -420,15 +462,21 @@ class BasePage(Page, SocialMetaMixin):
 # Base Index Page
 ################################################################################
 
-class BaseIndexPage(BasePage, HeroImageContentMixin):
+class BaseIndexPage(BasePage, InlineHeroMixin):
 
     class Meta:
         abstract = True
 
-    hero_panels = HeroImageContentMixin.hero_panels
+    search_fields = BasePage.search_fields + InlineHeroMixin.extra_search_fields
+
+    content_panels = [
+        *Page.content_panels,
+        FieldPanel("sub_head"),
+        ImageChooserPanel("image"),
+        StreamFieldPanel("body"),
+    ]
 
     @cached_classmethod
     def get_admin_tabs(cls):
         tabs = super().get_admin_tabs()
-        tabs.insert(1, (cls.hero_panels, 'Hero'))
         return tabs

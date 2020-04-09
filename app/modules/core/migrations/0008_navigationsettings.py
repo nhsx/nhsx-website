@@ -14,16 +14,16 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.CreateModel(
-            name='NavigationSettings',
-            fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('primary', wagtail.core.fields.StreamField([('page', wagtail.core.blocks.StructBlock([('link_page', wagtail.core.blocks.PageChooserBlock(required=True)), ('title_override', wagtail.core.blocks.CharBlock(required=False))]))], blank=True)),
-                ('footer', wagtail.core.fields.StreamField([('page', wagtail.core.blocks.StructBlock([('link_page', wagtail.core.blocks.PageChooserBlock(required=True)), ('title_override', wagtail.core.blocks.CharBlock(required=False))]))], blank=True)),
-                ('site', models.OneToOneField(editable=False, on_delete=django.db.models.deletion.CASCADE, to='wagtailcore.Site')),
-            ],
-            options={
-                'abstract': False,
-            },
-        ),
+        # migrations.CreateModel(
+        #     name='NavigationSettings',
+        #     fields=[
+        #         ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+        #         ('primary', wagtail.core.fields.StreamField([('page', wagtail.core.blocks.StructBlock([('link_page', wagtail.core.blocks.PageChooserBlock(required=True)), ('title_override', wagtail.core.blocks.CharBlock(required=False))]))], blank=True)),
+        #         ('footer', wagtail.core.fields.StreamField([('page', wagtail.core.blocks.StructBlock([('link_page', wagtail.core.blocks.PageChooserBlock(required=True)), ('title_override', wagtail.core.blocks.CharBlock(required=False))]))], blank=True)),
+        #         ('site', models.OneToOneField(editable=False, on_delete=django.db.models.deletion.CASCADE, to='wagtailcore.Site')),
+        #     ],
+        #     options={
+        #         'abstract': False,
+        #     },
+        # ),
     ]

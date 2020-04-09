@@ -1,3 +1,24 @@
+// make images show at the width of the column
+
+figure.nhsuk-image {
+    width: 100%;
+}
+
+
+img.richtext-image, img.full-width{
+    width: 100%;
+    height: auto;
+}
+
+
+//Hero
+
+.nhsuk-hero--image-description .nhsuk-hero-content {
+  background-color: $nhsx-dark-blue;
+  .nhsuk-hero__arrow:after, .nhsuk-hero__arrow:before {
+    border-color: $nhsx-dark-blue;
+  }
+}
 
 
 //Fullwidth white section

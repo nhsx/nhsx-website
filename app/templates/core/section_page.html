@@ -7,20 +7,27 @@
 {% endblock extra_css %}
 
 {% block content %}
-{% image page.image width-1000 as hero_image %}
-{% include '_partials/hero.html' with hero_text=page.sub_head hero_heading=page.title hero_image=hero_image.url %}
+{% if hero_image or hero_text %}
+  {% image page.image width-1000 as hero_image %}
+  {% include '_partials/hero.html' with hero_text=page.sub_head hero_heading=page.title hero_image=hero_image.url %}
+{% endif %}
 <div class="nhsuk-width-container">
   <main class="nhsuk-main-wrapper" id="maincontent">
-    <div class="nhsuk-grid-row">
-      <div class="nhsuk-grid-column-two-thirds">
+    <div class="nhsuk-grid-row nhsuk-u-margin-top-6">
+      <div class="nhsuk-grid-column-full">
+        {% if hero_image|length == 0 or hero_text|length == 0 %}
+          <h1 class="nhsuk-heading-xl nhsuk-u-margin-bottom-5">{{ page.title }}</h1>
+        {% endif %}
+
         {% include_block page.body %}
       </div>
     </div>
 
-    {% for row in page.subnav_pages|chunk:2 %}
+    <h2 class="nhsuk-heading-m">{{ page.sidebar_title }}</h2>
+    {% for row in page.subnav_pages|chunk:page.subnav_items_per_row %}
       <div class="nhsuk-grid-row nhsuk-promo-group">
         {% for promo in row %}
-          <div class="nhsuk-grid-column-one-half nhsuk-promo-group__item nhsuk-promo-group__item">
+          <div class="nhsuk-grid-column-{{ page.subnav_column_class }} nhsuk-promo-group__item nhsuk-promo-group__item">
             <div class="nhsuk-promo">
               <a class="nhsuk-promo__link-wrapper" href="{{ promo.url }}">
                 <div class="nhsuk-promo__content">

@@ -3,7 +3,7 @@ from django.utils.translation import ugettext_lazy as _
 from wagtail.admin.rich_text import get_rich_text_editor_widget
 from wagtail.images.widgets import AdminImageChooser
 
-from ..service import _user_profiles, _users
+from ..service import _user_profiles, _users, _authors
 
 
 image_widget = AdminImageChooser(
@@ -23,7 +23,7 @@ class AuthorForm(forms.ModelForm):
         # fields = ('first_name', 'last_name')
         exclude = ('user', )
 
-    email = forms.EmailField(required=True, label=_('Email'))
+    email = forms.EmailField(required=False, label=_('Email'))
     first_name = forms.CharField(required=True, label=_('First Name'))
     last_name = forms.CharField(required=True, label=_('Last Name'))
 
@@ -41,6 +41,10 @@ class AuthorForm(forms.ModelForm):
                 _("A user with that username already exists."),
                 code='duplicate_username',
             ))
+
+        if email is None or email == '':
+            count = _authors.count()
+            email = f"dummy-email-{count}@example.net"
         return email
 
     def __init__(self, *args, **kwargs):

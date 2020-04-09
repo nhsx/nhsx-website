@@ -93,7 +93,7 @@ WAGTAIL_APPS = [
     "wagtail.contrib.routable_page",
     "wagtailnhsukfrontend",
     "wagtailcache",
-    'wagtail_2fa',
+    'wagtail_2fa'
 ]
 
 SITE_APPS = [
@@ -120,6 +120,7 @@ MIDDLEWARE = [
     'wagtailcache.cache.UpdateCacheMiddleware',  # MUST BE FIRST
     "django.middleware.security.SecurityMiddleware",  # SHOULD BE SECOND
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    'wagtail.contrib.redirects.middleware.RedirectMiddleware',
     # SESSION
     "django.contrib.sessions.middleware.SessionMiddleware",
     # COMMON
@@ -203,7 +204,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                "django.template.context_processors.static"
+                "django.template.context_processors.static",
+                'wagtail.contrib.settings.context_processors.settings',
             ],
         },
     },
@@ -336,7 +338,7 @@ CACHES = {
 # CacheOps Config
 ####################################################################################################
 
-
+CACHEOPS_ENABLED = True
 CACHEOPS_LRU = True
 
 CACHEOPS_REDIS = {
@@ -370,7 +372,7 @@ CACHEOPS = {
     #  or Tags.objects.filter(...).order_by(...).cache()
     # to cache particular ORM request.
     # Invalidation is still automatic
-    "*.*": {"ops": (), "timeout": 60 * 60},
+    # "*.*": {"ops": (), "timeout": 60 * 60},g
     # Disable caching on migrations
     "migrations.*": {"ops": (), "timeout": 0},
 }

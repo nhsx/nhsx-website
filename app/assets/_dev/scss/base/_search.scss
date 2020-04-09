@@ -1,0 +1,30 @@
+
+//Search page
+
+.search-text-only-container {
+  width:100%;
+  #search-field {
+    width:73%;
+    border-color: $nhs-search-border;
+  }
+
+  .button {
+      background:$nhs-blue;
+      padding: 8px;
+      color:$white;
+      width:27%;
+      float:right;
+      @media screen and (max-width: $small-screen) {
+        float: none;
+        margin-top: 13px;
+      }
+  }
+  margin-bottom:13px;
+}
+
+@media screen and (max-width: $medium-screen) {
+  .nhsuk-search__submit {
+    background-color: $nhsx-dark-blue;
+  }
+
+}

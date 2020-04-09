@@ -6,12 +6,22 @@ from wagtail.search.models import Query
 
 
 def search(request):
-    search_query = request.GET.get('search-field', None)
+
+    EXCLUDE = []
+
+    search_query = request.GET.get('query', '')
     page = request.GET.get('page', 1)
+
+    # Promoted searches
+    promoted = Query.get(search_query).editors_picks.all()
+
+    # Ensure promoted pages don't show up twice
+    if len(promoted) > 0:
+        EXCLUDE += [_.page.id for _ in promoted]
 
     # Search
     if search_query:
-        search_results = Page.objects.live().search(search_query)
+        search_results = Page.objects.exclude(id__in=EXCLUDE).live().search(search_query)
         query = Query.get(search_query)
 
         # Record hit
@@ -19,8 +29,10 @@ def search(request):
     else:
         search_results = Page.objects.none()
 
+    objects = [r.page for r in promoted] + [r for r in search_results]
+
     # Pagination
-    paginator = Paginator(search_results, 10)
+    paginator = Paginator(objects, 10)
     try:
         search_results = paginator.page(page)
     except PageNotAnInteger:

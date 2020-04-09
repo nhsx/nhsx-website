@@ -174,6 +174,7 @@ class HeaderSettings(ClusterableModel, BaseSetting):
 class AbstractLink(Orderable):
     class Meta:
         abstract = True
+        ordering = ['sort_order']
 
     label = models.CharField(max_length=255)
     page = models.ForeignKey(
@@ -201,9 +202,10 @@ class NavigationLink(AbstractLink):
 class FooterSettings(ClusterableModel, BaseSetting):
 
     fixed_coloumn_footer = models.BooleanField(
+        "Fixed column footer",
         default=False,
         help_text="""Enable this setting to change way the footer is styled,
-        so links group into coloumns"""
+        so links group into columns"""
     )
 
     panels = [
