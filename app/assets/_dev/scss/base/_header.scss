@@ -41,13 +41,16 @@
 }
 
 
-
 .nhsuk-header__search-toggle {
   padding-bottom:4px;
     &:hover {
       &:focus {
       .nhsuk-icon {
         fill:$white;
+      }
+    }
+  }
+}
 
 .nhsuk-header__navigation-link--nhsx {
   background-color: $white;
