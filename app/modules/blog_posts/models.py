@@ -45,6 +45,7 @@ class BlogTags(TaggedItemBase):
 
 class BlogPost(BasePage, PageAuthorsMixin, CanonicalMixin):
     parent_page_types = ['BlogPostIndexPage']
+    subpage_types = []
 
     tags = ClusterTaggableManager(through=BlogTags, blank=True)
 
