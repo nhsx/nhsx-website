@@ -1,0 +1,69 @@
+{% load wagtailimages_tags %}
+
+{% image content_image width-320 as one_image %}
+{% image content_image width-510 as two_image %}
+{% image content_image width-640 as three_image %}
+{% image content_image width-767 as four_image %}
+{% image content_image width-1019 as five_image %}
+{% image content_image width-1125 as six_image %}
+{% image content_image width-1534 as seven_image %}
+
+<div class="nhsuk-promo{% if size == 'small' %} nhsuk-promo--small{% endif %}">
+{% if url %}
+  <a class="nhsuk-promo__link-wrapper" href="{{ url }}">
+    {% if content_image %}
+      <img
+        class="nhsuk-promo__img"
+        src="{{ one_image.url }}"
+        sizes="
+            (min-width: 1020px) 320px
+            (min-width: 768px) 50vw
+            100vw"
+        srcset="
+             {{ one_image.url }} 320w,
+             {{ two_image.url }} 510w,
+             {{ three_image.url }} 640w,
+             {{ four_image.url }} 767w,
+             {{ five_image.url }} 1019w,
+             {{ six_image.url }} 1125w,
+             {{ seven_image.url }} 1534w,
+          "
+        alt="{{ alt_text }}"
+      />
+   {% endif %}
+    <div class="nhsuk-promo__content">
+      <h{{ heading_level }} class="nhsuk-promo__heading">{{ heading }}</h{{ heading_level }}>
+      {% if description %}
+        <p class="nhsuk-promo__description">{{ description }}</p>
+      {% endif %}
+    </div>
+  </a>
+{% else %}
+  {% if content_image %}
+    <img
+      class="nhsuk-promo__img"
+      src="{{ one_image.url }}"
+      sizes="
+          (min-width: 1020px) 320px
+          (min-width: 768px) 50vw
+          100vw"
+      srcset="
+           {{ one_image.url }} 320w,
+           {{ two_image.url }} 510w,
+           {{ three_image.url }} 640w,
+           {{ four_image.url }} 767w,
+           {{ five_image.url }} 1019w,
+           {{ six_image.url }} 1125w,
+           {{ seven_image.url }} 1534w,
+        "
+      alt="{{ alt_text }}"
+    />
+ {% endif %}
+  <div class="nhsuk-promo__content">
+    <h{{ heading_level }} class="nhsuk-promo__heading">{{ heading }}</h{{ heading_level }}>
+    {% if description %}
+      <p class="nhsuk-promo__description">{{ description }}</p>
+    {% endif %}
+  </div>
+{% endif %}
+</div>

@@ -3,11 +3,55 @@ from wagtail.core import blocks
 from wagtail.embeds.blocks import EmbedBlock
 from wagtail.documents.blocks import DocumentChooserBlock
 from wagtail.contrib.table_block.blocks import TableBlock as OGTableBlock
+from wagtail.images.blocks import ImageChooserBlock
 
 from wagtailnhsukfrontend.blocks import (  # NOQA
-    ImageBlock, PanelBlock, PromoBlock, ExpanderBlock, GreyPanelBlock, InsetTextBlock,
-    PanelListBlock, PromoGroupBlock, WarningCalloutBlock
+    ImageBlock, PanelBlock, ExpanderBlock, GreyPanelBlock, InsetTextBlock,
+    PanelListBlock, PromoGroupBlock, WarningCalloutBlock, FlattenValueContext
 )
+
+
+class BasePromoBlock(FlattenValueContext, blocks.StructBlock):
+
+    link_page = blocks.PageChooserBlock(required=False, label="Page")
+    url = blocks.URLBlock(label="URL", required=False)
+    heading = blocks.CharBlock(required=True)
+    description = blocks.CharBlock(required=False)
+    content_image = ImageChooserBlock(label="Image", required=False)
+    alt_text = blocks.CharBlock(required=False)
+
+    class Meta:
+        icon = 'pick'
+        template = 'wagtailnhsukfrontend/promo.html'
+
+    def get_context(self, value, parent_context=None):
+        context = super().get_context(value, parent_context=parent_context)
+        page = value.get('link_page', '')
+        if page is not None:
+            url = page.url
+        else:
+            url = value.get('url', '')
+
+        context['url'] = url
+        return context
+
+
+class PromoBlock(BasePromoBlock):
+
+    size = blocks.ChoiceBlock([
+        ('', 'Default'),
+        ('small', 'Small'),
+    ], required=False)
+
+    heading_level = blocks.IntegerBlock(
+        min_value=2,
+        max_value=4,
+        default=3,
+        help_text='The heading level affects users with screen readers. Default=3, Min=2, Max=4.'
+    )
+
+    class Meta:
+        template = 'wagtailnhsukfrontend/promo.html'
 
 
 class TableBlock(OGTableBlock):
