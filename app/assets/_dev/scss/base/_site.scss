@@ -1,3 +1,11 @@
+//Hero
+
+.nhsuk-hero--image-description .nhsuk-hero-content {
+  background-color: $nhsx-dark-blue;
+  .nhsuk-hero__arrow:after, .nhsuk-hero__arrow:before {
+    border-color: $nhsx-dark-blue;
+  }
+}
 
 
 //Fullwidth white section
