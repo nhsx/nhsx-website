@@ -360,6 +360,24 @@ class HeroImageContentMixin(HeroMixin):
         index.SearchField('sub_head'),
     ]
 
+class InlineHeroMixin(HeroMixin):
+
+    class Meta:
+        abstract = True
+
+    sub_head = models.CharField(max_length=255, blank=True, null=True)
+    image = models.ForeignKey(
+        settings.WAGTAILIMAGES_IMAGE_MODEL,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='%(class)s_hero_image'
+    )
+
+    extra_search_fields = [
+        index.SearchField('sub_head'),
+    ]
+
 
 ################################################################################
 # Base Page
