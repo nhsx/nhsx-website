@@ -7,11 +7,15 @@ from wagtail.images.blocks import ImageChooserBlock
 
 from wagtailnhsukfrontend.blocks import (  # NOQA
     ImageBlock, PanelBlock, ExpanderBlock, GreyPanelBlock, InsetTextBlock,
-    PanelListBlock, PromoGroupBlock, WarningCalloutBlock, FlattenValueContext
+    PanelListBlock, WarningCalloutBlock, FlattenValueContext
 )
 
 
 class BasePromoBlock(FlattenValueContext, blocks.StructBlock):
+
+    class Meta:
+        icon = 'pick'
+        template = 'wagtailnhsukfrontend/promo.html'
 
     link_page = blocks.PageChooserBlock(required=False, label="Page")
     url = blocks.URLBlock(label="URL", required=False)
@@ -19,10 +23,6 @@ class BasePromoBlock(FlattenValueContext, blocks.StructBlock):
     description = blocks.CharBlock(required=False)
     content_image = ImageChooserBlock(label="Image", required=False)
     alt_text = blocks.CharBlock(required=False)
-
-    class Meta:
-        icon = 'pick'
-        template = 'wagtailnhsukfrontend/promo.html'
 
     def get_context(self, value, parent_context=None):
         context = super().get_context(value, parent_context=parent_context)
@@ -38,6 +38,9 @@ class BasePromoBlock(FlattenValueContext, blocks.StructBlock):
 
 class PromoBlock(BasePromoBlock):
 
+    class Meta:
+        template = 'wagtailnhsukfrontend/promo.html'
+
     size = blocks.ChoiceBlock([
         ('', 'Default'),
         ('small', 'Small'),
@@ -50,8 +53,38 @@ class PromoBlock(BasePromoBlock):
         help_text='The heading level affects users with screen readers. Default=3, Min=2, Max=4.'
     )
 
+
+class PromoGroupBlock(FlattenValueContext, blocks.StructBlock):
+
     class Meta:
-        template = 'wagtailnhsukfrontend/promo.html'
+        template = 'wagtailnhsukfrontend/promo_group.html'
+
+    column = blocks.ChoiceBlock([
+        ('one-half', 'One-half'),
+        ('one-third', 'One-third'),
+    ], default='one-half', required=True)
+
+    size = blocks.ChoiceBlock([
+        ('', 'Default'),
+        ('small', 'Small'),
+    ], required=False)
+
+    def get_context(self, value, parent_context=None):
+        context = super().get_context(value, parent_context)
+        context['num_columns'] = {
+            'one-half': 2,
+            'one-third': 3,
+        }[value['column']]
+        return context
+
+    heading_level = blocks.IntegerBlock(
+        min_value=2,
+        max_value=4,
+        default=3,
+        help_text='The heading level affects users with screen readers. Default=3, Min=2, Max=4.'
+    )
+
+    promos = blocks.ListBlock(BasePromoBlock)
 
 
 class TableBlock(OGTableBlock):
