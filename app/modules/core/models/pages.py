@@ -24,7 +24,7 @@ class SectionPage(BasePage, InlineHeroMixin, SubNavMixin):
     """
 
     parent_page_types: list = ['home.HomePage', 'core.SectionPage', ]
-    subpage_types: list = ['core.ArticlePage', 'core.SectionPage', ]
+    subpage_types: list = ['core.ArticlePage', 'core.SectionPage', 'core.CookieFormPage', ]
 
     subnav_panels: list = SubNavMixin.panels
 
@@ -76,3 +76,14 @@ class ArticlePage(BasePage, SidebarMixin):
         tabs = super().get_admin_tabs()
         tabs.insert(1, (cls.sidebar_panels, 'Sidebar'))
         return tabs
+
+################################################################################
+# CookieFormPage
+################################################################################
+
+class CookieFormPage(ArticlePage):
+
+    """CookieFormPage is a page type specifically for cookie consent content. It
+    includes a form that sets Cookies in the template core/cookie_form_page.html
+    """
+    max_count = 1

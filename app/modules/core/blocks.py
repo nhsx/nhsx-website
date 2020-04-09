@@ -133,6 +133,11 @@ class LinkBlock(blocks.StructBlock, LinkStructBlockMixin):
     label = blocks.CharBlock(required=False)
     link = LinkFields(required=False, label="Link to (choose one)")
 
+class NHSXExpanderBody(ExpanderBlock.BodyStreamBlock):
+    table = TableBlock()
+
+class NHSXExpanderBlock(ExpanderBlock):
+    body = NHSXExpanderBody(required=True)
 
 page_link_blocks = [
     ('link', LinkBlock()),
@@ -149,7 +154,7 @@ nhs_blocks = [
     ('image', ImageBlock(group=" NHS Components")),
     ('panel', PanelBlock(group=" NHS Components")),
     ('promo', PromoBlock(group=" NHS Components")),
-    ('expander', ExpanderBlock(group=" NHS Components")),
+    ('expander', NHSXExpanderBlock(group=" NHS Components")),
     ('grey_panel', GreyPanelBlock(group=" NHS Components")),
     ('inset_text', InsetTextBlock(group=" NHS Components")),
     ('panel_list', PanelListBlock(group=" NHS Components")),

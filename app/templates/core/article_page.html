@@ -21,6 +21,9 @@
     <div class="nhsuk-grid-row">
       <div class="nhsuk-grid-column-two-thirds">
         {% include_block page.body %}
+
+        {% block extra_content %}
+        {% endblock %}
       </div>
       {% if page.has_sidebar %}
       <div class="nhsuk-grid-column-one-third">
