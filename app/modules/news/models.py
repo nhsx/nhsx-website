@@ -24,6 +24,7 @@ class NewsTags(TaggedItemBase):
 
 class News(BasePage, CanonicalMixin):
     parent_page_types = ['NewsIndexPage']
+    subpage_types = []
 
     tags = ClusterTaggableManager(through=NewsTags, blank=True)
 
