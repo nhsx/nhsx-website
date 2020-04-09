@@ -25,7 +25,7 @@
       {% if page.has_sidebar %}
       <div class="nhsuk-grid-column-one-third">
         <nav class="nhsuk-contents-list" role="navigation" aria-label="Pages in this section">
-          <h2 class="nhsuk-heading-m">Contents list</h2>
+          <h2 class="nhsuk-heading-m">{{ page.sidebar_title }}</h2>
           <ol class="nhsuk-contents-list__list">
                 {% for p in page.sidebar_pages %}
                 {% if page.url == p.url %}
