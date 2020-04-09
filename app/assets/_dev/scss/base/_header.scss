@@ -17,6 +17,11 @@
   .nhsuk-header__navigation--nhsx, .nhsuk-header__navigation-link--nhsx {
     background-color: $nhsx-dark-blue !important;
   }
+
+  .nhsuk-header__navigation-link:active:visited, 
+  .nhsuk-header__navigation-link:focus:visited {
+    color:$white;
+  }
 }
 
 .nhsuk-header__navigation-link--nhsx {
@@ -54,3 +59,4 @@
     }
   }
 }
+
