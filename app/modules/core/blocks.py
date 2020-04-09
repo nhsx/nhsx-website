@@ -16,6 +16,13 @@ class TableBlock(OGTableBlock):
         template = 'core/blocks/table.html'
 
 
+class PanelTableBlock(blocks.StructBlock):
+
+    class Meta:
+        template = 'core/blocks/panel_table.html'
+
+    title = blocks.CharBlock()
+    table = TableBlock()
 
 
 class LinkStructBlockMixin(object):
@@ -72,6 +79,7 @@ nhs_blocks = [
     ('promo_group', PromoGroupBlock(group=" NHS Components")),
     ('warning_callout', WarningCalloutBlock(group=" NHS Components")),
     ('table', TableBlock(group=" NHS Components")),
+    ('panel_table', PanelTableBlock(group=" NHS Components")),
 ]
 
 nhsx_blocks = content_blocks + nhs_blocks

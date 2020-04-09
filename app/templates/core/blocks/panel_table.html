@@ -1,0 +1,64 @@
+{% load table_block_tags %}
+
+<div class="nhsuk-table__panel-with-heading-tab">
+    <h3 class="nhsuk-table__heading-tab">{{ value.title }}</h3>
+    <div class="nhsuk-table-responsive">
+<table role="table" class="nhsuk-table">
+    {% if value.table.table_caption %}
+       <caption class="nhsuk-table__caption">{{ value.table.table_caption }}</caption>
+    {% endif %}
+    {% if value.table.table_header %}
+        <thead class="nhsuk-table__head">
+        <tr class="nhsuk-table__row">
+            {% for column in value.table.table_header %}
+            {% with forloop.counter0 as col_index %}
+                <th class="nhsuk-table__header" scope="col" {% cell_classname 0 col_index %}>
+                    {% if column.strip %}
+                        {% if html_renderer %}
+                            {{ column.strip|safe|linebreaksbr }}
+                        {% else %}
+                            {{ column.strip|linebreaksbr }}
+                        {% endif %}
+                    {% endif %}
+                </th>
+            {% endwith %}
+            {% endfor %}
+        </tr>
+        </thead>
+    {% endif %}
+    <tbody class="nhsuk-table__body">
+    {% for row in value.table.data %}
+    {% with forloop.counter0 as row_index %}
+        <tr class="nhsuk-table__row">
+            {% for column in row %}
+            {% with forloop.counter0 as col_index %}
+                {% if first_col_is_header and forloop.first %}
+                    <td class="nhsuk-table__cell" scope="row" {% cell_classname row_index col_index table_header %}>
+                        {% if column.strip %}
+                            {% if html_renderer %}
+                                {{ column.strip|safe|linebreaksbr }}
+                            {% else %}
+                                {{ column.strip|linebreaksbr }}
+                            {% endif %}
+                        {% endif %}
+                    </th>
+                 {% else %}
+                    <td class="nhsuk-table__cell" {% cell_classname row_index col_index table_header %}>
+                        {% if column.strip %}
+                            {% if html_renderer %}
+                                {{ column.strip|safe|linebreaksbr }}
+                            {% else %}
+                                {{ column.strip|linebreaksbr }}
+                            {% endif %}
+                        {% endif %}
+                    </td>
+                 {% endif %}
+            {% endwith %}
+            {% endfor %}
+        </tr>
+    {% endwith %}
+    {% endfor %}
+    </tbody>
+</table>
+</div>
+</div>
