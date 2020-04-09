@@ -123,6 +123,21 @@ class EmbedBlock(WagtailEmbedBlock):
         return context
 
 
+
+class CaptionedEmbedBlock(blocks.StructBlock):
+
+    """Overriding the built in Wagtail embed so that we can have proper
+    responsive markup.
+    """
+
+    class Meta:
+        template = 'core/blocks/captioned_embed.html'
+
+    embed = EmbedBlock()
+    title = blocks.CharBlock(required=False)
+    sub_title = blocks.CharBlock(required=False)
+
+
 class LinkStructBlockMixin(object):
     def get_context(self, value, parent_context=None):
         context = super().get_context(value, parent_context=parent_context)
@@ -169,6 +184,7 @@ content_blocks = [
     ('rich_text', blocks.RichTextBlock(group=" Content")),
     ('block_quote', blocks.BlockQuoteBlock(group=" Content")),
     ('embed', EmbedBlock(group=" Content")),
+    ('captioned_embed', CaptionedEmbedBlock(group=" Content")),
 ]
 
 nhs_blocks = [
