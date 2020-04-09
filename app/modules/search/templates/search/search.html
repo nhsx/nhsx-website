@@ -1,38 +1,72 @@
 {% extends "base.html" %}
 {% load static wagtailcore_tags %}
-
 {% block body_class %}template-searchresults{% endblock %}
-
 {% block title %}Search{% endblock %}
-
 {% block content %}
-    <h1>Search</h1>
-
-    <form action="{% url 'search' %}" method="get">
-        <input type="text" name="query"{% if search_query %} value="{{ search_query }}"{% endif %}>
-        <input type="submit" value="Search" class="button">
-    </form>
-
-    {% if search_results %}
-        <ul>
-            {% for result in search_results %}
-                <li>
-                    <h4><a href="{% pageurl result %}">{{ result }}</a></h4>
-                    {% if result.search_description %}
-                        {{ result.search_description }}
-                    {% endif %}
-                </li>
-            {% endfor %}
-        </ul>
-
-        {% if search_results.has_previous %}
-            <a href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{ search_results.previous_page_number }}">Previous</a>
-        {% endif %}
-
-        {% if search_results.has_next %}
-            <a href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{ search_results.next_page_number }}">Next</a>
-        {% endif %}
-    {% elif search_query %}
-        No results found
-    {% endif %}
+    <div class="nhsuk-width-container">
+      <main class="nhsuk-main-wrapper" id="maincontent">
+        <div class="nhsuk-grid-row">
+          <div class="nhsuk-grid-column-two-thirds">
+            <h1 class="nhsuk-heading-xl nhsuk-u-margin-bottom-5">Search</h1>
+          </div>
+        </div>
+        <div class="nhsuk-grid-row">
+            <div class="nhsuk-grid-column-two-thirds">
+                <div class="search-text-only-container">
+                  <form action="{% url 'search' %}" method="get">
+                      <label for="search-text-only"><h4>Search for:</h4></label>
+                        <input class="autocomplete__input" id="search-field" placeholder="Search" type="text" role="combobox" name="query"{% if search_query %} value="{{ search_query }}"{% endif %}>
+                      <input type="submit" value="Search again" class="button nhsuk-search__submit">
+                  </form>
+                </div>
+              {% if search_results %}
+              <div class="search-results-organic nhsuk-u-margin-top-6">
+                {% for result in search_results %}
+                    <div class="nhsuk-promo">
+                      <a class="nhsuk-promo__link-wrapper" href="{% pageurl result %}">
+                        <div class="nhsuk-promo__content">
+                          <h3 class="nhsuk-promo__heading">{{ result }}</h3>
+                          <p class="nhsuk-promo__description">
+                            {% if result.search_description %}
+                                {{ result.search_description }}
+                            {% endif %}
+                          </p>
+                        </div>
+                      </a>
+                    </div>
+                {% endfor %}
+              </div>
+              <div class="pager nhsuk-u-margin-top-6">
+                  <nav class="nhsuk-pagination" role="navigation" aria-label="Pagination">
+                    <ul class="nhsuk-list nhsuk-pagination__list">
+                      {% if search_results.has_previous %}
+                        <li class="nhsuk-pagination-item--previous">
+                          <a class="nhsuk-pagination__link nhsuk-pagination__link--prev" href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{ search_results.previous_page_number }}">
+                            <span class="nhsuk-pagination__title">Previous</span>
+                            <svg class="nhsuk-icon nhsuk-icon__arrow-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+                              <path d="M4.1 12.3l2.7 3c.2.2.5.2.7 0 .1-.1.1-.2.1-.3v-2h11c.6 0 1-.4 1-1s-.4-1-1-1h-11V9c0-.2-.1-.4-.3-.5h-.2c-.1 0-.3.1-.4.2l-2.7 3c0 .2 0 .4.1.6z"></path>
+                            </svg>
+                          </a>
+                        </li>
+                      {% endif %}
+                      {% if search_results.has_next %}
+                        <li class="nhsuk-pagination-item--next">
+                          <a class="nhsuk-pagination__link nhsuk-pagination__link--next" href="/section/symptoms">
+                            <span class="nhsuk-pagination__title">Next</span>
+                            <svg class="nhsuk-icon nhsuk-icon__arrow-right" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+                              <path d="M19.6 11.66l-2.73-3A.51.51 0 0 0 16 9v2H5a1 1 0 0 0 0 2h11v2a.5.5 0 0 0 .32.46.39.39 0 0 0 .18 0 .52.52 0 0 0 .37-.16l2.73-3a.5.5 0 0 0 0-.64z"></path>
+                            </svg>
+                          </a>
+                        </li>
+                      {% endif %}
+                      {% elif search_query %}
+                      <h4>No results found</h4>
+                    </ul>
+                  </nav>
+              </div>
+              {% endif %}
+            </div>
+        </div>
+      </main>
+    </div>
 {% endblock %}
