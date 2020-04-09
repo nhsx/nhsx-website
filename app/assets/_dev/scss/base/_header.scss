@@ -19,13 +19,7 @@
   .nhsuk-header__navigation-link:focus:visited {
     color:$white;
   }
-}
-
-.nhsuk-header__navigation-link--nhsx {
-  background-color: $white;
-  &:hover {
-    background-color:$nhsx-dark-grey !important;
-  }
+  
 }
 
 
@@ -42,6 +36,25 @@
     color:$black;
     &:hover {
       color:$white;
+    }
+  }
+}
+
+.nhsuk-header__navigation-link--nhsx {
+  background-color: $white;
+  &:hover {
+    background-color:$nhsx-dark-grey !important;
+  }
+}
+
+@media screen and (max-width: $large-screen) {
+  .nhsuk-header__navigation-link--nhsx {
+    &:hover {
+      background-color:$nhsx-dark-blue !important;
+      &:focus {
+        background-color:$nhsx-yellow !important;
+        color: $nhsx-dark-grey;
+      }
     }
   }
 }
