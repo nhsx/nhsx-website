@@ -202,9 +202,10 @@ class NavigationLink(AbstractLink):
 class FooterSettings(ClusterableModel, BaseSetting):
 
     fixed_coloumn_footer = models.BooleanField(
+        "Fixed column footer",
         default=False,
         help_text="""Enable this setting to change way the footer is styled,
-        so links group into coloumns"""
+        so links group into columns"""
     )
 
     panels = [
