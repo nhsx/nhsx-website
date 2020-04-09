@@ -1,0 +1,48 @@
+{% extends "core/article_page.html" %}
+{% load wagtailcore_tags static wagtailuserbar nhsukfrontend_tags %}
+
+{% block body_class %}template-article{% endblock %}
+
+{% block extra_css %}
+{% endblock extra_css %}
+
+{% block extra_content %}
+  <fieldset class="nhsuk-fieldset" id="cookie-statistics-form" aria-describedby="cookie-statistics">
+    <div class="nhsuk-radios nhsuk-radios--inline nhsuk-u-margin-bottom-6">
+      <div class="nhsuk-radios__item">
+        <input class="nhsuk-radios__input" id="input-statistics-1" name="input-statistics" type="radio" value="on">
+        <label class="nhsuk-label nhsuk-radios__label" for="input-statistics-1">
+        Use cookies to measure my website use
+        </label>
+      </div>
+      <div class="nhsuk-radios__item">
+        <input class="nhsuk-radios__input" id="input-statistics-2" name="input-statistics" type="radio" value="yes">
+        <label class="nhsuk-label nhsuk-radios__label" for="input-statistics-2">
+        Do not use cookies to measure my website use
+        </label>
+      </div>
+    </div>
+  </fieldset>
+
+  <a href="/our-policies/cookie-confirmation" onclick="changeConsent();" type="submit" class="nhsuk-button nhsuk-u-margin-bottom-0">
+    Save my cookie settings
+  </a>
+{% endblock extra_content %}
+
+{% block extra_js %}
+<script>
+  // Check the checkboxes based on status of cookie preferences
+  window.addEventListener("load", function checkCookie() {
+      document.getElementById("input-statistics-1").checked = NHSCookieConsent.getStatistics();
+      document.getElementById("input-statistics-2").checked = !NHSCookieConsent.getStatistics();
+  });
+  // Edit consent preferences based on checkbox input
+  function changeConsent() {
+    NHSCookieConsent.setStatistics(document.getElementById("input-statistics-1").checked);
+
+    if(typeof NHSCookieConsent.setConsented === "function") {
+      NHSCookieConsent.setConsented(true);
+    }
+  }
+</script>
+{% endblock %}
