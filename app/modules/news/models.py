@@ -2,6 +2,7 @@ from django.db import models
 from wagtail.core.models import Page
 from taggit.models import TaggedItemBase
 from modelcluster.fields import ParentalKey
+from wagtail.search import index
 from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
 
 from modules.core.models.abstract import BasePage, BaseIndexPage, CanonicalMixin
@@ -27,6 +28,10 @@ class News(BasePage, CanonicalMixin):
     tags = ClusterTaggableManager(through=NewsTags, blank=True)
 
     settings_panels = CanonicalMixin.panels + BasePage.settings_panels
+
+    search_fields = BasePage.search_fields + [
+        index.SearchField('tags', boost=10),
+    ]
 
     content_panels = [
         *Page.content_panels,

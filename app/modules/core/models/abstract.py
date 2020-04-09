@@ -328,6 +328,11 @@ class HeroContentMixin(HeroMixin):
         FieldPanel('sub_head'),
     ]
 
+    extra_search_fields = [
+        index.SearchField('headline'),
+        index.SearchField('sub_head'),
+    ]
+
 
 class HeroImageContentMixin(HeroMixin):
 
@@ -348,6 +353,11 @@ class HeroImageContentMixin(HeroMixin):
         FieldPanel('headline', classname="title"),
         FieldPanel('sub_head'),
         ImageChooserPanel('image')
+    ]
+
+    extra_search_fields = [
+        index.SearchField('headline'),
+        index.SearchField('sub_head'),
     ]
 
 
@@ -426,6 +436,8 @@ class BaseIndexPage(BasePage, HeroImageContentMixin):
         abstract = True
 
     hero_panels = HeroImageContentMixin.hero_panels
+
+    search_fields = BasePage.search_fields + HeroImageContentMixin.extra_search_fields
 
     @cached_classmethod
     def get_admin_tabs(cls):

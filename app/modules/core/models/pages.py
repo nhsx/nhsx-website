@@ -27,6 +27,8 @@ class SectionPage(BasePage, HeroImageContentMixin, SubNavMixin):
     hero_panels: list = HeroImageContentMixin.hero_panels
     subnav_panels: list = SubNavMixin.panels
 
+    search_fields = BasePage.search_fields + HeroImageContentMixin.extra_search_fields
+
     @cached_classmethod
     def get_admin_tabs(cls):
         tabs = super().get_admin_tabs()
