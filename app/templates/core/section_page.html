@@ -13,7 +13,11 @@
 {% endif %}
 <div class="nhsuk-width-container">
   <main class="nhsuk-main-wrapper" id="maincontent">
-    <div class="nhsuk-grid-row nhsuk-u-margin-top-6">
+    {% if hero_image or hero_text %}
+    <div class="nhsuk-grid-row nhsuk-u-margin-top-5">
+      {%else %}
+     <div class="nhsuk-grid-row">
+    {% endif %}
       <div class="nhsuk-grid-column-full">
         {% if hero_image|length == 0 or hero_text|length == 0 %}
           <h1 class="nhsuk-heading-xl nhsuk-u-margin-bottom-5">{{ page.title }}</h1>

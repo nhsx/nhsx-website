@@ -13,7 +13,11 @@
 <section class="nhsx-section nhsx-section--white">
   <div class="nhsuk-width-container">
     <main class="nhsuk-main-wrapper" id="maincontent">
-        <div class="nhsuk-grid-row nhsuk-u-margin-top-6">
+        {% if hero_image or hero_text %}
+        <div class="nhsuk-grid-row nhsuk-u-margin-top-5">
+          {%else %}
+         <div class="nhsuk-grid-row">
+        {% endif %}
           {% for page in pages %}
             <div class="nhsuk-grid-column-{{column_size}} nhsuk-u-margin-bottom-5">
               <h3 class="nhsuk-heading-m">
