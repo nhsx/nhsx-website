@@ -1,30 +1,56 @@
 
-//Search page
+//Search result page
 
 .search-text-only-container {
   width:100%;
+  margin-bottom:13px;
   #search-field {
     width:73%;
     border-color: $nhs-search-border;
   }
 
   .button {
-      background:$nhs-blue;
-      padding: 8px;
-      color:$white;
-      width:27%;
-      float:right;
-      @media screen and (max-width: $small-screen) {
-        float: none;
-        margin-top: 13px;
-      }
+    background:$nhs-blue;
+    padding: 8px;
+    color:$white;
+    width:27%;
+    float:right;
+    &:hover {
+      background-color:$nhsx-dark-grey-blue;
+    }
+    &:focus {
+      background-color: $nhsx-yellow;
+      color:$black;
+      border-bottom: 4px solid $black;
+    }
+    @media screen and (max-width: $small-screen) {
+      float: none;
+      margin-top: 13px;
+    }
   }
-  margin-bottom:13px;
+  
 }
 
+
+//header_search
 @media screen and (max-width: $medium-screen) {
   .nhsuk-search__submit {
     background-color: $nhsx-dark-blue;
+    &:hover {
+      background-color:$nhsx-dark-grey-blue;
+    }
   }
-
 }
+
+
+.nhsuk-header__search-toggle {
+  padding-bottom:4px;
+    &:hover {
+      &:focus {
+      .nhsuk-icon {
+        fill:$white;
+      }
+    }
+  }
+}
+
