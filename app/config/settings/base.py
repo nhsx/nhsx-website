@@ -32,6 +32,8 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 ENABLE_PROFILER = False
 THE_FUTURE = date.today() + timedelta(days=365 * 10)
 
+WAGTAILEMBEDS_RESPONSIVE_HTML = True
+
 
 ####################################################################################################
 # Django Dev Panel recommendations and other security
