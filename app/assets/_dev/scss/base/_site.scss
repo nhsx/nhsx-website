@@ -9,16 +9,13 @@ img.richtext-image, img.full-width{
     width: 100%;
     height: auto;
 }
-
-
-//Hero
-
-.nhsuk-hero--image-description .nhsuk-hero-content {
-  background-color: $nhsx-dark-blue;
-  .nhsuk-hero__arrow:after, .nhsuk-hero__arrow:before {
-    border-color: $nhsx-dark-blue;
+div.rich-text:last-child {
+  p {
+    margin-bottom:nhsuk-spacing(4);
   }
 }
+
+//responsive embed videos
 
 .responsive-embed, .responsive-object {
     height: 100%;
@@ -42,19 +39,3 @@ img.richtext-image, img.full-width{
     }
 }
 
-
-//Fullwidth white section
-.nhsx-section--white {
-  background-color: $white;
-}
-@media screen and (min-width: $medium-screen) {
-  .nhsx-section {
-    padding-bottom: nhsuk-spacing(8);
-    padding-top: nhsuk-spacing(8);
-  }
-}
-
-.nhsx-section {
-  padding-bottom: nhsuk-spacing(5);
-  padding-top: nhsuk-spacing(5);
-}

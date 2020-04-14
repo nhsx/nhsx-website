@@ -17,6 +17,9 @@
   }
   blockquote {
     margin-left: nhsuk-spacing(5);
+    &:last-child {
+      margin-bottom: nhsuk-spacing(4);
+    }
   }
 }
 

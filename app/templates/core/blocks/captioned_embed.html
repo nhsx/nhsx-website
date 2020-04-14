@@ -1,11 +1,14 @@
 <div class="nhsuk-promo nhsx-promo--white">
-    <div class="responsive-embed nhsuk-u-margin-bottom-5">
+    <div class="nhsx-embed-container responsive-embed">
         {{ value.embed.html|safe }}
     </div>
-    {% if value.title %}
+    <div class="nhsuk-promo__content nhsx-promo__content--white">
+      {% if value.title %}
         <h3>{{ value.title }}</h3>
-    {% endif %}
-    {% if value.sub_title %}
+      {% endif %}
+      {% if value.sub_title %}
         <p class="nhsuk-promo__description">{{ value.sub_title }}</p>
-    {% endif %}
+      {% endif %}
+    </div>
 </div>
+
