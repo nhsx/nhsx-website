@@ -177,23 +177,18 @@ class PageAuthorsMixin(models.Model):
         authors = self.authors.prefetch_related(
             'profile__photo').annotate(
             avatar_id=F('profile__photo__id')).values_list(
-            'first_name', 'last_name', 'slug', 'avatar_id')
+            'first_name', 'last_name', 'slug', 'avatar_id', 'profile__job_title')
         return [
             {
                 'full_name': f'{author[0]} {author[1]}',
                 'first_name': author[0],
                 'last_name': author[1],
                 'slug': author[2],
-                'avatar': _images.first(id=author[3])
+                'avatar': _images.first(id=author[3]),
+                'job_title': author[4]
             }
             for author in authors
         ]
-
-    @cached_property
-    def author_names(self):
-        return ", ".join(
-            [author.full_name for author in self.authors.all()]
-        )
 
 
 class SocialMetaMixin(models.Model):

@@ -5,16 +5,19 @@ pytestmark = pytest.mark.django_db
 
 client = Client()
 
+
 def test_blog_post_gets_created(blog_post):
     """Test that we have a blog post created by the fixture
     """
     assert blog_post is not None
+
 
 def test_blog_post_200(blog_post):
     """Test that we have a blog post created by the fixture
     """
     rv = client.get(blog_post.url)
     assert rv.status_code == 200
+
 
 def test_blog_post_shows_tags(blog_post):
     """Test that we can see a blog post's tags
@@ -26,6 +29,7 @@ def test_blog_post_shows_tags(blog_post):
 
     assert "This is a tag" in str(rv.content)
 
+
 def test_blog_post_users_list(blog_post, users):
     """Test that blog posts can list a user's full names
     """
@@ -34,7 +38,7 @@ def test_blog_post_users_list(blog_post, users):
 
     blog_post.save()
 
-    assert blog_post.author_names == "User 0, User 1"
+    rv = client.get(blog_post.url)
 
-
-
+    assert "User 0" in rv.rendered_content
+    assert "User 1" in rv.rendered_content
