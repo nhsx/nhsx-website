@@ -10,6 +10,28 @@
 
 {% image page.image width-1000 as hero_image %}
 {% include '_partials/hero.html' with hero_text=page.sub_head hero_heading=page.title hero_image=hero_image.url %}
+{% if page.specific.featured_posts|length %}
+<section class="nhsx-section">
+    <div class="nhsuk-width-container">
+        <div class="nhsuk-grid-row nhsuk-u-margin-top-5">
+        {% for post in page.specific.featured_posts %}
+          <div class="nhsuk-grid-column-{{column_size}} nhsuk-u-margin-bottom-5">
+            <h3 class="nhsuk-heading-m">
+              <a href="{% pageurl post.value %}">{{post.value.title}}</a>
+            </h3>
+            {% include '_partials/page_meta.html' with page=post.value %}
+            <p class="summary__posts">
+              {{post.value.body|striptags|truncatechars:200}}
+            </p>
+            <p>
+              <a href="{% pageurl post.value %}">Read More</a>
+            </p>
+          </div>
+        {% endfor %}
+    </div>
+    </div>
+</section>
+{% endif %}
 <section class="nhsx-section nhsx-section--white">
   <div class="nhsuk-width-container">
     <main class="nhsuk-main-wrapper" id="maincontent">
