@@ -1,0 +1,14 @@
+<div class="nhsuk-promo nhsx-promo--white">
+    <div class="nhsx-embed-container responsive-embed">
+        {{ value.embed.html|safe }}
+    </div>
+    <div class="nhsuk-promo__content nhsx-promo__content--white">
+      {% if value.title %}
+        <h3>{{ value.title }}</h3>
+      {% endif %}
+      {% if value.sub_title %}
+        <p class="nhsuk-promo__description">{{ value.sub_title }}</p>
+      {% endif %}
+    </div>
+</div>
+

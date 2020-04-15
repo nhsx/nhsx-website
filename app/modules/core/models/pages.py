@@ -44,7 +44,7 @@ class SectionPage(BasePage, InlineHeroMixin, SubNavMixin):
 
     def subnav_column_class(self):
         if (len(self.subnav_pages) % 3 == 0):
-           return  "one-third"
+            return "one-third"
         else:
             return "one-half"
 
@@ -80,6 +80,7 @@ class ArticlePage(BasePage, SidebarMixin):
 ################################################################################
 # CookieFormPage
 ################################################################################
+
 
 class CookieFormPage(ArticlePage):
 

@@ -1,12 +1,9 @@
-import json
-
 from django.views.generic.list import ListView
 from django.views.generic.edit import UpdateView, CreateView
 from django.utils.crypto import get_random_string
 from django.shortcuts import redirect, reverse
 from django.http import Http404
 from django.utils.translation import ugettext_lazy as _
-from django.views import View
 
 from .forms import AuthorForm
 from ..service import _authors, _user_profiles

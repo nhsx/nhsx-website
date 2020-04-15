@@ -1141,7 +1141,7 @@ description = "A Django content management system."
 name = "wagtail"
 optional = false
 python-versions = "*"
-version = "2.8"
+version = "2.8.1"
 
 [package.dependencies]
 Django = ">=2.1,<3.1"
@@ -1321,7 +1321,7 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["jaraco.itertools", "func-timeout"]
 
 [metadata]
-content-hash = "d7de5f8849babf678e71a9515a8e82f9ed68452dc6e691717a643166eac08b89"
+content-hash = "40729e35b729c788d80b4d2cae8ab83cf7202326ae63ba34aa7ebb664cd89d99"
 python-versions = "^3.6"
 
 [metadata.files]
@@ -1814,8 +1814,8 @@ uwsgi = [
     {file = "uwsgi-2.0.18.tar.gz", hash = "sha256:4972ac538800fb2d421027f49b4a1869b66048839507ccf0aa2fda792d99f583"},
 ]
 wagtail = [
-    {file = "wagtail-2.8-py3-none-any.whl", hash = "sha256:8ac4a9d7db4d6c37bbd4b298f5fb5a51f5ecc3210daa4afb7ba434a4aa3b468f"},
-    {file = "wagtail-2.8.tar.gz", hash = "sha256:94813e18c0401c303e9ff589987d8e2ee513175e4df32e62ace65afcc4ef2976"},
+    {file = "wagtail-2.8.1-py3-none-any.whl", hash = "sha256:d1daa6ba920a93c082333c053430a491b32d1b807ae253bc0d307966e849e0b2"},
+    {file = "wagtail-2.8.1.tar.gz", hash = "sha256:7159841cad23defb5bc1fee8267c3116da1a7806bb27133cca6bba7760379774"},
 ]
 wagtail-2fa = [
     {file = "wagtail-2fa-1.4.2.tar.gz", hash = "sha256:b9f06ffc9e8ac37df461dd0e97ca08754849610b2e7ca180010f95d5523a35ac"},

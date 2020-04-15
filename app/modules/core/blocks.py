@@ -1,6 +1,7 @@
 # 3rd party
 from wagtail.core import blocks
-from wagtail.embeds.blocks import EmbedBlock
+from wagtail.embeds import embeds
+from wagtail.embeds.blocks import EmbedBlock as WagtailEmbedBlock
 from wagtail.documents.blocks import DocumentChooserBlock
 from wagtail.contrib.table_block.blocks import TableBlock as OGTableBlock
 from wagtail.images.blocks import ImageChooserBlock
@@ -102,6 +103,41 @@ class PanelTableBlock(blocks.StructBlock):
     table = TableBlock()
 
 
+class EmbedBlock(WagtailEmbedBlock):
+
+    """Overriding the built in Wagtail embed so that we can have proper
+    responsive markup.
+    """
+
+    class Meta:
+        template = 'core/blocks/embed.html'
+
+    def get_context(self, value, parent_context={}):
+        context = super().get_context(value, parent_context=parent_context)
+        embed_url = getattr(value, 'url', None)
+        if embed_url:
+            embed = embeds.get_embed(embed_url)
+            context['embed_html'] = embed.html
+            context['embed_url'] = embed_url
+            context['ratio'] = embed.ratio
+
+        return context
+
+
+class CaptionedEmbedBlock(blocks.StructBlock):
+
+    """Overriding the built in Wagtail embed so that we can have proper
+    responsive markup.
+    """
+
+    class Meta:
+        template = 'core/blocks/captioned_embed.html'
+
+    embed = EmbedBlock()
+    title = blocks.CharBlock(required=False)
+    sub_title = blocks.CharBlock(required=False)
+
+
 class LinkStructBlockMixin(object):
     def get_context(self, value, parent_context=None):
         context = super().get_context(value, parent_context=parent_context)
@@ -133,11 +169,24 @@ class LinkBlock(blocks.StructBlock, LinkStructBlockMixin):
     label = blocks.CharBlock(required=False)
     link = LinkFields(required=False, label="Link to (choose one)")
 
+
 class NHSXExpanderBody(ExpanderBlock.BodyStreamBlock):
     table = TableBlock()
 
+
 class NHSXExpanderBlock(ExpanderBlock):
     body = NHSXExpanderBody(required=True)
+
+
+blog_link_blocks = [
+    ('link', blocks.PageChooserBlock(required=True, label="Page", page_type="blog_posts.BlogPost")),
+]
+
+
+news_link_blocks = [
+    ('link', blocks.PageChooserBlock(required=True, label="Page", page_type="news.News")),
+]
+
 
 page_link_blocks = [
     ('link', LinkBlock()),
@@ -148,6 +197,7 @@ content_blocks = [
     ('rich_text', blocks.RichTextBlock(group=" Content")),
     ('block_quote', blocks.BlockQuoteBlock(group=" Content")),
     ('embed', EmbedBlock(group=" Content")),
+    ('captioned_embed', CaptionedEmbedBlock(group=" Content")),
 ]
 
 nhs_blocks = [

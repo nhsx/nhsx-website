@@ -34,7 +34,7 @@ from wagtail.admin.edit_handlers import (
 from taggit.models import TaggedItemBase
 
 # Project
-from modules.core.blocks import nhsx_blocks, page_link_blocks
+from modules.core.blocks import nhsx_blocks, page_link_blocks, news_link_blocks, blog_link_blocks
 
 
 ################################################################################
@@ -66,8 +66,8 @@ class PageLinksMixin(models.Model):
     sidebar_title = models.CharField(
         "Title",
         max_length=255,
-        blank=False,
-        null=False,
+        blank=True,
+        null=True,
         default="Related Pages",
         help_text="The title to appear above the links in the sidebar"
     )
@@ -177,23 +177,18 @@ class PageAuthorsMixin(models.Model):
         authors = self.authors.prefetch_related(
             'profile__photo').annotate(
             avatar_id=F('profile__photo__id')).values_list(
-            'first_name', 'last_name', 'slug', 'avatar_id')
+            'first_name', 'last_name', 'slug', 'avatar_id', 'profile__job_title')
         return [
             {
                 'full_name': f'{author[0]} {author[1]}',
                 'first_name': author[0],
                 'last_name': author[1],
                 'slug': author[2],
-                'avatar': _images.first(id=author[3])
+                'avatar': _images.first(id=author[3]),
+                'job_title': author[4]
             }
             for author in authors
         ]
-
-    @cached_property
-    def author_names(self):
-        return ", ".join(
-            [author.full_name for author in self.authors.all()]
-        )
 
 
 class SocialMetaMixin(models.Model):
@@ -373,6 +368,7 @@ class HeroImageContentMixin(HeroMixin):
         index.SearchField('headline'),
         index.SearchField('sub_head'),
     ]
+
 
 class InlineHeroMixin(HeroMixin):
 
