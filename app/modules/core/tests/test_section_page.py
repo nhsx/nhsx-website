@@ -117,3 +117,10 @@ def test_section_page_hero_gets_output(section_page):
     rv = client.get(p.url)
     assert '<p class="nhsuk-body-l nhsuk-u-margin-bottom-0">This is the hero sub head</p>' in \
         rv.rendered_content
+
+
+def test_section_page_title_without_hero(section_page):
+    p = section_page
+    rv = client.get(p.url)
+    assert '<h1 class="nhsuk-heading-xl nhsuk-u-margin-bottom-5">Test Section Page</h1>' in \
+        rv.rendered_content
