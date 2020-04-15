@@ -178,6 +178,16 @@ class NHSXExpanderBlock(ExpanderBlock):
     body = NHSXExpanderBody(required=True)
 
 
+blog_link_blocks = [
+    ('link', blocks.PageChooserBlock(required=True, label="Page", page_type="blog_posts.BlogPost")),
+]
+
+
+news_link_blocks = [
+    ('link', blocks.PageChooserBlock(required=True, label="Page", page_type="news.News")),
+]
+
+
 page_link_blocks = [
     ('link', LinkBlock()),
 ]

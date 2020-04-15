@@ -34,7 +34,7 @@ from wagtail.admin.edit_handlers import (
 from taggit.models import TaggedItemBase
 
 # Project
-from modules.core.blocks import nhsx_blocks, page_link_blocks
+from modules.core.blocks import nhsx_blocks, page_link_blocks, news_link_blocks, blog_link_blocks
 
 
 ################################################################################
