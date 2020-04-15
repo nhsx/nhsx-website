@@ -1,9 +1,5 @@
 from django import template
-from wagtail.contrib.search_promotions.models import SearchPromotion
-from wagtail.core.models import Page
-from wagtail.core.templatetags.wagtailcore_tags import pageurl
-
-from modules.core.models import SocialMediaSettings, MetaTagSettings
+from modules.core.models import MetaTagSettings
 
 
 register = template.Library()

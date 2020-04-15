@@ -102,6 +102,7 @@ class PanelTableBlock(blocks.StructBlock):
     title = blocks.CharBlock()
     table = TableBlock()
 
+
 class EmbedBlock(WagtailEmbedBlock):
 
     """Overriding the built in Wagtail embed so that we can have proper
@@ -121,7 +122,6 @@ class EmbedBlock(WagtailEmbedBlock):
             context['ratio'] = embed.ratio
 
         return context
-
 
 
 class CaptionedEmbedBlock(blocks.StructBlock):
@@ -169,11 +169,14 @@ class LinkBlock(blocks.StructBlock, LinkStructBlockMixin):
     label = blocks.CharBlock(required=False)
     link = LinkFields(required=False, label="Link to (choose one)")
 
+
 class NHSXExpanderBody(ExpanderBlock.BodyStreamBlock):
     table = TableBlock()
 
+
 class NHSXExpanderBlock(ExpanderBlock):
     body = NHSXExpanderBody(required=True)
+
 
 page_link_blocks = [
     ('link', LinkBlock()),

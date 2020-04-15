@@ -374,6 +374,7 @@ class HeroImageContentMixin(HeroMixin):
         index.SearchField('sub_head'),
     ]
 
+
 class InlineHeroMixin(HeroMixin):
 
     class Meta:
