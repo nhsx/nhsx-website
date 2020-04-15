@@ -27,10 +27,12 @@ def test_section_page_get_children(section_page, article_pages):
     """
     assert len(section_page.get_children()) == 10
 
+
 def section_page_can_have_section_pages_as_children(section_page, section_pages):
     """Check that section_page can have other section pages as children
     """
     assert len(section_page.get_children()) == 10
+
 
 def test_section_page_can_have_automatic_subnav_pages(section_page, article_pages):
     section_page.automatic = True
@@ -41,6 +43,7 @@ def test_section_page_can_have_automatic_subnav_pages(section_page, article_page
         assert section_page.subnav_pages[index]['title'] == article_page.title
         assert section_page.subnav_pages[index]['url'] == article_page.url
 
+
 def test_section_page_can_have_manually_specified_subnav_pages(section_page, article_pages):
     section_page.automatic = False
 
@@ -50,6 +53,7 @@ def test_section_page_can_have_manually_specified_subnav_pages(section_page, art
     ])
 
     assert len(section_page.subnav_pages) == 2
+
 
 def test_section_page_shows_subnav_pages(section_page):
     section_page.automatic = False
@@ -65,6 +69,7 @@ def test_section_page_shows_subnav_pages(section_page):
 
     assert "http://example.com" in str(rv.content)
 
+
 def test_section_page_with_two_page_links_has_half_width(section_page):
     section_page.automatic = False
 
@@ -75,6 +80,7 @@ def test_section_page_with_two_page_links_has_half_width(section_page):
 
     assert section_page.subnav_items_per_row() == 2
     assert section_page.subnav_column_class() == "one-half"
+
 
 def test_section_page_with_three_page_links_has_third_width(section_page):
     section_page.automatic = False
@@ -87,6 +93,7 @@ def test_section_page_with_three_page_links_has_third_width(section_page):
 
     assert section_page.subnav_items_per_row() == 3
     assert section_page.subnav_column_class() == "one-third"
+
 
 def test_section_page_with_four_page_links_has_half_width(section_page):
     section_page.automatic = False
@@ -103,10 +110,10 @@ def test_section_page_with_four_page_links_has_half_width(section_page):
     assert section_page.subnav_column_class() == "one-half"
 
 
-
-
-
-
-
-
-
+def test_section_page_hero_gets_output(section_page):
+    p = section_page
+    p.sub_head = "This is the hero sub head"
+    p.save_revision().publish()
+    rv = client.get(p.url)
+    assert '<p class="nhsuk-body-l nhsuk-u-margin-bottom-0">This is the hero sub head</p>' in \
+        rv.rendered_content
