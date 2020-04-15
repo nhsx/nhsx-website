@@ -27,6 +27,7 @@
       </div>
     </div>
 
+    {% if page.subnav_pages|length %}
     <h2 class="nhsuk-heading-m">{{ page.sidebar_title }}</h2>
     {% for row in page.subnav_pages|chunk:page.subnav_items_per_row %}
       <div class="nhsuk-grid-row nhsuk-promo-group">
@@ -43,6 +44,7 @@
         {% endfor %}
       </div>
     {% endfor %}
+    {% endif %}
   </main>
 </div>
 {% endblock content %}
