@@ -472,6 +472,14 @@ class BaseIndexPage(BasePage, InlineHeroMixin):
         StreamFieldPanel("body"),
     ]
 
+    @property
+    def featured_ids(self):
+        rv = []
+        if hasattr(self, 'featured_posts'):
+            for item in self.featured_posts:
+                rv.append(item.value.id)
+        return rv
+
     @cached_classmethod
     def get_admin_tabs(cls):
         tabs = super().get_admin_tabs()

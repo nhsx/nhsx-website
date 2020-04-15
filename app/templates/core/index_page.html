@@ -40,19 +40,21 @@
           {%else %}
          <div class="nhsuk-grid-row">
         {% endif %}
-          {% for page in pages %}
+          {% for post in pages %}
+            {% if post.id not in page.specific.featured_ids %}
             <div class="nhsuk-grid-column-{{column_size}} nhsuk-u-margin-bottom-5">
               <h3 class="nhsuk-heading-m">
-                <a href="{% pageurl page %}">{{page.title}}</a>
+                <a href="{% pageurl post %}">{{post.title}}</a>
               </h3>
-              {% include '_partials/page_meta.html' %}
+              {% include '_partials/page_meta.html' with page=post %}
               <p class="summary__posts">
-                {{page.specific.body|striptags|truncatechars:200}}
+                {{post.specific.body|striptags|truncatechars:200}}
               </p>
               <p>
-                <a href="{% pageurl page %}">Read More</a>
+                <a href="{% pageurl post %}">Read More</a>
               </p>
             </div>
+            {% endif %}
           {% endfor %}
         </div>
     </main>
