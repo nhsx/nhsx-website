@@ -25,7 +25,7 @@
         {% block extra_content %}
         {% endblock %}
       </div>
-      {% if page.has_sidebar %}
+      {% if page.has_sidebar and page.sidebar_pages|length %}
       <div class="nhsuk-grid-column-one-third">
         <nav class="nhsuk-contents-list" role="navigation" aria-label="Pages in this section">
           <h2 class="nhsuk-heading-m">{{ page.sidebar_title }}</h2>
