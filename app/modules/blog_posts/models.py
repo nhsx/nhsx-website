@@ -21,6 +21,14 @@ from modules.core.models.abstract import BasePage, BaseIndexPage, CanonicalMixin
 logger = logging.getLogger(__name__)
 
 
+class BlogTags(TaggedItemBase):
+    content_object = ParentalKey(
+        'blog_posts.BlogPost',
+        on_delete=models.CASCADE,
+        related_name="%(app_label)s_%(class)s_items",
+    )
+
+
 class FeaturedBlogsMixin(models.Model):
     class Meta:
         abstract = True
@@ -32,36 +40,9 @@ class FeaturedBlogsMixin(models.Model):
     ]
 
 
-class BlogPostIndexPage(BaseIndexPage, FeaturedBlogsMixin):
-    subpage_types = ['BlogPost']
-    max_count = 1
-
-    @cached_classmethod
-    def get_admin_tabs(cls):
-        tabs = super().get_admin_tabs()
-        tabs.insert(1, (FeaturedBlogsMixin.panels, 'Featured'))
-        return tabs
-
-    def get_context(self, request):
-        ctx = super().get_context(request)
-        children = BlogPost.objects.live().public().order_by('-first_published_at')
-
-        if request.GET.get('tag', None):
-            tags = request.GET.get('tag').split(',')
-            children = children.filter(tags__slug__in=tags).distinct()
-
-        ctx.update({
-            'children': children
-        })
-        return ctx
-
-
-class BlogTags(TaggedItemBase):
-    content_object = ParentalKey(
-        'blog_posts.BlogPost',
-        on_delete=models.CASCADE,
-        related_name="%(app_label)s_%(class)s_items",
-    )
+################################################################################
+# Page models
+################################################################################
 
 
 class BlogPost(BasePage, PageAuthorsMixin, CanonicalMixin):
@@ -86,3 +67,17 @@ class BlogPost(BasePage, PageAuthorsMixin, CanonicalMixin):
     ]
 
     settings_panels = CanonicalMixin.panels + BasePage.settings_panels
+
+
+class BlogPostIndexPage(BaseIndexPage, FeaturedBlogsMixin):
+
+    _child_model = BlogPost
+
+    subpage_types = ['BlogPost']
+    max_count = 1
+
+    @cached_classmethod
+    def get_admin_tabs(cls):
+        tabs = super().get_admin_tabs()
+        tabs.insert(1, (FeaturedBlogsMixin.panels, 'Featured'))
+        return tabs

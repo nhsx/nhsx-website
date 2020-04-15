@@ -25,23 +25,17 @@ class FeaturedNewsMixin(models.Model):
     ]
 
 
-class NewsIndexPage(BaseIndexPage, FeaturedNewsMixin):
-    subpage_types = ['News']
-    max_count = 1
-
-    @cached_classmethod
-    def get_admin_tabs(cls):
-        tabs = super().get_admin_tabs()
-        tabs.insert(1, (FeaturedNewsMixin.panels, 'Featured'))
-        return tabs
-
-
 class NewsTags(TaggedItemBase):
     content_object = ParentalKey(
         'news.News',
         on_delete=models.CASCADE,
         related_name="%(app_label)s_%(class)s_items",
     )
+
+
+################################################################################
+# Page models
+################################################################################
 
 
 class News(BasePage, CanonicalMixin):
@@ -62,3 +56,17 @@ class News(BasePage, CanonicalMixin):
         StreamFieldPanel("body"),
         FieldPanel("tags"),
     ]
+
+
+class NewsIndexPage(BaseIndexPage, FeaturedNewsMixin):
+
+    _child_model = News
+
+    subpage_types = ['News']
+    max_count = 1
+
+    @cached_classmethod
+    def get_admin_tabs(cls):
+        tabs = super().get_admin_tabs()
+        tabs.insert(1, (FeaturedNewsMixin.panels, 'Featured'))
+        return tabs

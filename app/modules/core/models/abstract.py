@@ -23,7 +23,8 @@ from wagtail.core import fields
 from django.utils.text import slugify
 from wagtail.core.models import Page
 from wagtail.search import index
-from modelcluster.fields import ParentalManyToManyField, ParentalKey
+from modelcluster.fields import ParentalManyToManyField
+from django.core.paginator import EmptyPage, Paginator, PageNotAnInteger
 from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _  # NOQA
 from wagtail.utils.decorators import cached_classmethod
@@ -471,6 +472,51 @@ class BaseIndexPage(BasePage, InlineHeroMixin):
         ImageChooserPanel("image"),
         StreamFieldPanel("body"),
     ]
+
+    def _paginator(self, request, page_num=1, tags=None):
+        children = self._child_model.objects.live().public().order_by('-first_published_at')
+
+        if tags is not None:
+            children = children.filter(tags__slug__in=tags).distinct()
+
+        p = Paginator(children, settings.PAGINATION_ITEMS_PER_PAGE)
+        result_set = p.page(page_num)
+        return result_set
+
+    def _make_pagination_link(self, tags, page):
+        base = f"{self.get_url()}?"
+        if tags:
+            base += f"tag={tags}&"
+        base += f"page={page}"
+        return base
+
+    def get_context(self, request):
+        ctx = super().get_context(request)
+        request_tags = request.GET.get('tag', None)
+        tags = None
+        page = 1
+        if request_tags:
+            tags = request_tags.split(',')
+
+        if request.GET.get('page', None):
+            page = int(request.GET.get('page', 1))
+
+        children = self._paginator(request, page, tags)
+
+        ctx.update({
+            'children': children
+        })
+        if children.has_next():
+            ctx.update({
+                'next_link': self._make_pagination_link(
+                    request_tags, children.next_page_number())
+            })
+        if children.has_previous():
+            ctx.update({
+                'previous_link': self._make_pagination_link(
+                    request_tags, children.previous_page_number())
+            })
+        return ctx
 
     @property
     def featured_ids(self):

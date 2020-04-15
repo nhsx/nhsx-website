@@ -40,7 +40,7 @@
           {%else %}
          <div class="nhsuk-grid-row">
         {% endif %}
-          {% for post in pages %}
+          {% for post in pages.object_list %}
             {% if post.id not in page.specific.featured_ids %}
             <div class="nhsuk-grid-column-{{column_size}} nhsuk-u-margin-bottom-5">
               <h3 class="nhsuk-heading-m">
@@ -58,6 +58,13 @@
           {% endfor %}
         </div>
     </main>
+    {% if next_link and previous_link %}
+        {% include 'wagtailnhsukfrontend/pagination.html' with prev_url=previous_link next_url=next_link %}
+    {% elif next_link %}
+        {% include 'wagtailnhsukfrontend/pagination.html' with next_url=next_link %}
+    {% elif previous_link %}
+        {% include 'wagtailnhsukfrontend/pagination.html' with prev_url=previous_link %}
+    {% endif %}
   </div>
 </section>
 {% endblock content %}
