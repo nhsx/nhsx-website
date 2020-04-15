@@ -66,8 +66,8 @@ class PageLinksMixin(models.Model):
     sidebar_title = models.CharField(
         "Title",
         max_length=255,
-        blank=False,
-        null=False,
+        blank=True,
+        null=True,
         default="Related Pages",
         help_text="The title to appear above the links in the sidebar"
     )
