@@ -474,7 +474,8 @@ class BaseIndexPage(BasePage, InlineHeroMixin):
     ]
 
     def _paginator(self, request, page_num=1, tags=None):
-        children = self._child_model.objects.live().public().order_by('-first_published_at')
+        children = self._child_model.objects.exclude(
+            id__in=self.featured_ids).live().public().order_by('-first_published_at')
 
         if tags is not None:
             children = children.filter(tags__slug__in=tags).distinct()
