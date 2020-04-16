@@ -24,7 +24,7 @@ from django.utils.text import slugify
 from wagtail.core.models import Page
 from wagtail.search import index
 from modelcluster.fields import ParentalManyToManyField
-from django.core.paginator import EmptyPage, Paginator, PageNotAnInteger
+from django.core.paginator import Paginator
 from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _  # NOQA
 from wagtail.utils.decorators import cached_classmethod
@@ -32,10 +32,9 @@ from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.admin.edit_handlers import (
     ObjectList, TabbedInterface, StreamFieldPanel, FieldPanel, MultiFieldPanel
 )
-from taggit.models import TaggedItemBase
 
 # Project
-from modules.core.blocks import nhsx_blocks, page_link_blocks, news_link_blocks, blog_link_blocks
+from modules.core.blocks import nhsx_blocks, page_link_blocks
 
 
 ################################################################################
@@ -176,9 +175,14 @@ class PageAuthorsMixin(models.Model):
     def author_list(self):
         from modules.images.service import _images
         authors = self.authors.prefetch_related(
-            'profile__photo').annotate(
-            avatar_id=F('profile__photo__id')).values_list(
-            'first_name', 'last_name', 'slug', 'avatar_id', 'profile__job_title')
+            'profile__photo', 'profile__salutation'
+        ).annotate(
+            avatar_id=F('profile__photo__id'),
+            job_title=F('profile__job_title'),
+            salutation=F('profile__salutation')
+        ).values_list(
+            'first_name', 'last_name', 'slug', 'avatar_id', 'job_title', 'salutation'
+        )
         return [
             {
                 'full_name': f'{author[0]} {author[1]}',
@@ -186,7 +190,8 @@ class PageAuthorsMixin(models.Model):
                 'last_name': author[1],
                 'slug': author[2],
                 'avatar': _images.first(id=author[3]),
-                'job_title': author[4]
+                'job_title': author[4],
+                'salutation': author[5]
             }
             for author in authors
         ]
