@@ -42,7 +42,7 @@
         {% endif %}
           {% for post in pages.object_list %}
             {% if post.id not in page.specific.featured_ids %}
-            <div class="nhsuk-grid-column-{{column_size}} nhsuk-u-margin-bottom-5">
+            <div class="nhsuk-grid-column-{{column_size}} nhsuk-u-margin-bottom-5 fixed-height">
               <h3 class="nhsuk-heading-m">
                 <a href="{% pageurl post %}">{{post.title}}</a>
               </h3>
