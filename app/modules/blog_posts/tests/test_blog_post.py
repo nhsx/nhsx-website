@@ -42,3 +42,17 @@ def test_blog_post_users_list(blog_post, users):
 
     assert "User 0" in rv.rendered_content
     assert "User 1" in rv.rendered_content
+
+
+def test_blog_post_users_list_with_salutations_and_job_titles(blog_post, authors):
+    """Test that blog posts can list a user's full names with job title and salutation
+    """
+    blog_post.authors.add(authors[0])
+    blog_post.authors.add(authors[1])
+
+    blog_post.save()
+
+    rv = client.get(blog_post.url)
+
+    assert "Dr. Firsty Lasty (Doctor)" in rv.rendered_content
+    assert "Prof. Fname Lname (Professor)" in rv.rendered_content
