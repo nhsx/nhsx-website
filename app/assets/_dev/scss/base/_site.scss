@@ -1,3 +1,10 @@
+// clear blocks properly
+
+div[class^='block-'], div[class*=' block-']
+{
+    clear: both;
+}
+
 // make images show at the width of the column
 
 figure.nhsuk-image {
@@ -9,10 +16,16 @@ img.richtext-image, img.full-width{
     width: 100%;
     height: auto;
 }
+
 div.rich-text:last-child {
   p {
     margin-bottom:nhsuk-spacing(4);
   }
+}
+
+div.rich-text-container{
+    clear: both;
+    margin-bottom:nhsuk-spacing(4);
 }
 
 //responsive embed videos

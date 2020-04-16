@@ -12,6 +12,13 @@ from wagtailnhsukfrontend.blocks import (  # NOQA
 )
 
 
+class NHSXRichText(blocks.RichTextBlock):
+    class Meta:
+        template = "core/blocks/rich_text.html"
+
+    custom_rich_text = True
+
+
 class BasePromoBlock(FlattenValueContext, blocks.StructBlock):
 
     class Meta:
@@ -200,6 +207,13 @@ content_blocks = [
     ('captioned_embed', CaptionedEmbedBlock(group=" Content")),
 ]
 
+section_content_blocks = [
+    ('rich_text', NHSXRichText(group=" Content")),
+    ('block_quote', blocks.BlockQuoteBlock(group=" Content")),
+    ('embed', EmbedBlock(group=" Content")),
+    ('captioned_embed', CaptionedEmbedBlock(group=" Content")),
+]
+
 nhs_blocks = [
     ('image', ImageBlock(group=" NHS Components")),
     ('panel', PanelBlock(group=" NHS Components")),
@@ -215,3 +229,4 @@ nhs_blocks = [
 ]
 
 nhsx_blocks = content_blocks + nhs_blocks
+nhsx_section_blocks = section_content_blocks + nhs_blocks

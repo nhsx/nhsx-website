@@ -19,7 +19,11 @@
       </div>
     </div>
     <div class="nhsuk-grid-row">
+    {% if page.has_sidebar %}
       <div class="nhsuk-grid-column-two-thirds">
+    {% else %}
+      <div class="nhsuk-grid-column-full">
+    {% endif %}
         {% include_block page.body %}
 
         {% block extra_content %}

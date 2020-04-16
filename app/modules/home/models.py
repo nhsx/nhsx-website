@@ -1,11 +1,17 @@
 
+from wagtail.core import fields
 from wagtail.utils.decorators import cached_classmethod
 
 # Project
+from modules.core.blocks import nhsx_section_blocks
 from modules.core.models.abstract import BasePage, HeroImageContentMixin
 
 
 class HomePage(BasePage, HeroImageContentMixin):
+
+    body = fields.StreamField(
+        nhsx_section_blocks, blank=True, verbose_name="Body blocks"
+    )
 
     hero_panels = HeroImageContentMixin.hero_panels
 

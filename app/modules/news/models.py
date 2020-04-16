@@ -10,7 +10,7 @@ from modelcluster.contrib.taggit import ClusterTaggableManager
 from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
 
 # Project
-from modules.core.blocks import news_link_blocks
+from modules.core.blocks import news_link_blocks, nhsx_section_blocks
 from modules.core.models.abstract import BasePage, BaseIndexPage, CanonicalMixin
 
 
@@ -41,6 +41,10 @@ class NewsTags(TaggedItemBase):
 class News(BasePage, CanonicalMixin):
     parent_page_types = ['NewsIndexPage']
     subpage_types = []
+
+    body = fields.StreamField(
+        nhsx_section_blocks, blank=True, verbose_name="Body blocks"
+    )
 
     tags = ClusterTaggableManager(through=NewsTags, blank=True)
 

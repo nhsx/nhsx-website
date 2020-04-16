@@ -6,7 +6,7 @@ from wagtail.utils.decorators import cached_classmethod
 from wagtail.core.models import Page
 
 # Project
-from modules.core.blocks import nhsx_blocks
+from modules.core.blocks import nhsx_section_blocks
 
 # Module
 from .abstract import BasePage, InlineHeroMixin, SidebarMixin, SubNavMixin
@@ -22,6 +22,10 @@ class SectionPage(BasePage, InlineHeroMixin, SubNavMixin):
     """SectionPage is a top level page for containing grouped articles.
 
     """
+
+    body = fields.StreamField(
+        nhsx_section_blocks, blank=True, verbose_name="Body blocks"
+    )
 
     parent_page_types: list = ['home.HomePage', 'core.SectionPage', ]
     subpage_types: list = ['core.ArticlePage', 'core.SectionPage', 'core.CookieFormPage', ]
