@@ -34,6 +34,7 @@ from wagtail.admin.edit_handlers import (
 )
 
 # Project
+from modules.users.models import User
 from modules.core.blocks import nhsx_blocks, page_link_blocks
 
 
@@ -172,29 +173,24 @@ class PageAuthorsMixin(models.Model):
     )
 
     @cached_property
+    def author_ids(self):
+        return [_.id for _ in self.authors.all()]
+
+    @cached_property
     def author_list(self):
-        from modules.images.service import _images
-        authors = self.authors.prefetch_related(
-            'profile__photo', 'profile__salutation'
-        ).annotate(
-            avatar_id=F('profile__photo__id'),
+        """We have to do it like this because ParentalManyToManyFields return a
+        FakeQuerySet when previewing which doesn't let us annotate.
+
+        Returns:
+            QuerySet: A queryset of annotated authors
+        """
+        authors = User.objects.filter(id__in=self.author_ids).annotate(
             job_title=F('profile__job_title'),
             salutation=F('profile__salutation')
-        ).values_list(
-            'first_name', 'last_name', 'slug', 'avatar_id', 'job_title', 'salutation'
+        ).values(
+            'first_name', 'last_name', 'slug', 'job_title', 'salutation'
         )
-        return [
-            {
-                'full_name': f'{author[0]} {author[1]}',
-                'first_name': author[0],
-                'last_name': author[1],
-                'slug': author[2],
-                'avatar': _images.first(id=author[3]),
-                'job_title': author[4],
-                'salutation': author[5]
-            }
-            for author in authors
-        ]
+        return authors
 
 
 class SocialMetaMixin(models.Model):
