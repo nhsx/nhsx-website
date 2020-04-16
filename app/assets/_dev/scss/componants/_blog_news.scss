@@ -2,6 +2,7 @@
 
 h3 {
   margin-bottom:  nhsuk-spacing(3);
+  max-width: 90%;  // fix for gaps in listings
 }
 .entry-meta__posts, .summary__posts{
   margin-bottom:  nhsuk-spacing(3);
