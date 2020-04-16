@@ -33,6 +33,7 @@ ENABLE_PROFILER = False
 THE_FUTURE = date.today() + timedelta(days=365 * 10)
 
 WAGTAILEMBEDS_RESPONSIVE_HTML = True
+PAGINATION_ITEMS_PER_PAGE = 10
 
 
 ####################################################################################################

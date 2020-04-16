@@ -6,6 +6,7 @@ from modules.news.models import News, NewsIndexPage
 
 pytestmark = pytest.mark.django_db
 
+
 def _create_news_page(title: str, parent: Page) -> News:
     """Abstracting this allows us to test more scenarios than just passing the
     fixture around.
@@ -22,6 +23,7 @@ def _create_news_page(title: str, parent: Page) -> News:
     parent.add_child(instance=p)
     p.save_revision().publish()
     return p
+
 
 def _create_news_index_page(title: str, parent: Page) -> NewsIndexPage:
     """Abstracting this allows us to test more scenarios than just passing the
@@ -40,15 +42,18 @@ def _create_news_index_page(title: str, parent: Page) -> NewsIndexPage:
     p.save_revision().publish()
     return p
 
+
 @pytest.fixture(scope="function")
 def news_index_page(home_page) -> NewsIndexPage:
     p = _create_news_index_page('Test Section Page', home_page)
     return p
 
+
 @pytest.fixture(scope="function")
 def news_page(news_index_page) -> News:
     p = _create_news_page('Test News Item', news_index_page)
     return p
+
 
 @pytest.fixture(scope="function")
 def news_items(news_index_page) -> List[News]:
@@ -59,6 +64,3 @@ def news_items(news_index_page) -> List[News]:
         p = _create_news_page(f'Test News Page {_}', news_index_page)
         rv.append(p)
     return rv
-
-
-

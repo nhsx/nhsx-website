@@ -2,6 +2,7 @@
 import os
 
 # 3rd party
+from django.urls import path
 from django.conf import settings
 from django.http import HttpResponse
 from wagtail.core import views as wagtail_views
@@ -13,6 +14,7 @@ from wagtail.documents import urls as wagtaildocs_urls
 from wagtailcache.cache import cache_page
 from django.contrib.auth import views as auth_views
 from wagtail.contrib.sitemaps.views import sitemap
+from django.views.generic import TemplateView
 
 # Project
 from modules.search import views as search_views
@@ -61,6 +63,11 @@ if settings.DEBUG:
     # Serve static and media files from development server
     urlpatterns += staticfiles_urlpatterns()
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+    # Add views for testing 404 page
+    urlpatterns += [
+        path('test-404/', TemplateView.as_view(template_name='404.html')),
+    ]
 
 urlpatterns = urlpatterns + [
     url(

@@ -23,7 +23,8 @@ from wagtail.core import fields
 from django.utils.text import slugify
 from wagtail.core.models import Page
 from wagtail.search import index
-from modelcluster.fields import ParentalManyToManyField, ParentalKey
+from modelcluster.fields import ParentalManyToManyField
+from django.core.paginator import Paginator
 from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _  # NOQA
 from wagtail.utils.decorators import cached_classmethod
@@ -31,10 +32,10 @@ from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.admin.edit_handlers import (
     ObjectList, TabbedInterface, StreamFieldPanel, FieldPanel, MultiFieldPanel
 )
-from taggit.models import TaggedItemBase
 
 # Project
-from modules.core.blocks import nhsx_blocks, page_link_blocks, news_link_blocks, blog_link_blocks
+from modules.users.models import User
+from modules.core.blocks import nhsx_blocks, page_link_blocks
 
 
 ################################################################################
@@ -172,23 +173,24 @@ class PageAuthorsMixin(models.Model):
     )
 
     @cached_property
+    def author_ids(self):
+        return [_.id for _ in self.authors.all()]
+
+    @cached_property
     def author_list(self):
-        from modules.images.service import _images
-        authors = self.authors.prefetch_related(
-            'profile__photo').annotate(
-            avatar_id=F('profile__photo__id')).values_list(
-            'first_name', 'last_name', 'slug', 'avatar_id', 'profile__job_title')
-        return [
-            {
-                'full_name': f'{author[0]} {author[1]}',
-                'first_name': author[0],
-                'last_name': author[1],
-                'slug': author[2],
-                'avatar': _images.first(id=author[3]),
-                'job_title': author[4]
-            }
-            for author in authors
-        ]
+        """We have to do it like this because ParentalManyToManyFields return a
+        FakeQuerySet when previewing which doesn't let us annotate.
+
+        Returns:
+            QuerySet: A queryset of annotated authors
+        """
+        authors = User.objects.filter(id__in=self.author_ids).annotate(
+            job_title=F('profile__job_title'),
+            salutation=F('profile__salutation')
+        ).values(
+            'first_name', 'last_name', 'slug', 'job_title', 'salutation'
+        )
+        return authors
 
 
 class SocialMetaMixin(models.Model):
@@ -471,6 +473,60 @@ class BaseIndexPage(BasePage, InlineHeroMixin):
         ImageChooserPanel("image"),
         StreamFieldPanel("body"),
     ]
+
+    def _paginator(self, request, page_num=1, tags=None):
+        children = self._child_model.objects.exclude(
+            id__in=self.featured_ids).live().public().order_by('-first_published_at')
+
+        if tags is not None:
+            children = children.filter(tags__slug__in=tags).distinct()
+
+        p = Paginator(children, settings.PAGINATION_ITEMS_PER_PAGE)
+        result_set = p.page(page_num)
+        return result_set
+
+    def _make_pagination_link(self, tags, page):
+        base = f"{self.get_url()}?"
+        if tags:
+            base += f"tag={tags}&"
+        base += f"page={page}"
+        return base
+
+    def get_context(self, request):
+        ctx = super().get_context(request)
+        request_tags = request.GET.get('tag', None)
+        tags = None
+        page = 1
+        if request_tags:
+            tags = request_tags.split(',')
+
+        if request.GET.get('page', None):
+            page = int(request.GET.get('page', 1))
+
+        children = self._paginator(request, page, tags)
+
+        ctx.update({
+            'children': children
+        })
+        if children.has_next():
+            ctx.update({
+                'next_link': self._make_pagination_link(
+                    request_tags, children.next_page_number())
+            })
+        if children.has_previous():
+            ctx.update({
+                'previous_link': self._make_pagination_link(
+                    request_tags, children.previous_page_number())
+            })
+        return ctx
+
+    @property
+    def featured_ids(self):
+        rv = []
+        if hasattr(self, 'featured_posts'):
+            for item in self.featured_posts:
+                rv.append(item.value.id)
+        return rv
 
     @cached_classmethod
     def get_admin_tabs(cls):
