@@ -45,6 +45,7 @@ RUN apk update && apk add --no-cache \
     zlib-dev \
     nodejs \
     nodejs-npm \
+    mailcap \
     zsh && \
     rm -f /tmp/* /etc/apk/cache/* /root/.cache
 
