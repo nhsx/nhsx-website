@@ -38,7 +38,7 @@
         {% endblock %}
 
         {% if settings.core.AnalyticsSettings.property_id %}
-            <script type="text/javascript" data-cookieconsent="statistics" type="text/plain" src="https://www.googletagmanager.com/gtag/js?id={{ settings.core.AnalyticsSettings.property_id }}"></script>
+            <script data-cookieconsent="statistics" type="text/plain" src="https://www.googletagmanager.com/gtag/js?id={{ settings.core.AnalyticsSettings.property_id }}"></script>
         {% endif %}
     </body>
 </html>

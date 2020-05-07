@@ -316,7 +316,7 @@ CACHES = {
     'wagtail_cache': {
         "BACKEND": "wagtailcache.compat_backends.django_redis.RedisCache",
         'LOCATION': REDIS_HOST_PAGECACHE,
-        'TIMEOUT': 60 * 60 * 24 * 7,  # Seven days
+        'TIMEOUT': 60 * 15,  # Fifteen minutes
         'OPTIONS': {
             "PARSER_CLASS": "redis.connection.HiredisParser",
             'CLIENT_CLASS': 'django_redis.client.DefaultClient',
