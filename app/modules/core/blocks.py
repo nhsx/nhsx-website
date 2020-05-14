@@ -8,7 +8,7 @@ from wagtail.images.blocks import ImageChooserBlock
 
 from wagtailnhsukfrontend.blocks import (  # NOQA
     ImageBlock, PanelBlock, ExpanderBlock, GreyPanelBlock, InsetTextBlock,
-    PanelListBlock, WarningCalloutBlock, FlattenValueContext
+    PanelListBlock, WarningCalloutBlock, FlattenValueContext, ActionLinkBlock
 )
 
 
@@ -212,6 +212,7 @@ nhs_blocks = [
     ('warning_callout', WarningCalloutBlock(group=" NHS Components")),
     ('table', TableBlock(group=" NHS Components")),
     ('panel_table', PanelTableBlock(group=" NHS Components")),
+    ('action_link', ActionLinkBlock(group=" NHS Components")),
 ]
 
 nhsx_blocks = content_blocks + nhs_blocks
