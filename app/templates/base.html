@@ -39,6 +39,12 @@
 
         {% if settings.core.AnalyticsSettings.property_id %}
             <script data-cookieconsent="statistics" type="text/plain" src="https://www.googletagmanager.com/gtag/js?id={{ settings.core.AnalyticsSettings.property_id }}"></script>
+            <script data-cookieconsent="statistics" type="text/plain">
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '{{ settings.core.AnalyticsSettings.property_id }}', { 'anonymize_ip': true });
+            </script>
         {% endif %}
     </body>
 </html>
