@@ -7,8 +7,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - name: Build Docker container
-        run: docker-compose -f docker-compose.test.yml build
       - name: Run tests in Docker
-        run: docker-compose -f docker-compose.test.yml run --rm test
+        run: script/cibuild
 

@@ -1,3 +1,10 @@
 #!/bin/bash
+set -e
 
-docker exec -it nhsx-website_web_1 pytest "$@"
+echo '------------------------------------------------------------------------------'
+echo 'DEPRECATED'
+echo 'This command is deprecated and will be removed in a future version. Please use'
+echo 'script/test instead.'
+echo '------------------------------------------------------------------------------'
+
+script/test

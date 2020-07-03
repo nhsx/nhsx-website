@@ -49,5 +49,3 @@ services:
     depends_on:
       - db
       - redis
-
-    command: sleep 1000000
