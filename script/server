@@ -1,0 +1,4 @@
+#!/bin/bash
+set -e
+
+docker-compose run --service-ports --rm web python manage.py runserver 0.0.0.0:5000

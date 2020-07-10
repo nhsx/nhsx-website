@@ -1,0 +1,17 @@
+#!/bin/bash
+set -e -u -o pipefail
+
+SECRET=$(openssl rand -base64 32 | sed -e 's/[\/&]/\\&/g')
+cp docker-compose.env.example docker-compose.env
+sed -i '' -e "s/SECRET_KEY_GOES_HERE/$SECRET/g" docker-compose.env
+
+docker-compose build
+script/manpy migrate
+docker-compose run \
+  --rm \
+  -e DJANGO_SUPERUSER_PASSWORD=admin \
+  web \
+  python manage.py createsuperuser \
+    --noinput \
+    --email admin@example.com
+
