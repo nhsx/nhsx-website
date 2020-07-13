@@ -1,18 +1,20 @@
+# Testing
+
 This site uses [Pytest](https://docs.pytest.org/en/latest/) for tests, running against an in-memory SQLite database for speed.
 
 ## Running tests
 
-Most of the time, you will probably just want to run `pytest` to run all tests, but there are a few useful options you can pass to it.
+Most of the time, you will probably just want to run `script/test` to run all tests, but there are a few useful options you can pass to it.
 
-* `pytest -x` - run all tests but stop on the first failure
-* `pytest -s` - print stdout while the tests are running
-* `pytest --pdb` - drop into a debugger when a test fails
+* `script/test -x` - run all tests but stop on the first failure
+* `script/test -s` - print stdout while the tests are running
+* `script/test --pdb` - drop into a debugger when a test fails
 
-These can be used in combination, most usefully `pytest -x --pdb` which will stop tests on the first failure and drop into the debugger.
+These can be used in combination, most usefully `script/test -x --pdb` which will stop tests on the first failure and drop into the debugger.
 
 ## Coverage
 
-To generate a coverage report, run `pytest --cov`. This will print the report to the screen at the end of the test run. You can then generate an HTML version with `coverage html` which outputs to `/app/htmlcov/` for viewing in a browser.
+To generate a coverage report, run `script/test --cov`. This will print the report to the screen at the end of the test run. You can then generate an HTML version with `coverage html` which outputs to `/app/htmlcov/` for viewing in a browser.
 
 ## Writing tests
 
