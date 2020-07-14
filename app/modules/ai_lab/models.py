@@ -1,6 +1,8 @@
 from modules.core.models.abstract import BasePage
 from modules.core.models.pages import SectionPage, ArticlePage
 from django.db import models
+from wagtail.admin.edit_handlers import FieldPanel
+from django import forms
 
 class AiLabHomePage(SectionPage):
   subpage_types = ['AiLabResourceIndexPage', 'core.ArticlePage']
@@ -16,6 +18,9 @@ class AiLabUseCase(models.Model):
 class AiLabResourceMixin(models.Model):
   parent_page_types = ['AiLabResourceIndexPage']
   use_case = models.ForeignKey(AiLabUseCase, on_delete=models.PROTECT)
+  content_panels = ArticlePage.content_panels + [
+    FieldPanel('use_case', widget=forms.Select())
+  ]
 
   class Meta:
     abstract = True
