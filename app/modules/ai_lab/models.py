@@ -14,6 +14,7 @@ class AiLabUseCase(models.Model):
     return self.name
 
 class AiLabResourceMixin(models.Model):
+  parent_page_types = ['AiLabResourceIndexPage']
   use_case = models.ForeignKey(AiLabUseCase, on_delete=models.PROTECT)
 
   class Meta:

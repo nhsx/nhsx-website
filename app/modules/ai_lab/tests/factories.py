@@ -4,9 +4,14 @@ import pytest
 
 from modules.ai_lab.models import AiLabHomePage, AiLabUseCase, AiLabCaseStudy, AiLabResourceIndexPage
 from modules.core.tests.factories import CorePageFactory
+from wagtail.core.models import Site
 
 class AiLabHomePageFactory(CorePageFactory):
   title = "Ai Lab Home"
+
+  @factory.lazy_attribute
+  def parent(self):
+      return Site.objects.all()[0].root_page
 
   class Meta:
     model = AiLabHomePage
@@ -27,6 +32,11 @@ class AiLabCaseStudyFactory(CorePageFactory):
 
 class AiLabResourceIndexPageFactory(CorePageFactory):
   title = factory.Sequence(lambda n: 'Case Study %d' % n)
+
+  @factory.lazy_attribute
+  def parent(self):
+      return AiLabHomePageFactory.create()
+
   class Meta:
     model = AiLabResourceIndexPage
 

@@ -28,11 +28,17 @@ class TestAiLabResources():
         assert index_page is not None
 
     def test_index_page_lists_subpages(self):
-        index_page = AiLabResourceIndexPageFactory.create()
+        resource_index_page = AiLabResourceIndexPageFactory.create()
 
-        assert AiLabCaseStudy.can_create_at(index_page) == True
+        assert AiLabCaseStudy.can_create_at(resource_index_page) == True
 
-        case_studies = AiLabCaseStudyFactory.create_batch(10, parent=index_page)
+        case_studies = AiLabCaseStudyFactory.create_batch(10, parent=resource_index_page)
 
-        assert len(index_page.get_children()) == len(case_studies)
+        assert len(resource_index_page.get_children()) == len(case_studies)
 
+        page = client.get(resource_index_page.url)
+
+        assert page.status_code == 200
+
+        for case_study in case_studies:
+            assert case_study.title in str(page.content)
