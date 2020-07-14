@@ -42,3 +42,22 @@ class TestAiLabResources():
 
         for case_study in case_studies:
             assert case_study.title in str(page.content)
+
+    def test_index_page_filters_by_use_case(self):
+        resource_index_page = AiLabResourceIndexPageFactory.create()
+        use_case = AiLabUseCaseFactory.create(name="my use case")
+        case_studies = AiLabCaseStudyFactory.create_batch(5, parent=resource_index_page, use_case=use_case)
+        other_case_studies = AiLabCaseStudyFactory.create_batch(2, parent=resource_index_page)
+
+        page = client.get(resource_index_page.url + resource_index_page.reverse_subpage('filter_by_use_case', args=("my-use-case", )))
+
+        assert page.status_code == 200
+
+        for case_study in case_studies:
+            assert case_study.title in str(page.content)
+
+        for case_study in other_case_studies:
+            assert case_study.title not in str(page.content)
+
+
+
