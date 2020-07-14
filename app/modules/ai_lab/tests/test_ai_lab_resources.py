@@ -1,8 +1,8 @@
 import pytest
 
 from django.test import Client
-from modules.ai_lab.models import AiLabCaseStudy
-from modules.ai_lab.tests.factories import AiLabCaseStudyFactory, AiLabUseCaseFactory
+from modules.ai_lab.models import AiLabCaseStudy, AiLabResourceIndexPage
+from modules.ai_lab.tests.factories import AiLabCaseStudyFactory, AiLabUseCaseFactory, AiLabResourceIndexPageFactory, AiLabHomePageFactory
 from wagtail.core.models import Page
 
 pytestmark = pytest.mark.django_db
@@ -20,4 +20,19 @@ class TestAiLabResources():
         case_study = AiLabCaseStudyFactory.create(use_case=use_case)
 
         assert case_study.use_case.name == "My Amazing Use Case"
+
+    def test_index_page_can_be_created(self):
+        home_page = AiLabHomePageFactory.create()
+        index_page = AiLabResourceIndexPageFactory.create(parent=home_page)
+        assert isinstance(index_page, AiLabResourceIndexPage)
+        assert index_page is not None
+
+    def test_index_page_lists_subpages(self):
+        index_page = AiLabResourceIndexPageFactory.create()
+
+        assert AiLabCaseStudy.can_create_at(index_page) == True
+
+        case_studies = AiLabCaseStudyFactory.create_batch(10, parent=index_page)
+
+        assert len(index_page.get_children()) == len(case_studies)
 

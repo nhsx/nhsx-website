@@ -2,7 +2,7 @@ import wagtail_factories
 import factory
 import pytest
 
-from modules.ai_lab.models import AiLabHomePage, AiLabUseCase, AiLabCaseStudy
+from modules.ai_lab.models import AiLabHomePage, AiLabUseCase, AiLabCaseStudy, AiLabResourceIndexPage
 from modules.core.tests.factories import CorePageFactory
 
 class AiLabHomePageFactory(CorePageFactory):
@@ -24,4 +24,11 @@ class AiLabCaseStudyFactory(CorePageFactory):
 
   class Meta:
     model = AiLabCaseStudy
+
+class AiLabResourceIndexPageFactory(CorePageFactory):
+  title = factory.Sequence(lambda n: 'Case Study %d' % n)
+  class Meta:
+    model = AiLabResourceIndexPage
+
+
 

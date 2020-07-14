@@ -1,7 +1,9 @@
+from modules.core.models.abstract import BasePage
 from modules.core.models.pages import SectionPage, ArticlePage
 from django.db import models
 
 class AiLabHomePage(SectionPage):
+  subpage_types = ['AiLabResourceIndexPage']
   max_count = 1
 
 class AiLabUseCase(models.Model):
@@ -17,5 +19,10 @@ class AiLabResourceMixin(models.Model):
   class Meta:
     abstract = True
 
-class AiLabCaseStudy(ArticlePage, AiLabResourceMixin):
+class AiLabCaseStudy(AiLabResourceMixin, ArticlePage):
   pass
+
+class AiLabResourceIndexPage(BasePage):
+  parent_page_types = ['AiLabHomePage']
+  subpage_types = ['AiLabCaseStudy']
+  max_count = 1
