@@ -14,3 +14,8 @@ class TestAiLabUseCase():
         use_case = AiLabUseCaseFactory.create()
         assert isinstance(use_case, AiLabUseCase)
         assert use_case is not None
+
+    def test_use_case_gets_a_slug_generated(self):
+        use_case = AiLabUseCaseFactory.create(name="Hello World!")
+        assert use_case.slug == "hello-world"
+
