@@ -8,10 +8,19 @@ from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 from wagtail.core.models import Page
 from django.utils.text import slugify
 from django.http import Http404
+from modules.blog_posts.models import BlogPost
 
 class AiLabHomePage(SectionPage):
   subpage_types = ['AiLabResourceIndexPage', 'core.ArticlePage']
   max_count = 1
+
+  def get_context(self, request):
+    context = super().get_context(request)
+    blog_posts = BlogPost.objects.filter(tags__slug="ai-lab").distinct().order_by("-first_published_at")[:3]
+    context.update({
+      'blog_posts': blog_posts
+    })
+    return context
 
 class AiLabUseCase(models.Model):
   name = models.CharField(max_length=100)
