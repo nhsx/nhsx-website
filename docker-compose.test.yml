@@ -21,6 +21,7 @@ services:
       - /bin/bash
       - -c
       - |
+        black .
         python manage.py assets clean
         python manage.py assets build
         python manage.py collectstatic --no-input -i node_modules

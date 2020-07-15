@@ -1,4 +1,8 @@
 #!/bin/bash
 set -e
 
+echo "Linting code..."
+script/poetry run black .
+
+echo "Running tests..."
 docker-compose run --rm web pytest "$@"
