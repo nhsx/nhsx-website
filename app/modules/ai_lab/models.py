@@ -2,7 +2,7 @@ from modules.core.models.abstract import BasePage
 from modules.core.models.pages import SectionPage, ArticlePage
 from django.db import models
 from django.shortcuts import render
-from wagtail.admin.edit_handlers import FieldPanel
+from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
 from django import forms
 from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 from wagtail.core.models import Page
@@ -61,6 +61,14 @@ class AiLabResourceIndexPage(RoutablePageMixin, BasePage):
   parent_page_types = ['AiLabHomePage']
   subpage_types = ['AiLabCaseStudy', 'AiLabExternalResource']
   max_count = 1
+
+  sub_head = models.CharField(max_length=255, blank=True, null=True)
+
+  content_panels = [
+    FieldPanel('title'),
+    FieldPanel('sub_head'),
+    StreamFieldPanel('body')
+  ]
 
   @route(r'^$')
   def all_resources(self, request):
