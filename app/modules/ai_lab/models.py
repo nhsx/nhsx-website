@@ -5,6 +5,7 @@ from django.shortcuts import render
 from wagtail.admin.edit_handlers import FieldPanel
 from django import forms
 from wagtail.contrib.routable_page.models import RoutablePageMixin, route
+from wagtail.core.models import Page
 from django.utils.text import slugify
 
 class AiLabHomePage(SectionPage):
@@ -53,10 +54,21 @@ class AiLabResourceIndexPage(RoutablePageMixin, BasePage):
 
   @route(r'^([a-z0-9]+(?:-[a-z0-9]+)*)/$')
   def filter_by_use_case(self, request, slug):
-    children = AiLabCaseStudy.objects.filter(use_case__slug=slug)
+    ids = self._get_resource_ids_for_use_case(slug)
+    children = Page.objects.filter(id__in=(ids)).specific()
 
     return render(request, 'ai_lab/ai_lab_resource_index_page.html', {
       'page': self,
       'children': children,
     })
 
+  def _get_resource_ids_for_use_case(self, slug):
+    ids = []
+    for resource_ids_for_use_case in [self._get_ids_for_class(klass, slug) for klass in self.subpage_types]:
+      for id in resource_ids_for_use_case:
+        ids.append(id)
+
+    return ids
+
+  def _get_ids_for_class(self, klass, slug):
+    return eval(klass).objects.child_of(self).filter(use_case__slug=slug).values_list('id', flat=True)
