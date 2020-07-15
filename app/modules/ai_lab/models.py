@@ -72,7 +72,7 @@ class AiLabResourceIndexPage(RoutablePageMixin, BasePage):
       'children': children,
     })
 
-  @route(r'^([a-z0-9]+(?:-[a-z0-9]+)*)/$')
+  @route(r'^use-case/([a-z0-9]+(?:-[a-z0-9]+)*)/$')
   def filter_by_use_case(self, request, slug):
     ids = self._get_resource_ids_for_use_case(slug)
     children = Page.objects.filter(id__in=(ids)).specific()
