@@ -6,13 +6,16 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('core', '0012_footerlinks_footersettings_headersettings_navigationlink'),
+        ("core", "0012_footerlinks_footersettings_headersettings_navigationlink"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='footersettings',
-            name='fixed_coloumn_footer',
-            field=models.BooleanField(default=False, help_text='Enable this setting to change way the footer is styled,\n        so links group into coloumns'),
+            model_name="footersettings",
+            name="fixed_coloumn_footer",
+            field=models.BooleanField(
+                default=False,
+                help_text="Enable this setting to change way the footer is styled,\n        so links group into coloumns",
+            ),
         ),
     ]

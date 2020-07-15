@@ -6,9 +6,8 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('core', '0009_auto_20200403_1503'),
-        ('core', '0008_navigationsettings'),
+        ("core", "0009_auto_20200403_1503"),
+        ("core", "0008_navigationsettings"),
     ]
 
-    operations = [
-    ]
+    operations = []

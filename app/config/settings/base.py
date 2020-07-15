@@ -54,9 +54,9 @@ WAGTAIL_2FA_REQUIRED = False
 ####################################################################################################
 
 DJANGO_APPS = [
-    'whitenoise.runserver_nostatic',
-    'dal',
-    'dal_select2',
+    "whitenoise.runserver_nostatic",
+    "dal",
+    "dal_select2",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -69,10 +69,10 @@ DJANGO_APPS = [
     "modelcluster",
     "taggit",
     "storages",
-    'django_assets',
+    "django_assets",
     "cacheops",
-    'django_otp',
-    'django_otp.plugins.otp_totp',
+    "django_otp",
+    "django_otp.plugins.otp_totp",
 ]
 
 WAGTAIL_APPS = [
@@ -96,18 +96,18 @@ WAGTAIL_APPS = [
     "wagtail.contrib.routable_page",
     "wagtailnhsukfrontend",
     "wagtailcache",
-    'wagtail_2fa'
+    "wagtail_2fa",
 ]
 
 SITE_APPS = [
-    'modules.home',
-    'modules.search',
-    'modules.core',
-    'modules.images',
-    'modules.documents',
-    'modules.users',
-    'modules.blog_posts',
-    'modules.news',
+    "modules.home",
+    "modules.search",
+    "modules.core",
+    "modules.images",
+    "modules.documents",
+    "modules.users",
+    "modules.blog_posts",
+    "modules.news",
 ]
 
 INSTALLED_APPS = WAGTAIL_APPS + DJANGO_APPS + SITE_APPS
@@ -120,10 +120,10 @@ INSTALLED_APPS = WAGTAIL_APPS + DJANGO_APPS + SITE_APPS
 
 MIDDLEWARE = [
     # FIRST
-    'wagtailcache.cache.UpdateCacheMiddleware',  # MUST BE FIRST
+    "wagtailcache.cache.UpdateCacheMiddleware",  # MUST BE FIRST
     "django.middleware.security.SecurityMiddleware",  # SHOULD BE SECOND
-    'whitenoise.middleware.WhiteNoiseMiddleware',
-    'wagtail.contrib.redirects.middleware.RedirectMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
+    "wagtail.contrib.redirects.middleware.RedirectMiddleware",
     # SESSION
     "django.contrib.sessions.middleware.SessionMiddleware",
     # COMMON
@@ -138,9 +138,9 @@ MIDDLEWARE = [
     # WAGTAIL
     "wagtail.core.middleware.SiteMiddleware",
     # ROLLBAR
-    'rollbar.contrib.django.middleware.RollbarNotifierMiddleware',
+    "rollbar.contrib.django.middleware.RollbarNotifierMiddleware",
     # CACHE
-    'wagtailcache.cache.FetchFromCacheMiddleware',  # MUST BE LAST
+    "wagtailcache.cache.FetchFromCacheMiddleware",  # MUST BE LAST
 ]
 
 
@@ -165,9 +165,9 @@ APPEND_SLASH = True
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": os.environ.get("POSTGRES_DB", ''),
-        "USER": os.environ.get("POSTGRES_USER", ''),
-        "PASSWORD": os.environ.get("POSTGRES_PASSWORD", ''),
+        "NAME": os.environ.get("POSTGRES_DB", ""),
+        "USER": os.environ.get("POSTGRES_USER", ""),
+        "PASSWORD": os.environ.get("POSTGRES_PASSWORD", ""),
         "HOST": os.environ.get("POSTGRES_HOST", "localhost"),
         "PORT": os.environ.get("POSTGRES_PORT", "5432"),
         "TEST": {"NAME": "test_{}".format(os.environ.get("POSTGRES_DB", None))},
@@ -196,19 +196,17 @@ WAGTAILSEARCH_BACKENDS = {
 
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [
-            os.path.join(BASE_DIR, 'templates'),
-        ],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [os.path.join(BASE_DIR, "templates"),],
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.debug",
+                "django.template.context_processors.request",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
                 "django.template.context_processors.static",
-                'wagtail.contrib.settings.context_processors.settings',
+                "wagtail.contrib.settings.context_processors.settings",
             ],
         },
     },
@@ -223,10 +221,10 @@ FORM_RENDERER = "django.forms.renderers.TemplatesSetting"
 
 
 ROLLBAR = {
-    'access_token': os.environ.get('POST_SERVER_ITEM_ACCESS_TOKEN', ''),
-    'environment': os.environ.get('SERVER_ENV', 'development'),
-    'branch': 'master',
-    'root': '/usr/srv/app',
+    "access_token": os.environ.get("POST_SERVER_ITEM_ACCESS_TOKEN", ""),
+    "environment": os.environ.get("SERVER_ENV", "development"),
+    "branch": "master",
+    "root": "/usr/srv/app",
 }
 
 
@@ -237,17 +235,11 @@ ROLLBAR = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
     },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",},
+    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",},
+    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",},
 ]
 
 ####################################################################################################
@@ -267,7 +259,7 @@ USE_TZ = True
 ####################################################################################################
 
 
-AUTH_USER_MODEL = 'users.User'
+AUTH_USER_MODEL = "users.User"
 WAGTAILIMAGES_IMAGE_MODEL = "images.NHSXImage"
 WAGTAILDOCS_DOCUMENT_MODEL = "documents.NHSXDocument"
 WAGTAIL_SITE_NAME = "NHSX"
@@ -291,11 +283,11 @@ TAG_SPACES_ALLOWED = True
 
 SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 SESSION_CACHE_ALIAS = "session_cache"
-WAGTAIL_CACHE_BACKEND = 'wagtail_cache'
+WAGTAIL_CACHE_BACKEND = "wagtail_cache"
 WAGTAIL_CACHE = True
 
-REDIS_HOST = os.environ.get('REDIS_HOST', '')
-REDIS_PORT = os.environ.get('REDIS_PORT', '6379')
+REDIS_HOST = os.environ.get("REDIS_HOST", "")
+REDIS_PORT = os.environ.get("REDIS_PORT", "6379")
 REDIS_HOST_FULL = f"redis://{REDIS_HOST}:{REDIS_PORT}"
 REDIS_HOST_CACHEOPS = f"{REDIS_HOST_FULL}/1"
 REDIS_HOST_PAGECACHE = f"{REDIS_HOST_FULL}/2"
@@ -303,36 +295,36 @@ REDIS_HOST_SESSIONS = f"{REDIS_HOST_FULL}/3"
 
 
 CACHES = {
-    'default': {
-        'BACKEND': 'django_redis.cache.RedisCache',
-        'LOCATION': REDIS_HOST_CACHEOPS,
-        'OPTIONS': {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": REDIS_HOST_CACHEOPS,
+        "OPTIONS": {
             "PARSER_CLASS": "redis.connection.HiredisParser",
-            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
-            'PASSWORD': os.environ.get('REDIS_PASSWORD'),
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+            "PASSWORD": os.environ.get("REDIS_PASSWORD"),
             "IGNORE_EXCEPTIONS": True,
-        }
+        },
     },
-    'wagtail_cache': {
+    "wagtail_cache": {
         "BACKEND": "wagtailcache.compat_backends.django_redis.RedisCache",
-        'LOCATION': REDIS_HOST_PAGECACHE,
-        'TIMEOUT': 60 * 15,  # Fifteen minutes
-        'OPTIONS': {
+        "LOCATION": REDIS_HOST_PAGECACHE,
+        "TIMEOUT": 60 * 15,  # Fifteen minutes
+        "OPTIONS": {
             "PARSER_CLASS": "redis.connection.HiredisParser",
-            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
-            'PASSWORD': os.environ.get('REDIS_PASSWORD'),
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+            "PASSWORD": os.environ.get("REDIS_PASSWORD"),
             "IGNORE_EXCEPTIONS": True,
-        }
+        },
     },
-    'session_cache': {
-        'BACKEND': 'django_redis.cache.RedisCache',
-        'LOCATION': REDIS_HOST_SESSIONS,
-        'OPTIONS': {
+    "session_cache": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": REDIS_HOST_SESSIONS,
+        "OPTIONS": {
             "PARSER_CLASS": "redis.connection.HiredisParser",
-            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
-            'PASSWORD': os.environ.get('REDIS_PASSWORD'),
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+            "PASSWORD": os.environ.get("REDIS_PASSWORD"),
             "IGNORE_EXCEPTIONS": True,
-        }
+        },
     },
 }
 
@@ -355,7 +347,6 @@ CACHEOPS_REDIS = {
 CACHEOPS = {
     # Light caching - 15 mins
     "wagtailcore.pageviewrestriction": {"ops": "all", "timeout": 60 * 60},
-
     # Regular caching - 1 hour
     "auth.permission": {"ops": "all", "timeout": 60 * 60},
     "auth.user": {"ops": "all", "timeout": 60 * 60},
@@ -365,11 +356,9 @@ CACHEOPS = {
     "wagtailimages.Rendition": {"ops": "all", "timeout": 60 * 60},
     "images.nhsximage": {"ops": "all", "timeout": 60 * 60},
     "images.nhsxrendition": {"ops": "all", "timeout": 60 * 60},
-
     # Aggressive caching - 24 hours
     "wagtailcore.site": {"ops": "all", "timeout": 60 * 60 * 24},
     "django.content_type": {"ops": "all", "timeout": 60 * 60 * 24},
-
     # Enable manual caching on all other models with default timeout of an hour
     # Use Post.objects.cache().get(...)
     #  or Tags.objects.filter(...).order_by(...).cache()
@@ -416,8 +405,8 @@ if "SECURE_HSTS_SECONDS" in os.environ:
 # https://docs.djangoproject.com/en/stable/ref/settings/#std:setting-SECURE_HSTS_INCLUDE_SUBDOMAINS
 if os.environ.get("SECURE_HSTS_INCLUDE_SUBDOMAINS", "false").lower().strip() == "true":
     SECURE_HSTS_INCLUDE_SUBDOMAINS = (
-        True
-    )  # IMPT: this will enforce HTTPS for all subdomains!
+        True  # IMPT: this will enforce HTTPS for all subdomains!
+    )
 
 
 # Required if wish to submit to browser HSTS preload list at https://hstspreload.org/
@@ -454,30 +443,28 @@ REFERRER_POLICY = os.environ.get(
 # Static assets
 ####################################################################################################
 
-ASSETS_ROOT = '{}/assets'.format(BASE_DIR)
+ASSETS_ROOT = "{}/assets".format(BASE_DIR)
 ASSETS_DEBUG = False
 ASSETS_AUTO_BUILD = False
-ASSETS_MODULES = [
-    'config.assets'
-]
+ASSETS_MODULES = ["config.assets"]
 
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 STATICFILES_FINDERS = [
-    'django_assets.finders.AssetsFinder',
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    "django_assets.finders.AssetsFinder",
+    "django.contrib.staticfiles.finders.FileSystemFinder",
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
 ]
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'assets', 'dist'),
+    os.path.join(BASE_DIR, "assets", "dist"),
 ]
 
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
+STATIC_URL = "/static/"
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+MEDIA_URL = "/media/"
 
 
 # Wagtail settings
@@ -486,7 +473,7 @@ WAGTAIL_SITE_NAME = "nhsx"
 
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
-BASE_URL = 'http://nhsx.test'
+BASE_URL = "http://nhsx.test"
 
 
 ####################################################################################################
@@ -494,13 +481,16 @@ BASE_URL = 'http://nhsx.test'
 ####################################################################################################
 
 WAGTAILADMIN_NOTIFICATION_FROM_EMAIL = os.environ.get(
-    'DEFAULT_FROM_EMAIL', 'nhsx-website@clients.dxw.com')
-DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL', 'nhsx-website@clients.dxw.com')
-SERVER_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL', 'nhsx-website@clients.dxw.com')
+    "DEFAULT_FROM_EMAIL", "nhsx-website@clients.dxw.com"
+)
+DEFAULT_FROM_EMAIL = os.environ.get(
+    "DEFAULT_FROM_EMAIL", "nhsx-website@clients.dxw.com"
+)
+SERVER_EMAIL = os.environ.get("DEFAULT_FROM_EMAIL", "nhsx-website@clients.dxw.com")
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = str(os.environ.get('EMAIL_HOST_URL', ''))
-EMAIL_HOST_USER = str(os.environ.get('EMAIL_HOST_USER', ''))
-EMAIL_HOST_PASSWORD = str(os.environ.get('EMAIL_HOST_PASSWORD', ''))
-EMAIL_PORT = str(os.environ.get('EMAIL_HOST_PORT', '587'))
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = str(os.environ.get("EMAIL_HOST_URL", ""))
+EMAIL_HOST_USER = str(os.environ.get("EMAIL_HOST_USER", ""))
+EMAIL_HOST_PASSWORD = str(os.environ.get("EMAIL_HOST_PASSWORD", ""))
+EMAIL_PORT = str(os.environ.get("EMAIL_HOST_PORT", "587"))
 EMAIL_USE_TLS = True

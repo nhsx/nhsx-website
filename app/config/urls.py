@@ -33,25 +33,24 @@ Sitemap: https://nhsx.nhs.uk/sitemap.xml
 
 
 def robots(request):
-    server_env = os.environ.get('SERVER_ENV')
-    if server_env == 'production' or server_env == 'development':
+    server_env = os.environ.get("SERVER_ENV")
+    if server_env == "production" or server_env == "development":
         return HttpResponse(PROD_ROBOTS, content_type="text/plain")
     else:
-        return HttpResponse(
-            "User-agent: *\nDisallow: /", content_type="text/plain")
+        return HttpResponse("User-agent: *\nDisallow: /", content_type="text/plain")
 
 
 urlpatterns = [
-    url(r'^django-admin/', admin.site.urls),
-    url(r'^admin/', include(wagtailadmin_urls)),
-    url(r'^documents/', include(wagtaildocs_urls)),
-    url(r'^search/$', search_views.search, name='search'),
-    url(r'^sitemap\.xml$', sitemap),
-    url(r'^robots\.txt$', robots),
+    url(r"^django-admin/", admin.site.urls),
+    url(r"^admin/", include(wagtailadmin_urls)),
+    url(r"^documents/", include(wagtaildocs_urls)),
+    url(r"^search/$", search_views.search, name="search"),
+    url(r"^sitemap\.xml$", sitemap),
+    url(r"^robots\.txt$", robots),
     url(
-        r'^author-autocomplete/$',
+        r"^author-autocomplete/$",
         AuthorAutocomplete.as_view(),
-        name='author-autocomplete',
+        name="author-autocomplete",
     ),
 ]
 
@@ -66,21 +65,20 @@ if settings.DEBUG:
 
     # Add views for testing 404 page
     urlpatterns += [
-        path('test-404/', TemplateView.as_view(template_name='404.html')),
+        path("test-404/", TemplateView.as_view(template_name="404.html")),
     ]
 
 urlpatterns = urlpatterns + [
     url(
-        r'^_util/authenticate_with_password/(\d+)/(\d+)/$',
+        r"^_util/authenticate_with_password/(\d+)/(\d+)/$",
         wagtail_views.authenticate_with_password,
-        name='wagtailcore_authenticate_with_password'
+        name="wagtailcore_authenticate_with_password",
     ),
     url(
-        r'^_util/login/$',
+        r"^_util/login/$",
         auth_views.LoginView.as_view(template_name=WAGTAIL_FRONTEND_LOGIN_TEMPLATE),
-        name='wagtailcore_login'
+        name="wagtailcore_login",
     ),
-
     # Wrap the serve function with wagtail-cache
-    url(serve_pattern, cache_page(wagtail_views.serve), name='wagtail_serve'),
+    url(serve_pattern, cache_page(wagtail_views.serve), name="wagtail_serve"),
 ]

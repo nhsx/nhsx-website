@@ -7,24 +7,30 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('images', '0001_initial'),
-        ('blog_posts', '0004_auto_20200402_1442'),
+        ("images", "0001_initial"),
+        ("blog_posts", "0004_auto_20200402_1442"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='blogpostindexpage',
-            name='headline',
+            model_name="blogpostindexpage",
+            name="headline",
             field=models.CharField(blank=True, max_length=255, null=True),
         ),
         migrations.AddField(
-            model_name='blogpostindexpage',
-            name='image',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='blogpostindexpage_hero_image', to='images.NHSXImage'),
+            model_name="blogpostindexpage",
+            name="image",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                related_name="blogpostindexpage_hero_image",
+                to="images.NHSXImage",
+            ),
         ),
         migrations.AddField(
-            model_name='blogpostindexpage',
-            name='sub_head',
+            model_name="blogpostindexpage",
+            name="sub_head",
             field=models.CharField(blank=True, max_length=255, null=True),
         ),
     ]

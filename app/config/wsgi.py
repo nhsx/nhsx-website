@@ -17,7 +17,7 @@ except Exception:
 
 from django.core.wsgi import get_wsgi_application
 
-server_env = os.environ.get("SERVER_ENV", '')
+server_env = os.environ.get("SERVER_ENV", "")
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.{}".format(server_env))
 os.environ.setdefault("BUGSNAG_RELEASE_STAGE", server_env)

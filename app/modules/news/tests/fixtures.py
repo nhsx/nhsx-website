@@ -45,13 +45,13 @@ def _create_news_index_page(title: str, parent: Page) -> NewsIndexPage:
 
 @pytest.fixture(scope="function")
 def news_index_page(home_page) -> NewsIndexPage:
-    p = _create_news_index_page('Test Section Page', home_page)
+    p = _create_news_index_page("Test Section Page", home_page)
     return p
 
 
 @pytest.fixture(scope="function")
 def news_page(news_index_page) -> News:
-    p = _create_news_page('Test News Item', news_index_page)
+    p = _create_news_page("Test News Item", news_index_page)
     return p
 
 
@@ -61,6 +61,6 @@ def news_items(news_index_page) -> List[News]:
     """
     rv = []
     for _ in range(0, 10):
-        p = _create_news_page(f'Test News Page {_}', news_index_page)
+        p = _create_news_page(f"Test News Page {_}", news_index_page)
         rv.append(p)
     return rv

@@ -6,9 +6,8 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('core', '0017_auto_20200409_1210'),
-        ('core', '0017_remove_sectionpage_headline'),
+        ("core", "0017_auto_20200409_1210"),
+        ("core", "0017_remove_sectionpage_headline"),
     ]
 
-    operations = [
-    ]
+    operations = []

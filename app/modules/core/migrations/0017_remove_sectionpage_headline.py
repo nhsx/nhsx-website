@@ -6,12 +6,9 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('core', '0016_auto_20200409_1203'),
+        ("core", "0016_auto_20200409_1203"),
     ]
 
     operations = [
-        migrations.RemoveField(
-            model_name='sectionpage',
-            name='headline',
-        ),
+        migrations.RemoveField(model_name="sectionpage", name="headline",),
     ]
