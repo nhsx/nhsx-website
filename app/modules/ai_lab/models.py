@@ -7,6 +7,7 @@ from django import forms
 from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 from wagtail.core.models import Page
 from django.utils.text import slugify
+from django.http import Http404
 
 class AiLabHomePage(SectionPage):
   subpage_types = ['AiLabResourceIndexPage', 'core.ArticlePage']
@@ -75,10 +76,13 @@ class AiLabResourceIndexPage(RoutablePageMixin, BasePage):
     ids = self._get_resource_ids_for_use_case(slug)
     children = Page.objects.filter(id__in=(ids)).specific()
 
-    return render(request, 'ai_lab/ai_lab_resource_index_page.html', {
-      'page': self,
-      'children': children,
-    })
+    if children:
+      return render(request, 'ai_lab/ai_lab_resource_index_page.html', {
+        'page': self,
+        'children': children,
+      })
+    else:
+      raise Http404
 
   def _get_resource_ids_for_use_case(self, slug):
     ids = []

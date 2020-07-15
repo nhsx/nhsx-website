@@ -64,5 +64,13 @@ class TestAiLabResources():
         for resource in other_case_studies + other_external_resources:
             assert resource.title not in str(page.content)
 
+    def test_index_page_404s_when_use_case_does_not_exist(self):
+        resource_index_page = AiLabResourceIndexPageFactory.create()
+
+        page = client.get(resource_index_page.url + resource_index_page.reverse_subpage('filter_by_use_case', args=("non-existent-use-case", )))
+
+        assert page.status_code == 404
+
+
 
 
