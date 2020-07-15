@@ -7,6 +7,8 @@
 {% endblock extra_css %}
 
 {% block content %}
+{% breadcrumb %}
+
 {% if use_case %}
   {% include '_partials/hero.html' with hero_text=use_case.description hero_heading=use_case.name %}
 {% else %}
