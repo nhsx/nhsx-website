@@ -38,9 +38,16 @@ class AiLabResourceMixin(models.Model):
 class AiLabCaseStudy(AiLabResourceMixin, ArticlePage):
   pass
 
+class AiLabExternalResource(AiLabResourceMixin, Page):
+  external_url = models.URLField()
+  content_panels = Page.content_panels + [
+    FieldPanel('external_url', widget=forms.URLInput()),
+    FieldPanel('use_case', widget=forms.Select())
+  ]
+
 class AiLabResourceIndexPage(RoutablePageMixin, BasePage):
   parent_page_types = ['AiLabHomePage']
-  subpage_types = ['AiLabCaseStudy']
+  subpage_types = ['AiLabCaseStudy', 'AiLabExternalResource']
   max_count = 1
 
   @route(r'^$')

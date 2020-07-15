@@ -2,7 +2,7 @@ import wagtail_factories
 import factory
 import pytest
 
-from modules.ai_lab.models import AiLabHomePage, AiLabUseCase, AiLabCaseStudy, AiLabResourceIndexPage
+from modules.ai_lab.models import AiLabHomePage, AiLabUseCase, AiLabCaseStudy, AiLabResourceIndexPage, AiLabExternalResource
 from modules.core.tests.factories import CorePageFactory
 from wagtail.core.models import Site
 
@@ -29,6 +29,14 @@ class AiLabCaseStudyFactory(CorePageFactory):
 
   class Meta:
     model = AiLabCaseStudy
+
+class AiLabExternalResourceFactory(CorePageFactory):
+  title = factory.Sequence(lambda n: 'External Resource %d' % n)
+  use_case = factory.SubFactory(AiLabUseCaseFactory)
+  external_url = factory.Faker('url')
+
+  class Meta:
+    model = AiLabExternalResource
 
 class AiLabResourceIndexPageFactory(CorePageFactory):
   title = factory.Sequence(lambda n: 'Case Study %d' % n)
