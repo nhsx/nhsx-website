@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags static wagtailuserbar nhsukfrontend_tags wagtailimages_tags  %}
+{% load wagtailcore_tags static wagtailuserbar nhsukfrontend_tags wagtailimages_tags use_case_tags  %}
 
 {% block body_class %}template-homepage{% endblock %}
 
@@ -7,12 +7,32 @@
 {% endblock extra_css %}
 
 {% block content %}
-{% image page.image width-1000 as hero_image %}
-{% include '_partials/hero.html' with hero_text=page.sub_head hero_heading=page.title hero_image=hero_image.url %}
+{% if use_case %}
+  {% include '_partials/hero.html' with hero_text=use_case.description hero_heading=use_case.name %}
+{% else %}
+  {% include '_partials/hero.html' with hero_text=page.sub_head hero_heading=page.title %}
+{% endif %}
 <div class="nhsuk-width-container">
   <main class="nhsuk-main-wrapper" id="maincontent">
     <div class="nhsuk-grid-row">
       <div class="nhsuk-grid-column-full">
+        {% if use_cases %}
+        <div class="block-promo_group">
+          <div class="nhsuk-grid-row nhsuk-promo-group">
+          {% for case in use_cases %}
+            <div class="nhsuk-grid-column-one-third nhsuk-promo-group__item">
+              <div class="nhsuk-promo">
+                <div class="nhsuk-promo__content">
+                  <h3 class="nhsuk-promo__heading">{{ case.name }}</h3>
+                  <p class="nhsuk-promo__description">{{ case.description }}</p>
+                  <a href="{% use_case_url page case %}">Browse all</a>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+          </div>
+        </div>
+        {% endif %}
         {% include_block page.body %}
 
         {% for child in children %}

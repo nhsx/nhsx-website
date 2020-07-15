@@ -67,6 +67,7 @@ class AiLabResourceIndexPage(RoutablePageMixin, BasePage):
     children = self.get_children().specific()
 
     return render(request, 'ai_lab/ai_lab_resource_index_page.html', {
+      'use_cases': AiLabUseCase.objects.all(),
       'page': self,
       'children': children,
     })
@@ -78,6 +79,7 @@ class AiLabResourceIndexPage(RoutablePageMixin, BasePage):
 
     if children:
       return render(request, 'ai_lab/ai_lab_resource_index_page.html', {
+        'use_case': children[0].use_case,
         'page': self,
         'children': children,
       })

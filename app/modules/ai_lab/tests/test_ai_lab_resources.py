@@ -58,6 +58,9 @@ class TestAiLabResources():
 
         assert page.status_code == 200
 
+        assert use_case.name in str(page.content)
+        assert use_case.description in str(page.content)
+
         for resource in case_studies + external_resources:
             assert resource.title in str(page.content)
 
@@ -70,6 +73,18 @@ class TestAiLabResources():
         page = client.get(resource_index_page.url + resource_index_page.reverse_subpage('filter_by_use_case', args=("non-existent-use-case", )))
 
         assert page.status_code == 404
+
+    def test_index_page_lists_use_cases(self):
+        resource_index_page = AiLabResourceIndexPageFactory.create()
+        use_cases = AiLabUseCaseFactory.create_batch(3)
+
+        page = client.get(resource_index_page.url)
+
+        for use_case in use_cases:
+            url = resource_index_page.url + resource_index_page.reverse_subpage('filter_by_use_case', args=(use_case.slug, ))
+            assert use_case.name in str(page.content)
+            assert use_case.description in str(page.content)
+            assert url in str(page.content)
 
 
 
