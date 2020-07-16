@@ -13,6 +13,7 @@ class HomePage(BasePage, HeroImageContentMixin):
         "core.ArticlePage",
         "blog_posts.BlogPostIndexPage",
         "news.NewsIndexPage",
+        "ai_lab.AiLabHomePage",
     ]
 
     @cached_classmethod
