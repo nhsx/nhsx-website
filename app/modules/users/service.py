@@ -77,7 +77,7 @@ class AuthorService(Service):
 
     @property
     def q(self):
-        g = _groups.ensure('Authors')
+        g = _groups.ensure("Authors")
         return self.__model__.objects.filter(groups__in=[g])
 
     def create(self, **kwargs):
@@ -86,12 +86,12 @@ class AuthorService(Service):
 
         :param **kwargs: instance parameters
         """
-        email = kwargs.pop('email')
-        password = kwargs.pop('password')
+        email = kwargs.pop("email")
+        password = kwargs.pop("password")
 
         user_kwargs = {
-            'first_name': kwargs.pop('first_name', None),
-            'last_name': kwargs.pop('last_name', None),
+            "first_name": kwargs.pop("first_name", None),
+            "last_name": kwargs.pop("last_name", None),
         }
 
         user = self.__model__.objects.create_user(email, password, **user_kwargs)
@@ -104,12 +104,12 @@ class AuthorService(Service):
 
     @cached(timeout=60 * 60 * 24 * 30)
     def listing(self, user_id: int):
-        author = self.q.values_list('first_name', 'last_name', 'slug').get(id=user_id)
+        author = self.q.values_list("first_name", "last_name", "slug").get(id=user_id)
         return {
-            'full_name': f'{author[0]} {author[1]}',
-            'first_name': author[0],
-            'last_name': author[1],
-            'slug': author[2],
+            "full_name": f"{author[0]} {author[1]}",
+            "first_name": author[0],
+            "last_name": author[1],
+            "slug": author[2],
         }
 
 

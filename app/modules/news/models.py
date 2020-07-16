@@ -20,14 +20,12 @@ class FeaturedNewsMixin(models.Model):
 
     featured_posts = fields.StreamField(news_link_blocks, blank=True)
 
-    panels = [
-        StreamFieldPanel('featured_posts')
-    ]
+    panels = [StreamFieldPanel("featured_posts")]
 
 
 class NewsTags(TaggedItemBase):
     content_object = ParentalKey(
-        'news.News',
+        "news.News",
         on_delete=models.CASCADE,
         related_name="%(app_label)s_%(class)s_items",
     )
@@ -39,7 +37,7 @@ class NewsTags(TaggedItemBase):
 
 
 class News(BasePage, CanonicalMixin):
-    parent_page_types = ['NewsIndexPage']
+    parent_page_types = ["NewsIndexPage"]
     subpage_types = []
 
     tags = ClusterTaggableManager(through=NewsTags, blank=True)
@@ -47,12 +45,12 @@ class News(BasePage, CanonicalMixin):
     settings_panels = CanonicalMixin.panels + BasePage.settings_panels
 
     search_fields = BasePage.search_fields + [
-        index.SearchField('tags', boost=10),
+        index.SearchField("tags", boost=10),
     ]
 
     content_panels = [
         *Page.content_panels,
-        FieldPanel('first_published_at'),
+        FieldPanel("first_published_at"),
         StreamFieldPanel("body"),
         FieldPanel("tags"),
     ]
@@ -62,11 +60,11 @@ class NewsIndexPage(BaseIndexPage, FeaturedNewsMixin):
 
     _child_model = News
 
-    subpage_types = ['News']
+    subpage_types = ["News"]
     max_count = 1
 
     @cached_classmethod
     def get_admin_tabs(cls):
         tabs = super().get_admin_tabs()
-        tabs.insert(1, (FeaturedNewsMixin.panels, 'Featured'))
+        tabs.insert(1, (FeaturedNewsMixin.panels, "Featured"))
         return tabs

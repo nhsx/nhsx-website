@@ -33,6 +33,7 @@ django-autocomplete-light = "^3.5"
 wagtail-2fa = "^1.4.2"
 boto = "^2.49.0"
 rollbar = "^0.15.0"
+black = "^19.10b0"
 
 
 

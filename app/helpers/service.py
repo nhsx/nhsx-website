@@ -17,6 +17,7 @@ class Service(object):
     service, state in the model. Try to never create a model directly, only through
     its service.
     """
+
     __model__: Optional[models.Model] = None
 
     def __init__(self, *args, **kwargs):
@@ -33,7 +34,7 @@ class Service(object):
             QuerySet: The qs for this service
         """
         if self.__model__ is None:
-            raise ValueError('Missing model for this service')
+            raise ValueError("Missing model for this service")
 
         return self.__model__.objects
 
@@ -62,11 +63,11 @@ class Service(object):
             ValueError: Raised if there's a mismatch
         """
         if self.__model__ is None:
-            raise ValueError('Missing model for this service')
+            raise ValueError("Missing model for this service")
 
         rv = isinstance(model, self.__model__)
         if not rv and raise_error:
-            raise ValueError('%s is not of type %s' % (model, self.__model__))
+            raise ValueError("%s is not of type %s" % (model, self.__model__))
         return rv
 
     def save(self, model: models.Model) -> models.Model:
@@ -125,7 +126,7 @@ class Service(object):
             Http404: A 404 if nothing is found
         """
         if self.__model__ is None:
-            raise ValueError('Missing model for this service')
+            raise ValueError("Missing model for this service")
 
         try:
             return self.q.get(**kwargs)
@@ -158,7 +159,7 @@ class Service(object):
 
         """
         try:
-            return self.q.order_by('created_at').reverse().all()[0]
+            return self.q.order_by("created_at").reverse().all()[0]
         except Exception:
             try:
                 return self.q.reverse().all()[0]
@@ -179,7 +180,7 @@ class Service(object):
             Http404: If no model is found
         """
         if self.__model__ is None:
-            raise ValueError('Missing model for this service')
+            raise ValueError("Missing model for this service")
         try:
             return self.q.get(id=id)
         except self.__model__.DoesNotExist:
@@ -210,7 +211,7 @@ class Service(object):
             models.Model: A new, unsaved instance
         """
         if self.__model__ is None:
-            raise ValueError('Missing model for this service')
+            raise ValueError("Missing model for this service")
 
         return self.__model__(**kwargs)
 

@@ -1,6 +1,6 @@
 def assert_rich_text(rendered):
     assert '<div class="block-rich_text">' in rendered
-    assert 'Nullam quis risus eget' in rendered
+    assert "Nullam quis risus eget" in rendered
 
 
 def assert_promo(rendered):
@@ -9,19 +9,19 @@ def assert_promo(rendered):
 
 
 def assert_small_promo(rendered):
-    assert 'nhsuk-promo nhsuk-promo--small' in rendered
+    assert "nhsuk-promo nhsuk-promo--small" in rendered
     assert '<p class="nhsuk-promo__description">' in rendered
     assert "This promo uses the small size variant" in rendered
 
 
 RICHTEXT_BLOCK = {
-    'type': 'rich_text',
-    'value': """Nullam quis risus eget urna mollis ornare vel eu leo. Morbi leo risus, porta ac
+    "type": "rich_text",
+    "value": """Nullam quis risus eget urna mollis ornare vel eu leo. Morbi leo risus, porta ac
     consectetur ac, vestibulum at eros. Integer posuere erat a ante venenatis dapibus posuere velit
     aliquet. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum
     massa justo sit amet risus. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Cras
     justo odio, dapibus ac facilisis in, egestas eget quam. Nullam quis risus eget urna mollis
-    ornare vel eu leo."""
+    ornare vel eu leo.""",
 }
 
 
@@ -34,8 +34,8 @@ PROMO = {
         "content_image": None,
         "alt_text": "",
         "size": "",
-        "heading_level": 3
-    }
+        "heading_level": 3,
+    },
 }
 
 SMALL_PROMO = {
@@ -47,8 +47,8 @@ SMALL_PROMO = {
         "content_image": None,
         "alt_text": "",
         "size": "small",
-        "heading_level": 3
-    }
+        "heading_level": 3,
+    },
 }
 
 PROMO_GROUP = {
@@ -62,40 +62,45 @@ PROMO_GROUP = {
                 "url": "http://example.com/",
                 "heading": "Promo group item 1",
                 "description": "",
-                "content_image": 1, "alt_text": ""
-            }, {
+                "content_image": 1,
+                "alt_text": "",
+            },
+            {
                 "url": "http://example.com/",
                 "heading": "Promo group item 2",
                 "description": "A promo can have description text instead of an image",
                 "content_image": None,
-                "alt_text": ""
-            }, {
+                "alt_text": "",
+            },
+            {
                 "url": "http://example.com/",
                 "heading": "Promo group item 3",
                 "description": "",
                 "content_image": None,
-                "alt_text": ""
-            }, {
+                "alt_text": "",
+            },
+            {
                 "url": "http://example.com/",
                 "heading": "Promo group item 4",
                 "description": "The 4th item wraps into a new row",
                 "content_image": None,
-                "alt_text": ""
-            }
-        ]
-    }
+                "alt_text": "",
+            },
+        ],
+    },
 }
 
 
-ACTION_LINK = {
-    "type": "action_link",
-    "value": {
-        "text": "Action Link",
-        "external_url":
-        "https://example.com",
-        "new_window": False
-    }
-},
+ACTION_LINK = (
+    {
+        "type": "action_link",
+        "value": {
+            "text": "Action Link",
+            "external_url": "https://example.com",
+            "new_window": False,
+        },
+    },
+)
 
 CARE_CARD = {
     "type": "care_card",
@@ -104,20 +109,17 @@ CARE_CARD = {
         "heading_level": 3,
         "title": "Non-urgent:",
         "body": [
-            {
-                "type": "richtext",
-                "value": "<p>This is a primary care card</p>"
-            },
+            {"type": "richtext", "value": "<p>This is a primary care card</p>"},
             {
                 "type": "warning_callout",
                 "value": {
                     "title": "Important",
                     "heading_level": 3,
-                    "body": "<p>Care cards can contain other blocks</p>"
-                }
-            }
-        ]
-    }
+                    "body": "<p>Care cards can contain other blocks</p>",
+                },
+            },
+        ],
+    },
 }
 
 CARE_CARD_2 = {
@@ -126,13 +128,8 @@ CARE_CARD_2 = {
         "type": "urgent",
         "heading_level": 3,
         "title": "Urgent:",
-        "body": [
-            {
-                "type": "richtext",
-                "value": "<p>This is an urgent care card</p>"
-            }
-        ]
-    }
+        "body": [{"type": "richtext", "value": "<p>This is an urgent care card</p>"}],
+    },
 }
 
 CARE_CARD_3 = {
@@ -142,12 +139,9 @@ CARE_CARD_3 = {
         "heading_level": 3,
         "title": "Immediate!",
         "body": [
-            {
-                "type": "richtext",
-                "value": "<p>This is an immediate care card</p>"
-            }
-        ]
-    }
+            {"type": "richtext", "value": "<p>This is an immediate care card</p>"}
+        ],
+    },
 }
 
 DETAILS = {
@@ -158,18 +152,18 @@ DETAILS = {
             {
                 "type": "richtext",
                 "value": """<p>Make a page easier to scan by letting users reveal more detailed
-                information only if they need it.</p>"""
+                information only if they need it.</p>""",
             },
             {
                 "type": "panel",
                 "value": {
                     "label": "Panel inside details",
                     "heading_level": 3,
-                    "body": "<p>Details can contain sub blocks too</p>"
-                }
-            }
-        ]
-    }
+                    "body": "<p>Details can contain sub blocks too</p>",
+                },
+            },
+        ],
+    },
 }
 
 DO_LIST = {
@@ -180,9 +174,9 @@ DO_LIST = {
             "<p>Do be good</p>",
             "<p>Do be happy</p>",
             "<p>Do be early</p>",
-            "<p>Always eat what&#x27;s on your plate</p>"
-        ]
-    }
+            "<p>Always eat what&#x27;s on your plate</p>",
+        ],
+    },
 }
 
 DONT_LIST = {
@@ -192,24 +186,26 @@ DONT_LIST = {
         "dont": [
             "<p>Don&#x27;t be bad</p>",
             "<p>Don&#x27;t be sad</p>",
-            "<p>Don&#x27;t be late</p>"
-        ]
-    }
+            "<p>Don&#x27;t be late</p>",
+        ],
+    },
 }
 
-EXPANDER = {
-    "type": "expander",
-    "value": {
-        "title": "Expander",
-        "body": [
-            {
-                "type": "richtext",
-                "value": """<p>Make a complex topic easier to digest by letting users reveal more
-                detailed information only if they need it.</p>"""
-            }
-        ]
-    }
-},
+EXPANDER = (
+    {
+        "type": "expander",
+        "value": {
+            "title": "Expander",
+            "body": [
+                {
+                    "type": "richtext",
+                    "value": """<p>Make a complex topic easier to digest by letting users reveal more
+                detailed information only if they need it.</p>""",
+                }
+            ],
+        },
+    },
+)
 
 EXPANDER_GROUP = {
     "type": "expander_group",
@@ -217,33 +213,18 @@ EXPANDER_GROUP = {
         "expanders": [
             {
                 "title": "One",
-                "body": [
-                    {
-                        "type": "richtext",
-                        "value": "<p>First expander</p>"
-                    }
-                ]
+                "body": [{"type": "richtext", "value": "<p>First expander</p>"}],
             },
             {
                 "title": "Two",
-                "body": [
-                    {
-                        "type": "richtext",
-                        "value": "<p>Second expander</p>"
-                    }
-                ]
+                "body": [{"type": "richtext", "value": "<p>Second expander</p>"}],
             },
             {
                 "title": "Three",
-                "body": [
-                    {
-                        "type": "richtext",
-                        "value": "<p>Third expander</p>"
-                    }
-                ]
-            }
+                "body": [{"type": "richtext", "value": "<p>Third expander</p>"}],
+            },
         ]
-    }
+    },
 }
 
 INSET_TEXT = {
@@ -251,7 +232,7 @@ INSET_TEXT = {
     "value": {
         "body": """<p>Use inset text to help users identify and understand important content on the
         page, even if they don&#x27;t read the whole page.</p>"""
-    }
+    },
 }
 
 IMAGE = {
@@ -260,8 +241,8 @@ IMAGE = {
         "content_image": 1,
         "alt_text": """The BBC test card. A girl playing naughts and crosses on a blackboard with a
         clown doll""",
-        "caption": "BBC test card F"
-    }
+        "caption": "BBC test card F",
+    },
 }
 
 PANEL = {
@@ -269,8 +250,8 @@ PANEL = {
     "value": {
         "label": "Panel",
         "heading_level": 3,
-        "body": "<p>Panel with a blue title</p>"
-    }
+        "body": "<p>Panel with a blue title</p>",
+    },
 }
 
 PANEL_2 = {
@@ -278,8 +259,8 @@ PANEL_2 = {
     "value": {
         "label": "",
         "heading_level": 3,
-        "body": "<p>Panels don&#x27;t require a title</p>"
-    }
+        "body": "<p>Panels don&#x27;t require a title</p>",
+    },
 }
 
 WARNING_CALLOUT = {
@@ -287,38 +268,26 @@ WARNING_CALLOUT = {
     "value": {
         "title": "Important",
         "heading_level": 3,
-        "body": "<p>This is a warning callout box! It contains <b>RichText</b></p>"
-    }
+        "body": "<p>This is a warning callout box! It contains <b>RichText</b></p>",
+    },
 }
 
 SUMMARY_LIST = {
     "type": "summary_list",
     "value": {
         "rows": [
-            {
-                "key": "Name",
-                "value": "<p>Sarah Philips</p>"
-            },
-            {
-                "key": "Date of birth",
-                "value": "<p>5 January 1978</p>"
-            },
+            {"key": "Name", "value": "<p>Sarah Philips</p>"},
+            {"key": "Date of birth", "value": "<p>5 January 1978</p>"},
             {
                 "key": "Contact information",
-                "value": "<p>72 Guild Street<br/>London<br/>SE23 6FH</p>"
-            }
+                "value": "<p>72 Guild Street<br/>London<br/>SE23 6FH</p>",
+            },
         ],
-        "no_border": False
-    }
+        "no_border": False,
+    },
 }
 
 LINK_BLOCK = {
     "type": "link",
-    "value": {
-        "label": "Foo",
-        "link": {
-            "link_external": "http://example.com"
-        }
-    }
+    "value": {"label": "Foo", "link": {"link_external": "http://example.com"}},
 }
-

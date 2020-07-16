@@ -9,13 +9,15 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('blog_posts', '0005_auto_20200403_1318'),
+        ("blog_posts", "0005_auto_20200403_1318"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='blogpost',
-            name='authors',
-            field=modelcluster.fields.ParentalManyToManyField(blank=True, related_name='pages_blogpost', to=settings.AUTH_USER_MODEL),
+            model_name="blogpost",
+            name="authors",
+            field=modelcluster.fields.ParentalManyToManyField(
+                blank=True, related_name="pages_blogpost", to=settings.AUTH_USER_MODEL
+            ),
         ),
     ]

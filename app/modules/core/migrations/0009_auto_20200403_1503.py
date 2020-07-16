@@ -9,13 +9,55 @@ import wagtail.documents.blocks
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('core', '0008_auto_20200403_1432'),
+        ("core", "0008_auto_20200403_1432"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='articlepage',
-            name='sidebar_links',
-            field=wagtail.core.fields.StreamField([('link', wagtail.core.blocks.StructBlock([('label', wagtail.core.blocks.CharBlock(required=False)), ('link', wagtail.core.blocks.StructBlock([('link_page', wagtail.core.blocks.PageChooserBlock(label='Page', required=False)), ('link_document', wagtail.documents.blocks.DocumentChooserBlock(label='Document', required=False)), ('link_external', wagtail.core.blocks.URLBlock(label='URL', required=False))], label='Link to (choose one)', required=False))]))], blank=True),
+            model_name="articlepage",
+            name="sidebar_links",
+            field=wagtail.core.fields.StreamField(
+                [
+                    (
+                        "link",
+                        wagtail.core.blocks.StructBlock(
+                            [
+                                (
+                                    "label",
+                                    wagtail.core.blocks.CharBlock(required=False),
+                                ),
+                                (
+                                    "link",
+                                    wagtail.core.blocks.StructBlock(
+                                        [
+                                            (
+                                                "link_page",
+                                                wagtail.core.blocks.PageChooserBlock(
+                                                    label="Page", required=False
+                                                ),
+                                            ),
+                                            (
+                                                "link_document",
+                                                wagtail.documents.blocks.DocumentChooserBlock(
+                                                    label="Document", required=False
+                                                ),
+                                            ),
+                                            (
+                                                "link_external",
+                                                wagtail.core.blocks.URLBlock(
+                                                    label="URL", required=False
+                                                ),
+                                            ),
+                                        ],
+                                        label="Link to (choose one)",
+                                        required=False,
+                                    ),
+                                ),
+                            ]
+                        ),
+                    )
+                ],
+                blank=True,
+            ),
         ),
     ]

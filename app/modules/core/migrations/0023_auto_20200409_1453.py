@@ -6,13 +6,15 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('core', '0022_auto_20200409_1452'),
+        ("core", "0022_auto_20200409_1452"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='sectionpage',
-            name='automatic',
-            field=models.BooleanField(default=False, help_text='Build automatically from child pages'),
+            model_name="sectionpage",
+            name="automatic",
+            field=models.BooleanField(
+                default=False, help_text="Build automatically from child pages"
+            ),
         ),
     ]

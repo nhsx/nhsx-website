@@ -26,7 +26,7 @@ class GroupService(Service):
 
     @cached_property
     def authors(self):
-        return self.ensure('Authors')
+        return self.ensure("Authors")
 
 
 _groups = GroupService()

@@ -11,7 +11,7 @@ def test_home_page_gets_created(home_page):
     """Test that we have a home page created by the fixture
     """
     assert home_page is not None
-    assert home_page.title == 'Test Site Home'
+    assert home_page.title == "Test Site Home"
 
 
 def test_home_page_200(home_page):

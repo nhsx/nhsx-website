@@ -7,16 +7,22 @@ from wagtail.contrib.table_block.blocks import TableBlock as OGTableBlock
 from wagtail.images.blocks import ImageChooserBlock
 
 from wagtailnhsukfrontend.blocks import (  # NOQA
-    ImageBlock, PanelBlock, ExpanderBlock, GreyPanelBlock, InsetTextBlock,
-    PanelListBlock, WarningCalloutBlock, FlattenValueContext, ActionLinkBlock
+    ImageBlock,
+    PanelBlock,
+    ExpanderBlock,
+    GreyPanelBlock,
+    InsetTextBlock,
+    PanelListBlock,
+    WarningCalloutBlock,
+    FlattenValueContext,
+    ActionLinkBlock,
 )
 
 
 class BasePromoBlock(FlattenValueContext, blocks.StructBlock):
-
     class Meta:
-        icon = 'pick'
-        template = 'wagtailnhsukfrontend/promo.html'
+        icon = "pick"
+        template = "wagtailnhsukfrontend/promo.html"
 
     link_page = blocks.PageChooserBlock(required=False, label="Page")
     url = blocks.URLBlock(label="URL", required=False)
@@ -27,77 +33,65 @@ class BasePromoBlock(FlattenValueContext, blocks.StructBlock):
 
     def get_context(self, value, parent_context=None):
         context = super().get_context(value, parent_context=parent_context)
-        page = value.get('link_page', '')
+        page = value.get("link_page", "")
         if page is not None:
             url = page.url
         else:
-            url = value.get('url', '')
+            url = value.get("url", "")
 
-        context['url'] = url
+        context["url"] = url
         return context
 
 
 class PromoBlock(BasePromoBlock):
-
     class Meta:
-        template = 'wagtailnhsukfrontend/promo.html'
+        template = "wagtailnhsukfrontend/promo.html"
 
-    size = blocks.ChoiceBlock([
-        ('', 'Default'),
-        ('small', 'Small'),
-    ], required=False)
+    size = blocks.ChoiceBlock([("", "Default"), ("small", "Small"),], required=False)
 
     heading_level = blocks.IntegerBlock(
         min_value=2,
         max_value=4,
         default=3,
-        help_text='The heading level affects users with screen readers. Default=3, Min=2, Max=4.'
+        help_text="The heading level affects users with screen readers. Default=3, Min=2, Max=4.",
     )
 
 
 class PromoGroupBlock(FlattenValueContext, blocks.StructBlock):
-
     class Meta:
-        template = 'wagtailnhsukfrontend/promo_group.html'
+        template = "wagtailnhsukfrontend/promo_group.html"
 
-    column = blocks.ChoiceBlock([
-        ('one-half', 'One-half'),
-        ('one-third', 'One-third'),
-    ], default='one-half', required=True)
+    column = blocks.ChoiceBlock(
+        [("one-half", "One-half"), ("one-third", "One-third"),],
+        default="one-half",
+        required=True,
+    )
 
-    size = blocks.ChoiceBlock([
-        ('', 'Default'),
-        ('small', 'Small'),
-    ], required=False)
+    size = blocks.ChoiceBlock([("", "Default"), ("small", "Small"),], required=False)
 
     def get_context(self, value, parent_context=None):
         context = super().get_context(value, parent_context)
-        context['num_columns'] = {
-            'one-half': 2,
-            'one-third': 3,
-        }[value['column']]
+        context["num_columns"] = {"one-half": 2, "one-third": 3,}[value["column"]]
         return context
 
     heading_level = blocks.IntegerBlock(
         min_value=2,
         max_value=4,
         default=3,
-        help_text='The heading level affects users with screen readers. Default=3, Min=2, Max=4.'
+        help_text="The heading level affects users with screen readers. Default=3, Min=2, Max=4.",
     )
 
     promos = blocks.ListBlock(BasePromoBlock)
 
 
 class TableBlock(OGTableBlock):
-
     class Meta:
-        template = 'core/blocks/table.html'
+        template = "core/blocks/table.html"
 
 
 class PanelTableBlock(blocks.StructBlock):
-
     class Meta:
-        template = 'core/blocks/panel_table.html'
+        template = "core/blocks/panel_table.html"
 
     title = blocks.CharBlock()
     table = TableBlock()
@@ -110,16 +104,16 @@ class EmbedBlock(WagtailEmbedBlock):
     """
 
     class Meta:
-        template = 'core/blocks/embed.html'
+        template = "core/blocks/embed.html"
 
     def get_context(self, value, parent_context={}):
         context = super().get_context(value, parent_context=parent_context)
-        embed_url = getattr(value, 'url', None)
+        embed_url = getattr(value, "url", None)
         if embed_url:
             embed = embeds.get_embed(embed_url)
-            context['embed_html'] = embed.html
-            context['embed_url'] = embed_url
-            context['ratio'] = embed.ratio
+            context["embed_html"] = embed.html
+            context["embed_url"] = embed_url
+            context["ratio"] = embed.ratio
 
         return context
 
@@ -131,7 +125,7 @@ class CaptionedEmbedBlock(blocks.StructBlock):
     """
 
     class Meta:
-        template = 'core/blocks/captioned_embed.html'
+        template = "core/blocks/captioned_embed.html"
 
     embed = EmbedBlock()
     title = blocks.CharBlock(required=False)
@@ -142,19 +136,19 @@ class LinkStructBlockMixin(object):
     def get_context(self, value, parent_context=None):
         context = super().get_context(value, parent_context=parent_context)
 
-        context['value']['url'] = self.get_url(value['link'])
+        context["value"]["url"] = self.get_url(value["link"])
         return context
 
     def get_url(self, value):
 
-        if value['link_page']:
-            return value['link_page'].url
+        if value["link_page"]:
+            return value["link_page"].url
 
-        elif value['link_document']:
-            return value['link_document'].file
+        elif value["link_document"]:
+            return value["link_document"].file
 
-        elif value['link_external']:
-            return value['link_external']
+        elif value["link_external"]:
+            return value["link_external"]
 
         return None
 
@@ -179,40 +173,48 @@ class NHSXExpanderBlock(ExpanderBlock):
 
 
 blog_link_blocks = [
-    ('link', blocks.PageChooserBlock(required=True, label="Page", page_type="blog_posts.BlogPost")),
+    (
+        "link",
+        blocks.PageChooserBlock(
+            required=True, label="Page", page_type="blog_posts.BlogPost"
+        ),
+    ),
 ]
 
 
 news_link_blocks = [
-    ('link', blocks.PageChooserBlock(required=True, label="Page", page_type="news.News")),
+    (
+        "link",
+        blocks.PageChooserBlock(required=True, label="Page", page_type="news.News"),
+    ),
 ]
 
 
 page_link_blocks = [
-    ('link', LinkBlock()),
+    ("link", LinkBlock()),
 ]
 
 
 content_blocks = [
-    ('rich_text', blocks.RichTextBlock(group=" Content")),
-    ('block_quote', blocks.BlockQuoteBlock(group=" Content")),
-    ('embed', EmbedBlock(group=" Content")),
-    ('captioned_embed', CaptionedEmbedBlock(group=" Content")),
+    ("rich_text", blocks.RichTextBlock(group=" Content")),
+    ("block_quote", blocks.BlockQuoteBlock(group=" Content")),
+    ("embed", EmbedBlock(group=" Content")),
+    ("captioned_embed", CaptionedEmbedBlock(group=" Content")),
 ]
 
 nhs_blocks = [
-    ('image', ImageBlock(group=" NHS Components")),
-    ('panel', PanelBlock(group=" NHS Components")),
-    ('promo', PromoBlock(group=" NHS Components")),
-    ('expander', NHSXExpanderBlock(group=" NHS Components")),
-    ('grey_panel', GreyPanelBlock(group=" NHS Components")),
-    ('inset_text', InsetTextBlock(group=" NHS Components")),
-    ('panel_list', PanelListBlock(group=" NHS Components")),
-    ('promo_group', PromoGroupBlock(group=" NHS Components")),
-    ('warning_callout', WarningCalloutBlock(group=" NHS Components")),
-    ('table', TableBlock(group=" NHS Components")),
-    ('panel_table', PanelTableBlock(group=" NHS Components")),
-    ('action_link', ActionLinkBlock(group=" NHS Components")),
+    ("image", ImageBlock(group=" NHS Components")),
+    ("panel", PanelBlock(group=" NHS Components")),
+    ("promo", PromoBlock(group=" NHS Components")),
+    ("expander", NHSXExpanderBlock(group=" NHS Components")),
+    ("grey_panel", GreyPanelBlock(group=" NHS Components")),
+    ("inset_text", InsetTextBlock(group=" NHS Components")),
+    ("panel_list", PanelListBlock(group=" NHS Components")),
+    ("promo_group", PromoGroupBlock(group=" NHS Components")),
+    ("warning_callout", WarningCalloutBlock(group=" NHS Components")),
+    ("table", TableBlock(group=" NHS Components")),
+    ("panel_table", PanelTableBlock(group=" NHS Components")),
+    ("action_link", ActionLinkBlock(group=" NHS Components")),
 ]
 
 nhsx_blocks = content_blocks + nhs_blocks

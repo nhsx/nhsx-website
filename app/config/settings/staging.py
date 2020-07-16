@@ -4,15 +4,15 @@ from .base import MEDIA_ROOT, BASE_DIR  # NOQA
 
 DEBUG = False
 
-BASE_URL = 'https://web.staging.nhsx-website.dalmatian.dxw.net'
+BASE_URL = "https://web.staging.nhsx-website.dalmatian.dxw.net"
 
 ####################################################################################################
 # Static assets served by Whitenoise
 ####################################################################################################
 
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
+STATIC_URL = "/static/"
 
 
 ####################################################################################################
@@ -20,6 +20,6 @@ STATIC_URL = '/static/'
 ####################################################################################################
 
 
-AWS_S3_CUSTOM_DOMAIN = os.environ.get('AWS_CDN_URI', '')
-AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_BUCKET_NAME', '')
-MEDIA_URL = '{}{}/'.format(AWS_S3_CUSTOM_DOMAIN, MEDIA_ROOT)
+AWS_S3_CUSTOM_DOMAIN = os.environ.get("AWS_CDN_URI", "")
+AWS_STORAGE_BUCKET_NAME = os.environ.get("AWS_BUCKET_NAME", "")
+MEDIA_URL = "{}{}/".format(AWS_S3_CUSTOM_DOMAIN, MEDIA_ROOT)

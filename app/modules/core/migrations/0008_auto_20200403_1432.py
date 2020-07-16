@@ -8,18 +8,30 @@ import wagtail.core.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('core', '0007_auto_20200402_1310'),
+        ("core", "0007_auto_20200402_1310"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='articlepage',
-            name='automatic',
-            field=models.BooleanField(default=False, help_text='Build automatically from sibling pages'),
+            model_name="articlepage",
+            name="automatic",
+            field=models.BooleanField(
+                default=False, help_text="Build automatically from sibling pages"
+            ),
         ),
         migrations.AddField(
-            model_name='articlepage',
-            name='sidebar_links',
-            field=wagtail.core.fields.StreamField([('page', wagtail.core.blocks.PageChooserBlock(label='Linked Page', required=True))], blank=True),
+            model_name="articlepage",
+            name="sidebar_links",
+            field=wagtail.core.fields.StreamField(
+                [
+                    (
+                        "page",
+                        wagtail.core.blocks.PageChooserBlock(
+                            label="Linked Page", required=True
+                        ),
+                    )
+                ],
+                blank=True,
+            ),
         ),
     ]

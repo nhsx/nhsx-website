@@ -9,8 +9,8 @@ def search(request):
 
     EXCLUDE = []
 
-    search_query = request.GET.get('query', '')
-    page = request.GET.get('page', 1)
+    search_query = request.GET.get("query", "")
+    page = request.GET.get("page", 1)
 
     # Promoted searches
     promoted = Query.get(search_query).editors_picks.all()
@@ -21,7 +21,9 @@ def search(request):
 
     # Search
     if search_query:
-        search_results = Page.objects.exclude(id__in=EXCLUDE).live().search(search_query)
+        search_results = (
+            Page.objects.exclude(id__in=EXCLUDE).live().search(search_query)
+        )
         query = Query.get(search_query)
 
         # Record hit
@@ -40,7 +42,8 @@ def search(request):
     except EmptyPage:
         search_results = paginator.page(paginator.num_pages)
 
-    return render(request, 'search/search.html', {
-        'search_query': search_query,
-        'search_results': search_results,
-    })
+    return render(
+        request,
+        "search/search.html",
+        {"search_query": search_query, "search_results": search_results,},
+    )
