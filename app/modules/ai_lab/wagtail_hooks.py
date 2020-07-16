@@ -4,6 +4,7 @@ from django import forms
 
 from .models import AiLabUseCase
 
+
 class AiLabUseCaseAdmin(ModelAdmin):
     model = AiLabUseCase
     menu_label = "Ai Lab Use Cases"
@@ -14,5 +15,6 @@ class AiLabUseCaseAdmin(ModelAdmin):
         FieldPanel("name"),
         FieldPanel("description", widget=forms.Textarea),
     ]
+
 
 modeladmin_register(AiLabUseCaseAdmin)

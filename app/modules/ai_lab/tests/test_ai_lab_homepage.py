@@ -13,7 +13,8 @@ pytestmark = pytest.mark.django_db
 
 client = Client()
 
-class TestAiLabHomePage():
+
+class TestAiLabHomePage:
     def test_page_can_be_created(self):
         home_page = AiLabHomePageFactory.create()
         assert isinstance(home_page, AiLabHomePage)
@@ -29,9 +30,13 @@ class TestAiLabHomePage():
         assert AiLabHomePage.can_create_at(home_page) == False
 
     def test_three_newest_blog_posts_are_featured(self):
-        first_published_at = pytz.utc.localize(dateutil.parser.parse("2020-01-01T00:00:00"))
-        old_blog_posts = BlogPostFactory.create_batch(2, first_published_at=first_published_at, tags=['AI Lab'])
-        new_blog_posts = BlogPostFactory.create_batch(3, tags=['AI Lab'])
+        first_published_at = pytz.utc.localize(
+            dateutil.parser.parse("2020-01-01T00:00:00")
+        )
+        old_blog_posts = BlogPostFactory.create_batch(
+            2, first_published_at=first_published_at, tags=["AI Lab"]
+        )
+        new_blog_posts = BlogPostFactory.create_batch(3, tags=["AI Lab"])
 
         home_page = AiLabHomePageFactory.create()
 
@@ -42,4 +47,3 @@ class TestAiLabHomePage():
 
         for blog_post in old_blog_posts:
             assert blog_post.title not in str(rv.content)
-

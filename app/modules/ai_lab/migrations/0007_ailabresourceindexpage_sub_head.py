@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('ai_lab', '0006_ailabexternalresource'),
+        ("ai_lab", "0006_ailabexternalresource"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='ailabresourceindexpage',
-            name='sub_head',
+            model_name="ailabresourceindexpage",
+            name="sub_head",
             field=models.CharField(blank=True, max_length=255, null=True),
         ),
     ]

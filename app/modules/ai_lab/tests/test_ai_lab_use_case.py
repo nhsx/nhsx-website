@@ -9,7 +9,8 @@ pytestmark = pytest.mark.django_db
 
 client = Client()
 
-class TestAiLabUseCase():
+
+class TestAiLabUseCase:
     def test_use_case_can_be_created(self):
         use_case = AiLabUseCaseFactory.create()
         assert isinstance(use_case, AiLabUseCase)
@@ -25,7 +26,3 @@ class TestAiLabUseCase():
         assert use_cases[0].slug == "hello-world"
         assert use_cases[1].slug == "hello-world-1"
         assert use_cases[2].slug == "hello-world-2"
-
-
-
-

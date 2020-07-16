@@ -9,18 +9,26 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('core', '0026_auto_20200713_1535'),
+        ("core", "0026_auto_20200713_1535"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='AiLabHomePage',
+            name="AiLabHomePage",
             fields=[
-                ('sectionpage_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='core.SectionPage')),
+                (
+                    "sectionpage_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="core.SectionPage",
+                    ),
+                ),
             ],
-            options={
-                'abstract': False,
-            },
-            bases=('core.sectionpage',),
+            options={"abstract": False,},
+            bases=("core.sectionpage",),
         ),
     ]

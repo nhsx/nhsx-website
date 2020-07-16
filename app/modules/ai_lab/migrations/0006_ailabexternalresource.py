@@ -7,21 +7,35 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('wagtailcore', '0045_assign_unlock_grouppagepermission'),
-        ('ai_lab', '0005_ailabusecase_slug'),
+        ("wagtailcore", "0045_assign_unlock_grouppagepermission"),
+        ("ai_lab", "0005_ailabusecase_slug"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='AiLabExternalResource',
+            name="AiLabExternalResource",
             fields=[
-                ('page_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
-                ('external_url', models.URLField()),
-                ('use_case', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='ai_lab.AiLabUseCase')),
+                (
+                    "page_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="wagtailcore.Page",
+                    ),
+                ),
+                ("external_url", models.URLField()),
+                (
+                    "use_case",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.PROTECT,
+                        to="ai_lab.AiLabUseCase",
+                    ),
+                ),
             ],
-            options={
-                'abstract': False,
-            },
-            bases=('wagtailcore.page', models.Model),
+            options={"abstract": False,},
+            bases=("wagtailcore.page", models.Model),
         ),
     ]

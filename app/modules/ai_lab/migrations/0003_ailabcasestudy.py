@@ -7,20 +7,34 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('core', '0026_auto_20200713_1535'),
-        ('ai_lab', '0002_ailabusecase'),
+        ("core", "0026_auto_20200713_1535"),
+        ("ai_lab", "0002_ailabusecase"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='AiLabCaseStudy',
+            name="AiLabCaseStudy",
             fields=[
-                ('articlepage_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='core.ArticlePage')),
-                ('use_case', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='ai_lab.AiLabUseCase')),
+                (
+                    "articlepage_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="core.ArticlePage",
+                    ),
+                ),
+                (
+                    "use_case",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.PROTECT,
+                        to="ai_lab.AiLabUseCase",
+                    ),
+                ),
             ],
-            options={
-                'abstract': False,
-            },
-            bases=('core.articlepage', models.Model),
+            options={"abstract": False,},
+            bases=("core.articlepage", models.Model),
         ),
     ]
