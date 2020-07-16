@@ -74,7 +74,11 @@ class ArticlePage(BasePage, SidebarMixin):
 
     """
 
-    parent_page_types: list = ["core.SectionPage", "home.HomePage"]
+    parent_page_types: list = [
+        "core.SectionPage",
+        "home.HomePage",
+        "ai_lab.AiLabHomePage",
+    ]
     subpage_types: list = []
 
     sidebar_panels: list = SidebarMixin.panels

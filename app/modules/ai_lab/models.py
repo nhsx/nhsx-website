@@ -3,7 +3,7 @@ from modules.core.models.pages import SectionPage, ArticlePage
 from django.db import models
 
 class AiLabHomePage(SectionPage):
-  subpage_types = ['AiLabResourceIndexPage']
+  subpage_types = ['AiLabResourceIndexPage', 'core.ArticlePage']
   max_count = 1
 
 class AiLabUseCase(models.Model):
