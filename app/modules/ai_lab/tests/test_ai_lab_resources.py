@@ -1,14 +1,9 @@
 import pytest
 
 from django.test import Client
-from modules.ai_lab.models import AiLabCaseStudy, AiLabResourceIndexPage
-from modules.ai_lab.tests.factories import (
-    AiLabCaseStudyFactory,
-    AiLabUseCaseFactory,
-    AiLabResourceIndexPageFactory,
-    AiLabHomePageFactory,
-    AiLabExternalResourceFactory,
-)
+from modules.ai_lab.models.resources import AiLabCaseStudy
+from modules.ai_lab.models.resource_listings import AiLabResourceIndexPage
+from modules.ai_lab.tests.factories import *
 from wagtail.core.models import Page
 
 pytestmark = pytest.mark.django_db
@@ -22,32 +17,87 @@ class TestAiLabResources:
         assert isinstance(case_study, AiLabCaseStudy)
         assert case_study is not None
 
-    def test_case_study_can_have_use_case_applied(self):
-        use_case = AiLabUseCaseFactory.create(name="My Amazing Use Case")
-        case_study = AiLabCaseStudyFactory.create(use_case=use_case)
-
-        assert case_study.use_case.name == "My Amazing Use Case"
-
     def test_index_page_can_be_created(self):
         home_page = AiLabHomePageFactory.create()
         index_page = AiLabResourceIndexPageFactory.create(parent=home_page)
         assert isinstance(index_page, AiLabResourceIndexPage)
         assert index_page is not None
 
-    def test_index_page_lists_subpages(self):
+    def test_case_study_can_have_use_case_applied(self):
+        category_page = AiLabUnderstandIndexPageFactory.create()
+        case_study = AiLabCaseStudyFactory.create(parent=category_page)
+
+        assert isinstance(case_study, AiLabCaseStudy)
+
+    def test_index_page_shows_subpages(self):
         resource_index_page = AiLabResourceIndexPageFactory.create()
 
-        assert AiLabCaseStudy.can_create_at(resource_index_page) == True
-
-        case_studies = AiLabCaseStudyFactory.create_batch(
-            10, parent=resource_index_page
+        understand = AiLabUnderstandIndexPageFactory.create(
+            parent=resource_index_page,
+            summary_title="Understanding AI",
+            summary_body="Some stuff about understanding AI.",
         )
+        develop = AiLabDevelopIndexPageFactory.create(
+            parent=resource_index_page,
+            summary_title="Developing AI",
+            summary_body="Some stuff about developing AI.",
+        )
+        adopt = AiLabAdoptIndexPageFactory.create(
+            parent=resource_index_page,
+            summary_title="Adopting AI",
+            summary_body="Some stuff about adopting AI.",
+        )
+
+        page = client.get(resource_index_page.url)
+
+        assert page.status_code == 200
+
+        for subpage in [understand, develop, adopt]:
+            assert subpage.summary_title in str(page.content)
+            assert subpage.summary_body in str(page.content)
+
+    def test_index_page_lists_resources(self):
+        resources_index_page = AiLabResourceIndexPageFactory.create()
+
+        understand = AiLabUnderstandIndexPageFactory.create(parent=resources_index_page)
+        develop = AiLabDevelopIndexPageFactory.create(parent=resources_index_page)
+        adopt = AiLabAdoptIndexPageFactory.create(parent=resources_index_page)
+
+        assert AiLabCaseStudy.can_create_at(understand) == True
+        assert AiLabCaseStudy.can_create_at(develop) == True
+        assert AiLabCaseStudy.can_create_at(adopt) == True
+
+        understand_case_studies = AiLabCaseStudyFactory.create_batch(
+            3, parent=understand
+        )
+        develop_case_studies = AiLabCaseStudyFactory.create_batch(3, parent=develop)
+        adopt_case_studies = AiLabCaseStudyFactory.create_batch(3, parent=develop)
+
+        understand_external_resources = AiLabExternalResourceFactory.create_batch(
+            2, parent=understand
+        )
+        develop_external_resources = AiLabExternalResourceFactory.create_batch(
+            2, parent=develop
+        )
+
+        page = client.get(resources_index_page.url)
+
+        assert page.status_code == 200
+
+        for resource in (
+            understand_case_studies + develop_case_studies + adopt_case_studies
+        ):
+            assert resource.title in str(page.content)
+
+        for resource in understand_external_resources + develop_external_resources:
+            assert resource.title in str(page.content)
+
+    def resource_index_page_shows_children(self):
+        resource_index_page = AiLabUnderstandIndexPageFactory.create()
+
+        case_studies = AiLabCaseStudyFactory.create_batch(2, parent=resource_index_page)
         external_resources = AiLabExternalResourceFactory.create_batch(
             3, parent=resource_index_page
-        )
-
-        assert len(resource_index_page.get_children()) == len(
-            case_studies + external_resources
         )
 
         page = client.get(resource_index_page.url)
@@ -56,65 +106,3 @@ class TestAiLabResources:
 
         for resource in case_studies + external_resources:
             assert resource.title in str(page.content)
-
-    def test_index_page_filters_by_use_case(self):
-        resource_index_page = AiLabResourceIndexPageFactory.create()
-        use_case = AiLabUseCaseFactory.create(name="my use case")
-
-        case_studies = AiLabCaseStudyFactory.create_batch(
-            5, parent=resource_index_page, use_case=use_case
-        )
-        external_resources = AiLabExternalResourceFactory.create_batch(
-            3, parent=resource_index_page, use_case=use_case
-        )
-
-        other_case_studies = AiLabCaseStudyFactory.create_batch(
-            2, parent=resource_index_page
-        )
-        other_external_resources = AiLabExternalResourceFactory.create_batch(
-            3, parent=resource_index_page
-        )
-
-        page = client.get(
-            resource_index_page.url
-            + resource_index_page.reverse_subpage(
-                "filter_by_use_case", args=("my-use-case",)
-            )
-        )
-
-        assert page.status_code == 200
-
-        assert use_case.name in str(page.content)
-        assert use_case.description in str(page.content)
-
-        for resource in case_studies + external_resources:
-            assert resource.title in str(page.content)
-
-        for resource in other_case_studies + other_external_resources:
-            assert resource.title not in str(page.content)
-
-    def test_index_page_404s_when_use_case_does_not_exist(self):
-        resource_index_page = AiLabResourceIndexPageFactory.create()
-
-        page = client.get(
-            resource_index_page.url
-            + resource_index_page.reverse_subpage(
-                "filter_by_use_case", args=("non-existent-use-case",)
-            )
-        )
-
-        assert page.status_code == 404
-
-    def test_index_page_lists_use_cases(self):
-        resource_index_page = AiLabResourceIndexPageFactory.create()
-        use_cases = AiLabUseCaseFactory.create_batch(3)
-
-        page = client.get(resource_index_page.url)
-
-        for use_case in use_cases:
-            url = resource_index_page.url + resource_index_page.reverse_subpage(
-                "filter_by_use_case", args=(use_case.slug,)
-            )
-            assert use_case.name in str(page.content)
-            assert use_case.description in str(page.content)
-            assert url in str(page.content)
