@@ -49,7 +49,12 @@ class AiLabCategoryIndexPageMixin(SectionPage):
     """
 
     parent_page_types = ["AiLabResourceIndexPage"]
-    subpage_types = ["AiLabCaseStudy", "AiLabExternalResource"]
+    subpage_types = [
+        "AiLabCaseStudy",
+        "AiLabExternalResource",
+        "AiLabGuidance",
+        "AiLabReport",
+    ]
     max_count = 1
 
     summary_title = models.CharField(
