@@ -3,7 +3,7 @@ import pytz
 
 import dateutil.parser
 from django.test import Client
-from modules.ai_lab.models import AiLabHomePage
+from modules.ai_lab.models.home_page import AiLabHomePage
 from modules.ai_lab.tests.factories import AiLabHomePageFactory
 from modules.blog_posts.tests.factories import BlogPostFactory
 
