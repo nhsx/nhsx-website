@@ -4,10 +4,12 @@ import pytest
 
 from modules.ai_lab.models import (
     AiLabHomePage,
-    AiLabUseCase,
     AiLabCaseStudy,
     AiLabResourceIndexPage,
     AiLabExternalResource,
+    AiLabUnderstandIndexPage,
+    AiLabDevelopIndexPage,
+    AiLabAdoptIndexPage,
 )
 from modules.core.tests.factories import CorePageFactory
 from wagtail.core.models import Site
@@ -24,17 +26,8 @@ class AiLabHomePageFactory(CorePageFactory):
         model = AiLabHomePage
 
 
-class AiLabUseCaseFactory(factory.django.DjangoModelFactory):
-    name = factory.Faker("word")
-    description = factory.Faker("sentence")
-
-    class Meta:
-        model = AiLabUseCase
-
-
 class AiLabCaseStudyFactory(CorePageFactory):
     title = factory.Sequence(lambda n: "Case Study %d" % n)
-    use_case = factory.SubFactory(AiLabUseCaseFactory)
 
     class Meta:
         model = AiLabCaseStudy
@@ -42,7 +35,6 @@ class AiLabCaseStudyFactory(CorePageFactory):
 
 class AiLabExternalResourceFactory(CorePageFactory):
     title = factory.Sequence(lambda n: "External Resource %d" % n)
-    use_case = factory.SubFactory(AiLabUseCaseFactory)
     external_url = factory.Faker("url")
 
     class Meta:
@@ -58,3 +50,33 @@ class AiLabResourceIndexPageFactory(CorePageFactory):
 
     class Meta:
         model = AiLabResourceIndexPage
+
+
+class AiLabCategoryIndexPageFactory(CorePageFactory):
+    summary_title = "This is the summary title"
+    summary_body = "This is the summary body"
+
+    @factory.lazy_attribute
+    def parent(self):
+        return AiLabResourceIndexPageFactory.create()
+
+
+class AiLabUnderstandIndexPageFactory(AiLabCategoryIndexPageFactory):
+    title = "Resources to Understand AI"
+
+    class Meta:
+        model = AiLabUnderstandIndexPage
+
+
+class AiLabDevelopIndexPageFactory(AiLabCategoryIndexPageFactory):
+    title = "Resources to Develop AI"
+
+    class Meta:
+        model = AiLabDevelopIndexPage
+
+
+class AiLabAdoptIndexPageFactory(AiLabCategoryIndexPageFactory):
+    title = "Resources to Adopt AI"
+
+    class Meta:
+        model = AiLabAdoptIndexPage
