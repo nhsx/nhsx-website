@@ -2,15 +2,15 @@ import wagtail_factories
 import factory
 import pytest
 
-from modules.ai_lab.models import (
-    AiLabHomePage,
-    AiLabCaseStudy,
+from modules.ai_lab.models.home_page import AiLabHomePage
+from modules.ai_lab.models.resource_listings import (
     AiLabResourceIndexPage,
-    AiLabExternalResource,
     AiLabUnderstandIndexPage,
     AiLabDevelopIndexPage,
     AiLabAdoptIndexPage,
 )
+from modules.ai_lab.models.resources import AiLabCaseStudy, AiLabExternalResource
+
 from modules.core.tests.factories import CorePageFactory
 from wagtail.core.models import Site
 
