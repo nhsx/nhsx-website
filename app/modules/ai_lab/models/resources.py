@@ -7,6 +7,7 @@ from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
 from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 from wagtail.core.models import Page
 from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtail.documents.edit_handlers import DocumentChooserPanel
 
 from modules.core.models.abstract import BasePage
 from modules.core.models.pages import SectionPage, ArticlePage
@@ -28,11 +29,19 @@ class AiLabResourceMixin(models.Model):
         on_delete=models.SET_NULL,
         related_name="+",
     )
+    download = models.ForeignKey(
+        settings.WAGTAILDOCS_DOCUMENT_MODEL,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+    )
 
     content_panels = [
         FieldPanel("title"),
         FieldPanel("summary", widget=forms.Textarea),
         ImageChooserPanel("featured_image"),
+        DocumentChooserPanel("download"),
         FieldPanel("first_published_at"),
         StreamFieldPanel("body"),
     ]
