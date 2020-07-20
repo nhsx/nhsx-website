@@ -37,6 +37,9 @@ class AiLabResourceMixin(models.Model):
         StreamFieldPanel("body"),
     ]
 
+    def get_template(self, request):
+        return "ai_lab/resource.html"
+
     class Meta:
         abstract = True
 
