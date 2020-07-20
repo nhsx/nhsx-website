@@ -14,31 +14,16 @@
   <main class="nhsuk-main-wrapper" id="maincontent">
     <div class="nhsuk-grid-row">
       <div class="nhsuk-grid-column-full">
+        {% include_block page.body %}
+
         <div class="block-promo_group">
           <div class="nhsuk-grid-row nhsuk-promo-group">
             {% for child in page.get_children %}
             <div class="nhsuk-grid-column-one-third nhsuk-promo-group__item">
               <div class="nhsuk-promo">
                 <div class="nhsuk-promo__content">
-                  <h2 class="nhsuk-promo__heading">{{ child.specific.summary_title }}</h2>
-                  <p class="nhsuk-promo__description">{{ child.specific.summary_body }}</p>
-                  <a href="{{ child.specific.url }}">Browse all</a>
-                </div>
-              </div>
-            </div>
-            {% endfor %}
-          </div>
-        </div>
-        {% include_block page.body %}
-
-        <div class="block-promo_group">
-          <div class="nhsuk-grid-row nhsuk-promo-group">
-            {% for resource in resources %}
-            <div class="nhsuk-grid-column-one-third nhsuk-promo-group__item">
-              <div class="nhsuk-promo">
-                <div class="nhsuk-promo__content">
-                  <a href="{{ resource.url }}">
-                    <h2>{{ resource.title }}</h2>
+                  <a href="{{ child.url }}">
+                    <h2>{{ child.title }}</h2>
                   </a>
                 </div>
               </div>
