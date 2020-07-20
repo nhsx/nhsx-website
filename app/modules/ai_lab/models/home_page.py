@@ -15,3 +15,6 @@ class AiLabHomePage(SectionPage):
         )
         context.update({"blog_posts": blog_posts})
         return context
+
+    class Meta:
+        verbose_name = "AI Lab Homepage"
