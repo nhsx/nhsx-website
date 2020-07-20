@@ -22,12 +22,12 @@
         <div class="block-promo_group">
           <div class="nhsuk-grid-row nhsuk-promo-group">
           {% for case in use_cases %}
-            <div class="nhsuk-grid-column-one-third nhsuk-promo-group__item">
+            <div class="nhsuk-grid-column-one-third nhsuk-promo-group__item nhsai-usecase">
               <div class="nhsuk-promo">
                 <div class="nhsuk-promo__content">
-                  <h2 class="nhsuk-promo__heading">{{ case.name }}</h2>
+                  <a href="{% use_case_url page case %}" class="nhsuk-promo__link_heading"><h2 class="nhsuk-promo__heading">{{ case.name }}</h2></a>
                   <p class="nhsuk-promo__description">{{ case.description }}</p>
-                  <a href="{% use_case_url page case %}">Browse all</a>
+                  <a class="nhsai_animated-link" href="{% use_case_url page case %}">Browse all</a>
                 </div>
               </div>
             </div>
