@@ -1,7 +1,8 @@
 import pytest
 
 from django.test import Client
-from modules.ai_lab.models import AiLabCaseStudy, AiLabResourceIndexPage
+from modules.ai_lab.models.resources import AiLabCaseStudy
+from modules.ai_lab.models.resource_listings import AiLabResourceIndexPage
 from modules.ai_lab.tests.factories import *
 from wagtail.core.models import Page
 
