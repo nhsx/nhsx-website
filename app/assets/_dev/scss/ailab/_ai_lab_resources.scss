@@ -15,12 +15,12 @@
         display: block;
 
         .nhsuk-promo__heading {
-            text-decoration: none;
+            text-decoration: underline;
             margin-bottom: 0;
         }
         &:hover {
             .nhsuk-promo__heading {
-                text-decoration: underline;
+                text-decoration: none;
             }
         }
         &.nhsuk-promo__link_heading {
