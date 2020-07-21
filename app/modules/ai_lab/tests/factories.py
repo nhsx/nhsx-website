@@ -9,7 +9,12 @@ from modules.ai_lab.models.resource_listings import (
     AiLabDevelopIndexPage,
     AiLabAdoptIndexPage,
 )
-from modules.ai_lab.models.resources import AiLabCaseStudy, AiLabExternalResource
+from modules.ai_lab.models.resources import (
+    AiLabCaseStudy,
+    AiLabExternalResource,
+    AiLabGuidance,
+    AiLabReport,
+)
 
 from modules.core.tests.factories import CorePageFactory
 from wagtail.core.models import Site
@@ -38,6 +43,20 @@ class AiLabCaseStudyFactory(ResourceFactory):
 
     class Meta:
         model = AiLabCaseStudy
+
+
+class AiLabGuidanceFactory(ResourceFactory):
+    title = factory.Sequence(lambda n: "Guidance %d" % n)
+
+    class Meta:
+        model = AiLabGuidance
+
+
+class AiLabReportFactory(ResourceFactory):
+    title = factory.Sequence(lambda n: "Report %d" % n)
+
+    class Meta:
+        model = AiLabReport
 
 
 class AiLabExternalResourceFactory(ResourceFactory):

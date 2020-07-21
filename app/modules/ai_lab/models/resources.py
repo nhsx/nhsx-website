@@ -45,6 +45,14 @@ class AiLabCaseStudy(AiLabResourceMixin, ArticlePage):
     pass
 
 
+class AiLabGuidance(AiLabResourceMixin, ArticlePage):
+    pass
+
+
+class AiLabReport(AiLabResourceMixin, ArticlePage):
+    pass
+
+
 class AiLabExternalResource(AiLabResourceMixin, Page):
     external_url = models.URLField()
     content_panels = [
