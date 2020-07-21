@@ -14,6 +14,7 @@ from modules.ai_lab.models.resources import (
     AiLabExternalResource,
     AiLabGuidance,
     AiLabReport,
+    AiLabTopic,
 )
 
 from modules.core.tests.factories import CorePageFactory
@@ -29,6 +30,13 @@ class AiLabHomePageFactory(CorePageFactory):
 
     class Meta:
         model = AiLabHomePage
+
+
+class AiLabTopicFactory(factory.Factory):
+    name = factory.Faker("word")
+
+    class Meta:
+        model = AiLabTopic
 
 
 class ResourceFactory(CorePageFactory):

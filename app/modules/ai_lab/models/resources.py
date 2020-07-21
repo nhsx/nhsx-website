@@ -2,6 +2,7 @@ from django import forms
 from django.db import models
 from django.http import Http404
 from django.conf import settings
+from django.utils.text import slugify
 
 from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
 from wagtail.contrib.routable_page.models import RoutablePageMixin, route
@@ -51,6 +52,33 @@ class AiLabResourceMixin(models.Model):
 
     class Meta:
         abstract = True
+
+
+class AiLabTopic(models.Model):
+    name = models.CharField(max_length=30)
+    slug = models.SlugField(max_length=30, null=True, unique=True)
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = self._get_unique_slug()
+        return super().save(*args, **kwargs)
+
+    def _get_unique_slug(self):
+        slug = slugify(self.name)
+        unique_slug = slug
+        counter = 1
+        while self.__class__.objects.filter(slug=unique_slug).exists():
+            if (
+                self.__class__.objects.filter(slug=unique_slug).values("id")[0]["id"]
+                == id
+            ):
+                break
+            unique_slug = "{}-{}".format(slug, counter)
+            counter += 1
+        return unique_slug
+
+    def __str__(self):
+        return self.name
 
 
 class AiLabCaseStudy(AiLabResourceMixin, ArticlePage):
