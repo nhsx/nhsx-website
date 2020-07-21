@@ -1,10 +1,12 @@
 from django import forms
 from django.db import models
 from django.http import Http404
+from django.conf import settings
 
 from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
 from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 from wagtail.core.models import Page
+from wagtail.images.edit_handlers import ImageChooserPanel
 
 from modules.core.models.abstract import BasePage
 from modules.core.models.pages import SectionPage, ArticlePage
@@ -18,6 +20,23 @@ class AiLabResourceMixin(models.Model):
         "AiLabAdoptIndexPage",
     ]
 
+    summary = models.CharField(max_length=255)
+    featured_image = models.ForeignKey(
+        settings.WAGTAILIMAGES_IMAGE_MODEL,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+    )
+
+    content_panels = [
+        FieldPanel("title"),
+        FieldPanel("summary", widget=forms.Textarea),
+        ImageChooserPanel("featured_image"),
+        FieldPanel("first_published_at"),
+        StreamFieldPanel("body"),
+    ]
+
     class Meta:
         abstract = True
 
@@ -28,6 +47,10 @@ class AiLabCaseStudy(AiLabResourceMixin, ArticlePage):
 
 class AiLabExternalResource(AiLabResourceMixin, Page):
     external_url = models.URLField()
-    content_panels = Page.content_panels + [
+    content_panels = [
+        FieldPanel("title"),
+        FieldPanel("summary"),
+        ImageChooserPanel("featured_image"),
+        FieldPanel("first_published_at"),
         FieldPanel("external_url", widget=forms.URLInput()),
     ]

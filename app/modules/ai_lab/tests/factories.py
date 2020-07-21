@@ -26,14 +26,21 @@ class AiLabHomePageFactory(CorePageFactory):
         model = AiLabHomePage
 
 
-class AiLabCaseStudyFactory(CorePageFactory):
+class ResourceFactory(CorePageFactory):
+    summary = factory.Faker("sentence")
+
+    class Meta:
+        abstract = True
+
+
+class AiLabCaseStudyFactory(ResourceFactory):
     title = factory.Sequence(lambda n: "Case Study %d" % n)
 
     class Meta:
         model = AiLabCaseStudy
 
 
-class AiLabExternalResourceFactory(CorePageFactory):
+class AiLabExternalResourceFactory(ResourceFactory):
     title = factory.Sequence(lambda n: "External Resource %d" % n)
     external_url = factory.Faker("url")
 
