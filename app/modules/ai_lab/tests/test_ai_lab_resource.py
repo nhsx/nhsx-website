@@ -33,6 +33,12 @@ class TestAiLabResource:
 
         assert isinstance(case_study, AiLabCaseStudy)
 
+    def test_case_study_can_have_topics_applied(self):
+        topics = AiLabTopicFactory.create_batch(2)
+        case_study = AiLabCaseStudyFactory.create(topics=topics)
+
+        assert len(case_study.topics.all()) == 2
+
     def test_case_study_template_shows_body(self):
         category_page = AiLabUnderstandIndexPageFactory.create()
         case_study = AiLabCaseStudyFactory.create(parent=category_page)

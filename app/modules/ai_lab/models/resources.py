@@ -9,6 +9,7 @@ from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 from wagtail.core.models import Page
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.documents.edit_handlers import DocumentChooserPanel
+from modelcluster.fields import ParentalManyToManyField
 
 from modules.core.models.abstract import BasePage
 from modules.core.models.pages import SectionPage, ArticlePage
@@ -38,12 +39,17 @@ class AiLabResourceMixin(models.Model):
         related_name="+",
     )
 
+    topics = ParentalManyToManyField(
+        "AiLabTopic", blank=False, related_name="pages_%(class)s"
+    )
+
     content_panels = [
         FieldPanel("title"),
         FieldPanel("summary", widget=forms.Textarea),
         ImageChooserPanel("featured_image"),
         DocumentChooserPanel("download"),
         FieldPanel("first_published_at"),
+        FieldPanel("topics", widget=forms.CheckboxSelectMultiple),
         StreamFieldPanel("body"),
     ]
 

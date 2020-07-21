@@ -32,7 +32,7 @@ class AiLabHomePageFactory(CorePageFactory):
         model = AiLabHomePage
 
 
-class AiLabTopicFactory(factory.Factory):
+class AiLabTopicFactory(factory.django.DjangoModelFactory):
     name = factory.Faker("word")
 
     class Meta:
@@ -41,6 +41,19 @@ class AiLabTopicFactory(factory.Factory):
 
 class ResourceFactory(CorePageFactory):
     summary = factory.Faker("sentence")
+
+    @factory.post_generation
+    def topics(self, create, extracted, **kwargs):
+        if not create:
+            return
+
+        if extracted:
+            topics = extracted
+        else:
+            topics = AiLabTopicFactory.create_batch(3)
+
+        for topic in topics:
+            self.topics.add(topic)
 
     class Meta:
         abstract = True
