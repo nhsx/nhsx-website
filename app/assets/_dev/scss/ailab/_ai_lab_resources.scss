@@ -1,0 +1,48 @@
+.nhsai-usecase .nhsuk-promo {
+    background: $nhsx-blue;
+    color: $white;
+    .nhsuk-promo__content {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    .nhsuk-promo__description {
+        color: $white;
+    }
+    a {
+        color: $white;
+        font-weight: bold;
+        display: block;
+
+        .nhsuk-promo__heading {
+            text-decoration: underline;
+            margin-bottom: 0;
+        }
+        &:hover {
+            .nhsuk-promo__heading {
+                text-decoration: none;
+            }
+        }
+        &.nhsuk-promo__link_heading {
+            margin-bottom: 16px;
+        }
+    }
+    .nhsai_animated-link {
+        font-size: 19px;
+        margin-top: auto;
+    }
+}
+
+.nhsai_animated-link {
+    text-decoration: none;
+
+    &:after {
+        content: "\2192";
+        padding-left: 10px;
+    }
+    &:hover {
+        &:after {
+            padding-left: 17px;
+        }
+    }
+}
