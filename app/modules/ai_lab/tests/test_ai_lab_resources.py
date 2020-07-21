@@ -12,22 +12,11 @@ client = Client()
 
 
 class TestAiLabResources:
-    def test_case_study_can_be_created(self):
-        case_study = AiLabCaseStudyFactory.create()
-        assert isinstance(case_study, AiLabCaseStudy)
-        assert case_study is not None
-
     def test_index_page_can_be_created(self):
         home_page = AiLabHomePageFactory.create()
         index_page = AiLabResourceIndexPageFactory.create(parent=home_page)
         assert isinstance(index_page, AiLabResourceIndexPage)
         assert index_page is not None
-
-    def test_case_study_can_have_use_case_applied(self):
-        category_page = AiLabUnderstandIndexPageFactory.create()
-        case_study = AiLabCaseStudyFactory.create(parent=category_page)
-
-        assert isinstance(case_study, AiLabCaseStudy)
 
     def test_index_page_shows_subpages(self):
         resource_index_page = AiLabResourceIndexPageFactory.create()
