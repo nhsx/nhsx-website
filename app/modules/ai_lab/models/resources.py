@@ -9,6 +9,7 @@ from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 from wagtail.core.models import Page
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.documents.edit_handlers import DocumentChooserPanel
+from wagtail.snippets.models import register_snippet
 from modelcluster.fields import ParentalManyToManyField
 
 from modules.core.models.abstract import BasePage
@@ -60,9 +61,14 @@ class AiLabResourceMixin(models.Model):
         abstract = True
 
 
+@register_snippet
 class AiLabTopic(models.Model):
     name = models.CharField(max_length=30)
     slug = models.SlugField(max_length=30, null=True, unique=True)
+
+    panels = [
+        FieldPanel("name"),
+    ]
 
     def save(self, *args, **kwargs):
         if not self.slug:
@@ -85,6 +91,10 @@ class AiLabTopic(models.Model):
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        verbose_name = "AI Lab Topic"
+        verbose_name_plural = "AI Lab Topics"
 
 
 class AiLabCaseStudy(AiLabResourceMixin, ArticlePage):
