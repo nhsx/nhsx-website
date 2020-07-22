@@ -9,7 +9,13 @@ from modules.core.models.abstract import BasePage
 from modules.core.models.pages import SectionPage, ArticlePage
 from modules.blog_posts.models import BlogPost
 
-from modules.ai_lab.models.resources import AiLabCaseStudy, AiLabExternalResource
+from modules.ai_lab.models.resources import (
+    AiLabCaseStudy,
+    AiLabExternalResource,
+    AiLabTopic,
+    AiLabGuidance,
+    AiLabReport,
+)
 
 
 class AiLabFilterableResourceMixin(RoutablePageMixin):
@@ -25,15 +31,30 @@ class AiLabFilterableResourceMixin(RoutablePageMixin):
         if topic is None:
             return self.get_children().specific()
         else:
-            return self._filter_by_topic(self.get_children().specific(), topic)
+            return self._filter_by_topic(topic)
 
-    def _filter_by_topic(self, result, topic):
-        return list(
-            filter(
-                lambda child: topic
-                in child.topics.all().values_list("slug", flat=True),
-                result,
-            )
+    def _filter_by_topic(self, topic):
+        ids = self._get_ids_for_topic(topic)
+
+        return Page.objects.filter(id__in=(ids)).specific()
+
+    def _get_ids_for_topic(self, topic):
+        ids = []
+
+        for resource_ids_for_use_case in [
+            self._get_ids_for_class(klass, topic) for klass in self.subpage_types
+        ]:
+            for id in resource_ids_for_use_case:
+                ids.append(id)
+
+        return ids
+
+    def _get_ids_for_class(self, klass, topic):
+        return (
+            eval(klass)
+            .objects.child_of(self)
+            .filter(topics__slug=topic)
+            .values_list("id", flat=True)
         )
 
 
@@ -63,17 +84,14 @@ class AiLabResourceIndexPage(AiLabFilterableResourceMixin, BasePage):
         children = self.get_children().specific()
 
         for child in children:
-            for resource in child.get_children().specific():
-                resource_ids.append(resource.id)
+            if topic is None:
+                for resource in child.get_children().specific():
+                    resource_ids.append(resource.id)
+            else:
+                for id in child._get_ids_for_topic(topic):
+                    resource_ids.append(id)
 
-        resources = (
-            Page.objects.filter(id__in=resource_ids).specific().order_by("title")
-        )
-
-        if topic is None:
-            return resources
-        else:
-            return self._filter_by_topic(resources, topic)
+        return Page.objects.filter(id__in=resource_ids).specific().order_by("title")
 
 
 class AiLabCategoryIndexPageMixin(AiLabFilterableResourceMixin, SectionPage):
