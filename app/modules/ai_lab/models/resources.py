@@ -40,9 +40,7 @@ class AiLabResourceMixin(models.Model):
         related_name="+",
     )
 
-    topics = ParentalManyToManyField(
-        "AiLabTopic", blank=False, related_name="pages_%(class)s"
-    )
+    topics = ParentalManyToManyField("AiLabTopic", blank=False)
 
     content_panels = [
         FieldPanel("title"),

@@ -1,6 +1,9 @@
 from django.db import models
+from django.shortcuts import render
 
 from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
+from wagtail.contrib.routable_page.models import RoutablePageMixin, route
+from wagtail.core.models import Page
 
 from modules.core.models.abstract import BasePage
 from modules.core.models.pages import SectionPage, ArticlePage
@@ -9,7 +12,32 @@ from modules.blog_posts.models import BlogPost
 from modules.ai_lab.models.resources import AiLabCaseStudy, AiLabExternalResource
 
 
-class AiLabResourceIndexPage(BasePage):
+class AiLabFilterableResourceMixin(RoutablePageMixin):
+    @route(r"^$")
+    @route(r"^topic/([a-z\-0-9]+)/$")
+    def filter_by_topic(self, request, topic=None):
+        resources = self._get_resources(topic)
+        template = self.get_template(request)
+
+        return render(request, template, {"resources": resources, "page": self})
+
+    def _get_resources(self, topic=None):
+        if topic is None:
+            return self.get_children().specific()
+        else:
+            return self._filter_by_topic(self.get_children().specific(), topic)
+
+    def _filter_by_topic(self, result, topic):
+        return list(
+            filter(
+                lambda child: topic
+                in child.topics.all().values_list("slug", flat=True),
+                result,
+            )
+        )
+
+
+class AiLabResourceIndexPage(AiLabFilterableResourceMixin, BasePage):
     """
     An index page that lists all resources listed in the child
     sections
@@ -30,20 +58,25 @@ class AiLabResourceIndexPage(BasePage):
         StreamFieldPanel("body"),
     ]
 
-    def get_context(self, request):
-        context = super().get_context(request)
+    def _get_resources(self, topic=None):
+        resource_ids = []
+        children = self.get_children().specific()
 
-        resources = []
-        for child in self.get_children().specific():
+        for child in children:
             for resource in child.get_children().specific():
-                resources.append(resource)
+                resource_ids.append(resource.id)
 
-        context["resources"] = sorted(resources, key=lambda r: r.title)
+        resources = (
+            Page.objects.filter(id__in=resource_ids).specific().order_by("title")
+        )
 
-        return context
+        if topic is None:
+            return resources
+        else:
+            return self._filter_by_topic(resources, topic)
 
 
-class AiLabCategoryIndexPageMixin(SectionPage):
+class AiLabCategoryIndexPageMixin(AiLabFilterableResourceMixin, SectionPage):
     """
     A Mixin to be used by the category listing index pages
     """
