@@ -1,15 +1,69 @@
 from django.db import models
+from django.shortcuts import render
 
 from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
+from wagtail.contrib.routable_page.models import RoutablePageMixin, route
+from wagtail.core.models import Page
 
 from modules.core.models.abstract import BasePage
 from modules.core.models.pages import SectionPage, ArticlePage
 from modules.blog_posts.models import BlogPost
 
-from modules.ai_lab.models.resources import AiLabCaseStudy, AiLabExternalResource
+from modules.ai_lab.models.resources import (
+    AiLabCaseStudy,
+    AiLabExternalResource,
+    AiLabTopic,
+    AiLabGuidance,
+    AiLabReport,
+)
 
 
-class AiLabResourceIndexPage(BasePage):
+class AiLabFilterableResourceMixin(RoutablePageMixin):
+    @route(r"^$")
+    @route(r"^topic/([a-z\-0-9]+)/$")
+    def filter_by_topic(self, request, topic=None):
+        resources = self._get_resources(topic)
+        template = self.get_template(request)
+        topics = AiLabTopic.objects.all()
+
+        return render(
+            request,
+            template,
+            {"resources": resources, "page": self, "topics": topics, "topic": topic},
+        )
+
+    def _get_resources(self, topic=None):
+        if topic is None:
+            return self.get_children().specific()
+        else:
+            return self._filter_by_topic(topic)
+
+    def _filter_by_topic(self, topic):
+        ids = self._get_ids_for_topic(topic)
+
+        return Page.objects.filter(id__in=(ids)).specific()
+
+    def _get_ids_for_topic(self, topic):
+        ids = []
+
+        for resource_ids_for_use_case in [
+            self._get_ids_for_class(klass, topic) for klass in self.subpage_types
+        ]:
+            for id in resource_ids_for_use_case:
+                ids.append(id)
+
+        return ids
+
+    def _get_ids_for_class(self, klass, topic):
+        return (
+            eval(klass)
+            .objects.child_of(self)
+            .filter(topics__slug=topic)
+            .values_list("id", flat=True)
+        )
+
+
+class AiLabResourceIndexPage(AiLabFilterableResourceMixin, BasePage):
     """
     An index page that lists all resources listed in the child
     sections
@@ -30,26 +84,33 @@ class AiLabResourceIndexPage(BasePage):
         StreamFieldPanel("body"),
     ]
 
-    def get_context(self, request):
-        context = super().get_context(request)
+    def _get_resources(self, topic=None):
+        resource_ids = []
+        children = self.get_children().specific()
 
-        resources = []
-        for child in self.get_children().specific():
-            for resource in child.get_children().specific():
-                resources.append(resource)
+        for child in children:
+            if topic is None:
+                for resource in child.get_children().specific():
+                    resource_ids.append(resource.id)
+            else:
+                for id in child._get_ids_for_topic(topic):
+                    resource_ids.append(id)
 
-        context["resources"] = sorted(resources, key=lambda r: r.title)
-
-        return context
+        return Page.objects.filter(id__in=resource_ids).specific().order_by("title")
 
 
-class AiLabCategoryIndexPageMixin(SectionPage):
+class AiLabCategoryIndexPageMixin(AiLabFilterableResourceMixin, SectionPage):
     """
     A Mixin to be used by the category listing index pages
     """
 
     parent_page_types = ["AiLabResourceIndexPage"]
-    subpage_types = ["AiLabCaseStudy", "AiLabExternalResource"]
+    subpage_types = [
+        "AiLabCaseStudy",
+        "AiLabExternalResource",
+        "AiLabGuidance",
+        "AiLabReport",
+    ]
     max_count = 1
 
     summary_title = models.CharField(

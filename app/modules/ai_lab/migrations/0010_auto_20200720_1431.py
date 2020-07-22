@@ -6,24 +6,23 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('ai_lab', '0009_auto_20200720_1146'),
+        ("ai_lab", "0009_auto_20200720_1146"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='ailabadoptindexpage',
-            options={'verbose_name': 'Adopting AI Index Page'},
+            name="ailabadoptindexpage",
+            options={"verbose_name": "Adopting AI Index Page"},
         ),
         migrations.AlterModelOptions(
-            name='ailabdevelopindexpage',
-            options={'verbose_name': 'Developing AI Index Page'},
+            name="ailabdevelopindexpage",
+            options={"verbose_name": "Developing AI Index Page"},
         ),
         migrations.AlterModelOptions(
-            name='ailabhomepage',
-            options={'verbose_name': 'AI Lab Homepage'},
+            name="ailabhomepage", options={"verbose_name": "AI Lab Homepage"},
         ),
         migrations.AlterModelOptions(
-            name='ailabunderstandindexpage',
-            options={'verbose_name': 'Understanding AI Index Page'},
+            name="ailabunderstandindexpage",
+            options={"verbose_name": "Understanding AI Index Page"},
         ),
     ]
