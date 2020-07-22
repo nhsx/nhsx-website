@@ -24,8 +24,13 @@ class AiLabFilterableResourceMixin(RoutablePageMixin):
     def filter_by_topic(self, request, topic=None):
         resources = self._get_resources(topic)
         template = self.get_template(request)
+        topics = AiLabTopic.objects.all()
 
-        return render(request, template, {"resources": resources, "page": self})
+        return render(
+            request,
+            template,
+            {"resources": resources, "page": self, "topics": topics, "topic": topic},
+        )
 
     def _get_resources(self, topic=None):
         if topic is None:

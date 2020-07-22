@@ -45,6 +45,15 @@ class TestAiLabResources:
             assert subpage.summary_title in str(page.content)
             assert subpage.summary_body in str(page.content)
 
+    def test_index_page_lists_topics(self):
+        topics = AiLabTopicFactory.create_batch(7)
+        index_page = AiLabResourceIndexPageFactory.create()
+
+        page = client.get(index_page.url)
+
+        for topic in topics:
+            assert topic.name in str(page.content)
+
     def test_index_page_lists_resources(self):
         resources_index_page = AiLabResourceIndexPageFactory.create()
 
@@ -96,6 +105,15 @@ class TestAiLabResources:
         for resource in case_studies + external_resources:
             assert resource.title in str(page.content)
 
+    def test_resource_index_page_lists_topics(self):
+        topics = AiLabTopicFactory.create_batch(7)
+        resource_index_page = AiLabUnderstandIndexPageFactory.create()
+
+        page = client.get(resource_index_page.url)
+
+        for topic in topics:
+            assert topic.name in str(page.content)
+
     def test_resource_index_page_filters_by_topic(self):
         resource_index_page = AiLabUnderstandIndexPageFactory.create()
         topic = AiLabTopicFactory(name="Access Funding")
@@ -113,7 +131,6 @@ class TestAiLabResources:
         other_external_resources = AiLabExternalResourceFactory.create_batch(
             3, parent=resource_index_page
         )
-        page = client.get(resource_index_page.url)
 
         url = resource_index_page.url + resource_index_page.reverse_subpage(
             "filter_by_topic", args=(topic.slug,)
