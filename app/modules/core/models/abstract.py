@@ -123,7 +123,7 @@ class SubNavMixin(PageLinksMixin):
 
     @cached_property
     def _children(self):
-        children = self.get_children()
+        children = self.get_children().live()
         return [{'title': _.title, 'url': _.url} for _ in children]
 
     @cached_property
