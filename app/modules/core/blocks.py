@@ -1,10 +1,14 @@
 # 3rd party
+from django import forms
+
 from wagtail.core import blocks
 from wagtail.embeds import embeds
 from wagtail.embeds.blocks import EmbedBlock as WagtailEmbedBlock
 from wagtail.documents.blocks import DocumentChooserBlock
 from wagtail.contrib.table_block.blocks import TableBlock as OGTableBlock
 from wagtail.images.blocks import ImageChooserBlock
+
+from taggit.models import Tag
 
 from wagtailnhsukfrontend.blocks import (  # NOQA
     ImageBlock,
@@ -172,6 +176,34 @@ class NHSXExpanderBlock(ExpanderBlock):
     body = NHSXExpanderBody(required=True)
 
 
+def get_tag_list():
+    return [(_.id, _.name) for _ in Tag.objects.all()]
+
+
+class LatestBlogPostsBlock(blocks.StructBlock):
+    heading = blocks.CharBlock(required=True)
+    number_of_posts = blocks.ChoiceBlock(
+        [(1, "One"), (2, "Two"), (3, "Three")], default=3, required=True
+    )
+    tag_id = blocks.ChoiceBlock(choices=get_tag_list, required=True)
+
+    def get_context(self, value, parent_context=None):
+        from modules.blog_posts.models import BlogPost
+
+        context = super().get_context(value, parent_context=parent_context)
+        value["tag"] = Tag.objects.get(id=value["tag_id"])
+        limit = int(value["number_of_posts"])
+        value["blog_posts"] = (
+            BlogPost.objects.live().filter(tags__id=value["tag_id"]).live()
+        )[:limit]
+        context.update(value)
+        return context
+
+    class Meta:
+        icon = "doc-full"
+        template = "blocks/latest_blog_posts.html"
+
+
 blog_link_blocks = [
     (
         "link",
@@ -200,6 +232,7 @@ content_blocks = [
     ("block_quote", blocks.BlockQuoteBlock(group=" Content")),
     ("embed", EmbedBlock(group=" Content")),
     ("captioned_embed", CaptionedEmbedBlock(group=" Content")),
+    ("latest_blog_posts", LatestBlogPostsBlock(group=" Content")),
 ]
 
 nhs_blocks = [
