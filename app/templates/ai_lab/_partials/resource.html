@@ -1,6 +1,9 @@
+{% load resource_tags %}
+
 <div class="nhsuk-grid-column-one-third nhsuk-promo-group__item">
   <div class="nhsuk-promo">
     <div class="nhsuk-promo__content">
+      <span>{{ resource|resource_type }}</span>
       <a href="{{ resource.url }}">
         <h2>{{ resource.title }}</h2>
       </a>
