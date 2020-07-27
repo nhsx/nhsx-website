@@ -1,5 +1,8 @@
 from django.db import models
 from django.shortcuts import render
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.http import HttpResponse
+from django.template import loader
 
 from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
 from wagtail.contrib.routable_page.models import RoutablePageMixin, route
@@ -22,15 +25,39 @@ class AiLabFilterableResourceMixin(RoutablePageMixin):
     @route(r"^$")
     @route(r"^topic/([a-z\-0-9]+)/$")
     def filter_by_topic(self, request, topic=None):
-        resources = self._get_resources(topic)
+        resources = self._get_resources(topic).live()
         template = self.get_template(request)
         topics = AiLabTopic.objects.all()
 
-        return render(
+        paginator = Paginator(resources, 9)
+
+        page = request.GET.get("page")
+
+        try:
+            resources = paginator.page(page)
+        except PageNotAnInteger:
+            resources = paginator.page(1)
+        except EmptyPage:
+            resources = paginator.page(paginator.num_pages)
+
+        return self._render(
             request,
             template,
-            {"resources": resources, "page": self, "topics": topics, "topic": topic},
+            {
+                "resources": resources,
+                "page": self,
+                "topics": topics,
+                "topic": topic,
+                "paginator": paginator,
+            },
         )
+
+    def _render(self, request, template, context):
+        t = loader.get_template(template)
+        response = HttpResponse(t.render(context, request))
+        if context["resources"].has_next():
+            response["next_page"] = context["resources"].next_page_number()
+        return response
 
     def _get_resources(self, topic=None):
         if topic is None:
@@ -68,6 +95,8 @@ class AiLabResourceIndexPage(AiLabFilterableResourceMixin, BasePage):
     An index page that lists all resources listed in the child
     sections
     """
+
+    ajax_template = "ai_lab/ai_lab_resource_index_page.js.html"
 
     parent_page_types = ["AiLabHomePage"]
     subpage_types = [
@@ -129,23 +158,32 @@ class AiLabCategoryIndexPageMixin(AiLabFilterableResourceMixin, SectionPage):
         FieldPanel("summary_body"),
     ]
 
-    def get_template(self, request):
-        return "ai_lab/ai_lab_category_index_page.html"
-
     class Meta:
         abstract = True
 
 
 class AiLabUnderstandIndexPage(AiLabCategoryIndexPageMixin):
+
+    template = "ai_lab/ai_lab_category_index_page.html"
+    ajax_template = "ai_lab/ai_lab_resource_index_page.js.html"
+
     class Meta:
         verbose_name = "Understanding AI Index Page"
 
 
 class AiLabDevelopIndexPage(AiLabCategoryIndexPageMixin):
+
+    template = "ai_lab/ai_lab_category_index_page.html"
+    ajax_template = "ai_lab/ai_lab_resource_index_page.js.html"
+
     class Meta:
         verbose_name = "Developing AI Index Page"
 
 
 class AiLabAdoptIndexPage(AiLabCategoryIndexPageMixin):
+
+    template = "ai_lab/ai_lab_category_index_page.html"
+    ajax_template = "ai_lab/ai_lab_resource_index_page.js.html"
+
     class Meta:
         verbose_name = "Adopting AI Index Page"
