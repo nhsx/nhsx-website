@@ -1,0 +1,7 @@
+<div class="block-promo_group">
+  <div class="nhsuk-grid-row nhsuk-promo-group">
+    {% for resource in resources %}
+    {% include 'ai_lab/_partials/resource.html' with resource=resource %}
+    {% endfor %}
+  </div>
+</div>
