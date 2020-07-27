@@ -1,9 +1,50 @@
+{% load wagtailimages_tags %}
+
+{% image resource.featured_image width-460 as one_image %}
+{% image resource.featured_image width-510 as two_image %}
+{% image resource.featured_image width-640 as three_image %}
+{% image resource.featured_image width-767 as four_image %}
+{% image resource.featured_image width-1019 as five_image %}
+{% image resource.featured_image width-1125 as six_image %}
+{% image resource.featured_image width-1534 as seven_image %}
+
 <div class="nhsuk-grid-column-one-third nhsuk-promo-group__item">
   <div class="nhsuk-promo">
-    <div class="nhsuk-promo__content">
-      <a href="{{ resource.url }}">
-        <h2>{{ resource.title }}</h2>
-      </a>
-    </div>
+    <a href="{{ resource.url }}" class="nhsuk-promo__link-wrapper">
+      <span class="nhsai_resouce__category">{{ resource.get_parent }}</span>
+
+      {% if resource.featured_image %}
+        <img
+          class="nhsuk-promo__img"
+          src="{{ one_image.url }}"
+          sizes="
+              (min-width: 1020px) 320px
+              (min-width: 768px) 50vw
+              100vw"
+          srcset="
+              {{ one_image.url }} 320w,
+              {{ two_image.url }} 510w,
+              {{ three_image.url }} 640w,
+              {{ four_image.url }} 767w,
+              {{ five_image.url }} 1019w,
+              {{ six_image.url }} 1125w,
+              {{ seven_image.url }} 1534w,
+            "
+          alt="{{ alt_text }}"
+        />
+      {% else %}
+        <div class="nhsuk-promo__img nhsai__resource_without_image"></div>
+      {% endif %}
+      <div class="nhsuk-promo__content">
+        <p class="nhsai_resouce__type">type goes here</p>
+        <h3 class="nhsuk-promo__heading">{{ resource.title }}</h3>
+        <p class="nhsuk-promo__description">{{ resource.summary }}</p>
+        <div class="nhsai_resouce__tags">
+          {% for topic in resource.topics.all %}
+            <span class="nhsai_resouce__tag">{{ topic }}</span>
+          {% endfor %}
+        </div>
+      </div>
+    </a>
   </div>
 </div>
