@@ -25,6 +25,7 @@ admin_css_files = ["_dev/scss/admin.scss"]
 
 core_js_files = [
     "_dev/js/lib/cookieconsent.min.js",
+    "_dev/js/lib/ai_lab_resources.js",
     "_dev/js/main.js",
 ]
 

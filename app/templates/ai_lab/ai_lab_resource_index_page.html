@@ -35,21 +35,7 @@
         </div>
         {% include_block page.body %}
 
-        <div class="block-promo_group">
-          <div class="nhsuk-grid-row nhsuk-promo-group">
-            {% for resource in resources %}
-            <div class="nhsuk-grid-column-one-third nhsuk-promo-group__item">
-              <div class="nhsuk-promo">
-                <div class="nhsuk-promo__content">
-                  <a href="{{ resource.url }}">
-                    <h2>{{ resource.title }}</h2>
-                  </a>
-                </div>
-              </div>
-            </div>
-            {% endfor %}
-          </div>
-        </div>
+        {% include 'ai_lab/_partials/resources.html' with resources=resources page=page %}
       </div>
     </div>
   </main>
