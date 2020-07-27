@@ -3,6 +3,9 @@ from django.shortcuts import render
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import HttpResponse
 from django.template import loader
+from django.utils.text import slugify
+from django.http import Http404
+
 
 from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
 from wagtail.contrib.routable_page.models import RoutablePageMixin, route
@@ -24,8 +27,8 @@ from modules.ai_lab.models.resources import (
 class AiLabFilterableResourceMixin(RoutablePageMixin):
     @route(r"^$")
     @route(r"^topic/([a-z\-0-9]+)/$")
-    def filter_by_topic(self, request, topic=None):
-        resources = self._get_resources(topic).live()
+    def filter_by_topic(self, request, topic=None, resource_type=None):
+        resources = self._get_resources(topic, resource_type).live()
         template = self.get_template(request)
         topics = AiLabTopic.objects.all()
 
@@ -40,7 +43,7 @@ class AiLabFilterableResourceMixin(RoutablePageMixin):
         except EmptyPage:
             resources = paginator.page(paginator.num_pages)
 
-        return self._render(
+        response = self._render(
             request,
             template,
             {
@@ -52,6 +55,8 @@ class AiLabFilterableResourceMixin(RoutablePageMixin):
             },
         )
 
+        return response
+
     def _render(self, request, template, context):
         t = loader.get_template(template)
         response = HttpResponse(t.render(context, request))
@@ -59,11 +64,16 @@ class AiLabFilterableResourceMixin(RoutablePageMixin):
             response["next_page"] = context["resources"].next_page_number()
         return response
 
-    def _get_resources(self, topic=None):
+    def _get_resources(self, topic=None, resource_type=None):
         if topic is None:
-            return self.get_children().specific()
+            resources = self.get_children().specific()
         else:
-            return self._filter_by_topic(topic)
+            resources = self._filter_by_topic(topic)
+
+        if resource_type is None:
+            return resources
+        else:
+            return resources.type(resource_type)
 
     def _filter_by_topic(self, topic):
         ids = self._get_ids_for_topic(topic)
@@ -89,6 +99,25 @@ class AiLabFilterableResourceMixin(RoutablePageMixin):
             .values_list("id", flat=True)
         )
 
+    @route(r"^type/([a-z\-0-9]+)/$")
+    @route(r"^type/([a-z\-0-9]+)/topic/([a-z\-0-9]+)/$")
+    def filter_by_type(self, request, resource_type, topic=None):
+        resource_type = self._subpage_types()[resource_type]
+
+        if resource_type:
+            return self.filter_by_topic(request, topic, resource_type)
+        else:
+            raise Http404("Nothing found")
+
+    def _subpage_types(self):
+        types = {}
+        for t in AiLabCategoryIndexPageMixin.subpage_types:
+            klass = eval(t)
+            key = slugify(klass._meta.verbose_name)
+            types[key] = klass
+
+        return types
+
 
 class AiLabResourceIndexPage(AiLabFilterableResourceMixin, BasePage):
     """
@@ -113,7 +142,7 @@ class AiLabResourceIndexPage(AiLabFilterableResourceMixin, BasePage):
         StreamFieldPanel("body"),
     ]
 
-    def _get_resources(self, topic=None):
+    def _get_resources(self, topic=None, resource_type=None):
         resource_ids = []
         children = self.get_children().specific()
 
@@ -125,7 +154,14 @@ class AiLabResourceIndexPage(AiLabFilterableResourceMixin, BasePage):
                 for id in child._get_ids_for_topic(topic):
                     resource_ids.append(id)
 
-        return Page.objects.filter(id__in=resource_ids).specific().order_by("title")
+        resources = (
+            Page.objects.filter(id__in=resource_ids).specific().order_by("title")
+        )
+
+        if resource_type is None:
+            return resources
+        else:
+            return resources.type(resource_type)
 
 
 class AiLabCategoryIndexPageMixin(AiLabFilterableResourceMixin, SectionPage):

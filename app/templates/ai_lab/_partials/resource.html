@@ -1,4 +1,5 @@
 {% load wagtailimages_tags %}
+{% load resource_tags %}
 
 {% image resource.featured_image width-460 as one_image %}
 {% image resource.featured_image width-510 as two_image %}
@@ -36,7 +37,9 @@
         <div class="nhsuk-promo__img nhsai__resource_without_image"></div>
       {% endif %}
       <div class="nhsuk-promo__content">
-        <p class="nhsai_resouce__type">type goes here</p>
+        <p class="nhsai_resouce__type">{{ resource|resource_type }}</p>
+        <!-- link to be used later (possibly not on this page?) 
+          <a href="{{ page|link_to_resource_type:page }}">{{ page|resource_type }}</a> -->
         <h3 class="nhsuk-promo__heading">{{ resource.title }}</h3>
         <p class="nhsuk-promo__description">{{ resource.summary }}</p>
         <div class="nhsai_resouce__tags">

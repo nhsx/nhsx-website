@@ -159,6 +159,42 @@ class TestAiLabResources:
         for resource in other_case_studies + other_external_resources:
             assert resource.title not in str(page.content)
 
+    def test_resource_index_page_filters_by_type(self):
+        resource_index_page = AiLabUnderstandIndexPageFactory.create()
+        topic = AiLabTopicFactory(name="Access Funding")
+
+        case_studies = [
+            AiLabCaseStudyFactory.create(parent=resource_index_page),
+            AiLabCaseStudyFactory.create(parent=resource_index_page, topics=[topic]),
+        ]
+        external_resources = AiLabExternalResourceFactory.create_batch(
+            3, parent=resource_index_page
+        )
+
+        url = resource_index_page.url + resource_index_page.reverse_subpage(
+            "filter_by_type", args=("case-study",)
+        )
+        page = client.get(url)
+
+        assert page.status_code == 200
+
+        for resource in case_studies:
+            assert resource.title in str(page.content)
+
+        for resource in external_resources:
+            assert resource.title not in str(page.content)
+
+        url = resource_index_page.url + resource_index_page.reverse_subpage(
+            "filter_by_type", args=("case-study", topic.slug)
+        )
+
+        page2 = client.get(url)
+
+        assert page2.status_code == 200
+
+        assert case_studies[0].title not in str(page2.content)
+        assert case_studies[1].title in str(page2.content)
+
     def test_index_page_filters_by_topics(self):
         index_page = AiLabResourceIndexPageFactory.create()
         parent = AiLabUnderstandIndexPageFactory.create(parent=index_page)
@@ -189,3 +225,43 @@ class TestAiLabResources:
 
         for resource in other_case_studies + other_external_resources:
             assert resource.title not in str(page.content)
+
+    def test_index_page_filters_by_type(self):
+        index_page = AiLabResourceIndexPageFactory.create()
+        parent = AiLabUnderstandIndexPageFactory.create(parent=index_page)
+
+        topic = AiLabTopicFactory(name="Access Funding")
+
+        case_studies = [
+            AiLabCaseStudyFactory.create(parent=parent),
+            AiLabCaseStudyFactory.create(parent=parent, topics=[topic]),
+        ]
+
+        external_resources = AiLabExternalResourceFactory.create_batch(
+            2, parent=parent, topics=[topic]
+        )
+
+        url = index_page.url + index_page.reverse_subpage(
+            "filter_by_type", args=("case-study",)
+        )
+
+        page = client.get(url)
+
+        assert page.status_code == 200
+
+        for resource in case_studies:
+            assert resource.title in str(page.content)
+
+        for resource in external_resources:
+            assert resource.title not in str(page.content)
+
+        url = index_page.url + index_page.reverse_subpage(
+            "filter_by_type", args=("case-study", topic.slug)
+        )
+
+        page2 = client.get(url)
+
+        assert page2.status_code == 200
+
+        assert case_studies[0].title not in str(page2.content)
+        assert case_studies[1].title in str(page2.content)

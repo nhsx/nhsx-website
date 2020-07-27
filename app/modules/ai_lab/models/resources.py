@@ -96,15 +96,21 @@ class AiLabTopic(models.Model):
 
 
 class AiLabCaseStudy(AiLabResourceMixin, ArticlePage):
-    pass
+    class Meta:
+        verbose_name = "Case Study"
+        verbose_name_plural = "Case Studies"
 
 
 class AiLabGuidance(AiLabResourceMixin, ArticlePage):
-    pass
+    class Meta:
+        verbose_name = "Guidance"
+        verbose_name_plural = "Guidance"
 
 
 class AiLabReport(AiLabResourceMixin, ArticlePage):
-    pass
+    class Meta:
+        verbose_name = "Report"
+        verbose_name_plural = "Reports"
 
 
 class AiLabExternalResource(AiLabResourceMixin, Page):
@@ -116,3 +122,7 @@ class AiLabExternalResource(AiLabResourceMixin, Page):
         FieldPanel("first_published_at"),
         FieldPanel("external_url", widget=forms.URLInput()),
     ]
+
+    class Meta:
+        verbose_name = "External Resource"
+        verbose_name_plural = "External Resources"
