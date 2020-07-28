@@ -1,10 +1,11 @@
 import pytest
 import pytz
+import json
 
 import dateutil.parser
 from django.test import Client
 from modules.ai_lab.models.home_page import AiLabHomePage
-from modules.ai_lab.tests.factories import AiLabHomePageFactory
+from modules.ai_lab.tests.factories import *
 from modules.blog_posts.tests.factories import BlogPostFactory
 
 from wagtail.core.models import Page
@@ -29,21 +30,43 @@ class TestAiLabHomePage:
         # Assert that another can't be created
         assert AiLabHomePage.can_create_at(home_page) == False
 
-    def test_three_newest_blog_posts_are_featured(self):
-        first_published_at = pytz.utc.localize(
-            dateutil.parser.parse("2020-01-01T00:00:00")
-        )
-        old_blog_posts = BlogPostFactory.create_batch(
-            2, first_published_at=first_published_at, tags=["AI Lab"]
-        )
-        new_blog_posts = BlogPostFactory.create_batch(3, tags=["AI Lab"])
-
+    def test_the_homepage_shows_resources(self):
         home_page = AiLabHomePageFactory.create()
+        resource_index_page = AiLabResourceIndexPageFactory.create(parent=home_page)
 
-        rv = client.get(home_page.url)
+        understand = AiLabUnderstandIndexPageFactory.create(parent=resource_index_page)
+        develop = AiLabDevelopIndexPageFactory.create(parent=resource_index_page)
+        adopt = AiLabAdoptIndexPageFactory.create(parent=resource_index_page)
 
-        for blog_post in new_blog_posts:
-            assert blog_post.title in str(rv.content)
+        understand_case_studies = AiLabCaseStudyFactory.create_batch(
+            3, parent=understand
+        )
+        develop_case_studies = AiLabCaseStudyFactory.create_batch(3, parent=develop)
+        adopt_case_studies = AiLabCaseStudyFactory.create_batch(3, parent=develop)
 
-        for blog_post in old_blog_posts:
-            assert blog_post.title not in str(rv.content)
+        home_page.homepage_body = json.dumps(
+            [
+                {
+                    "type": "resources_listing",
+                    "value": {
+                        "heading": "AI resources in health and care",
+                        "description": "Here is a description",
+                    },
+                }
+            ]
+        )
+        home_page.save_revision().publish()
+
+        page = client.get(home_page.url)
+
+        assert "<h2>AI resources in health and care</h2>" in str(page.content)
+        assert "<p>Here is a description</p>" in str(page.content)
+
+        for use_case in [understand, develop, adopt]:
+            assert use_case.summary_title in str(page.content)
+            assert use_case.summary_body in str(page.content)
+
+        for resource in (
+            understand_case_studies + develop_case_studies + adopt_case_studies
+        ):
+            assert resource.title in str(page.content)
