@@ -1,0 +1,12 @@
+.ai-lab-resource-block {
+  .carousel {
+    .nhsuk-promo-group {
+      flex-wrap: nowrap;
+      overflow: hidden;
+
+      &__item {
+        flex: 1 0 33.333%;
+      }
+    }
+  }
+}
