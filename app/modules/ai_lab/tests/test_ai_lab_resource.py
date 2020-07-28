@@ -48,3 +48,14 @@ class TestAiLabResource:
         assert page.status_code == 200
 
         assert case_study.title in str(page.content)
+
+    def test_external_resource_redirects_to_external_url(self):
+        category_page = AiLabUnderstandIndexPageFactory.create()
+        external_resource = AiLabExternalResourceFactory.create(
+            external_url="https://example.com", parent=category_page
+        )
+
+        page = client.get(external_resource.url)
+
+        assert page.status_code == 302
+        assert page.url == "https://example.com"

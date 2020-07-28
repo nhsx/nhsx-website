@@ -3,6 +3,7 @@ from django.db import models
 from django.http import Http404
 from django.conf import settings
 from django.utils.text import slugify
+from django.shortcuts import redirect
 
 from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
 from wagtail.contrib.routable_page.models import RoutablePageMixin, route
@@ -122,6 +123,9 @@ class AiLabExternalResource(AiLabResourceMixin, Page):
         FieldPanel("first_published_at"),
         FieldPanel("external_url", widget=forms.URLInput()),
     ]
+
+    def serve(self, request, *args, **kwargs):
+        return redirect(self.external_url)
 
     class Meta:
         verbose_name = "External Resource"
