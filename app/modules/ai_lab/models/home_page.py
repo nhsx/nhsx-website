@@ -1,10 +1,25 @@
 from modules.core.models.pages import SectionPage, ArticlePage
 from modules.blog_posts.models import BlogPost
+from modules.ai_lab.blocks import ai_lab_home_page_blocks
+from wagtail.core import fields
+from wagtail.core.models import Page
+from wagtail.admin.edit_handlers import StreamFieldPanel, FieldPanel
+from wagtail.images.edit_handlers import ImageChooserPanel
 
 
 class AiLabHomePage(SectionPage):
     subpage_types = ["AiLabResourceIndexPage", "core.ArticlePage"]
     max_count = 1
+    homepage_body = fields.StreamField(
+        ai_lab_home_page_blocks, blank=True, verbose_name="Body blocks"
+    )
+
+    content_panels = [
+        *Page.content_panels,
+        FieldPanel("sub_head"),
+        ImageChooserPanel("image"),
+        StreamFieldPanel("homepage_body"),
+    ]
 
     def get_context(self, request):
         context = super().get_context(request)

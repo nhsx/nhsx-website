@@ -1,0 +1,26 @@
+{% load wagtailcore_tags layout_tags %}
+
+<div class="ai-lab-resource-block">
+  <h2>{{ value.heading }}</h2>
+  <p>{{ value.description }}</p>
+
+  {% for use_case, sub_pages in resources.items %}
+  <div class="resource-block resource-block__{{ use_case.title|slugify }} carousel">
+    <h3>{{ use_case.title }}</h3>
+    <a href="#" class="previous">&lt;</a>
+    <a href="#" class="next">&gt;</a>
+    <div class="nhsuk-grid-row">
+      <div class="nhsuk-grid-column-full">
+        <div class="block-promo_group">
+          <div class="nhsuk-grid-row nhsuk-promo-group">
+            {% include 'ai_lab/_partials/use_case.html' with use_case=use_case %}
+            {% for resource in sub_pages %}
+            {% include 'ai_lab/_partials/resource.html' with resource=resource.specific page=use_case %}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>

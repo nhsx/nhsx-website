@@ -13,33 +13,7 @@
   <main class="nhsuk-main-wrapper" id="maincontent">
     <div class="nhsuk-grid-row">
       <div class="nhsuk-grid-column-full">
-        {% include_block page.body %}
-
-        {% if blog_posts %}
-          <h2>Blog</h2>
-          <div class="block-promo_group">
-            <div class="nhsuk-grid-row nhsuk-promo-group">
-              {% for post in blog_posts %}
-                <div class="nhsuk-grid-column-one-third nhsuk-u-margin-bottom-5">
-                  <h3 class="nhsuk-heading-m">
-                    <a href="{% pageurl post %}">{{post.title}}</a>
-                  </h3>
-                  {% include '_partials/page_meta.html' with page=post %}
-                  <p class="summary__posts">
-                    {{post.specific.body|striptags|truncatechars:200}}
-                  </p>
-                  <p>
-                    <a href="{% pageurl post %}">Read More</a>
-                  </p>
-                </div>
-              {% endfor %}
-            </div>
-          </div>
-
-          <p>
-            <a href="/blogs?tags=ai-lab">View all AI Lab posts</a>
-          </p>
-        {% endif %}
+        {% include_block page.homepage_body %}
       </div>
     </div>
   </main>
