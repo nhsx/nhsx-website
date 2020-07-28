@@ -3,6 +3,7 @@ import json
 
 from django.test import Client
 from .blocks import LINK_BLOCK
+from taggit.models import Tag
 
 pytestmark = pytest.mark.django_db
 
@@ -114,3 +115,37 @@ def test_section_page_title_without_hero(section_page):
         '<h1 class="nhsuk-heading-xl nhsuk-u-margin-bottom-5">Test Section Page</h1>'
         in rv.rendered_content
     )
+
+
+def test_section_page_with_latest_blog_posts(section_page, blog_posts):
+    """Test that we can list blog posts with a specific tag
+        when using that block"""
+
+    p = section_page
+
+    tagged_posts = blog_posts[:3]
+
+    for post in tagged_posts:
+        post.tags.add("tag1")
+        post.save_revision().publish()
+
+    p.body = json.dumps(
+        [
+            {
+                "type": "latest_blog_posts",
+                "value": {
+                    "heading": "Blog Posts",
+                    "number_of_posts": "3",
+                    "tag_id": Tag.objects.get(name="tag1").id,
+                },
+            }
+        ]
+    )
+    p.save_revision().publish()
+
+    rendered = p.body.render_as_block()
+
+    assert "Blog Posts" in rendered
+
+    for post in tagged_posts:
+        assert post.title in rendered

@@ -39,7 +39,7 @@ from wagtail.admin.edit_handlers import (
 
 # Project
 from modules.users.models import User
-from modules.core.blocks import nhsx_blocks, page_link_blocks
+from modules.core.blocks import nhsx_blocks, page_link_blocks, section_page_blocks
 
 
 ################################################################################
