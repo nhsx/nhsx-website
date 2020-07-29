@@ -75,7 +75,7 @@ class PromoBanner(BasePromoBlock):
         help_text="The heading level affects users with screen readers. Default=3, Min=2, Max=4.",
     )
     image_alignment = blocks.ChoiceBlock(
-        [("left", "Left"), ("right", "Right"),], default="left", required=True,
+        [("right", "Right"), ("left", "Left"),], default="right", required=True,
     )
 
     def get_form_context(self, value, prefix="", errors=None):
