@@ -81,6 +81,9 @@
                 color: $nhs-dark-grey;
                 padding: 5px 10px;
                 margin-right: 5px;
+                display: inline-block;
+                white-space: nowrap;
+                margin-bottom: 10px;
             }
         }
         .nhsuk-promo__link-wrapper {
