@@ -1,4 +1,6 @@
 # 3rd party
+import collections
+
 from django import forms
 
 from wagtail.core import blocks
@@ -59,6 +61,43 @@ class PromoBlock(BasePromoBlock):
         default=3,
         help_text="The heading level affects users with screen readers. Default=3, Min=2, Max=4.",
     )
+
+
+class PromoBanner(BasePromoBlock):
+    class Meta:
+        template = "core/blocks/promo_banner.html"
+
+    call_to_action = blocks.CharBlock(required=True)
+    heading_level = blocks.IntegerBlock(
+        min_value=2,
+        max_value=4,
+        default=3,
+        help_text="The heading level affects users with screen readers. Default=3, Min=2, Max=4.",
+    )
+    image_alignment = blocks.ChoiceBlock(
+        [("left", "Left"), ("right", "Right"),], default="left", required=True,
+    )
+
+    def get_form_context(self, value, prefix="", errors=None):
+        context = super().get_form_context(value, prefix=prefix, errors=errors)
+        # Alter the order of the form, so it makes more sense
+        new_keys = [
+            "heading",
+            "heading_level",
+            "description",
+            "link_page",
+            "url",
+            "call_to_action",
+            "content_image",
+            "alt_text",
+            "image_alignment",
+        ]
+        form_objects = collections.OrderedDict()
+        for key in new_keys:
+            form_objects[key] = context["children"][key]
+
+        context["children"] = form_objects
+        return context
 
 
 class PromoGroupBlock(FlattenValueContext, blocks.StructBlock):
@@ -253,4 +292,5 @@ nhsx_blocks = content_blocks + nhs_blocks
 
 section_page_blocks = nhsx_blocks + [
     ("latest_blog_posts", LatestBlogPostsBlock(group=" Content")),
+    ("promo_banner", PromoBanner(group=" Content")),
 ]
