@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags static wagtailuserbar nhsukfrontend_tags %}
+{% load wagtailcore_tags static wagtailuserbar nhsukfrontend_tags wagtailimages_tags %}
 
 {% block body_class %}template-article{% endblock %}
 
@@ -13,16 +13,33 @@
     <div class="nhsuk-grid-row">
       <div class="nhsuk-grid-column-two-thirds">
         <h1 class="nhsuk-heading-xl nhsuk-u-margin-bottom-5">{{ page.title }}</h1>
-        {% if show_meta %}
-        {% include '_partials/page_meta.html' %}
+        <div class="meta">
+          <p class="author">{{ page.author.first_name }} {{ page.author.last_name }}</p>
+          <time class="time"
+            datetime="{{page.first_published_at|date:"c"}}">{{page.first_published_at|date:"j F Y"}}</time>
+          <div class="nhsai_resource__tags">
+            {% for topic in page.topics.all %}
+            <span class="nhsai_resource__tag">{{ topic }}</span>
+            {% endfor %}
+          </div>
+        </div>
+
+        {% include_block page.body %}
+
+        {% block extra_content %}
+        {% endblock %}
+      </div>
+      <div class="nhsuk-grid-column-one-third">
+        {% if page.featured_image %}
+        {% image page.featured_image width-200 %}
+        {% endif %}
+        {% if page.download %}
+        <p><a href="{{ page.download.url }}">Download full report</a></p>
         {% endif %}
       </div>
     </div>
     <div class="nhsuk-grid-row">
       <div class="nhsuk-grid-column-full">
-        {% include_block page.body %}
-
-        {% block extra_content %}
         {% endblock %}
       </div>
     </div>
