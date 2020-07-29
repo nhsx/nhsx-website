@@ -232,7 +232,6 @@ content_blocks = [
     ("block_quote", blocks.BlockQuoteBlock(group=" Content")),
     ("embed", EmbedBlock(group=" Content")),
     ("captioned_embed", CaptionedEmbedBlock(group=" Content")),
-    ("latest_blog_posts", LatestBlogPostsBlock(group=" Content")),
 ]
 
 nhs_blocks = [
@@ -251,3 +250,7 @@ nhs_blocks = [
 ]
 
 nhsx_blocks = content_blocks + nhs_blocks
+
+section_page_blocks = nhsx_blocks + [
+    ("latest_blog_posts", LatestBlogPostsBlock(group=" Content")),
+]

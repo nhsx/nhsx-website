@@ -30,6 +30,7 @@
 
 .nhsai-lab__homepage {
     h2 {
+        margin-top: 80px;
         color: $nhsx-blue;
 
         &:before {
@@ -43,6 +44,26 @@
 
         @media (min-width: 40.0625em) {
             font-size: 2.5rem;
+        }
+    }
+    h3.section-title {
+        max-width: none;
+        color: $nhsx-blue;
+        margin-top: 24px;
+        text-transform: uppercase;
+        font-weight: 500;
+
+        &:after {
+            height: 1px;
+            width: 100%;
+            content: '';
+            background: $nhsx-blue;
+            display: block;
+            margin-top: 12px;
+        }
+
+        @media (min-width: 40.0625em) {
+            font-size: 1.5rem;
         }
     }
 

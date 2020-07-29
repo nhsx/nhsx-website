@@ -13,4 +13,3 @@ def resource_type(resource):
 def link_to_resource_type(resource, page):
     slug = slugify(resource._meta.verbose_name)
     return page.url + page.reverse_subpage("filter_by_type", args=[slug])
-

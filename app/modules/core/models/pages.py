@@ -11,6 +11,7 @@ from modules.core.blocks import nhsx_blocks
 # Module
 from .abstract import BasePage, InlineHeroMixin, SidebarMixin, SubNavMixin
 
+from modules.core.blocks import section_page_blocks
 
 ################################################################################
 # SectionPage
@@ -36,6 +37,10 @@ class SectionPage(BasePage, InlineHeroMixin, SubNavMixin):
     subnav_panels: list = SubNavMixin.panels
 
     search_fields = BasePage.search_fields + InlineHeroMixin.extra_search_fields
+
+    body = fields.StreamField(
+        section_page_blocks, blank=True, verbose_name="Body blocks"
+    )
 
     @cached_classmethod
     def get_admin_tabs(cls):
