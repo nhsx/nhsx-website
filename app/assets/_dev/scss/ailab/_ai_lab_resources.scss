@@ -46,3 +46,55 @@
         }
     }
 }
+
+.nhsai-resources-group {
+    .nhsuk-promo-group__item {
+        margin-bottom: 32px;
+        .nhsai_resource__category {
+            background: $nhsx-blue;
+            color: $white;
+            font-weight: 600;
+            padding: 5px 10px 5px 25px;
+            padding-left: 25px;
+            position: absolute;
+            top: 15px;
+            left: 0;
+            opacity: 0.9;
+        }
+        .nhsuk-promo__img {
+            border-bottom: 5px solid $nhsx-blue;
+        }
+        .nhsai__resource_without_image {
+            min-height: 196px;
+            background: $nhs-mid-grey;
+        }
+        .nhsai_resource__type {
+            margin-bottom: 0;
+            text-transform: uppercase;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+        .nhsai_resource__tags {
+            .nhsai_resource__tag {
+                background: $nhs-pale-grey;
+                border-radius: 4px;
+                color: $nhs-dark-grey;
+                padding: 5px 10px;
+                margin-right: 5px;
+                display: inline-block;
+                white-space: nowrap;
+                margin-bottom: 10px;
+            }
+        }
+        .nhsuk-promo__link-wrapper {
+            border: none;
+            position: relative;
+
+            &:hover {
+                .nhsai_resource__category {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}
