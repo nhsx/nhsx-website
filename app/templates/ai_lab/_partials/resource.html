@@ -40,7 +40,7 @@
         <p class="nhsai_resource__type">{{ resource|resource_type }}</p>
         <!-- link to be used later (possibly not on this page?) 
           <a href="{{ resource|link_to_resource_type:page }}">{{ resource|resource_type }}</a> -->
-        <h3 class="nhsuk-promo__heading">{{ resource.title }}</h3>
+        <p class="nhsuk-promo__heading">{{ resource.title }}</p>
         <p class="nhsuk-promo__description">{{ resource.summary }}</p>
         <div class="nhsai_resource__tags">
           {% for topic in resource.topics.all %}
