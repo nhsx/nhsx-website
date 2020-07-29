@@ -50,7 +50,7 @@
 .nhsai-resources-group {
     .nhsuk-promo-group__item {
         margin-bottom: 32px;
-        .nhsai_resouce__category {
+        .nhsai_resource__category {
             background: $nhsx-blue;
             color: $white;
             font-weight: 600;
@@ -68,14 +68,14 @@
             min-height: 196px;
             background: $nhs-mid-grey;
         }
-        .nhsai_resouce__type {
+        .nhsai_resource__type {
             margin-bottom: 0;
             text-transform: uppercase;
             font-weight: 600;
             font-size: 1rem;
         }
-        .nhsai_resouce__tags {
-            .nhsai_resouce__tag {
+        .nhsai_resource__tags {
+            .nhsai_resource__tag {
                 background: $nhs-pale-grey;
                 border-radius: 4px;
                 color: $nhs-dark-grey;
@@ -88,7 +88,7 @@
             position: relative;
 
             &:hover {
-                .nhsai_resouce__category {
+                .nhsai_resource__category {
                     opacity: 1;
                 }
             }

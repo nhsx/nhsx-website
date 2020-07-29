@@ -12,7 +12,7 @@
 <div class="nhsuk-grid-column-one-third nhsuk-promo-group__item">
   <div class="nhsuk-promo">
     <a href="{{ resource.url }}" class="nhsuk-promo__link-wrapper">
-      <span class="nhsai_resouce__category">{{ resource.get_parent }}</span>
+      <span class="nhsai_resource__category">{{ resource.get_parent }}</span>
 
       {% if resource.featured_image %}
         <img
@@ -37,14 +37,14 @@
         <div class="nhsuk-promo__img nhsai__resource_without_image"></div>
       {% endif %}
       <div class="nhsuk-promo__content">
-        <p class="nhsai_resouce__type">{{ resource|resource_type }}</p>
+        <p class="nhsai_resource__type">{{ resource|resource_type }}</p>
         <!-- link to be used later (possibly not on this page?) 
           <a href="{{ page|link_to_resource_type:page }}">{{ page|resource_type }}</a> -->
         <h3 class="nhsuk-promo__heading">{{ resource.title }}</h3>
         <p class="nhsuk-promo__description">{{ resource.summary }}</p>
-        <div class="nhsai_resouce__tags">
+        <div class="nhsai_resource__tags">
           {% for topic in resource.topics.all %}
-            <span class="nhsai_resouce__tag">{{ topic }}</span>
+            <span class="nhsai_resource__tag">{{ topic }}</span>
           {% endfor %}
         </div>
       </div>
