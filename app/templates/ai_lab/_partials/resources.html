@@ -7,5 +7,7 @@
 </div>
 
 {% if resources.has_next %}
-<a href="{{ page.url }}?page={{ resources.next_page_number }}" id="loadResources">Load More</a>
+  <div class="nhsai-lab__loadmore">
+    <a href="{{ page.url }}?page={{ resources.next_page_number }}" class="nhsuk-button nhsx-button" id="loadResources">Load More</a>
+  </div>
 {% endif %}

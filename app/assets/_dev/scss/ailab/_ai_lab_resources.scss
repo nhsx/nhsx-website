@@ -47,6 +47,19 @@
     }
 }
 
+.nhsai-lab__loadmore {
+    text-align: center;
+}
+
+.nhsx-button {
+    background: $nhsx-blue;
+    border-radius: 0;
+
+    &:hover {
+        background: darken($nhsx-blue, 10%);
+    }
+}
+
 .nhsai-resources-group {
     .nhsuk-promo-group__item {
         margin-bottom: 32px;
