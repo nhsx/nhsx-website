@@ -1,5 +1,3 @@
-"use strict";
-
 document.addEventListener("DOMContentLoaded", function () {
   var carousels = document.querySelectorAll(".resource-block.carousel");
 

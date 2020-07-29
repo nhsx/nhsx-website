@@ -1,5 +1,3 @@
-"use strict";
-
 document.addEventListener("DOMContentLoaded", function () {
   var loadResources = document.querySelector("#loadResources");
   var resourceContainer = document.querySelector("#resources");
@@ -9,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   loadResources.addEventListener("click", function (event) {
-    let url = this.getAttribute("href");
+    var url = this.getAttribute("href");
 
     var xhr = new XMLHttpRequest();
     xhr.open('GET', url);
