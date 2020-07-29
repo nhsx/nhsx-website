@@ -40,7 +40,10 @@
     </div>
     <div class="nhsuk-grid-row">
       <div class="nhsuk-grid-column-full">
-        {% endblock %}
+        <h2>Explore Further</h2>
+        {% for resource in featured_resources %}
+        {% include 'ai_lab/_partials/resource.html' with resource=resource page=resource.get_parent.specific %}
+        {% endfor %}
       </div>
     </div>
   </main>
