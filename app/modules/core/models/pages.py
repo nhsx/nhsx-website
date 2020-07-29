@@ -27,6 +27,7 @@ class SectionPage(BasePage, InlineHeroMixin, SubNavMixin):
     parent_page_types: list = [
         "home.HomePage",
         "core.SectionPage",
+        "ai_lab.AiLabHomePage",
     ]
     subpage_types: list = [
         "core.ArticlePage",

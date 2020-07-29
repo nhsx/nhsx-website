@@ -8,7 +8,7 @@ from wagtail.images.edit_handlers import ImageChooserPanel
 
 
 class AiLabHomePage(SectionPage):
-    subpage_types = ["AiLabResourceIndexPage", "core.ArticlePage"]
+    subpage_types = ["AiLabResourceIndexPage", "core.ArticlePage", "core.SectionPage"]
     max_count = 1
     homepage_body = fields.StreamField(
         ai_lab_home_page_blocks, blank=True, verbose_name="Body blocks"
