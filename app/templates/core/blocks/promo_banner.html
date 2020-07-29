@@ -1,0 +1,10 @@
+{% load wagtailimages_tags %}
+
+{% if image_alignment == "left" %}
+{% image content_image width-320 class="align-left" %}
+{% else %}
+{% image content_image width-320 class="align-right" %}
+{% endif %}
+<h{{ heading_level }} class="nhsuk-promo__heading">{{ heading }}</h{{ heading_level }}>
+<p>{{description}}</p>
+<a href="{{ url }}">{{ call_to_action }}</a>
