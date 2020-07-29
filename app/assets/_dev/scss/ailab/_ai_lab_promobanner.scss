@@ -1,0 +1,90 @@
+.nhsai-promobanner {
+  background: rgba($nhsx-blue, 0.1);
+  display: flex;
+  flex-direction: column-reverse;
+  margin-top: 80px;
+
+  @media (min-width: 525px) {
+    flex-direction: row;
+  }
+  &.no_image {
+    flex-direction: column;
+    @media (min-width: 525px) {
+      flex-direction: row;
+    }
+  }
+  &.image_left {
+    @media (min-width: 525px) {
+      flex-direction: row-reverse;
+    }
+  }
+
+  .nhsai-promobanner__content {
+    width: 100%;
+    p {
+      margin-bottom: 0;
+    }
+    .nhsuk-promo__heading {
+      text-decoration: none;
+    }
+    .nhsx-button {
+      margin-top: 24px;
+      margin-bottom: 0;
+      width: 100%;
+      @media (min-width: 525px) {
+        width: auto;
+      }
+    }
+    @media (min-width: 525px) {
+      width: 55%;
+    }
+    @media (min-width: 960px) {
+      width: 65%;
+    }
+  }
+  .nhsai-promobanner__image-container {
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    height: fit-content;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+    @media (min-width: 525px) {
+      width: 45%;
+    }
+    @media (min-width: 1212px) {
+      width: 35%;
+    }
+  }
+  .nhsai-promobanner__button-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+
+    .nhsx-button {
+      margin-bottom: 0;
+      width: 100%;
+      @media (min-width: 525px) {
+        width: auto;
+      }
+    }
+    @media (min-width: 525px) {
+      width: 45%;
+    }
+    @media (min-width: 1212px) {
+      width: 35%;
+    }
+  }
+  
+  .nhsai-promobanner__button-container, .nhsai-promobanner__content {
+    padding: 24px;
+
+    @media (min-width: 1212px) {
+      padding: 32px;
+    }
+  }
+}
