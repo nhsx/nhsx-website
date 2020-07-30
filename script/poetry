@@ -1,0 +1,6 @@
+#!/bin/bash
+set -e
+
+ARGS="$@"
+
+docker-compose run --rm web sh -c "source \$HOME/.poetry/env && poetry $ARGS"

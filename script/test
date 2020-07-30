@@ -1,4 +1,10 @@
 #!/bin/bash
 set -e
 
+if [ $# -eq 0 ]; then
+  echo "Linting code..."
+  script/poetry run black .
+fi
+
+echo "Running tests..."
 docker-compose run --rm web pytest "$@"

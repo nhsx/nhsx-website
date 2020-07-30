@@ -28,7 +28,8 @@ def _create_user(first_name: str, last_name: str, email: str) -> User:
 
 
 def _create_profile_user(
-        first_name: str, last_name: str, email: str, salutation: str, job_title: str) -> User:
+    first_name: str, last_name: str, email: str, salutation: str, job_title: str
+) -> User:
     """
     """
     user = User()
@@ -46,7 +47,7 @@ def _create_profile_user(
 
 @pytest.fixture(scope="function")
 def user() -> User:
-    p = _create_user('Foo', 'Bar', 'foo@example.com')
+    p = _create_user("Foo", "Bar", "foo@example.com")
     return p
 
 
@@ -56,7 +57,7 @@ def users() -> List[User]:
     """
     rv = []
     for _ in range(0, 10):
-        p = _create_user('User', f'{_}', f'user{_}@example.com')
+        p = _create_user("User", f"{_}", f"user{_}@example.com")
         rv.append(p)
     return rv
 
@@ -66,17 +67,9 @@ def authors() -> List[User]:
     """Fixture providing 2 user objects with profiles
     """
     u1 = _create_profile_user(
-        'Firsty',
-        'Lasty',
-        'user_profile_1@example.com',
-        'Dr.',
-        'Doctor'
+        "Firsty", "Lasty", "user_profile_1@example.com", "Dr.", "Doctor"
     )
     u2 = _create_profile_user(
-        'Fname',
-        'Lname',
-        'user_profile_2@example.com',
-        'Prof.',
-        'Professor'
+        "Fname", "Lname", "user_profile_2@example.com", "Prof.", "Professor"
     )
     return [u1, u2]

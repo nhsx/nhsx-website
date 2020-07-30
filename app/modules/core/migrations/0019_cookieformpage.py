@@ -7,18 +7,26 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('core', '0018_merge_20200409_1317'),
+        ("core", "0018_merge_20200409_1317"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='CookieFormPage',
+            name="CookieFormPage",
             fields=[
-                ('articlepage_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='core.ArticlePage')),
+                (
+                    "articlepage_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="core.ArticlePage",
+                    ),
+                ),
             ],
-            options={
-                'abstract': False,
-            },
-            bases=('core.articlepage',),
+            options={"abstract": False,},
+            bases=("core.articlepage",),
         ),
     ]

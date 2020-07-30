@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags static wagtailuserbar nhsukfrontend_tags wagtailimages_tags  %}
+
+{% block body_class %}template-homepage ai-lab-body{% endblock %}
+
+{% block extra_css %}
+{% endblock extra_css %}
+
+{% block content %}
+{% breadcrumb %}
+
+{% include '_partials/hero.html' with hero_text=page.sub_head hero_heading=page.title %}
+<div class="nhsuk-width-container">
+  <main class="nhsuk-main-wrapper" id="maincontent">
+    {% include 'ai_lab/_partials/topics.html' with page=page topics=topics current_topic=topic %}
+
+    <div class="nhsuk-grid-row">
+      <div class="nhsuk-grid-column-full">
+        {% include_block page.body %}
+
+        {% include 'ai_lab/_partials/resources.html' with resources=resources page=page %}
+      </div>
+    </div>
+  </main>
+</div>
+{% endblock content %}

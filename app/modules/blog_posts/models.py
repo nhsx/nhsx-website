@@ -15,7 +15,12 @@ from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
 
 # Project
 from modules.core.blocks import blog_link_blocks
-from modules.core.models.abstract import BasePage, BaseIndexPage, CanonicalMixin, PageAuthorsMixin
+from modules.core.models.abstract import (
+    BasePage,
+    BaseIndexPage,
+    CanonicalMixin,
+    PageAuthorsMixin,
+)
 
 
 logger = logging.getLogger(__name__)
@@ -23,7 +28,7 @@ logger = logging.getLogger(__name__)
 
 class BlogTags(TaggedItemBase):
     content_object = ParentalKey(
-        'blog_posts.BlogPost',
+        "blog_posts.BlogPost",
         on_delete=models.CASCADE,
         related_name="%(app_label)s_%(class)s_items",
     )
@@ -35,9 +40,7 @@ class FeaturedBlogsMixin(models.Model):
 
     featured_posts = fields.StreamField(blog_link_blocks, blank=True)
 
-    panels = [
-        StreamFieldPanel('featured_posts')
-    ]
+    panels = [StreamFieldPanel("featured_posts")]
 
 
 ################################################################################
@@ -46,22 +49,19 @@ class FeaturedBlogsMixin(models.Model):
 
 
 class BlogPost(BasePage, PageAuthorsMixin, CanonicalMixin):
-    parent_page_types = ['BlogPostIndexPage']
+    parent_page_types = ["BlogPostIndexPage"]
     subpage_types = []
 
     tags = ClusterTaggableManager(through=BlogTags, blank=True)
 
     search_fields = BasePage.search_fields + [
-        index.SearchField('tags', boost=10),
+        index.SearchField("tags", boost=10),
     ]
 
     content_panels = [
         *Page.content_panels,
-        FieldPanel('first_published_at'),
-        FieldPanel(
-            'authors',
-            widget=ModelSelect2Multiple(url='author-autocomplete')
-        ),
+        FieldPanel("first_published_at"),
+        FieldPanel("authors", widget=ModelSelect2Multiple(url="author-autocomplete")),
         StreamFieldPanel("body"),
         FieldPanel("tags"),
     ]
@@ -73,11 +73,11 @@ class BlogPostIndexPage(BaseIndexPage, FeaturedBlogsMixin):
 
     _child_model = BlogPost
 
-    subpage_types = ['BlogPost']
+    subpage_types = ["BlogPost"]
     max_count = 1
 
     @cached_classmethod
     def get_admin_tabs(cls):
         tabs = super().get_admin_tabs()
-        tabs.insert(1, (FeaturedBlogsMixin.panels, 'Featured'))
+        tabs.insert(1, (FeaturedBlogsMixin.panels, "Featured"))
         return tabs

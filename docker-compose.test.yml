@@ -1,4 +1,4 @@
-version: '3.7'
+version: "3.7"
 
 services:
   # Application
@@ -21,6 +21,7 @@ services:
       - /bin/bash
       - -c
       - |
+        black --check .
         python manage.py assets clean
         python manage.py assets build
         python manage.py collectstatic --no-input -i node_modules

@@ -1,0 +1,32 @@
+{% load wagtailimages_tags %}
+
+{% if content_image == null %}
+    <div class="nhsai-promobanner no_image">
+{% else %}
+    {% if image_alignment == "left" %}
+        <div class="nhsai-promobanner image_left">
+    {% else %}
+        <div class="nhsai-promobanner image_right">
+    {% endif %}
+{% endif %}
+    <div class="nhsai-promobanner__content">
+        <h{{ heading_level }} class="nhsuk-promo__heading">{{ heading }}</h{{ heading_level }}>
+        <p>{{description}}</p>
+        {% if content_image %}
+            <a href="{{ url }}" class="nhsuk-button nhsx-button">{{ call_to_action }}</a>
+        {% endif %}
+    </div>
+    {% if content_image == null %}
+        <div class="nhsai-promobanner__button-container">
+            <a href="{{ url }}" class="nhsuk-button nhsx-button">{{ call_to_action }}</a>
+        </div>
+    {% else %}
+        <div class="nhsai-promobanner__image-container">
+            {% if image_alignment == "left" %}
+                {% image content_image width-320 class="align-left" %}
+            {% else %}
+                {% image content_image width-320 class="align-right" %}
+            {% endif %}
+        </div>
+    {% endif %}
+</div>

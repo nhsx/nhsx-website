@@ -20,5 +20,5 @@ def _create_home_page(title, parent):
 
 @pytest.fixture(scope="function")
 def home_page(site_root):
-    p = _create_home_page('Test Site Home', site_root)
+    p = _create_home_page("Test Site Home", site_root)
     return p

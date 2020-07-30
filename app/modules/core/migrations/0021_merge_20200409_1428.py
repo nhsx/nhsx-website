@@ -6,9 +6,8 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('core', '0019_cookieformpage'),
-        ('core', '0020_auto_20200409_1414'),
+        ("core", "0019_cookieformpage"),
+        ("core", "0020_auto_20200409_1414"),
     ]
 
-    operations = [
-    ]
+    operations = []

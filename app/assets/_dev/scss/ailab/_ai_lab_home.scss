@@ -1,0 +1,79 @@
+.template-homepage.ai-lab-body {
+    .nhsuk-width-container, .nhsuk-header__navigation {
+        @media (min-width: 1212px) {
+            max-width: 1170px;
+        }
+    }
+
+    .nhsuk-hero__wrapper {
+        .nhsuk-heading-l {
+            font-size: 2.5rem;
+
+            @media (min-width: 40.0625em) {
+                font-size: 3rem;
+            }
+        }
+        .nhsuk-body-l {
+            font-size: 1.5rem;
+
+            @media (min-width: 40.0625em) {
+                font-size: 2rem;
+            }
+        }
+    }
+    .block-rich_text {
+        p {
+            max-width: 824px;
+        }
+    }
+}
+
+.nhsai-lab__homepage {
+    h2 {
+        margin-top: 80px;
+        color: $nhsx-blue;
+
+        &:before {
+            height: 3px;
+            width: 100%;
+            content: '';
+            background: $nhsx-blue;
+            display: block;
+            margin-bottom: 24px;
+        }
+
+        @media (min-width: 40.0625em) {
+            font-size: 2.5rem;
+        }
+    }
+    h3.section-title {
+        max-width: none;
+        color: $nhsx-blue;
+        margin-top: 24px;
+        text-transform: uppercase;
+        font-weight: 500;
+
+        &:after {
+            height: 1px;
+            width: 100%;
+            content: '';
+            background: $nhsx-blue;
+            display: block;
+            margin-top: 12px;
+        }
+
+        @media (min-width: 40.0625em) {
+            font-size: 1.5rem;
+        }
+    }
+
+    .nhsuk-promo-group {
+        .nhsuk-promo__content__nolink {
+            background: $white;
+            height: 100%;
+            .nhsuk-promo__heading {
+                text-decoration: none;
+            }
+        }
+    }
+}

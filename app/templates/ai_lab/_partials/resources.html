@@ -1,0 +1,13 @@
+<div class="block-promo_group">
+  <div class="nhsuk-grid-row nhsuk-promo-group nhsai-resources-group" id="resources">
+    {% for resource in resources %}
+      {% include 'ai_lab/_partials/resource.html' with resource=resource %}
+    {% endfor %}
+  </div>
+</div>
+
+{% if resources.has_next %}
+  <div class="nhsai-lab__loadmore">
+    <a href="{{ page.url }}?page={{ resources.next_page_number }}" class="nhsuk-button nhsx-button" id="loadResources">Load More</a>
+  </div>
+{% endif %}

@@ -1,0 +1,11 @@
+{% load topic_tags %}
+
+<div class="topics">
+  {% for topic in topics %}
+  <span class="{{ topic|topic_class:current_topic }}">
+    <a href="{{ page|topic_url:topic }}">
+      {{ topic.name }}
+    </a>
+  </span>
+  {% endfor %}
+</div>

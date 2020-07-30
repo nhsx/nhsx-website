@@ -8,13 +8,25 @@ import wagtail.core.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('blog_posts', '0019_auto_20200415_1014'),
+        ("blog_posts", "0019_auto_20200415_1014"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='blogpostindexpage',
-            name='featured_posts',
-            field=wagtail.core.fields.StreamField([('link', wagtail.core.blocks.PageChooserBlock(label='Page', page_type=['blog_posts.BlogPost'], required=True))], blank=True),
+            model_name="blogpostindexpage",
+            name="featured_posts",
+            field=wagtail.core.fields.StreamField(
+                [
+                    (
+                        "link",
+                        wagtail.core.blocks.PageChooserBlock(
+                            label="Page",
+                            page_type=["blog_posts.BlogPost"],
+                            required=True,
+                        ),
+                    )
+                ],
+                blank=True,
+            ),
         ),
     ]

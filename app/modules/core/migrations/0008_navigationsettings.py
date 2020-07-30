@@ -9,8 +9,8 @@ import wagtail.core.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('wagtailcore', '0045_assign_unlock_grouppagepermission'),
-        ('core', '0007_auto_20200402_1310'),
+        ("wagtailcore", "0045_assign_unlock_grouppagepermission"),
+        ("core", "0007_auto_20200402_1310"),
     ]
 
     operations = [

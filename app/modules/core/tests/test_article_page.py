@@ -1,9 +1,14 @@
 import pytest
+import json
 from django.test import Client
 
 from modules.core.models import ArticlePage
 
-from .blocks import assert_rich_text, assert_promo, assert_small_promo
+from .blocks import (
+    assert_rich_text,
+    assert_promo,
+    assert_small_promo,
+)
 
 pytestmark = pytest.mark.django_db
 

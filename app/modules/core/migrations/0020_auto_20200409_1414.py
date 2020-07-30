@@ -6,23 +6,37 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('core', '0019_merge_20200409_1402'),
+        ("core", "0019_merge_20200409_1402"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='articlepage',
-            name='sidebar_title',
-            field=models.CharField(default='Related Pages', help_text='The title to appear above the links in the sidebar', max_length=255, verbose_name='Title'),
+            model_name="articlepage",
+            name="sidebar_title",
+            field=models.CharField(
+                default="Related Pages",
+                help_text="The title to appear above the links in the sidebar",
+                max_length=255,
+                verbose_name="Title",
+            ),
         ),
         migrations.AddField(
-            model_name='sectionpage',
-            name='sidebar_title',
-            field=models.CharField(default='Related Pages', help_text='The title to appear above the links in the sidebar', max_length=255, verbose_name='Title'),
+            model_name="sectionpage",
+            name="sidebar_title",
+            field=models.CharField(
+                default="Related Pages",
+                help_text="The title to appear above the links in the sidebar",
+                max_length=255,
+                verbose_name="Title",
+            ),
         ),
         migrations.AlterField(
-            model_name='footersettings',
-            name='fixed_coloumn_footer',
-            field=models.BooleanField(default=False, help_text='Enable this setting to change way the footer is styled,\n        so links group into columns', verbose_name='Fixed column footer'),
+            model_name="footersettings",
+            name="fixed_coloumn_footer",
+            field=models.BooleanField(
+                default=False,
+                help_text="Enable this setting to change way the footer is styled,\n        so links group into columns",
+                verbose_name="Fixed column footer",
+            ),
         ),
     ]

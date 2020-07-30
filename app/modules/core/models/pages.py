@@ -11,6 +11,7 @@ from modules.core.blocks import nhsx_blocks
 # Module
 from .abstract import BasePage, InlineHeroMixin, SidebarMixin, SubNavMixin
 
+from modules.core.blocks import section_page_blocks
 
 ################################################################################
 # SectionPage
@@ -23,27 +24,39 @@ class SectionPage(BasePage, InlineHeroMixin, SubNavMixin):
 
     """
 
-    parent_page_types: list = ['home.HomePage', 'core.SectionPage', ]
-    subpage_types: list = ['core.ArticlePage', 'core.SectionPage', 'core.CookieFormPage', ]
+    parent_page_types: list = [
+        "home.HomePage",
+        "core.SectionPage",
+        "ai_lab.AiLabHomePage",
+    ]
+    subpage_types: list = [
+        "core.ArticlePage",
+        "core.SectionPage",
+        "core.CookieFormPage",
+    ]
 
     subnav_panels: list = SubNavMixin.panels
 
     search_fields = BasePage.search_fields + InlineHeroMixin.extra_search_fields
 
+    body = fields.StreamField(
+        section_page_blocks, blank=True, verbose_name="Body blocks"
+    )
+
     @cached_classmethod
     def get_admin_tabs(cls):
         tabs = super().get_admin_tabs()
-        tabs.insert(2, (cls.subnav_panels, 'Subnavigation'))
+        tabs.insert(2, (cls.subnav_panels, "Subnavigation"))
         return tabs
 
     def subnav_items_per_row(self):
-        if (len(self.subnav_pages) % 3 == 0):
+        if len(self.subnav_pages) % 3 == 0:
             return 3
         else:
             return 2
 
     def subnav_column_class(self):
-        if (len(self.subnav_pages) % 3 == 0):
+        if len(self.subnav_pages) % 3 == 0:
             return "one-third"
         else:
             return "one-half"
@@ -54,6 +67,7 @@ class SectionPage(BasePage, InlineHeroMixin, SubNavMixin):
         ImageChooserPanel("image"),
         StreamFieldPanel("body"),
     ]
+
 
 ################################################################################
 # ArticlePage
@@ -66,7 +80,11 @@ class ArticlePage(BasePage, SidebarMixin):
 
     """
 
-    parent_page_types: list = ['core.SectionPage', 'home.HomePage']
+    parent_page_types: list = [
+        "core.SectionPage",
+        "home.HomePage",
+        "ai_lab.AiLabHomePage",
+    ]
     subpage_types: list = []
 
     sidebar_panels: list = SidebarMixin.panels
@@ -74,8 +92,9 @@ class ArticlePage(BasePage, SidebarMixin):
     @cached_classmethod
     def get_admin_tabs(cls):
         tabs = super().get_admin_tabs()
-        tabs.insert(1, (cls.sidebar_panels, 'Sidebar'))
+        tabs.insert(1, (cls.sidebar_panels, "Sidebar"))
         return tabs
+
 
 ################################################################################
 # CookieFormPage
@@ -87,4 +106,5 @@ class CookieFormPage(ArticlePage):
     """CookieFormPage is a page type specifically for cookie consent content. It
     includes a form that sets Cookies in the template core/cookie_form_page.html
     """
+
     max_count = 1

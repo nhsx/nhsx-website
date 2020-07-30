@@ -6,13 +6,18 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('blog_posts', '0009_merge_20200408_0732'),
+        ("blog_posts", "0009_merge_20200408_0732"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='blogpost',
-            name='canonical_rel',
-            field=models.URLField(blank=True, help_text='If this article was first published elsewhere, put that link here to help SEO', null=True, verbose_name='Canonical link'),
+            model_name="blogpost",
+            name="canonical_rel",
+            field=models.URLField(
+                blank=True,
+                help_text="If this article was first published elsewhere, put that link here to help SEO",
+                null=True,
+                verbose_name="Canonical link",
+            ),
         ),
     ]

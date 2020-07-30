@@ -1,0 +1,117 @@
+.nhsai-usecase .nhsuk-promo {
+    background: $nhsx-blue;
+    color: $white;
+    .nhsuk-promo__content {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    .nhsuk-promo__description {
+        color: $white;
+    }
+    a {
+        color: $white;
+        font-weight: bold;
+        display: block;
+
+        .nhsuk-promo__heading {
+            text-decoration: underline;
+            margin-bottom: 0;
+        }
+        &:hover {
+            .nhsuk-promo__heading {
+                text-decoration: none;
+            }
+        }
+        &.nhsuk-promo__link_heading {
+            margin-bottom: 16px;
+        }
+    }
+    .nhsai_animated-link {
+        font-size: 19px;
+        margin-top: auto;
+    }
+}
+
+.nhsai_animated-link {
+    text-decoration: none;
+
+    &:after {
+        content: "\2192";
+        padding-left: 10px;
+    }
+    &:hover {
+        &:after {
+            padding-left: 17px;
+        }
+    }
+}
+
+.nhsai-lab__loadmore {
+    text-align: center;
+}
+
+.nhsx-button {
+    background: $nhsx-blue;
+    border-radius: 0;
+    padding: 12px 22px;
+
+    &:hover {
+        background: darken($nhsx-blue, 10%);
+    }
+}
+
+.nhsai-resources-group {
+    .nhsuk-promo-group__item {
+        margin-bottom: 32px;
+        .nhsai_resource__category {
+            background: $nhsx-blue;
+            color: $white;
+            font-weight: 600;
+            padding: 5px 10px 5px 25px;
+            padding-left: 25px;
+            position: absolute;
+            top: 15px;
+            left: 0;
+            opacity: 0.9;
+        }
+        .nhsuk-promo__img {
+            border-bottom: 5px solid $nhsx-blue;
+        }
+        .nhsai__resource_without_image {
+            min-height: 196px;
+            background: $nhs-mid-grey;
+        }
+        .nhsai_resource__type {
+            margin-bottom: 0;
+            text-transform: uppercase;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+        .nhsai_resource__tags {
+            .nhsai_resource__tag {
+                background: $nhs-pale-grey;
+                border-radius: 4px;
+                color: $nhs-dark-grey;
+                padding: 5px 10px;
+                margin-right: 5px;
+                display: inline-block;
+                white-space: nowrap;
+                margin-bottom: 10px;
+            }
+        }
+        .nhsuk-promo__heading {
+            margin-top: 10px;
+        }
+        .nhsuk-promo__link-wrapper {
+            border: none;
+            position: relative;
+
+            &:hover {
+                .nhsai_resource__category {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}
