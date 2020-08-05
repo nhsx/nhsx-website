@@ -41,3 +41,19 @@ class ResourcesBlock(blocks.StructBlock):
 ai_lab_home_page_blocks = section_page_blocks + [
     ("resources_listing", ResourcesBlock(group=" Content")),
 ]
+
+resource_link_blocks = [
+    (
+        "link",
+        blocks.PageChooserBlock(
+            required=True,
+            label="Page",
+            page_type=[
+                "ai_lab.AiLabCaseStudy",
+                "ai_lab.AiLabGuidance",
+                "ai_lab.AiLabReport",
+                "ai_lab.AiLabExternalResource",
+            ],
+        ),
+    ),
+]
