@@ -1,6 +1,11 @@
 {% load topic_tags %}
 
-<div class="topics">
+<div class="topics nhsai-topics">
+  <span class="tag">
+    <a href="/ai-lab/explore-all-resources/">
+      View all
+    </a>
+  </span>
   {% for topic in topics %}
   <span class="{{ topic|topic_class:current_topic }}">
     <a href="{{ page|topic_url:topic }}">

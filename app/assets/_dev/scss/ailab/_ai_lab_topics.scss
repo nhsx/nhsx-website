@@ -1,0 +1,17 @@
+.nhsai-topics {
+    margin-bottom: 52px;
+    margin-top: 52px;
+    text-align: center;
+    .tag a {
+        background: transparent;
+        border: 2px solid $nhsx-blue;
+        margin-right: 10px;
+        font-size: 1.15rem;
+        padding: 6px 16px;
+        border-radius: 13px;
+    }
+    .tag.current a {
+        background: $nhsx-blue;
+        color: $white;
+    }
+}
