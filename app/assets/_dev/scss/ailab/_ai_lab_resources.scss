@@ -62,6 +62,12 @@
     }
 }
 
+.nhsuk-promo-group_half {
+    .nhsuk-grid-column-one-third {
+        width: 50%;
+    }
+}
+
 .nhsai-resources-group {
     .nhsuk-promo-group__item {
         margin-bottom: 32px;
@@ -77,15 +83,17 @@
             opacity: 0.9;
         }
         .nhsuk-promo__img_wrapper {
-            max-height: 196px;
+            height: 196px;
             overflow: hidden;
             width: 100%;
-        }
-        .nhsuk-promo__img {
             border-bottom: 5px solid $nhsx-blue;
+
+            img {
+                min-height: 100%;
+            }
         }
         .nhsai__resource_without_image {
-            min-height: 196px;
+            height: 196px;
             background: $nhs-mid-grey;
         }
         .nhsai_resource__type {
@@ -117,6 +125,61 @@
                 .nhsai_resource__category {
                     opacity: 1;
                 }
+            }
+        }
+    }
+}
+
+.explore-resource-page {
+    .nhsuk-hero {
+        background-color: $nhsx-light-blue;
+        color: $black;
+    }
+}
+
+.nhsai-resource_page {
+    .nhsuk-heading-xl {
+        color: $nhsx-blue;
+        margin-bottom: 15px;
+    }
+    .nhsai-resource__meta {
+        font-size: 1.3rem;
+        color: $nhsx-grey-blue;
+    }
+    .nhsai-topics {
+        text-align: left;
+        margin-top: 20px;
+        margin-bottom: 36px;
+        .tag a {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+    }
+    .nhsai-resource__image {
+        img {
+            width: 100%; 
+            height: auto;
+            margin-bottom: 36px;
+        }
+    }
+    .download-button {
+        width: 100%;
+
+        .nhsuk-icon__chevron-right {
+            fill: #fff;
+            vertical-align: middle;
+            top: 0;
+            margin-right: 0;
+            transform: rotate(90deg);
+            margin-left: -10px;
+        }
+        span {
+            vertical-align: middle;
+        }
+
+        &:focus {
+            .nhsuk-icon__chevron-right {
+                fill: $black;
             }
         }
     }

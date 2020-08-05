@@ -8,41 +8,48 @@
 
 {% block content %}
 {% breadcrumb %}
-<div class="nhsuk-width-container">
+<div class="nhsuk-width-container nhsai-resource_page">
   <main class="nhsuk-main-wrapper" id="maincontent">
     <div class="nhsuk-grid-row">
-      <div class="nhsuk-grid-column-two-thirds">
-        <h1 class="nhsuk-heading-xl nhsuk-u-margin-bottom-5">{{ page.title }}</h1>
-        <div class="meta">
+      <header class="nhsai-resource__header">
+        <div class="nhsai-resource__meta nhsuk-grid-column-two-thirds">
+          <h1 class="nhsuk-heading-xl">{{ page.title }}</h1>
           <p class="author">{{ page.author.first_name }} {{ page.author.last_name }}</p>
-          <time class="time"
-            datetime="{{page.first_published_at|date:"c"}}">{{page.first_published_at|date:"j F Y"}}</time>
-          <div class="nhsai_resource__tags">
+          <time class="time" datetime="{{page.first_published_at|date:"c"}}">{{page.first_published_at|date:"j F Y"}}</time>
+          
+          <div class="topics nhsai-topics">
             {% for topic in page.topics.all %}
-            <span class="nhsai_resource__tag">{{ topic }}</span>
+              <span class="tag"><a href="#">{{ topic }}</a></span>
             {% endfor %}
           </div>
         </div>
+        <div class="nhsai-resource__image nhsuk-grid-column-one-third">
+          {% if page.featured_image %}
+            {% image page.featured_image width-700 %}
+          {% endif %}
+          {% if page.download %}
+            <p>
+              <a href="{{ page.download.url }}" target="_blank" class="nhsuk-button nhsx-button download-button">
+                <svg class="nhsuk-icon nhsuk-icon__chevron-right" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M15.5 12a1 1 0 0 1-.29.71l-5 5a1 1 0 0 1-1.42-1.42l4.3-4.29-4.3-4.29a1 1 0 0 1 1.42-1.42l5 5a1 1 0 0 1 .29.71z"></path>
+                </svg>
+                <span>Download full report</span>
+              </a>
+            </p>
+          {% endif %}
+        </div>
+      </header>
+    <div class="nhsuk-grid-column-two-thirds">
+      {% include_block page.body %}
 
-        {% include_block page.body %}
-
-        {% block extra_content %}
-        {% endblock %}
-      </div>
-      <div class="nhsuk-grid-column-one-third">
-        {% if page.featured_image %}
-        {% image page.featured_image width-200 %}
-        {% endif %}
-        {% if page.download %}
-        <p><a href="{{ page.download.url }}">Download full report</a></p>
-        {% endif %}
-      </div>
+      {% block extra_content %}
+      {% endblock %}
     </div>
-    <div class="nhsuk-grid-row">
-      <div class="nhsuk-grid-column-full">
-        <h2>Explore Further</h2>
+    <div class="nhsuk-grid-column-full">
+      <h2>Explore Further</h2>
+      <div class="nhsuk-grid-row nhsuk-promo-group nhsai-resources-group">
         {% for resource in featured_resources %}
-        {% include 'ai_lab/_partials/resource.html' with resource=resource page=resource.get_parent.specific %}
+          {% include 'ai_lab/_partials/resource.html' with resource=resource page=resource.get_parent.specific %}
         {% endfor %}
       </div>
     </div>
