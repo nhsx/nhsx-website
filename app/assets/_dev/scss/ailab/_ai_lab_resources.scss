@@ -47,8 +47,9 @@
     }
 }
 
-.nhsai-lab__loadmore {
+.nhsai-lab__centred-button {
     text-align: center;
+    margin-top: 15px;
 }
 
 .nhsx-button {
@@ -74,6 +75,11 @@
             top: 15px;
             left: 0;
             opacity: 0.9;
+        }
+        .nhsuk-promo__img_wrapper {
+            max-height: 196px;
+            overflow: hidden;
+            width: 100%;
         }
         .nhsuk-promo__img {
             border-bottom: 5px solid $nhsx-blue;
