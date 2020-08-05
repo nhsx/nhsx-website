@@ -29,6 +29,9 @@
 }
 
 .nhsai-lab__homepage {
+    .nhsuk-main-wrapper {
+        padding-bottom: 0;
+    }
     h2:not(.nhsuk-promo__heading) {
         margin-top: 80px;
         color: $nhsx-blue;

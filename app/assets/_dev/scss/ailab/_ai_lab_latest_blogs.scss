@@ -1,0 +1,20 @@
+.block-latest_blog_posts {
+    background: $white;
+    padding-bottom: 16px;
+    position: relative;
+    h2 {
+        margin-top: 20px !important;
+        margin-bottom: 50px;
+    }
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0px;
+        bottom: 0px;
+        left: -9999px;
+        right: 0px;
+        box-shadow: $white 9999px 0px 0px;
+        z-index: 0;
+        border-left: 9999px solid $white;
+    }
+}
