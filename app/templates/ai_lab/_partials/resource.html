@@ -15,24 +15,26 @@
       <span class="nhsai_resource__category">{{ resource.get_parent }}</span>
 
       {% if resource.featured_image %}
-        <img
-          class="nhsuk-promo__img"
-          src="{{ one_image.url }}"
-          sizes="
-              (min-width: 1020px) 320px
-              (min-width: 768px) 50vw
-              100vw"
-          srcset="
-              {{ one_image.url }} 320w,
-              {{ two_image.url }} 510w,
-              {{ three_image.url }} 640w,
-              {{ four_image.url }} 767w,
-              {{ five_image.url }} 1019w,
-              {{ six_image.url }} 1125w,
-              {{ seven_image.url }} 1534w,
-            "
-          alt="{{ alt_text }}"
-        />
+        <div class="nhsuk-promo__img_wrapper">
+          <img
+            class="nhsuk-promo__img"
+            src="{{ one_image.url }}"
+            sizes="
+                (min-width: 1020px) 320px
+                (min-width: 768px) 50vw
+                100vw"
+            srcset="
+                {{ one_image.url }} 320w,
+                {{ two_image.url }} 510w,
+                {{ three_image.url }} 640w,
+                {{ four_image.url }} 767w,
+                {{ five_image.url }} 1019w,
+                {{ six_image.url }} 1125w,
+                {{ seven_image.url }} 1534w,
+              "
+            alt="{{ alt_text }}"
+          />
+        </div>
       {% else %}
         <div class="nhsuk-promo__img nhsai__resource_without_image"></div>
       {% endif %}
