@@ -21,6 +21,15 @@
         {% include 'ai_lab/_partials/resources.html' with resources=resources page=page %}
       </div>
     </div>
+    <div class="block-promo_group">
+      <div class="nhsuk-grid-row nhsuk-promo-group nhsuk-promo-group_half">
+        {% for sibling in page.get_siblings %}
+          {% if sibling.title != page.title %}
+            {% include 'ai_lab/_partials/use_case.html' with use_case=sibling %}
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
   </main>
 </div>
 {% endblock content %}
