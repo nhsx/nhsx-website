@@ -12,7 +12,11 @@
   <main class="nhsuk-main-wrapper" id="maincontent">
     <div class="nhsuk-grid-row">
       <header class="nhsai-resource__header">
-        <div class="nhsai-resource__meta nhsuk-grid-column-two-thirds">
+        {% if page.featured_image and page.download %}
+          <div class="nhsai-resource__meta nhsuk-grid-column-two-thirds">
+        {% else %}
+          <div class="nhsai-resource__meta nhsuk-grid-column-full">
+        {% endif %}
           <h1 class="nhsuk-heading-xl">{{ page.title }}</h1>
           <p class="author">{{ page.author.first_name }} {{ page.author.last_name }}</p>
           <time class="time" datetime="{{page.first_published_at|date:"c"}}">{{page.first_published_at|date:"j F Y"}}</time>
@@ -23,22 +27,24 @@
             {% endfor %}
           </div>
         </div>
-        <div class="nhsai-resource__image nhsuk-grid-column-one-third">
-          {% if page.featured_image %}
-            {% image page.featured_image width-700 %}
-          {% endif %}
-          {% if page.download %}
-            <p>
-              <a href="{{ page.download.url }}" target="_blank" class="nhsuk-button nhsx-button download-button">
-                <svg class="nhsuk-icon nhsuk-icon__chevron-right" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M15.5 12a1 1 0 0 1-.29.71l-5 5a1 1 0 0 1-1.42-1.42l4.3-4.29-4.3-4.29a1 1 0 0 1 1.42-1.42l5 5a1 1 0 0 1 .29.71z"></path>
-                </svg>
-                <span>Download full report</span>
-              </a>
-            </p>
-          {% endif %}
-        </div>
-      </header>
+        {% if page.featured_image and page.download %}
+          <div class="nhsai-resource__image nhsuk-grid-column-one-third">
+            {% if page.featured_image %}
+              {% image page.featured_image width-700 %}
+            {% endif %}
+            {% if page.download %}
+              <p>
+                <a href="{{ page.download.url }}" target="_blank" class="nhsuk-button nhsx-button download-button">
+                  <svg class="nhsuk-icon nhsuk-icon__chevron-right" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M15.5 12a1 1 0 0 1-.29.71l-5 5a1 1 0 0 1-1.42-1.42l4.3-4.29-4.3-4.29a1 1 0 0 1 1.42-1.42l5 5a1 1 0 0 1 .29.71z"></path>
+                  </svg>
+                  <span>Download full report</span>
+                </a>
+              </p>
+            {% endif %}
+          </div>
+        {% endif %}
+        </header>
     <div class="nhsuk-grid-column-two-thirds">
       {% include_block page.body %}
 
