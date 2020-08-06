@@ -63,7 +63,7 @@ class TestAiLabHomePage:
         assert "<p>Here is a description</p>" in str(page.content)
 
         for use_case in [understand, develop, adopt]:
-            assert use_case.title in str(page.content)
+            assert use_case.summary_title in str(page.content)
             assert use_case.summary_body in str(page.content)
 
         for resource in (
