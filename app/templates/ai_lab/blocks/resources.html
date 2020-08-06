@@ -18,7 +18,7 @@
       <div class="nhsuk-grid-column-full">
         <div class="block-promo_group">
           <div class="nhsuk-grid-row nhsuk-promo-group nhsai-resources-group">
-            {% include 'ai_lab/_partials/use_case.html' with use_case=use_case %}
+            {% include 'ai_lab/_partials/use_case_home.html' with use_case=use_case %}
             {% for resource in sub_pages %}
               {% include 'ai_lab/_partials/resource.html' with resource=resource.specific page=use_case %}
             {% endfor %}
