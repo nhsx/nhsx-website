@@ -101,8 +101,11 @@
             text-transform: uppercase;
             font-weight: 600;
             font-size: 1rem;
+            color: $nhsx-grey-blue;
         }
         .nhsai_resource__tags {
+            margin-bottom: -10px;
+            
             .nhsai_resource__tag {
                 background: $nhs-pale-grey;
                 border-radius: 4px;
@@ -126,6 +129,29 @@
                     opacity: 1;
                 }
             }
+        }
+    }
+
+    @media (min-width: 1000px) {
+        .nhsuk-promo__description {
+            font-size: 1rem;
+        }
+        .nhsuk-promo__heading {
+            font-size: 1.15rem;
+        }
+        .nhsuk-promo__content {
+            padding: 24px;
+        }
+    }
+    @media (min-width: 1220px) {
+        .nhsuk-promo__description {
+            font-size: 1.18rem;
+        }
+        .nhsuk-promo__heading {
+            font-size: 1.5rem;
+        }
+        .nhsuk-promo__content {
+            padding: 32px;
         }
     }
 }

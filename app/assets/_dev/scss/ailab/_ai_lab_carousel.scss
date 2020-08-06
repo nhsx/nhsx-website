@@ -30,7 +30,7 @@
         @media (min-width: 525px) {
           flex: 1 0 50%;
         }
-        @media (min-width: 960px) {
+        @media (min-width: 1000px) {
           flex: 1 0 33.333%;
         }
       }
@@ -42,9 +42,6 @@
         text-decoration: none;
         &:before {
           display: none;
-        }
-        @media (min-width: 40.0625em) {
-          font-size: 1.5rem;
         }
       }
       &:hover {
