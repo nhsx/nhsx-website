@@ -22,7 +22,7 @@
           {% endfor %}
         </div>
 
-        {% if page.featured_image and page.download %}
+        {% if page.featured_image or page.download %}
           {% include 'ai_lab/_partials/image_download.html' with page=page classes="nhsai-resource__image nhsai-resource__image__mobile" %}
         {% endif %}
         
@@ -31,7 +31,7 @@
         {% block extra_content %}
         {% endblock %}
       </div>
-      {% if page.featured_image and page.download %}
+      {% if page.featured_image or page.download %}
         {% include 'ai_lab/_partials/image_download.html' with page=page classes="nhsai-resource__image nhsai-resource__image__desktop nhsuk-grid-column-one-third" %}
       {% endif %}
       <div class="nhsuk-grid-column-full">
