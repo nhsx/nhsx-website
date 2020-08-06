@@ -158,6 +158,19 @@
             height: auto;
             margin-bottom: 36px;
         }
+
+        &.nhsai-resource__image__mobile {
+            display: block;
+            @media (min-width: 48.0625em) {
+                display: none;   
+            }
+        }
+        &.nhsai-resource__image__desktop {
+            display: none;   
+            @media (min-width: 48.0625em) {
+                display: block;   
+            }
+        }
     }
     .download-button {
         width: 100%;
