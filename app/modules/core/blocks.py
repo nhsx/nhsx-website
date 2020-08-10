@@ -233,7 +233,10 @@ class LatestBlogPostsBlock(blocks.StructBlock):
         value["tag"] = Tag.objects.get(id=value["tag_id"])
         limit = int(value["number_of_posts"])
         value["blog_posts"] = (
-            BlogPost.objects.live().filter(tags__id=value["tag_id"]).live()
+            BlogPost.objects.live()
+            .filter(tags__id=value["tag_id"])
+            .live()
+            .order_by("-first_published_at")
         )[:limit]
         context.update(value)
         return context
