@@ -29,7 +29,11 @@ class AiLabFilterableResourceMixin(RoutablePageMixin):
     @route(r"^topic/([a-z\-0-9]+)/$")
     def filter_by_topic(self, request, topic=None, resource_type=None):
         context = self.get_context(request)
-        resources = self._get_resources(topic, resource_type).live()
+        resources = (
+            self._get_resources(topic, resource_type)
+            .live()
+            .order_by("-first_published_at")
+        )
         template = self.get_template(request)
         topics = AiLabTopic.objects.all()
 
@@ -150,9 +154,7 @@ class AiLabResourceIndexPage(AiLabFilterableResourceMixin, BasePage):
                 for id in child._get_ids_for_topic(topic):
                     resource_ids.append(id)
 
-        resources = (
-            Page.objects.filter(id__in=resource_ids).specific().order_by("title")
-        )
+        resources = Page.objects.filter(id__in=resource_ids).specific()
 
         if resource_type is None:
             return resources
