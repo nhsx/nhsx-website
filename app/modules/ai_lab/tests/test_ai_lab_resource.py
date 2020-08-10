@@ -1,4 +1,5 @@
 import pytest
+import json
 
 from django.test import Client
 from modules.ai_lab.models.resources import AiLabCaseStudy, AiLabGuidance, AiLabReport
@@ -59,3 +60,69 @@ class TestAiLabResource:
 
         assert page.status_code == 302
         assert page.url == "https://example.com"
+
+    def test_case_study_shows_three_random_resources(self):
+        category_page = AiLabUnderstandIndexPageFactory.create()
+
+        case_study = AiLabCaseStudyFactory.create(parent=category_page)
+        case_studies = AiLabCaseStudyFactory.create_batch(3, parent=category_page)
+
+        page = client.get(case_study.url)
+
+        assert page.status_code == 200
+
+        for case_study in case_studies:
+            assert case_study.title in str(page.content)
+            assert case_study.title in str(page.content)
+
+    def test_case_study_shows_resources_with_the_same_tag(self):
+        topic1 = AiLabTopicFactory.create()
+        topic2 = AiLabTopicFactory.create()
+        category_page = AiLabUnderstandIndexPageFactory.create()
+
+        case_study = AiLabCaseStudyFactory.create(
+            parent=category_page, topics=[topic1, topic2]
+        )
+
+        AiLabCaseStudyFactory.create_batch(4, parent=category_page)
+
+        featured_case_study_1 = AiLabCaseStudyFactory.create(
+            parent=category_page, topics=[topic1]
+        )
+        featured_case_study_2 = AiLabCaseStudyFactory.create(
+            parent=category_page, topics=[topic2]
+        )
+
+        page = client.get(case_study.url)
+
+        assert page.status_code == 200
+
+        assert featured_case_study_1.title in str(page.content)
+        assert featured_case_study_2.title in str(page.content)
+
+    def test_case_study_shows_featured_resources(self):
+        topic = AiLabTopicFactory.create()
+        category_page = AiLabUnderstandIndexPageFactory.create()
+
+        AiLabCaseStudyFactory.create_batch(4, parent=category_page, topics=[topic])
+
+        featured_case_study_1 = AiLabCaseStudyFactory.create(parent=category_page)
+        featured_case_study_2 = AiLabCaseStudyFactory.create(parent=category_page)
+
+        case_study = AiLabCaseStudyFactory.create(
+            parent=category_page,
+            topics=[topic],
+            featured_resources=json.dumps(
+                [
+                    {"type": "link", "value": featured_case_study_1.id,},
+                    {"type": "link", "value": featured_case_study_2.id,},
+                ]
+            ),
+        )
+
+        page = client.get(case_study.url)
+
+        assert page.status_code == 200
+
+        assert featured_case_study_1.title in str(page.content)
+        assert featured_case_study_2.title in str(page.content)

@@ -5,7 +5,7 @@ from django.http import HttpResponse
 from django.template import loader
 from django.utils.text import slugify
 from django.http import Http404
-
+from django.template.response import TemplateResponse
 
 from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
 from wagtail.contrib.routable_page.models import RoutablePageMixin, route
@@ -28,7 +28,12 @@ class AiLabFilterableResourceMixin(RoutablePageMixin):
     @route(r"^$")
     @route(r"^topic/([a-z\-0-9]+)/$")
     def filter_by_topic(self, request, topic=None, resource_type=None):
-        resources = self._get_resources(topic, resource_type).live()
+        context = self.get_context(request)
+        resources = (
+            self._get_resources(topic, resource_type)
+            .live()
+            .order_by("-first_published_at")
+        )
         template = self.get_template(request)
         topics = AiLabTopic.objects.all()
 
@@ -43,25 +48,20 @@ class AiLabFilterableResourceMixin(RoutablePageMixin):
         except EmptyPage:
             resources = paginator.page(paginator.num_pages)
 
-        response = self._render(
-            request,
-            template,
+        context.update(
             {
                 "resources": resources,
-                "page": self,
                 "topics": topics,
                 "topic": topic,
                 "paginator": paginator,
-            },
+            }
         )
 
-        return response
+        response = TemplateResponse(request, template, context)
 
-    def _render(self, request, template, context):
-        t = loader.get_template(template)
-        response = HttpResponse(t.render(context, request))
-        if context["resources"].has_next():
-            response["next_page"] = context["resources"].next_page_number()
+        if resources.has_next():
+            response["next_page"] = resources.next_page_number()
+
         return response
 
     def _get_resources(self, topic=None, resource_type=None):
@@ -154,9 +154,7 @@ class AiLabResourceIndexPage(AiLabFilterableResourceMixin, BasePage):
                 for id in child._get_ids_for_topic(topic):
                     resource_ids.append(id)
 
-        resources = (
-            Page.objects.filter(id__in=resource_ids).specific().order_by("title")
-        )
+        resources = Page.objects.filter(id__in=resource_ids).specific()
 
         if resource_type is None:
             return resources

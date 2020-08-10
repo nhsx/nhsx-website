@@ -10,6 +10,7 @@ class ResourcesBlock(blocks.StructBlock):
 
     def get_context(self, value, parent_context=None):
         from modules.ai_lab.models import (
+            AiLabResourceIndexPage,
             AiLabUnderstandIndexPage,
             AiLabDevelopIndexPage,
             AiLabAdoptIndexPage,
@@ -23,13 +24,16 @@ class ResourcesBlock(blocks.StructBlock):
         ]
 
         resources = {}
+        index_page = AiLabResourceIndexPage.objects.all()[0]
 
         for type in resource_types:
             page = type.objects.all()[0]
-            child_resources = page.get_children().live()[:9]
+            child_resources = (
+                page.get_children().live().order_by("-first_published_at")[:9]
+            )
             resources[page] = child_resources
 
-        context.update({"resources": resources})
+        context.update({"resources": resources, "index_page": index_page})
 
         return context
 
@@ -40,4 +44,20 @@ class ResourcesBlock(blocks.StructBlock):
 
 ai_lab_home_page_blocks = section_page_blocks + [
     ("resources_listing", ResourcesBlock(group=" Content")),
+]
+
+resource_link_blocks = [
+    (
+        "link",
+        blocks.PageChooserBlock(
+            required=True,
+            label="Page",
+            page_type=[
+                "ai_lab.AiLabCaseStudy",
+                "ai_lab.AiLabGuidance",
+                "ai_lab.AiLabReport",
+                "ai_lab.AiLabExternalResource",
+            ],
+        ),
+    ),
 ]

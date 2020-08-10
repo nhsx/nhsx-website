@@ -1,6 +1,6 @@
 .template-homepage.ai-lab-body {
     .nhsuk-width-container, .nhsuk-header__navigation {
-        @media (min-width: 1212px) {
+        @media (min-width: 1220px) {
             max-width: 1170px;
         }
     }
@@ -29,7 +29,10 @@
 }
 
 .nhsai-lab__homepage {
-    h2 {
+    .nhsuk-main-wrapper {
+        padding-bottom: 0;
+    }
+    h2:not(.nhsuk-promo__heading) {
         margin-top: 80px;
         color: $nhsx-blue;
 

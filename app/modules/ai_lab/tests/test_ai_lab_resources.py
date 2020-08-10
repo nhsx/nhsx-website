@@ -42,7 +42,7 @@ class TestAiLabResources:
         assert page.status_code == 200
 
         for subpage in [understand, develop, adopt]:
-            assert subpage.summary_title in str(page.content)
+            assert subpage.title in str(page.content)
             assert subpage.summary_body in str(page.content)
 
     def test_index_page_lists_topics(self):
