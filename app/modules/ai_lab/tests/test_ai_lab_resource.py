@@ -61,11 +61,11 @@ class TestAiLabResource:
         assert page.status_code == 302
         assert page.url == "https://example.com"
 
-    def test_case_study_shows_two_random_resources(self):
+    def test_case_study_shows_three_random_resources(self):
         category_page = AiLabUnderstandIndexPageFactory.create()
 
         case_study = AiLabCaseStudyFactory.create(parent=category_page)
-        case_studies = AiLabCaseStudyFactory.create_batch(2, parent=category_page)
+        case_studies = AiLabCaseStudyFactory.create_batch(3, parent=category_page)
 
         page = client.get(case_study.url)
 

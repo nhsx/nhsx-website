@@ -90,19 +90,21 @@ class AiLabResourceMixin(models.Model):
         child_resources.remove(self)
         featured_resources = []
 
+        # Try and find resources with the same topic(s) first
         if len(child_resources) > 0:
             for resource in child_resources:
-                if len(featured_resources) == 2:
+                if len(featured_resources) == 3:
                     break
                 for topic in topics:
                     if topic in resource.topics.all():
                         if resource not in featured_resources:
                             featured_resources.append(resource)
 
-            if len(featured_resources) == 0:
-                featured_resources.extend(random.sample(child_resources, 2))
-            elif len(featured_resources) == 1:
-                featured_resources.append(random.choice(child_resources))
+            # If there are not enough resources with a topic, then pad
+            # the remainder with random resource(s)
+            if len(featured_resources) < 3:
+                remainder = 3 - len(featured_resources)
+                featured_resources.extend(random.sample(child_resources, remainder))
 
         return featured_resources
 
