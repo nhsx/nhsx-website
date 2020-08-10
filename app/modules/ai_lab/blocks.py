@@ -10,6 +10,7 @@ class ResourcesBlock(blocks.StructBlock):
 
     def get_context(self, value, parent_context=None):
         from modules.ai_lab.models import (
+            AiLabResourceIndexPage,
             AiLabUnderstandIndexPage,
             AiLabDevelopIndexPage,
             AiLabAdoptIndexPage,
@@ -23,13 +24,14 @@ class ResourcesBlock(blocks.StructBlock):
         ]
 
         resources = {}
+        index_page = AiLabResourceIndexPage.objects.all()[0]
 
         for type in resource_types:
             page = type.objects.all()[0]
             child_resources = page.get_children().live()[:9]
             resources[page] = child_resources
 
-        context.update({"resources": resources})
+        context.update({"resources": resources, "index_page": index_page})
 
         return context
 
