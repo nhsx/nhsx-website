@@ -11,19 +11,16 @@
 
 <div class="nhsuk-grid-column-one-third nhsuk-promo-group__item">
   <div class="nhsuk-promo">
-    <a href="{{ resource.url }}" class="nhsuk-promo__link-wrapper">
+
+    <a href="{{ resource.url }}" class="nhsuk-promo__link-wrapper" target="{{ resource|resource_target }}">
       <span class="nhsai_resource__category">{{ resource.get_parent }}</span>
 
       {% if resource.featured_image %}
-        <div class="nhsuk-promo__img_wrapper">
-          <img
-            class="nhsuk-promo__img"
-            src="{{ one_image.url }}"
-            sizes="
+      <div class="nhsuk-promo__img_wrapper">
+        <img class="nhsuk-promo__img" src="{{ one_image.url }}" sizes="
                 (min-width: 1020px) 320px
                 (min-width: 768px) 50vw
-                100vw"
-            srcset="
+                100vw" srcset="
                 {{ one_image.url }} 320w,
                 {{ two_image.url }} 510w,
                 {{ three_image.url }} 640w,
@@ -31,22 +28,20 @@
                 {{ five_image.url }} 1019w,
                 {{ six_image.url }} 1125w,
                 {{ seven_image.url }} 1534w,
-              "
-            alt="{{ alt_text }}"
-          />
-        </div>
+              " alt="{{ alt_text }}" />
+      </div>
       {% else %}
-        <div class="nhsuk-promo__img_wrapper nhsai__resource_without_image"></div>
+      <div class="nhsuk-promo__img_wrapper nhsai__resource_without_image"></div>
       {% endif %}
       <div class="nhsuk-promo__content">
         <p class="nhsai_resource__type">{{ resource|resource_type }}</p>
-        <!-- link to be used later (possibly not on this page?) 
+        <!-- link to be used later (possibly not on this page?)
           <a href="{{ resource|link_to_resource_type:page }}">{{ resource|resource_type }}</a> -->
         <p class="nhsuk-promo__heading">{{ resource.title }}</p>
         <p class="nhsuk-promo__description">{{ resource.summary }}</p>
         <div class="nhsai_resource__tags">
           {% for topic in resource.topics.all %}
-            <span class="nhsai_resource__tag">{{ topic }}</span>
+          <span class="nhsai_resource__tag">{{ topic }}</span>
           {% endfor %}
         </div>
       </div>
