@@ -170,10 +170,11 @@ class AiLabExternalResource(AiLabResourceMixin, Page):
     external_url = models.URLField()
     content_panels = [
         FieldPanel("title"),
-        FieldPanel("summary"),
+        FieldPanel("summary", widget=forms.Textarea),
         ImageChooserPanel("featured_image"),
         FieldPanel("first_published_at"),
         FieldPanel("external_url", widget=forms.URLInput()),
+        FieldPanel("topics", widget=forms.CheckboxSelectMultiple),
     ]
 
     def serve(self, request, *args, **kwargs):
