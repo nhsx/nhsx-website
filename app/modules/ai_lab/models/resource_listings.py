@@ -1,3 +1,4 @@
+from django import forms
 from django.db import models
 from django.shortcuts import render
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -5,15 +6,21 @@ from django.http import HttpResponse
 from django.template import loader
 from django.utils.text import slugify
 from django.http import Http404
+from django.conf import settings
 from django.template.response import TemplateResponse
+
+from modelcluster.fields import ParentalManyToManyField
 
 from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
 from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 from wagtail.core.models import Page
+from wagtail.core import fields
+from wagtail.images.edit_handlers import ImageChooserPanel
 
 from modules.core.models.abstract import BasePage
 from modules.core.models.pages import SectionPage, ArticlePage
 from modules.blog_posts.models import BlogPost
+from modules.ai_lab.blocks import resource_link_blocks
 
 from modules.ai_lab.models.resources import (
     AiLabCaseStudy,
@@ -119,6 +126,57 @@ class AiLabFilterableResourceMixin(RoutablePageMixin):
         return types
 
 
+class AiLabResourceCollection(AiLabFilterableResourceMixin, SectionPage):
+    parent_page_types = [
+        "AiLabUnderstandIndexPage",
+        "AiLabDevelopIndexPage",
+        "AiLabAdoptIndexPage",
+    ]
+
+    resources = fields.StreamField(resource_link_blocks, blank=True)
+    topics = ParentalManyToManyField("AiLabTopic", blank=False)
+    featured_image = models.ForeignKey(
+        settings.WAGTAILIMAGES_IMAGE_MODEL,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+    )
+
+    content_panels = [
+        FieldPanel("title"),
+        FieldPanel("sub_head"),
+        ImageChooserPanel("featured_image"),
+        StreamFieldPanel("body"),
+        StreamFieldPanel("resources"),
+        FieldPanel("topics", widget=forms.CheckboxSelectMultiple),
+    ]
+
+    ajax_template = "ai_lab/ai_lab_resource_index_page.js.html"
+
+    def _get_resources(self, topic=None, resource_type=None):
+        if topic is None:
+            resource_ids = [resource.value.id for resource in self.resources]
+        else:
+            resource_ids = list(
+                [
+                    r.value.id
+                    for r in self.resources
+                    if len(r.value.specific.topics.filter(slug=topic)) > 0
+                ]
+            )
+
+        resources = Page.objects.filter(id__in=resource_ids).specific()
+
+        if resource_type is None:
+            return resources
+        else:
+            return resources.type(resource_type)
+
+    class Meta:
+        verbose_name = "Resource Collection"
+
+
 class AiLabResourceIndexPage(AiLabFilterableResourceMixin, BasePage):
     """
     An index page that lists all resources listed in the child
@@ -133,6 +191,7 @@ class AiLabResourceIndexPage(AiLabFilterableResourceMixin, BasePage):
         "AiLabDevelopIndexPage",
         "AiLabAdoptIndexPage",
     ]
+    max_count = 1
 
     sub_head = models.CharField(max_length=255, blank=True, null=True)
 
@@ -173,6 +232,7 @@ class AiLabCategoryIndexPageMixin(AiLabFilterableResourceMixin, SectionPage):
         "AiLabExternalResource",
         "AiLabGuidance",
         "AiLabReport",
+        "AiLabResourceCollection",
     ]
     max_count = 1
 
