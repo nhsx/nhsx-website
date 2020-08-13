@@ -1,8 +1,9 @@
 .nhsai-promobanner {
-  background: rgba($nhsx-blue, 0.1);
+  background: white;
   display: flex;
   flex-direction: column-reverse;
   margin-top: 80px;
+  margin-bottom: 80px;
 
   @media (min-width: 525px) {
     flex-direction: row;
@@ -79,7 +80,7 @@
       width: 35%;
     }
   }
-  
+
   .nhsai-promobanner__button-container, .nhsai-promobanner__content {
     padding: 24px;
 
