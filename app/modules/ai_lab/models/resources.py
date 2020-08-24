@@ -87,7 +87,10 @@ class AiLabResourceMixin(models.Model):
 
         root_page = AiLabResourceIndexPage.objects.all()[0]
         child_resources = list(root_page._get_resources())
-        child_resources.remove(self)
+
+        if self in child_resources:
+            child_resources.remove(self)
+
         featured_resources = []
 
         # Try and find resources with the same topic(s) first
