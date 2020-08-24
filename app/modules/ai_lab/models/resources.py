@@ -107,7 +107,8 @@ class AiLabResourceMixin(models.Model):
             # the remainder with random resource(s)
             if len(featured_resources) < 3:
                 remainder = 3 - len(featured_resources)
-                featured_resources.extend(random.sample(child_resources, remainder))
+                if len(child_resources) >= remainder:
+                    featured_resources.extend(random.sample(child_resources, remainder))
 
         return featured_resources
 
