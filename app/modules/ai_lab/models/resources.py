@@ -87,7 +87,10 @@ class AiLabResourceMixin(models.Model):
 
         root_page = AiLabResourceIndexPage.objects.all()[0]
         child_resources = list(root_page._get_resources())
-        child_resources.remove(self)
+
+        if self in child_resources:
+            child_resources.remove(self)
+
         featured_resources = []
 
         # Try and find resources with the same topic(s) first
@@ -104,7 +107,8 @@ class AiLabResourceMixin(models.Model):
             # the remainder with random resource(s)
             if len(featured_resources) < 3:
                 remainder = 3 - len(featured_resources)
-                featured_resources.extend(random.sample(child_resources, remainder))
+                if len(child_resources) >= remainder:
+                    featured_resources.extend(random.sample(child_resources, remainder))
 
         return featured_resources
 
