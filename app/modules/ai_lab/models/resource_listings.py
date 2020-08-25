@@ -36,11 +36,7 @@ class AiLabFilterableResourceMixin(RoutablePageMixin):
     @route(r"^topic/([a-z\-0-9]+)/$")
     def filter_by_topic(self, request, topic=None, resource_type=None):
         context = self.get_context(request)
-        resources = (
-            self._get_resources(topic, resource_type)
-            .live()
-            .order_by("first_published_at")
-        )
+        resources = self._get_resources(topic, resource_type).live()
         template = self.get_template(request)
         topics = AiLabTopic.objects.all()
 

@@ -28,7 +28,7 @@ class ResourcesBlock(blocks.StructBlock):
 
         for type in resource_types:
             page = type.objects.all()[0]
-            child_resources = page.get_children().live().order_by("first_published_at")
+            child_resources = page.get_children().live()
             resources[page] = child_resources
 
         context.update({"resources": resources, "index_page": index_page})
