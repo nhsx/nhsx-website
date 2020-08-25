@@ -94,14 +94,14 @@ class TestAiLabResources:
         ]
         resources = Page.objects.filter(id__in=resource_ids).order_by("title")
 
-        for resource in resources[0:9]:
+        for resource in resources_index_page.get_children()[0:9]:
             assert resource.title in str(page.content)
 
         page2 = client.get(resources_index_page.url + "?page=2")
 
         assert page2.status_code == 200
 
-        for resource in resources[9:]:
+        for resource in resources_index_page.get_children()[9:]:
             assert resource.title in str(page2.content)
 
     def test_resource_index_page_shows_children(self):
