@@ -39,7 +39,7 @@ class AiLabFilterableResourceMixin(RoutablePageMixin):
         resources = (
             self._get_resources(topic, resource_type)
             .live()
-            .order_by("-first_published_at")
+            .order_by("first_published_at")
         )
         template = self.get_template(request)
         topics = AiLabTopic.objects.all()
