@@ -23,6 +23,23 @@ def test_section_page_200(section_page):
     assert rv.status_code == 200
 
 
+def test_section_page_can_have_width_specified(section_page):
+    """Test that the section page has a default content width, and
+    that width can be altered if necessary
+    """
+    rv = client.get(section_page.url)
+
+    assert "nhsuk-grid-column-two-thirds" in str(rv.content)
+
+    section_page.page_width = "full"
+
+    section_page.save_revision().publish()
+
+    rv = client.get(section_page.url)
+
+    assert "nhsuk-grid-column-full" in str(rv.content)
+
+
 def test_section_page_get_children(section_page, article_pages):
     """Check that section_page has 10 children
     """
