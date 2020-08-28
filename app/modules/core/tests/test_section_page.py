@@ -149,3 +149,37 @@ def test_section_page_with_latest_blog_posts(section_page, blog_posts):
 
     for post in tagged_posts:
         assert post.title in rendered
+
+
+def test_section_page_with_latest_news(section_page, news_items):
+    """Test that we can list blog posts with a specific tag
+        when using that block"""
+
+    p = section_page
+
+    tagged_posts = news_items[:3]
+
+    for post in tagged_posts:
+        post.tags.add("tag1")
+        post.save_revision().publish()
+
+    p.body = json.dumps(
+        [
+            {
+                "type": "latest_news",
+                "value": {
+                    "heading": "News",
+                    "number_of_posts": "3",
+                    "tag_id": Tag.objects.get(name="tag1").id,
+                },
+            }
+        ]
+    )
+    p.save_revision().publish()
+
+    rendered = p.body.render_as_block()
+
+    assert "News" in rendered
+
+    for post in tagged_posts:
+        assert post.title in rendered

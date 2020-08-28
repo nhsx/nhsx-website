@@ -1,0 +1,23 @@
+{% load wagtailcore_tags layout_tags %}
+{% if items %}
+<h2>{{ heading }}</h2>
+<div class="block-promo_group">
+  <div class="nhsuk-grid-row nhsuk-promo-group entry-meta__posts">
+    {% with column_class=items|column_class %}
+    {% for post in items %}
+    <div class="{{ column_class }} nhsuk-u-margin-bottom-5">
+      <h3 class="nhsuk-heading-s">
+        <a href="{% pageurl post %}">{{post.title}}</a>
+      </h3>
+      <time class="time" datetime="{{post.first_published_at|date:"c"}}">{{post.first_published_at|date:"j F Y"}}</time>
+      {% include '_partials/tags.html' with page=post %}
+    </div>
+    {% endfor %}
+    {% endwith %}
+  </div>
+</div>
+
+<div class="nhsai-lab__centred-button">
+  <a href="/news?tags={{ tag.slug }}" class="nhsuk-button nhsx-button">View all {{ tag.name }} posts</a>
+</div>
+{% endif %}

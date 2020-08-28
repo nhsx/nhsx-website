@@ -219,7 +219,7 @@ def get_tag_list():
     return [(_.id, _.name) for _ in Tag.objects.all()]
 
 
-class LatestBlogPostsBlock(blocks.StructBlock):
+class LatestItemBlockMixin(blocks.StructBlock):
     heading = blocks.CharBlock(required=True)
     number_of_posts = blocks.ChoiceBlock(
         [(1, "One"), (2, "Two"), (3, "Three")], default=3, required=True
@@ -227,23 +227,46 @@ class LatestBlogPostsBlock(blocks.StructBlock):
     tag_id = blocks.ChoiceBlock(choices=get_tag_list, required=True)
 
     def get_context(self, value, parent_context=None):
-        from modules.blog_posts.models import BlogPost
-
         context = super().get_context(value, parent_context=parent_context)
         value["tag"] = Tag.objects.get(id=value["tag_id"])
-        limit = int(value["number_of_posts"])
-        value["blog_posts"] = (
-            BlogPost.objects.live()
-            .filter(tags__id=value["tag_id"])
-            .live()
-            .order_by("-first_published_at")
-        )[:limit]
+        value["items"] = self._get_items(value["tag_id"], int(value["number_of_posts"]))
         context.update(value)
         return context
 
     class Meta:
+        abstract = True
+
+
+class LatestBlogPostsBlock(LatestItemBlockMixin):
+    def _get_items(self, tag_id, limit):
+        from modules.blog_posts.models import BlogPost
+
+        return (
+            BlogPost.objects.live()
+            .filter(tags__id=tag_id)
+            .live()
+            .order_by("-first_published_at")
+        )[:limit]
+
+    class Meta:
         icon = "doc-full"
         template = "blocks/latest_blog_posts.html"
+
+
+class LatestNewsBlock(LatestItemBlockMixin):
+    def _get_items(self, tag_id, limit):
+        from modules.news.models import News
+
+        return (
+            News.objects.live()
+            .filter(tags__id=tag_id)
+            .live()
+            .order_by("-first_published_at")
+        )[:limit]
+
+    class Meta:
+        icon = "doc-full"
+        template = "blocks/latest_news.html"
 
 
 blog_link_blocks = [
@@ -295,5 +318,6 @@ nhsx_blocks = content_blocks + nhs_blocks
 
 section_page_blocks = nhsx_blocks + [
     ("latest_blog_posts", LatestBlogPostsBlock(group=" Content")),
+    ("latest_news", LatestNewsBlock(group=" Content")),
     ("promo_banner", PromoBanner(group=" Content")),
 ]
