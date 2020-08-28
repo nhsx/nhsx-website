@@ -1,0 +1,24 @@
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% if align == "right" and person.photo %}
+<div class="nhsuk-grid-column-two-thirds nhsuk-u-margin-bottom-5">
+  {% elif align == "left" and person.photo %}
+  <div class="nhsuk-grid-column-one-third nhsuk-u-margin-bottom-5">
+    {% image person.photo width-700 %}
+  </div>
+  <div class="nhsuk-grid-column-two-thirds nhsuk-u-margin-bottom-5">
+    {% else %}
+    <div class="nhsuk-grid-column-full nhsuk-u-margin-bottom-5">
+      {% endif %}
+      <h3 class="nhsuk-heading-m">
+        <a href="{% pageurl person %}">{{person.title}}</a>
+      </h3>
+      <p class="summary__posts">
+        {{person.specific.body|striptags|truncatechars:200}}
+      </p>
+    </div>
+    {% if align == "right" and person.photo %}
+    <div class="nhsuk-grid-column-one-third nhsuk-u-margin-bottom-5">
+      {% image person.photo width-700 %}
+    </div>
+    {% endif %}

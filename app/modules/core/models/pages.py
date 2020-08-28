@@ -35,6 +35,7 @@ class SectionPage(BasePage, InlineHeroMixin, SubNavMixin):
         "core.ArticlePage",
         "core.SectionPage",
         "core.CookieFormPage",
+        "people.PeopleListingPage",
     ]
 
     subnav_panels: list = SubNavMixin.panels

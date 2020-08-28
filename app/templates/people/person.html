@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags static wagtailuserbar nhsukfrontend_tags wagtailimages_tags %}
+
+{% block body_class %}template-article{% endblock %}
+
+{% block extra_css %}
+{% endblock extra_css %}
+
+{% block content %}
+{% breadcrumb %}
+<div class="nhsuk-width-container">
+  <main class="nhsuk-main-wrapper" id="maincontent">
+    <div class="nhsuk-grid-row">
+      <div class="nhsuk-grid-column-two-thirds">
+        <h1 class="nhsuk-heading-xl nhsuk-u-margin-bottom-5">{{ page.title }}</h1>
+        {% if page.position %}
+        <p>{{ page.position }}</p>
+        {% endif %}
+      </div>
+    </div>
+    <div class="nhsuk-grid-row">
+      <div class="nhsuk-grid-column-two-thirds">
+        {% include_block page.body %}
+
+        {% block extra_content %}
+        {% endblock %}
+      </div>
+      <div class="nhsuk-grid-column-one-third">
+        {% if page.photo %}
+        {% image page.photo width-700 %}
+        {% endif %}
+      </div>
+    </div>
+  </main>
+</div>
+{% endblock content %}

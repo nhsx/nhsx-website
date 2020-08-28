@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags static wagtailuserbar nhsukfrontend_tags wagtailimages_tags %}
+
+{% block body_class %}template-homepage{% endblock %}
+
+{% block extra_css %}
+{% endblock extra_css %}
+
+{% block content %}
+
+{% image page.image width-1000 as hero_image %}
+<section class="nhsx-section nhsx-section--white">
+  <div class="nhsuk-width-container">
+    <main class="nhsuk-main-wrapper" id="maincontent">
+      <div class="nhsuk-grid-row">
+        <div class="nhsuk-grid-column-two-thirds nhsuk-u-margin-bottom-5">
+          <h1 class="nhsuk-heading-xl nhsuk-u-margin-bottom-5">{{ page.title }}</h1>
+          {{ page.body }}
+        </div>
+      </div>
+      {% for person in page.get_children.specific %}
+      <div class="nhsuk-grid-row">
+        {% if person.photo %}
+        {% cycle 'left' 'right' as align silent %}
+        {% endif %}
+        {% include 'people/_partials/person.html' with person=person align=align %}
+      </div>
+      {% endfor %}
+    </main>
+  </div>
+</section>
+{% endblock content %}
+{% include 'wagtailnhsukfrontend/footer.html' %}
