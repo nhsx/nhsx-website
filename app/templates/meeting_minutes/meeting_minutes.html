@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags static wagtailuserbar nhsukfrontend_tags wagtailimages_tags %}
+
+{% block body_class %}template-article{% endblock %}
+
+{% block extra_css %}
+{% endblock extra_css %}
+
+{% block content %}
+{% breadcrumb %}
+<div class="nhsuk-width-container">
+  <main class="nhsuk-main-wrapper" id="maincontent">
+    <div class="nhsuk-grid-row">
+      <div class="nhsuk-grid-column-two-thirds">
+        <h1 class="nhsuk-heading-xl nhsuk-u-margin-bottom-5">
+          <span class="nhsuk-caption-l">{{ page.get_parent.title }}</span>
+          {{ page.title }}
+        </h1>
+        <p class="nhsuk-body-l">{{ page.start_time }} - {{ page.end_time }}</p>
+        <p class="nhsuk-body-l">{{ page.venue }}</p>
+
+        <hr class="nhsuk-section-break nhsuk-section-break--l nhsuk-section-break--visible">
+
+        <h2 class="nhsuk-heading-l">Attendees</h2>
+        <table class="nhsuk-table">
+          <thead class="nhsuk-table__head">
+            <tr class="nhsuk-table__row">
+              <th class="nhsuk-table__header" scope="col">Name</th>
+              <th class="nhsuk-table__header" scope="col">Representing</th>
+              <th class="nhsuk-table__header" scope="col">Role</th>
+            </tr>
+          </thead>
+          <tbody class="nhsuk-table__body">
+            {{ page.attendees }}
+          </tbody>
+        </table>
+
+        <h2 class="nhsuk-heading-l">Apologies</h2>
+
+        <table class="nhsuk-table">
+          <thead class="nhsuk-table__head">
+            <tr class="nhsuk-table__row">
+              <th class="nhsuk-table__header" scope="col">Name</th>
+              <th class="nhsuk-table__header" scope="col">Representing</th>
+              <th class="nhsuk-table__header" scope="col">Role</th>
+            </tr>
+          </thead>
+          <tbody class="nhsuk-table__body">
+            {{ page.apologies }}
+          </tbody>
+        </table>
+
+        <h2 class="nhsuk-heading-l">Items</h2>
+
+        <table class="nhsuk-table">
+          <thead class="nhsuk-table__head">
+            <tr class="nhsuk-table__row">
+              <th class="nhsuk-table__header" scope="col"></th>
+              <th class="nhsuk-table__header" scope="col">Item</th>
+            </tr>
+          </thead>
+          <tbody class="nhsuk-table__body">
+            {% for item in page.items %}
+            <tr class="nhsuk-table__row">
+              <th class="nhsuk-table__header" scope="row">{{forloop.counter}}</td>
+              <td class="nhsuk-table__cell">{{ item }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+</div>
+{% endblock content %}

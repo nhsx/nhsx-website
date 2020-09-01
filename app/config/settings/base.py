@@ -110,6 +110,7 @@ SITE_APPS = [
     "modules.news",
     "modules.ai_lab",
     "modules.people",
+    "modules.meeting_minutes",
 ]
 
 INSTALLED_APPS = WAGTAIL_APPS + DJANGO_APPS + SITE_APPS
