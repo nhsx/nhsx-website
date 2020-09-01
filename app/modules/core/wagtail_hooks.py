@@ -16,4 +16,4 @@ def clear_wagtailcache(request, page):
 @hooks.register("insert_global_admin_js", order=100)
 def global_admin_js():
     """Add /static/js/admin_extra.min.js to the admin."""
-    return format_html('<script src="{}"></script>', static("/js/admin_extra.min.js"))
+    return format_html('<script src="{}"></script>', static("js/admin_extra.min.js"))
