@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags static wagtailuserbar nhsukfrontend_tags wagtailimages_tags guidance_tags %}
+
+{% block body_class %}template-article{% endblock %}
+
+{% block extra_css %}
+{% endblock extra_css %}
+
+{% block content %}
+{% breadcrumb %}
+<div class="nhsuk-width-container nhsai-resource_page">
+  <main class="nhsuk-main-wrapper" id="maincontent">
+    <div class="nhsuk-grid-row">
+      <div class="nhsai-resource__meta nhsuk-grid-column-two-thirds">
+        <h1 class="nhsuk-heading-xl">{{ page.title }}</h1>
+        <time class="time"
+          datetime="{{page.first_published_at|date:"c"}}">{{page.first_published_at|date:"j F Y"}}</time>
+
+        <div class="topics nhsai-topics">
+          {% with index_page=page.get_parent.specific %}
+          {% for tag in page.tags.all %}
+          <span class="tag"><a href="{{ index_page|guidance_tag_url:tag }}">{{ tag }}</a></span>
+          {% endfor %}
+          {% endwith %}
+        </div>
+
+        {% if page.featured_image or page.download %}
+        {% include 'ai_lab/_partials/image_download.html' with page=page classes="nhsai-resource__image nhsai-resource__image__mobile" %}
+        {% endif %}
+
+        {% include_block page.body %}
+
+        {% block extra_content %}
+        {% endblock %}
+      </div>
+      {% if page.featured_image or page.download %}
+      {% include 'ai_lab/_partials/image_download.html' with page=page classes="nhsai-resource__image nhsai-resource__image__desktop nhsuk-grid-column-one-third" %}
+      {% endif %}
+    </div>
+  </main>
+</div>
+{% endblock content %}

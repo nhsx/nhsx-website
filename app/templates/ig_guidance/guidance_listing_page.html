@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags static wagtailuserbar nhsukfrontend_tags wagtailimages_tags %}
+
+{% block body_class %}template-minutes-listing-page{% endblock %}
+
+{% block extra_css %}
+{% endblock extra_css %}
+
+{% block content %}
+<div class="nhsuk-width-container">
+  <main class="nhsuk-main-wrapper" id="maincontent">
+    <div class="nhsuk-grid-row">
+      <div class="nhsuk-grid-column-full nhsuk-u-margin-bottom-5">
+        <h1 class="nhsuk-heading-xl nhsuk-u-margin-bottom-5">{{ page.title }}</h1>
+        {{ page.body }}
+        {% regroup guidance|dictsort:"topic.name" by topic.name as item_list %}
+        {% for items in item_list %}
+        <h2>{{ items.grouper }}</h2>
+        <div class="block-promo_group">
+          <div class="nhsuk-grid-row nhsuk-promo-group nhsai-resources-group">
+            {% for guidance in items.list %}
+            {% include 'ig_guidance/_partials/guidance.html' with guidance=guidance %}
+            {% endfor %}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </main>
+</div>
+{% endblock content %}
+{% include 'wagtailnhsukfrontend/footer.html' %}

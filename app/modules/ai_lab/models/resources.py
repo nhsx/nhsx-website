@@ -18,7 +18,7 @@ from wagtail.utils.decorators import cached_classmethod
 
 from modelcluster.fields import ParentalManyToManyField
 
-from modules.core.models.abstract import BasePage
+from modules.core.models.abstract import BasePage, SluggedCategory
 from modules.core.models.pages import SectionPage, ArticlePage
 from modules.blog_posts.models import BlogPost
 from modules.ai_lab.blocks import resource_link_blocks
@@ -117,36 +117,7 @@ class AiLabResourceMixin(models.Model):
 
 
 @register_snippet
-class AiLabTopic(models.Model):
-    name = models.CharField(max_length=30)
-    slug = models.SlugField(max_length=30, null=True, unique=True)
-
-    panels = [
-        FieldPanel("name"),
-    ]
-
-    def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = self._get_unique_slug()
-        return super().save(*args, **kwargs)
-
-    def _get_unique_slug(self):
-        slug = slugify(self.name)
-        unique_slug = slug
-        counter = 1
-        while self.__class__.objects.filter(slug=unique_slug).exists():
-            if (
-                self.__class__.objects.filter(slug=unique_slug).values("id")[0]["id"]
-                == id
-            ):
-                break
-            unique_slug = "{}-{}".format(slug, counter)
-            counter += 1
-        return unique_slug
-
-    def __str__(self):
-        return self.name
-
+class AiLabTopic(SluggedCategory):
     class Meta:
         verbose_name = "AI Lab Topic"
         verbose_name_plural = "AI Lab Topics"
