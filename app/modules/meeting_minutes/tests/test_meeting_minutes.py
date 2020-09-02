@@ -39,4 +39,3 @@ class TestMeetingMinutes:
 
         for resource in meetings:
             assert resource.title in str(page.content)
-

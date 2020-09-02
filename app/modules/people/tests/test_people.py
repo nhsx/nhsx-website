@@ -36,4 +36,3 @@ class TestPeople:
 
         for resource in people:
             assert resource.title in str(page.content)
-

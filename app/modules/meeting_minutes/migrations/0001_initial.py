@@ -11,23 +11,115 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('wagtailcore', '0045_assign_unlock_grouppagepermission'),
+        ("wagtailcore", "0045_assign_unlock_grouppagepermission"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='MeetingMinutes',
+            name="MeetingMinutes",
             fields=[
-                ('page_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
-                ('meeting_date', models.DateField()),
-                ('meeting_time', models.TimeField()),
-                ('attendees', wagtail.core.fields.StreamField([('person', wagtail.core.blocks.StructBlock([('name', wagtail.core.blocks.CharBlock(required=True)), ('organisation', wagtail.core.blocks.CharBlock(required=True)), ('heading', wagtail.core.blocks.CharBlock(required=True)), ('role', wagtail.core.blocks.CharBlock(required=True))]))])),
-                ('apologies', wagtail.core.fields.StreamField([('person', wagtail.core.blocks.StructBlock([('name', wagtail.core.blocks.CharBlock(required=True)), ('organisation', wagtail.core.blocks.CharBlock(required=True)), ('heading', wagtail.core.blocks.CharBlock(required=True)), ('role', wagtail.core.blocks.CharBlock(required=True))]))])),
-                ('items', wagtail.core.fields.StreamField([('rich_text', wagtail.core.blocks.RichTextBlock(group=' Content'))])),
+                (
+                    "page_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="wagtailcore.Page",
+                    ),
+                ),
+                ("meeting_date", models.DateField()),
+                ("meeting_time", models.TimeField()),
+                (
+                    "attendees",
+                    wagtail.core.fields.StreamField(
+                        [
+                            (
+                                "person",
+                                wagtail.core.blocks.StructBlock(
+                                    [
+                                        (
+                                            "name",
+                                            wagtail.core.blocks.CharBlock(
+                                                required=True
+                                            ),
+                                        ),
+                                        (
+                                            "organisation",
+                                            wagtail.core.blocks.CharBlock(
+                                                required=True
+                                            ),
+                                        ),
+                                        (
+                                            "heading",
+                                            wagtail.core.blocks.CharBlock(
+                                                required=True
+                                            ),
+                                        ),
+                                        (
+                                            "role",
+                                            wagtail.core.blocks.CharBlock(
+                                                required=True
+                                            ),
+                                        ),
+                                    ]
+                                ),
+                            )
+                        ]
+                    ),
+                ),
+                (
+                    "apologies",
+                    wagtail.core.fields.StreamField(
+                        [
+                            (
+                                "person",
+                                wagtail.core.blocks.StructBlock(
+                                    [
+                                        (
+                                            "name",
+                                            wagtail.core.blocks.CharBlock(
+                                                required=True
+                                            ),
+                                        ),
+                                        (
+                                            "organisation",
+                                            wagtail.core.blocks.CharBlock(
+                                                required=True
+                                            ),
+                                        ),
+                                        (
+                                            "heading",
+                                            wagtail.core.blocks.CharBlock(
+                                                required=True
+                                            ),
+                                        ),
+                                        (
+                                            "role",
+                                            wagtail.core.blocks.CharBlock(
+                                                required=True
+                                            ),
+                                        ),
+                                    ]
+                                ),
+                            )
+                        ]
+                    ),
+                ),
+                (
+                    "items",
+                    wagtail.core.fields.StreamField(
+                        [
+                            (
+                                "rich_text",
+                                wagtail.core.blocks.RichTextBlock(group=" Content"),
+                            )
+                        ]
+                    ),
+                ),
             ],
-            options={
-                'abstract': False,
-            },
-            bases=('wagtailcore.page',),
+            options={"abstract": False,},
+            bases=("wagtailcore.page",),
         ),
     ]

@@ -43,4 +43,3 @@ class MeetingMinutesListingPage(BaseIndexPage):
 
     parent_page_types = ["core.SectionPage"]
     subpage_types = ["MeetingMinutes"]
-

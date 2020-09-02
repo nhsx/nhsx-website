@@ -11,56 +11,1339 @@ import wagtailnhsukfrontend.blocks
 
 class Migration(migrations.Migration):
 
-    replaces = [('people', '0001_initial'), ('people', '0002_person_position'), ('people', '0003_auto_20200828_1351')]
+    replaces = [
+        ("people", "0001_initial"),
+        ("people", "0002_person_position"),
+        ("people", "0003_auto_20200828_1351"),
+    ]
 
     initial = True
 
     dependencies = [
-        ('images', '0001_initial'),
-        ('wagtailcore', '0045_assign_unlock_grouppagepermission'),
+        ("images", "0001_initial"),
+        ("wagtailcore", "0045_assign_unlock_grouppagepermission"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='PeopleListingPage',
+            name="PeopleListingPage",
             fields=[
-                ('page_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
-                ('fb_og_title', models.CharField(blank=True, help_text='Facebook OG title - max 40 chars', max_length=40, null=True)),
-                ('fb_og_description', models.CharField(blank=True, help_text='Facebook OG description - max 300 chars', max_length=300, null=True)),
-                ('twitter_card_title', models.CharField(blank=True, help_text='Twitter card title - max 40 chars', max_length=40, null=True)),
-                ('twitter_card_alt_text', models.CharField(blank=True, help_text='Twitter card image alt text - max 100 chars', max_length=100, null=True)),
-                ('twitter_card_description', models.CharField(blank=True, help_text='Twitter card description - max 200 chars', max_length=200, null=True)),
-                ('sub_head', models.CharField(blank=True, max_length=255, null=True)),
-                ('body', wagtail.core.fields.StreamField([('rich_text', wagtail.core.blocks.RichTextBlock(group=' Content')), ('block_quote', wagtail.core.blocks.BlockQuoteBlock(group=' Content')), ('embed', modules.core.blocks.EmbedBlock(group=' Content')), ('captioned_embed', wagtail.core.blocks.StructBlock([('embed', modules.core.blocks.EmbedBlock()), ('title', wagtail.core.blocks.CharBlock(required=False)), ('sub_title', wagtail.core.blocks.CharBlock(required=False))], group=' Content')), ('image', wagtail.core.blocks.StructBlock([('content_image', wagtail.images.blocks.ImageChooserBlock(required=True)), ('alt_text', wagtail.core.blocks.CharBlock(help_text='Only leave this blank if the image is decorative.', required=False)), ('caption', wagtail.core.blocks.CharBlock(required=False))], group=' NHS Components')), ('panel', wagtail.core.blocks.StructBlock([('label', wagtail.core.blocks.CharBlock(required=False)), ('heading_level', wagtail.core.blocks.IntegerBlock(default=3, help_text='The heading level affects users with screen readers. Ignore this if there is no label. Default=3, Min=2, Max=4.', max_value=4, min_value=2)), ('body', wagtail.core.blocks.RichTextBlock(required=True))], group=' NHS Components')), ('promo', wagtail.core.blocks.StructBlock([('link_page', wagtail.core.blocks.PageChooserBlock(label='Page', required=False)), ('url', wagtail.core.blocks.URLBlock(label='URL', required=False)), ('heading', wagtail.core.blocks.CharBlock(required=True)), ('description', wagtail.core.blocks.CharBlock(required=False)), ('content_image', wagtail.images.blocks.ImageChooserBlock(label='Image', required=False)), ('alt_text', wagtail.core.blocks.CharBlock(required=False)), ('size', wagtail.core.blocks.ChoiceBlock(choices=[('', 'Default'), ('small', 'Small')], required=False)), ('heading_level', wagtail.core.blocks.IntegerBlock(default=3, help_text='The heading level affects users with screen readers. Default=3, Min=2, Max=4.', max_value=4, min_value=2))], group=' NHS Components')), ('expander', wagtail.core.blocks.StructBlock([('title', wagtail.core.blocks.CharBlock(required=True)), ('body', wagtail.core.blocks.StreamBlock([('richtext', wagtail.core.blocks.RichTextBlock()), ('action_link', wagtail.core.blocks.StructBlock([('text', wagtail.core.blocks.CharBlock(label='Link text', required=True)), ('external_url', wagtail.core.blocks.URLBlock(label='URL', required=True)), ('new_window', wagtail.core.blocks.BooleanBlock(label='Open in new window', required=False))])), ('inset_text', wagtail.core.blocks.StructBlock([('body', wagtail.core.blocks.RichTextBlock(required=True))])), ('image', wagtail.core.blocks.StructBlock([('content_image', wagtail.images.blocks.ImageChooserBlock(required=True)), ('alt_text', wagtail.core.blocks.CharBlock(help_text='Only leave this blank if the image is decorative.', required=False)), ('caption', wagtail.core.blocks.CharBlock(required=False))])), ('grey_panel', wagtail.core.blocks.StructBlock([('label', wagtail.core.blocks.CharBlock(label='heading', required=False)), ('heading_level', wagtail.core.blocks.IntegerBlock(default=3, help_text='The heading level affects users with screen readers. Ignore this if there is no heading. Default=3, Min=2, Max=4.', max_value=4, min_value=2)), ('body', wagtail.core.blocks.RichTextBlock(required=True))])), ('warning_callout', wagtail.core.blocks.StructBlock([('title', wagtail.core.blocks.CharBlock(default='Important', required=True)), ('heading_level', wagtail.core.blocks.IntegerBlock(default=3, help_text='The heading level affects users with screen readers. Default=3, Min=2, Max=4.', max_value=4, min_value=2, required=True)), ('body', wagtail.core.blocks.RichTextBlock(required=True))])), ('summary_list', wagtail.core.blocks.StructBlock([('rows', wagtail.core.blocks.ListBlock(wagtailnhsukfrontend.blocks.SummaryListRowBlock)), ('no_border', wagtail.core.blocks.BooleanBlock(default=False, required=False))])), ('table', modules.core.blocks.TableBlock())], required=True))], group=' NHS Components')), ('grey_panel', wagtail.core.blocks.StructBlock([('label', wagtail.core.blocks.CharBlock(label='heading', required=False)), ('heading_level', wagtail.core.blocks.IntegerBlock(default=3, help_text='The heading level affects users with screen readers. Ignore this if there is no heading. Default=3, Min=2, Max=4.', max_value=4, min_value=2)), ('body', wagtail.core.blocks.RichTextBlock(required=True))], group=' NHS Components')), ('inset_text', wagtail.core.blocks.StructBlock([('body', wagtail.core.blocks.RichTextBlock(required=True))], group=' NHS Components')), ('panel_list', wagtail.core.blocks.StructBlock([('panels', wagtail.core.blocks.ListBlock(wagtail.core.blocks.StructBlock([('left_panel', wagtail.core.blocks.StructBlock([('label', wagtail.core.blocks.CharBlock(required=False)), ('heading_level', wagtail.core.blocks.IntegerBlock(default=3, help_text='The heading level affects users with screen readers. Ignore this if there is no label. Default=3, Min=2, Max=4.', max_value=4, min_value=2)), ('body', wagtail.core.blocks.RichTextBlock(required=True))])), ('right_panel', wagtail.core.blocks.StructBlock([('label', wagtail.core.blocks.CharBlock(required=False)), ('heading_level', wagtail.core.blocks.IntegerBlock(default=3, help_text='The heading level affects users with screen readers. Ignore this if there is no label. Default=3, Min=2, Max=4.', max_value=4, min_value=2)), ('body', wagtail.core.blocks.RichTextBlock(required=True))]))])))], group=' NHS Components')), ('promo_group', wagtail.core.blocks.StructBlock([('column', wagtail.core.blocks.ChoiceBlock(choices=[('one-half', 'One-half'), ('one-third', 'One-third')])), ('size', wagtail.core.blocks.ChoiceBlock(choices=[('', 'Default'), ('small', 'Small')], required=False)), ('heading_level', wagtail.core.blocks.IntegerBlock(default=3, help_text='The heading level affects users with screen readers. Default=3, Min=2, Max=4.', max_value=4, min_value=2)), ('promos', wagtail.core.blocks.ListBlock(modules.core.blocks.BasePromoBlock))], group=' NHS Components')), ('warning_callout', wagtail.core.blocks.StructBlock([('title', wagtail.core.blocks.CharBlock(default='Important', required=True)), ('heading_level', wagtail.core.blocks.IntegerBlock(default=3, help_text='The heading level affects users with screen readers. Default=3, Min=2, Max=4.', max_value=4, min_value=2, required=True)), ('body', wagtail.core.blocks.RichTextBlock(required=True))], group=' NHS Components')), ('table', modules.core.blocks.TableBlock(group=' NHS Components')), ('panel_table', wagtail.core.blocks.StructBlock([('title', wagtail.core.blocks.CharBlock()), ('table', modules.core.blocks.TableBlock())], group=' NHS Components')), ('action_link', wagtail.core.blocks.StructBlock([('text', wagtail.core.blocks.CharBlock(label='Link text', required=True)), ('external_url', wagtail.core.blocks.URLBlock(label='URL', required=True)), ('new_window', wagtail.core.blocks.BooleanBlock(label='Open in new window', required=False))], group=' NHS Components'))], blank=True, verbose_name='Body blocks')),
-                ('fb_og_image', models.ForeignKey(blank=True, help_text='Facebook OG image', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='images.NHSXImage')),
-                ('image', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='peoplelistingpage_hero_image', to='images.NHSXImage')),
-                ('twitter_card_image', models.ForeignKey(blank=True, help_text='Twitter card image', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='images.NHSXImage')),
+                (
+                    "page_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="wagtailcore.Page",
+                    ),
+                ),
+                (
+                    "fb_og_title",
+                    models.CharField(
+                        blank=True,
+                        help_text="Facebook OG title - max 40 chars",
+                        max_length=40,
+                        null=True,
+                    ),
+                ),
+                (
+                    "fb_og_description",
+                    models.CharField(
+                        blank=True,
+                        help_text="Facebook OG description - max 300 chars",
+                        max_length=300,
+                        null=True,
+                    ),
+                ),
+                (
+                    "twitter_card_title",
+                    models.CharField(
+                        blank=True,
+                        help_text="Twitter card title - max 40 chars",
+                        max_length=40,
+                        null=True,
+                    ),
+                ),
+                (
+                    "twitter_card_alt_text",
+                    models.CharField(
+                        blank=True,
+                        help_text="Twitter card image alt text - max 100 chars",
+                        max_length=100,
+                        null=True,
+                    ),
+                ),
+                (
+                    "twitter_card_description",
+                    models.CharField(
+                        blank=True,
+                        help_text="Twitter card description - max 200 chars",
+                        max_length=200,
+                        null=True,
+                    ),
+                ),
+                ("sub_head", models.CharField(blank=True, max_length=255, null=True)),
+                (
+                    "body",
+                    wagtail.core.fields.StreamField(
+                        [
+                            (
+                                "rich_text",
+                                wagtail.core.blocks.RichTextBlock(group=" Content"),
+                            ),
+                            (
+                                "block_quote",
+                                wagtail.core.blocks.BlockQuoteBlock(group=" Content"),
+                            ),
+                            ("embed", modules.core.blocks.EmbedBlock(group=" Content")),
+                            (
+                                "captioned_embed",
+                                wagtail.core.blocks.StructBlock(
+                                    [
+                                        ("embed", modules.core.blocks.EmbedBlock()),
+                                        (
+                                            "title",
+                                            wagtail.core.blocks.CharBlock(
+                                                required=False
+                                            ),
+                                        ),
+                                        (
+                                            "sub_title",
+                                            wagtail.core.blocks.CharBlock(
+                                                required=False
+                                            ),
+                                        ),
+                                    ],
+                                    group=" Content",
+                                ),
+                            ),
+                            (
+                                "image",
+                                wagtail.core.blocks.StructBlock(
+                                    [
+                                        (
+                                            "content_image",
+                                            wagtail.images.blocks.ImageChooserBlock(
+                                                required=True
+                                            ),
+                                        ),
+                                        (
+                                            "alt_text",
+                                            wagtail.core.blocks.CharBlock(
+                                                help_text="Only leave this blank if the image is decorative.",
+                                                required=False,
+                                            ),
+                                        ),
+                                        (
+                                            "caption",
+                                            wagtail.core.blocks.CharBlock(
+                                                required=False
+                                            ),
+                                        ),
+                                    ],
+                                    group=" NHS Components",
+                                ),
+                            ),
+                            (
+                                "panel",
+                                wagtail.core.blocks.StructBlock(
+                                    [
+                                        (
+                                            "label",
+                                            wagtail.core.blocks.CharBlock(
+                                                required=False
+                                            ),
+                                        ),
+                                        (
+                                            "heading_level",
+                                            wagtail.core.blocks.IntegerBlock(
+                                                default=3,
+                                                help_text="The heading level affects users with screen readers. Ignore this if there is no label. Default=3, Min=2, Max=4.",
+                                                max_value=4,
+                                                min_value=2,
+                                            ),
+                                        ),
+                                        (
+                                            "body",
+                                            wagtail.core.blocks.RichTextBlock(
+                                                required=True
+                                            ),
+                                        ),
+                                    ],
+                                    group=" NHS Components",
+                                ),
+                            ),
+                            (
+                                "promo",
+                                wagtail.core.blocks.StructBlock(
+                                    [
+                                        (
+                                            "link_page",
+                                            wagtail.core.blocks.PageChooserBlock(
+                                                label="Page", required=False
+                                            ),
+                                        ),
+                                        (
+                                            "url",
+                                            wagtail.core.blocks.URLBlock(
+                                                label="URL", required=False
+                                            ),
+                                        ),
+                                        (
+                                            "heading",
+                                            wagtail.core.blocks.CharBlock(
+                                                required=True
+                                            ),
+                                        ),
+                                        (
+                                            "description",
+                                            wagtail.core.blocks.CharBlock(
+                                                required=False
+                                            ),
+                                        ),
+                                        (
+                                            "content_image",
+                                            wagtail.images.blocks.ImageChooserBlock(
+                                                label="Image", required=False
+                                            ),
+                                        ),
+                                        (
+                                            "alt_text",
+                                            wagtail.core.blocks.CharBlock(
+                                                required=False
+                                            ),
+                                        ),
+                                        (
+                                            "size",
+                                            wagtail.core.blocks.ChoiceBlock(
+                                                choices=[
+                                                    ("", "Default"),
+                                                    ("small", "Small"),
+                                                ],
+                                                required=False,
+                                            ),
+                                        ),
+                                        (
+                                            "heading_level",
+                                            wagtail.core.blocks.IntegerBlock(
+                                                default=3,
+                                                help_text="The heading level affects users with screen readers. Default=3, Min=2, Max=4.",
+                                                max_value=4,
+                                                min_value=2,
+                                            ),
+                                        ),
+                                    ],
+                                    group=" NHS Components",
+                                ),
+                            ),
+                            (
+                                "expander",
+                                wagtail.core.blocks.StructBlock(
+                                    [
+                                        (
+                                            "title",
+                                            wagtail.core.blocks.CharBlock(
+                                                required=True
+                                            ),
+                                        ),
+                                        (
+                                            "body",
+                                            wagtail.core.blocks.StreamBlock(
+                                                [
+                                                    (
+                                                        "richtext",
+                                                        wagtail.core.blocks.RichTextBlock(),
+                                                    ),
+                                                    (
+                                                        "action_link",
+                                                        wagtail.core.blocks.StructBlock(
+                                                            [
+                                                                (
+                                                                    "text",
+                                                                    wagtail.core.blocks.CharBlock(
+                                                                        label="Link text",
+                                                                        required=True,
+                                                                    ),
+                                                                ),
+                                                                (
+                                                                    "external_url",
+                                                                    wagtail.core.blocks.URLBlock(
+                                                                        label="URL",
+                                                                        required=True,
+                                                                    ),
+                                                                ),
+                                                                (
+                                                                    "new_window",
+                                                                    wagtail.core.blocks.BooleanBlock(
+                                                                        label="Open in new window",
+                                                                        required=False,
+                                                                    ),
+                                                                ),
+                                                            ]
+                                                        ),
+                                                    ),
+                                                    (
+                                                        "inset_text",
+                                                        wagtail.core.blocks.StructBlock(
+                                                            [
+                                                                (
+                                                                    "body",
+                                                                    wagtail.core.blocks.RichTextBlock(
+                                                                        required=True
+                                                                    ),
+                                                                )
+                                                            ]
+                                                        ),
+                                                    ),
+                                                    (
+                                                        "image",
+                                                        wagtail.core.blocks.StructBlock(
+                                                            [
+                                                                (
+                                                                    "content_image",
+                                                                    wagtail.images.blocks.ImageChooserBlock(
+                                                                        required=True
+                                                                    ),
+                                                                ),
+                                                                (
+                                                                    "alt_text",
+                                                                    wagtail.core.blocks.CharBlock(
+                                                                        help_text="Only leave this blank if the image is decorative.",
+                                                                        required=False,
+                                                                    ),
+                                                                ),
+                                                                (
+                                                                    "caption",
+                                                                    wagtail.core.blocks.CharBlock(
+                                                                        required=False
+                                                                    ),
+                                                                ),
+                                                            ]
+                                                        ),
+                                                    ),
+                                                    (
+                                                        "grey_panel",
+                                                        wagtail.core.blocks.StructBlock(
+                                                            [
+                                                                (
+                                                                    "label",
+                                                                    wagtail.core.blocks.CharBlock(
+                                                                        label="heading",
+                                                                        required=False,
+                                                                    ),
+                                                                ),
+                                                                (
+                                                                    "heading_level",
+                                                                    wagtail.core.blocks.IntegerBlock(
+                                                                        default=3,
+                                                                        help_text="The heading level affects users with screen readers. Ignore this if there is no heading. Default=3, Min=2, Max=4.",
+                                                                        max_value=4,
+                                                                        min_value=2,
+                                                                    ),
+                                                                ),
+                                                                (
+                                                                    "body",
+                                                                    wagtail.core.blocks.RichTextBlock(
+                                                                        required=True
+                                                                    ),
+                                                                ),
+                                                            ]
+                                                        ),
+                                                    ),
+                                                    (
+                                                        "warning_callout",
+                                                        wagtail.core.blocks.StructBlock(
+                                                            [
+                                                                (
+                                                                    "title",
+                                                                    wagtail.core.blocks.CharBlock(
+                                                                        default="Important",
+                                                                        required=True,
+                                                                    ),
+                                                                ),
+                                                                (
+                                                                    "heading_level",
+                                                                    wagtail.core.blocks.IntegerBlock(
+                                                                        default=3,
+                                                                        help_text="The heading level affects users with screen readers. Default=3, Min=2, Max=4.",
+                                                                        max_value=4,
+                                                                        min_value=2,
+                                                                        required=True,
+                                                                    ),
+                                                                ),
+                                                                (
+                                                                    "body",
+                                                                    wagtail.core.blocks.RichTextBlock(
+                                                                        required=True
+                                                                    ),
+                                                                ),
+                                                            ]
+                                                        ),
+                                                    ),
+                                                    (
+                                                        "summary_list",
+                                                        wagtail.core.blocks.StructBlock(
+                                                            [
+                                                                (
+                                                                    "rows",
+                                                                    wagtail.core.blocks.ListBlock(
+                                                                        wagtailnhsukfrontend.blocks.SummaryListRowBlock
+                                                                    ),
+                                                                ),
+                                                                (
+                                                                    "no_border",
+                                                                    wagtail.core.blocks.BooleanBlock(
+                                                                        default=False,
+                                                                        required=False,
+                                                                    ),
+                                                                ),
+                                                            ]
+                                                        ),
+                                                    ),
+                                                    (
+                                                        "table",
+                                                        modules.core.blocks.TableBlock(),
+                                                    ),
+                                                ],
+                                                required=True,
+                                            ),
+                                        ),
+                                    ],
+                                    group=" NHS Components",
+                                ),
+                            ),
+                            (
+                                "grey_panel",
+                                wagtail.core.blocks.StructBlock(
+                                    [
+                                        (
+                                            "label",
+                                            wagtail.core.blocks.CharBlock(
+                                                label="heading", required=False
+                                            ),
+                                        ),
+                                        (
+                                            "heading_level",
+                                            wagtail.core.blocks.IntegerBlock(
+                                                default=3,
+                                                help_text="The heading level affects users with screen readers. Ignore this if there is no heading. Default=3, Min=2, Max=4.",
+                                                max_value=4,
+                                                min_value=2,
+                                            ),
+                                        ),
+                                        (
+                                            "body",
+                                            wagtail.core.blocks.RichTextBlock(
+                                                required=True
+                                            ),
+                                        ),
+                                    ],
+                                    group=" NHS Components",
+                                ),
+                            ),
+                            (
+                                "inset_text",
+                                wagtail.core.blocks.StructBlock(
+                                    [
+                                        (
+                                            "body",
+                                            wagtail.core.blocks.RichTextBlock(
+                                                required=True
+                                            ),
+                                        )
+                                    ],
+                                    group=" NHS Components",
+                                ),
+                            ),
+                            (
+                                "panel_list",
+                                wagtail.core.blocks.StructBlock(
+                                    [
+                                        (
+                                            "panels",
+                                            wagtail.core.blocks.ListBlock(
+                                                wagtail.core.blocks.StructBlock(
+                                                    [
+                                                        (
+                                                            "left_panel",
+                                                            wagtail.core.blocks.StructBlock(
+                                                                [
+                                                                    (
+                                                                        "label",
+                                                                        wagtail.core.blocks.CharBlock(
+                                                                            required=False
+                                                                        ),
+                                                                    ),
+                                                                    (
+                                                                        "heading_level",
+                                                                        wagtail.core.blocks.IntegerBlock(
+                                                                            default=3,
+                                                                            help_text="The heading level affects users with screen readers. Ignore this if there is no label. Default=3, Min=2, Max=4.",
+                                                                            max_value=4,
+                                                                            min_value=2,
+                                                                        ),
+                                                                    ),
+                                                                    (
+                                                                        "body",
+                                                                        wagtail.core.blocks.RichTextBlock(
+                                                                            required=True
+                                                                        ),
+                                                                    ),
+                                                                ]
+                                                            ),
+                                                        ),
+                                                        (
+                                                            "right_panel",
+                                                            wagtail.core.blocks.StructBlock(
+                                                                [
+                                                                    (
+                                                                        "label",
+                                                                        wagtail.core.blocks.CharBlock(
+                                                                            required=False
+                                                                        ),
+                                                                    ),
+                                                                    (
+                                                                        "heading_level",
+                                                                        wagtail.core.blocks.IntegerBlock(
+                                                                            default=3,
+                                                                            help_text="The heading level affects users with screen readers. Ignore this if there is no label. Default=3, Min=2, Max=4.",
+                                                                            max_value=4,
+                                                                            min_value=2,
+                                                                        ),
+                                                                    ),
+                                                                    (
+                                                                        "body",
+                                                                        wagtail.core.blocks.RichTextBlock(
+                                                                            required=True
+                                                                        ),
+                                                                    ),
+                                                                ]
+                                                            ),
+                                                        ),
+                                                    ]
+                                                )
+                                            ),
+                                        )
+                                    ],
+                                    group=" NHS Components",
+                                ),
+                            ),
+                            (
+                                "promo_group",
+                                wagtail.core.blocks.StructBlock(
+                                    [
+                                        (
+                                            "column",
+                                            wagtail.core.blocks.ChoiceBlock(
+                                                choices=[
+                                                    ("one-half", "One-half"),
+                                                    ("one-third", "One-third"),
+                                                ]
+                                            ),
+                                        ),
+                                        (
+                                            "size",
+                                            wagtail.core.blocks.ChoiceBlock(
+                                                choices=[
+                                                    ("", "Default"),
+                                                    ("small", "Small"),
+                                                ],
+                                                required=False,
+                                            ),
+                                        ),
+                                        (
+                                            "heading_level",
+                                            wagtail.core.blocks.IntegerBlock(
+                                                default=3,
+                                                help_text="The heading level affects users with screen readers. Default=3, Min=2, Max=4.",
+                                                max_value=4,
+                                                min_value=2,
+                                            ),
+                                        ),
+                                        (
+                                            "promos",
+                                            wagtail.core.blocks.ListBlock(
+                                                modules.core.blocks.BasePromoBlock
+                                            ),
+                                        ),
+                                    ],
+                                    group=" NHS Components",
+                                ),
+                            ),
+                            (
+                                "warning_callout",
+                                wagtail.core.blocks.StructBlock(
+                                    [
+                                        (
+                                            "title",
+                                            wagtail.core.blocks.CharBlock(
+                                                default="Important", required=True
+                                            ),
+                                        ),
+                                        (
+                                            "heading_level",
+                                            wagtail.core.blocks.IntegerBlock(
+                                                default=3,
+                                                help_text="The heading level affects users with screen readers. Default=3, Min=2, Max=4.",
+                                                max_value=4,
+                                                min_value=2,
+                                                required=True,
+                                            ),
+                                        ),
+                                        (
+                                            "body",
+                                            wagtail.core.blocks.RichTextBlock(
+                                                required=True
+                                            ),
+                                        ),
+                                    ],
+                                    group=" NHS Components",
+                                ),
+                            ),
+                            (
+                                "table",
+                                modules.core.blocks.TableBlock(group=" NHS Components"),
+                            ),
+                            (
+                                "panel_table",
+                                wagtail.core.blocks.StructBlock(
+                                    [
+                                        ("title", wagtail.core.blocks.CharBlock()),
+                                        ("table", modules.core.blocks.TableBlock()),
+                                    ],
+                                    group=" NHS Components",
+                                ),
+                            ),
+                            (
+                                "action_link",
+                                wagtail.core.blocks.StructBlock(
+                                    [
+                                        (
+                                            "text",
+                                            wagtail.core.blocks.CharBlock(
+                                                label="Link text", required=True
+                                            ),
+                                        ),
+                                        (
+                                            "external_url",
+                                            wagtail.core.blocks.URLBlock(
+                                                label="URL", required=True
+                                            ),
+                                        ),
+                                        (
+                                            "new_window",
+                                            wagtail.core.blocks.BooleanBlock(
+                                                label="Open in new window",
+                                                required=False,
+                                            ),
+                                        ),
+                                    ],
+                                    group=" NHS Components",
+                                ),
+                            ),
+                        ],
+                        blank=True,
+                        verbose_name="Body blocks",
+                    ),
+                ),
+                (
+                    "fb_og_image",
+                    models.ForeignKey(
+                        blank=True,
+                        help_text="Facebook OG image",
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        related_name="+",
+                        to="images.NHSXImage",
+                    ),
+                ),
+                (
+                    "image",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        related_name="peoplelistingpage_hero_image",
+                        to="images.NHSXImage",
+                    ),
+                ),
+                (
+                    "twitter_card_image",
+                    models.ForeignKey(
+                        blank=True,
+                        help_text="Twitter card image",
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        related_name="+",
+                        to="images.NHSXImage",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'People Listing Page',
-                'verbose_name_plural': 'People Listing Pages',
+                "verbose_name": "People Listing Page",
+                "verbose_name_plural": "People Listing Pages",
             },
-            bases=('wagtailcore.page', models.Model),
+            bases=("wagtailcore.page", models.Model),
         ),
         migrations.CreateModel(
-            name='Person',
+            name="Person",
             fields=[
-                ('page_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
-                ('fb_og_title', models.CharField(blank=True, help_text='Facebook OG title - max 40 chars', max_length=40, null=True)),
-                ('fb_og_description', models.CharField(blank=True, help_text='Facebook OG description - max 300 chars', max_length=300, null=True)),
-                ('twitter_card_title', models.CharField(blank=True, help_text='Twitter card title - max 40 chars', max_length=40, null=True)),
-                ('twitter_card_alt_text', models.CharField(blank=True, help_text='Twitter card image alt text - max 100 chars', max_length=100, null=True)),
-                ('twitter_card_description', models.CharField(blank=True, help_text='Twitter card description - max 200 chars', max_length=200, null=True)),
-                ('body', wagtail.core.fields.StreamField([('rich_text', wagtail.core.blocks.RichTextBlock(group=' Content')), ('block_quote', wagtail.core.blocks.BlockQuoteBlock(group=' Content')), ('embed', modules.core.blocks.EmbedBlock(group=' Content')), ('captioned_embed', wagtail.core.blocks.StructBlock([('embed', modules.core.blocks.EmbedBlock()), ('title', wagtail.core.blocks.CharBlock(required=False)), ('sub_title', wagtail.core.blocks.CharBlock(required=False))], group=' Content')), ('image', wagtail.core.blocks.StructBlock([('content_image', wagtail.images.blocks.ImageChooserBlock(required=True)), ('alt_text', wagtail.core.blocks.CharBlock(help_text='Only leave this blank if the image is decorative.', required=False)), ('caption', wagtail.core.blocks.CharBlock(required=False))], group=' NHS Components')), ('panel', wagtail.core.blocks.StructBlock([('label', wagtail.core.blocks.CharBlock(required=False)), ('heading_level', wagtail.core.blocks.IntegerBlock(default=3, help_text='The heading level affects users with screen readers. Ignore this if there is no label. Default=3, Min=2, Max=4.', max_value=4, min_value=2)), ('body', wagtail.core.blocks.RichTextBlock(required=True))], group=' NHS Components')), ('promo', wagtail.core.blocks.StructBlock([('link_page', wagtail.core.blocks.PageChooserBlock(label='Page', required=False)), ('url', wagtail.core.blocks.URLBlock(label='URL', required=False)), ('heading', wagtail.core.blocks.CharBlock(required=True)), ('description', wagtail.core.blocks.CharBlock(required=False)), ('content_image', wagtail.images.blocks.ImageChooserBlock(label='Image', required=False)), ('alt_text', wagtail.core.blocks.CharBlock(required=False)), ('size', wagtail.core.blocks.ChoiceBlock(choices=[('', 'Default'), ('small', 'Small')], required=False)), ('heading_level', wagtail.core.blocks.IntegerBlock(default=3, help_text='The heading level affects users with screen readers. Default=3, Min=2, Max=4.', max_value=4, min_value=2))], group=' NHS Components')), ('expander', wagtail.core.blocks.StructBlock([('title', wagtail.core.blocks.CharBlock(required=True)), ('body', wagtail.core.blocks.StreamBlock([('richtext', wagtail.core.blocks.RichTextBlock()), ('action_link', wagtail.core.blocks.StructBlock([('text', wagtail.core.blocks.CharBlock(label='Link text', required=True)), ('external_url', wagtail.core.blocks.URLBlock(label='URL', required=True)), ('new_window', wagtail.core.blocks.BooleanBlock(label='Open in new window', required=False))])), ('inset_text', wagtail.core.blocks.StructBlock([('body', wagtail.core.blocks.RichTextBlock(required=True))])), ('image', wagtail.core.blocks.StructBlock([('content_image', wagtail.images.blocks.ImageChooserBlock(required=True)), ('alt_text', wagtail.core.blocks.CharBlock(help_text='Only leave this blank if the image is decorative.', required=False)), ('caption', wagtail.core.blocks.CharBlock(required=False))])), ('grey_panel', wagtail.core.blocks.StructBlock([('label', wagtail.core.blocks.CharBlock(label='heading', required=False)), ('heading_level', wagtail.core.blocks.IntegerBlock(default=3, help_text='The heading level affects users with screen readers. Ignore this if there is no heading. Default=3, Min=2, Max=4.', max_value=4, min_value=2)), ('body', wagtail.core.blocks.RichTextBlock(required=True))])), ('warning_callout', wagtail.core.blocks.StructBlock([('title', wagtail.core.blocks.CharBlock(default='Important', required=True)), ('heading_level', wagtail.core.blocks.IntegerBlock(default=3, help_text='The heading level affects users with screen readers. Default=3, Min=2, Max=4.', max_value=4, min_value=2, required=True)), ('body', wagtail.core.blocks.RichTextBlock(required=True))])), ('summary_list', wagtail.core.blocks.StructBlock([('rows', wagtail.core.blocks.ListBlock(wagtailnhsukfrontend.blocks.SummaryListRowBlock)), ('no_border', wagtail.core.blocks.BooleanBlock(default=False, required=False))])), ('table', modules.core.blocks.TableBlock())], required=True))], group=' NHS Components')), ('grey_panel', wagtail.core.blocks.StructBlock([('label', wagtail.core.blocks.CharBlock(label='heading', required=False)), ('heading_level', wagtail.core.blocks.IntegerBlock(default=3, help_text='The heading level affects users with screen readers. Ignore this if there is no heading. Default=3, Min=2, Max=4.', max_value=4, min_value=2)), ('body', wagtail.core.blocks.RichTextBlock(required=True))], group=' NHS Components')), ('inset_text', wagtail.core.blocks.StructBlock([('body', wagtail.core.blocks.RichTextBlock(required=True))], group=' NHS Components')), ('panel_list', wagtail.core.blocks.StructBlock([('panels', wagtail.core.blocks.ListBlock(wagtail.core.blocks.StructBlock([('left_panel', wagtail.core.blocks.StructBlock([('label', wagtail.core.blocks.CharBlock(required=False)), ('heading_level', wagtail.core.blocks.IntegerBlock(default=3, help_text='The heading level affects users with screen readers. Ignore this if there is no label. Default=3, Min=2, Max=4.', max_value=4, min_value=2)), ('body', wagtail.core.blocks.RichTextBlock(required=True))])), ('right_panel', wagtail.core.blocks.StructBlock([('label', wagtail.core.blocks.CharBlock(required=False)), ('heading_level', wagtail.core.blocks.IntegerBlock(default=3, help_text='The heading level affects users with screen readers. Ignore this if there is no label. Default=3, Min=2, Max=4.', max_value=4, min_value=2)), ('body', wagtail.core.blocks.RichTextBlock(required=True))]))])))], group=' NHS Components')), ('promo_group', wagtail.core.blocks.StructBlock([('column', wagtail.core.blocks.ChoiceBlock(choices=[('one-half', 'One-half'), ('one-third', 'One-third')])), ('size', wagtail.core.blocks.ChoiceBlock(choices=[('', 'Default'), ('small', 'Small')], required=False)), ('heading_level', wagtail.core.blocks.IntegerBlock(default=3, help_text='The heading level affects users with screen readers. Default=3, Min=2, Max=4.', max_value=4, min_value=2)), ('promos', wagtail.core.blocks.ListBlock(modules.core.blocks.BasePromoBlock))], group=' NHS Components')), ('warning_callout', wagtail.core.blocks.StructBlock([('title', wagtail.core.blocks.CharBlock(default='Important', required=True)), ('heading_level', wagtail.core.blocks.IntegerBlock(default=3, help_text='The heading level affects users with screen readers. Default=3, Min=2, Max=4.', max_value=4, min_value=2, required=True)), ('body', wagtail.core.blocks.RichTextBlock(required=True))], group=' NHS Components')), ('table', modules.core.blocks.TableBlock(group=' NHS Components')), ('panel_table', wagtail.core.blocks.StructBlock([('title', wagtail.core.blocks.CharBlock()), ('table', modules.core.blocks.TableBlock())], group=' NHS Components')), ('action_link', wagtail.core.blocks.StructBlock([('text', wagtail.core.blocks.CharBlock(label='Link text', required=True)), ('external_url', wagtail.core.blocks.URLBlock(label='URL', required=True)), ('new_window', wagtail.core.blocks.BooleanBlock(label='Open in new window', required=False))], group=' NHS Components'))], blank=True, verbose_name='Body blocks')),
-                ('fb_og_image', models.ForeignKey(blank=True, help_text='Facebook OG image', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='images.NHSXImage')),
-                ('photo', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='images.NHSXImage')),
-                ('twitter_card_image', models.ForeignKey(blank=True, help_text='Twitter card image', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='images.NHSXImage')),
-                ('position', models.CharField(blank=True, default='', max_length=255)),
+                (
+                    "page_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="wagtailcore.Page",
+                    ),
+                ),
+                (
+                    "fb_og_title",
+                    models.CharField(
+                        blank=True,
+                        help_text="Facebook OG title - max 40 chars",
+                        max_length=40,
+                        null=True,
+                    ),
+                ),
+                (
+                    "fb_og_description",
+                    models.CharField(
+                        blank=True,
+                        help_text="Facebook OG description - max 300 chars",
+                        max_length=300,
+                        null=True,
+                    ),
+                ),
+                (
+                    "twitter_card_title",
+                    models.CharField(
+                        blank=True,
+                        help_text="Twitter card title - max 40 chars",
+                        max_length=40,
+                        null=True,
+                    ),
+                ),
+                (
+                    "twitter_card_alt_text",
+                    models.CharField(
+                        blank=True,
+                        help_text="Twitter card image alt text - max 100 chars",
+                        max_length=100,
+                        null=True,
+                    ),
+                ),
+                (
+                    "twitter_card_description",
+                    models.CharField(
+                        blank=True,
+                        help_text="Twitter card description - max 200 chars",
+                        max_length=200,
+                        null=True,
+                    ),
+                ),
+                (
+                    "body",
+                    wagtail.core.fields.StreamField(
+                        [
+                            (
+                                "rich_text",
+                                wagtail.core.blocks.RichTextBlock(group=" Content"),
+                            ),
+                            (
+                                "block_quote",
+                                wagtail.core.blocks.BlockQuoteBlock(group=" Content"),
+                            ),
+                            ("embed", modules.core.blocks.EmbedBlock(group=" Content")),
+                            (
+                                "captioned_embed",
+                                wagtail.core.blocks.StructBlock(
+                                    [
+                                        ("embed", modules.core.blocks.EmbedBlock()),
+                                        (
+                                            "title",
+                                            wagtail.core.blocks.CharBlock(
+                                                required=False
+                                            ),
+                                        ),
+                                        (
+                                            "sub_title",
+                                            wagtail.core.blocks.CharBlock(
+                                                required=False
+                                            ),
+                                        ),
+                                    ],
+                                    group=" Content",
+                                ),
+                            ),
+                            (
+                                "image",
+                                wagtail.core.blocks.StructBlock(
+                                    [
+                                        (
+                                            "content_image",
+                                            wagtail.images.blocks.ImageChooserBlock(
+                                                required=True
+                                            ),
+                                        ),
+                                        (
+                                            "alt_text",
+                                            wagtail.core.blocks.CharBlock(
+                                                help_text="Only leave this blank if the image is decorative.",
+                                                required=False,
+                                            ),
+                                        ),
+                                        (
+                                            "caption",
+                                            wagtail.core.blocks.CharBlock(
+                                                required=False
+                                            ),
+                                        ),
+                                    ],
+                                    group=" NHS Components",
+                                ),
+                            ),
+                            (
+                                "panel",
+                                wagtail.core.blocks.StructBlock(
+                                    [
+                                        (
+                                            "label",
+                                            wagtail.core.blocks.CharBlock(
+                                                required=False
+                                            ),
+                                        ),
+                                        (
+                                            "heading_level",
+                                            wagtail.core.blocks.IntegerBlock(
+                                                default=3,
+                                                help_text="The heading level affects users with screen readers. Ignore this if there is no label. Default=3, Min=2, Max=4.",
+                                                max_value=4,
+                                                min_value=2,
+                                            ),
+                                        ),
+                                        (
+                                            "body",
+                                            wagtail.core.blocks.RichTextBlock(
+                                                required=True
+                                            ),
+                                        ),
+                                    ],
+                                    group=" NHS Components",
+                                ),
+                            ),
+                            (
+                                "promo",
+                                wagtail.core.blocks.StructBlock(
+                                    [
+                                        (
+                                            "link_page",
+                                            wagtail.core.blocks.PageChooserBlock(
+                                                label="Page", required=False
+                                            ),
+                                        ),
+                                        (
+                                            "url",
+                                            wagtail.core.blocks.URLBlock(
+                                                label="URL", required=False
+                                            ),
+                                        ),
+                                        (
+                                            "heading",
+                                            wagtail.core.blocks.CharBlock(
+                                                required=True
+                                            ),
+                                        ),
+                                        (
+                                            "description",
+                                            wagtail.core.blocks.CharBlock(
+                                                required=False
+                                            ),
+                                        ),
+                                        (
+                                            "content_image",
+                                            wagtail.images.blocks.ImageChooserBlock(
+                                                label="Image", required=False
+                                            ),
+                                        ),
+                                        (
+                                            "alt_text",
+                                            wagtail.core.blocks.CharBlock(
+                                                required=False
+                                            ),
+                                        ),
+                                        (
+                                            "size",
+                                            wagtail.core.blocks.ChoiceBlock(
+                                                choices=[
+                                                    ("", "Default"),
+                                                    ("small", "Small"),
+                                                ],
+                                                required=False,
+                                            ),
+                                        ),
+                                        (
+                                            "heading_level",
+                                            wagtail.core.blocks.IntegerBlock(
+                                                default=3,
+                                                help_text="The heading level affects users with screen readers. Default=3, Min=2, Max=4.",
+                                                max_value=4,
+                                                min_value=2,
+                                            ),
+                                        ),
+                                    ],
+                                    group=" NHS Components",
+                                ),
+                            ),
+                            (
+                                "expander",
+                                wagtail.core.blocks.StructBlock(
+                                    [
+                                        (
+                                            "title",
+                                            wagtail.core.blocks.CharBlock(
+                                                required=True
+                                            ),
+                                        ),
+                                        (
+                                            "body",
+                                            wagtail.core.blocks.StreamBlock(
+                                                [
+                                                    (
+                                                        "richtext",
+                                                        wagtail.core.blocks.RichTextBlock(),
+                                                    ),
+                                                    (
+                                                        "action_link",
+                                                        wagtail.core.blocks.StructBlock(
+                                                            [
+                                                                (
+                                                                    "text",
+                                                                    wagtail.core.blocks.CharBlock(
+                                                                        label="Link text",
+                                                                        required=True,
+                                                                    ),
+                                                                ),
+                                                                (
+                                                                    "external_url",
+                                                                    wagtail.core.blocks.URLBlock(
+                                                                        label="URL",
+                                                                        required=True,
+                                                                    ),
+                                                                ),
+                                                                (
+                                                                    "new_window",
+                                                                    wagtail.core.blocks.BooleanBlock(
+                                                                        label="Open in new window",
+                                                                        required=False,
+                                                                    ),
+                                                                ),
+                                                            ]
+                                                        ),
+                                                    ),
+                                                    (
+                                                        "inset_text",
+                                                        wagtail.core.blocks.StructBlock(
+                                                            [
+                                                                (
+                                                                    "body",
+                                                                    wagtail.core.blocks.RichTextBlock(
+                                                                        required=True
+                                                                    ),
+                                                                )
+                                                            ]
+                                                        ),
+                                                    ),
+                                                    (
+                                                        "image",
+                                                        wagtail.core.blocks.StructBlock(
+                                                            [
+                                                                (
+                                                                    "content_image",
+                                                                    wagtail.images.blocks.ImageChooserBlock(
+                                                                        required=True
+                                                                    ),
+                                                                ),
+                                                                (
+                                                                    "alt_text",
+                                                                    wagtail.core.blocks.CharBlock(
+                                                                        help_text="Only leave this blank if the image is decorative.",
+                                                                        required=False,
+                                                                    ),
+                                                                ),
+                                                                (
+                                                                    "caption",
+                                                                    wagtail.core.blocks.CharBlock(
+                                                                        required=False
+                                                                    ),
+                                                                ),
+                                                            ]
+                                                        ),
+                                                    ),
+                                                    (
+                                                        "grey_panel",
+                                                        wagtail.core.blocks.StructBlock(
+                                                            [
+                                                                (
+                                                                    "label",
+                                                                    wagtail.core.blocks.CharBlock(
+                                                                        label="heading",
+                                                                        required=False,
+                                                                    ),
+                                                                ),
+                                                                (
+                                                                    "heading_level",
+                                                                    wagtail.core.blocks.IntegerBlock(
+                                                                        default=3,
+                                                                        help_text="The heading level affects users with screen readers. Ignore this if there is no heading. Default=3, Min=2, Max=4.",
+                                                                        max_value=4,
+                                                                        min_value=2,
+                                                                    ),
+                                                                ),
+                                                                (
+                                                                    "body",
+                                                                    wagtail.core.blocks.RichTextBlock(
+                                                                        required=True
+                                                                    ),
+                                                                ),
+                                                            ]
+                                                        ),
+                                                    ),
+                                                    (
+                                                        "warning_callout",
+                                                        wagtail.core.blocks.StructBlock(
+                                                            [
+                                                                (
+                                                                    "title",
+                                                                    wagtail.core.blocks.CharBlock(
+                                                                        default="Important",
+                                                                        required=True,
+                                                                    ),
+                                                                ),
+                                                                (
+                                                                    "heading_level",
+                                                                    wagtail.core.blocks.IntegerBlock(
+                                                                        default=3,
+                                                                        help_text="The heading level affects users with screen readers. Default=3, Min=2, Max=4.",
+                                                                        max_value=4,
+                                                                        min_value=2,
+                                                                        required=True,
+                                                                    ),
+                                                                ),
+                                                                (
+                                                                    "body",
+                                                                    wagtail.core.blocks.RichTextBlock(
+                                                                        required=True
+                                                                    ),
+                                                                ),
+                                                            ]
+                                                        ),
+                                                    ),
+                                                    (
+                                                        "summary_list",
+                                                        wagtail.core.blocks.StructBlock(
+                                                            [
+                                                                (
+                                                                    "rows",
+                                                                    wagtail.core.blocks.ListBlock(
+                                                                        wagtailnhsukfrontend.blocks.SummaryListRowBlock
+                                                                    ),
+                                                                ),
+                                                                (
+                                                                    "no_border",
+                                                                    wagtail.core.blocks.BooleanBlock(
+                                                                        default=False,
+                                                                        required=False,
+                                                                    ),
+                                                                ),
+                                                            ]
+                                                        ),
+                                                    ),
+                                                    (
+                                                        "table",
+                                                        modules.core.blocks.TableBlock(),
+                                                    ),
+                                                ],
+                                                required=True,
+                                            ),
+                                        ),
+                                    ],
+                                    group=" NHS Components",
+                                ),
+                            ),
+                            (
+                                "grey_panel",
+                                wagtail.core.blocks.StructBlock(
+                                    [
+                                        (
+                                            "label",
+                                            wagtail.core.blocks.CharBlock(
+                                                label="heading", required=False
+                                            ),
+                                        ),
+                                        (
+                                            "heading_level",
+                                            wagtail.core.blocks.IntegerBlock(
+                                                default=3,
+                                                help_text="The heading level affects users with screen readers. Ignore this if there is no heading. Default=3, Min=2, Max=4.",
+                                                max_value=4,
+                                                min_value=2,
+                                            ),
+                                        ),
+                                        (
+                                            "body",
+                                            wagtail.core.blocks.RichTextBlock(
+                                                required=True
+                                            ),
+                                        ),
+                                    ],
+                                    group=" NHS Components",
+                                ),
+                            ),
+                            (
+                                "inset_text",
+                                wagtail.core.blocks.StructBlock(
+                                    [
+                                        (
+                                            "body",
+                                            wagtail.core.blocks.RichTextBlock(
+                                                required=True
+                                            ),
+                                        )
+                                    ],
+                                    group=" NHS Components",
+                                ),
+                            ),
+                            (
+                                "panel_list",
+                                wagtail.core.blocks.StructBlock(
+                                    [
+                                        (
+                                            "panels",
+                                            wagtail.core.blocks.ListBlock(
+                                                wagtail.core.blocks.StructBlock(
+                                                    [
+                                                        (
+                                                            "left_panel",
+                                                            wagtail.core.blocks.StructBlock(
+                                                                [
+                                                                    (
+                                                                        "label",
+                                                                        wagtail.core.blocks.CharBlock(
+                                                                            required=False
+                                                                        ),
+                                                                    ),
+                                                                    (
+                                                                        "heading_level",
+                                                                        wagtail.core.blocks.IntegerBlock(
+                                                                            default=3,
+                                                                            help_text="The heading level affects users with screen readers. Ignore this if there is no label. Default=3, Min=2, Max=4.",
+                                                                            max_value=4,
+                                                                            min_value=2,
+                                                                        ),
+                                                                    ),
+                                                                    (
+                                                                        "body",
+                                                                        wagtail.core.blocks.RichTextBlock(
+                                                                            required=True
+                                                                        ),
+                                                                    ),
+                                                                ]
+                                                            ),
+                                                        ),
+                                                        (
+                                                            "right_panel",
+                                                            wagtail.core.blocks.StructBlock(
+                                                                [
+                                                                    (
+                                                                        "label",
+                                                                        wagtail.core.blocks.CharBlock(
+                                                                            required=False
+                                                                        ),
+                                                                    ),
+                                                                    (
+                                                                        "heading_level",
+                                                                        wagtail.core.blocks.IntegerBlock(
+                                                                            default=3,
+                                                                            help_text="The heading level affects users with screen readers. Ignore this if there is no label. Default=3, Min=2, Max=4.",
+                                                                            max_value=4,
+                                                                            min_value=2,
+                                                                        ),
+                                                                    ),
+                                                                    (
+                                                                        "body",
+                                                                        wagtail.core.blocks.RichTextBlock(
+                                                                            required=True
+                                                                        ),
+                                                                    ),
+                                                                ]
+                                                            ),
+                                                        ),
+                                                    ]
+                                                )
+                                            ),
+                                        )
+                                    ],
+                                    group=" NHS Components",
+                                ),
+                            ),
+                            (
+                                "promo_group",
+                                wagtail.core.blocks.StructBlock(
+                                    [
+                                        (
+                                            "column",
+                                            wagtail.core.blocks.ChoiceBlock(
+                                                choices=[
+                                                    ("one-half", "One-half"),
+                                                    ("one-third", "One-third"),
+                                                ]
+                                            ),
+                                        ),
+                                        (
+                                            "size",
+                                            wagtail.core.blocks.ChoiceBlock(
+                                                choices=[
+                                                    ("", "Default"),
+                                                    ("small", "Small"),
+                                                ],
+                                                required=False,
+                                            ),
+                                        ),
+                                        (
+                                            "heading_level",
+                                            wagtail.core.blocks.IntegerBlock(
+                                                default=3,
+                                                help_text="The heading level affects users with screen readers. Default=3, Min=2, Max=4.",
+                                                max_value=4,
+                                                min_value=2,
+                                            ),
+                                        ),
+                                        (
+                                            "promos",
+                                            wagtail.core.blocks.ListBlock(
+                                                modules.core.blocks.BasePromoBlock
+                                            ),
+                                        ),
+                                    ],
+                                    group=" NHS Components",
+                                ),
+                            ),
+                            (
+                                "warning_callout",
+                                wagtail.core.blocks.StructBlock(
+                                    [
+                                        (
+                                            "title",
+                                            wagtail.core.blocks.CharBlock(
+                                                default="Important", required=True
+                                            ),
+                                        ),
+                                        (
+                                            "heading_level",
+                                            wagtail.core.blocks.IntegerBlock(
+                                                default=3,
+                                                help_text="The heading level affects users with screen readers. Default=3, Min=2, Max=4.",
+                                                max_value=4,
+                                                min_value=2,
+                                                required=True,
+                                            ),
+                                        ),
+                                        (
+                                            "body",
+                                            wagtail.core.blocks.RichTextBlock(
+                                                required=True
+                                            ),
+                                        ),
+                                    ],
+                                    group=" NHS Components",
+                                ),
+                            ),
+                            (
+                                "table",
+                                modules.core.blocks.TableBlock(group=" NHS Components"),
+                            ),
+                            (
+                                "panel_table",
+                                wagtail.core.blocks.StructBlock(
+                                    [
+                                        ("title", wagtail.core.blocks.CharBlock()),
+                                        ("table", modules.core.blocks.TableBlock()),
+                                    ],
+                                    group=" NHS Components",
+                                ),
+                            ),
+                            (
+                                "action_link",
+                                wagtail.core.blocks.StructBlock(
+                                    [
+                                        (
+                                            "text",
+                                            wagtail.core.blocks.CharBlock(
+                                                label="Link text", required=True
+                                            ),
+                                        ),
+                                        (
+                                            "external_url",
+                                            wagtail.core.blocks.URLBlock(
+                                                label="URL", required=True
+                                            ),
+                                        ),
+                                        (
+                                            "new_window",
+                                            wagtail.core.blocks.BooleanBlock(
+                                                label="Open in new window",
+                                                required=False,
+                                            ),
+                                        ),
+                                    ],
+                                    group=" NHS Components",
+                                ),
+                            ),
+                        ],
+                        blank=True,
+                        verbose_name="Body blocks",
+                    ),
+                ),
+                (
+                    "fb_og_image",
+                    models.ForeignKey(
+                        blank=True,
+                        help_text="Facebook OG image",
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        related_name="+",
+                        to="images.NHSXImage",
+                    ),
+                ),
+                (
+                    "photo",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        related_name="+",
+                        to="images.NHSXImage",
+                    ),
+                ),
+                (
+                    "twitter_card_image",
+                    models.ForeignKey(
+                        blank=True,
+                        help_text="Twitter card image",
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        related_name="+",
+                        to="images.NHSXImage",
+                    ),
+                ),
+                ("position", models.CharField(blank=True, default="", max_length=255)),
             ],
-            options={
-                'verbose_name': 'Person',
-                'verbose_name_plural': 'People',
-            },
-            bases=('wagtailcore.page', models.Model),
+            options={"verbose_name": "Person", "verbose_name_plural": "People",},
+            bases=("wagtailcore.page", models.Model),
         ),
     ]
