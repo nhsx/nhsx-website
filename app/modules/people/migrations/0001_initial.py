@@ -12,7 +12,6 @@ import wagtailnhsukfrontend.blocks
 class Migration(migrations.Migration):
 
     replaces = [
-        ("people", "0001_initial"),
         ("people", "0002_person_position"),
         ("people", "0003_auto_20200828_1351"),
     ]
