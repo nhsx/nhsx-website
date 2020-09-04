@@ -7,25 +7,24 @@
 {% endblock extra_css %}
 
 {% block content %}
-
-{% image page.image width-1000 as hero_image %}
-<section class="nhsx-section nhsx-section--white">
+{% breadcrumb %}
+<section class="nhsx-section nhsx-section--white people-listing">
   <div class="nhsuk-width-container">
     <main class="nhsuk-main-wrapper" id="maincontent">
       <div class="nhsuk-grid-row">
-        <div class="nhsuk-grid-column-two-thirds nhsuk-u-margin-bottom-5">
+        <div class="nhsuk-grid-column-full nhsuk-u-margin-bottom-5">
           <h1 class="nhsuk-heading-xl nhsuk-u-margin-bottom-5">{{ page.title }}</h1>
           {{ page.body }}
+
+          {% for group in page.get_children.specific|chunk:4 %}
+          <div class="nhsuk-grid-row">
+            {% for person in group %}
+            {% include 'people/_partials/person.html' with person=person %}
+            {% endfor %}
+          </div>
+          {% endfor %}
         </div>
       </div>
-      {% for person in page.get_children.specific %}
-      <div class="nhsuk-grid-row">
-        {% if person.photo %}
-        {% cycle 'left' 'right' as align silent %}
-        {% endif %}
-        {% include 'people/_partials/person.html' with person=person align=align %}
-      </div>
-      {% endfor %}
     </main>
   </div>
 </section>

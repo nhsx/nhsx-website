@@ -1,0 +1,23 @@
+.people-listing {
+  &__item {
+    &__image-wrapper {
+      width: 100%;
+      height: 220px;
+      overflow: hidden;
+      background-color: $color_nhsuk-grey-3;
+      border-bottom: 5px solid $nhsx-blue;
+    }
+
+    &__content {
+      padding-top: 20px;
+    }
+  }
+}
+
+.people-view {
+  &__sidebar {
+    &__main-image {
+      border-bottom: 5px solid $nhsx-blue;
+    }
+  }
+}

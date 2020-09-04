@@ -1,24 +1,14 @@
 {% load wagtailcore_tags wagtailimages_tags %}
 
-{% if align == "right" and person.photo %}
-<div class="nhsuk-grid-column-two-thirds nhsuk-u-margin-bottom-5">
-  {% elif align == "left" and person.photo %}
-  <div class="nhsuk-grid-column-one-third nhsuk-u-margin-bottom-5">
-    {% image person.photo width-700 %}
+<div class="nhsuk-grid-column-one-quarter people-listing__item">
+  <div class="people-listing__item__image-wrapper">
+    {% image person.photo fill-220x220 %}
   </div>
-  <div class="nhsuk-grid-column-two-thirds nhsuk-u-margin-bottom-5">
-    {% else %}
-    <div class="nhsuk-grid-column-full nhsuk-u-margin-bottom-5">
-      {% endif %}
-      <h3 class="nhsuk-heading-m">
-        <a href="{% pageurl person %}">{{person.title}}</a>
-      </h3>
-      <p class="summary__posts">
-        {{person.specific.body|striptags|truncatechars:200}}
-      </p>
-    </div>
-    {% if align == "right" and person.photo %}
-    <div class="nhsuk-grid-column-one-third nhsuk-u-margin-bottom-5">
-      {% image person.photo width-700 %}
-    </div>
-    {% endif %}
+
+  <div class="people-listing__item__content">
+    <h3 class="nhsuk-heading-s">
+      <a href="{% pageurl person %}">{{person.title}}</a>
+    </h3>
+    <p class="nhsuk-body-s">{{person.specific.body|striptags|truncatewords:20}}</p>
+  </div>
+</div>

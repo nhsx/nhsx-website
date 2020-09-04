@@ -8,7 +8,7 @@
 
 {% block content %}
 {% breadcrumb %}
-<div class="nhsuk-width-container">
+<div class="nhsuk-width-container people-view">
   <main class="nhsuk-main-wrapper" id="maincontent">
     <div class="nhsuk-grid-row">
       <div class="nhsuk-grid-column-two-thirds">
@@ -25,9 +25,9 @@
         {% block extra_content %}
         {% endblock %}
       </div>
-      <div class="nhsuk-grid-column-one-third">
+      <div class="nhsuk-grid-column-one-third people-view__sidebar">
         {% if page.photo %}
-        {% image page.photo width-700 %}
+        {% image page.photo fill-250x250 class="people-view__sidebar__main-image" %}
         {% endif %}
       </div>
     </div>
