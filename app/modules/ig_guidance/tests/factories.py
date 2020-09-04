@@ -10,6 +10,7 @@ from modules.ig_guidance.models import (
     GuidanceListingPage,
     IGGuidanceTopic,
     IGGuidanceTag,
+    IGTemplate,
 )
 
 
@@ -57,6 +58,11 @@ class ExternalGuidanceFactory(GuidanceFactory):
 
     class Meta:
         model = ExternalGuidance
+
+
+class IGTemplateFactory(GuidanceFactory):
+    class Meta:
+        model = IGTemplate
 
 
 class GuidanceListingPageFactory(CorePageFactory):

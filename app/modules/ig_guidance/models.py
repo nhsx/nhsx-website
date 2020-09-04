@@ -99,9 +99,19 @@ class ExternalGuidance(IGGuidance):
         verbose_name = "External Guidance"
 
 
+class IGTemplate(IGGuidance):
+    content_panels = IGGuidance.content_panels + [
+        StreamFieldPanel("body"),
+    ]
+    template = "ig_guidance/internal_guidance.html"
+
+    class Meta:
+        verbose_name = "Template"
+
+
 class GuidanceListingPage(RoutablePageMixin, BasePage):
     parent_page_types = ["core.SectionPage"]
-    subpage_types = ["InternalGuidance", "ExternalGuidance"]
+    subpage_types = ["InternalGuidance", "ExternalGuidance", "IGTemplate"]
 
     @route(r"^$")
     @route(r"^tag/([a-z\-0-9]+)/$")

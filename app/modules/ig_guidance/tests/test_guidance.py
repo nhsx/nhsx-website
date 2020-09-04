@@ -25,6 +25,11 @@ class TestGuidance:
         assert isinstance(guidance, ExternalGuidance)
         assert guidance is not None
 
+    def test_template_can_be_created(self):
+        template = IGTemplateFactory.create(topic=IGGuidanceTopicFactory.create())
+        assert isinstance(template, IGTemplate)
+        assert template is not None
+
     def test_external_guidance_redirects(self, section_page):
         index_page = GuidanceListingPageFactory.create(parent=section_page)
         guidance = ExternalGuidanceFactory.create(
@@ -47,10 +52,13 @@ class TestGuidance:
         external_guidance = ExternalGuidanceFactory.create_batch(
             4, topic=IGGuidanceTopicFactory.create(), parent=listing_page
         )
+        templates = IGTemplateFactory.create_batch(
+            4, topic=IGGuidanceTopicFactory.create(), parent=listing_page
+        )
 
         page = client.get(listing_page.url)
 
-        for guidance in internal_guidance + external_guidance:
+        for guidance in internal_guidance + external_guidance + templates:
             assert guidance.title in str(page.content)
 
     def test_listing_page_can_filter_by_tag(self, section_page):
@@ -65,6 +73,10 @@ class TestGuidance:
             2, topic=IGGuidanceTopicFactory.create(), parent=listing_page
         )
 
+        untagged_templates = IGTemplateFactory.create_batch(
+            4, topic=IGGuidanceTopicFactory.create(), parent=listing_page
+        )
+
         taggged_internal_guidance = InternalGuidanceFactory.create_batch(
             2, topic=IGGuidanceTopicFactory.create(), tags=[tag], parent=listing_page
         )
@@ -73,14 +85,24 @@ class TestGuidance:
             3, topic=IGGuidanceTopicFactory.create(), tags=[tag], parent=listing_page
         )
 
+        tagged_templates = IGTemplateFactory.create_batch(
+            2, topic=IGGuidanceTopicFactory.create(), tags=[tag], parent=listing_page
+        )
+
         url = listing_page.url + listing_page.reverse_subpage(
             "filter_by_tag", args=(tag.slug,)
         )
 
         page = client.get(url)
 
-        for guidance in untaggged_internal_guidance + untagged_external_guidance:
+        for guidance in (
+            untaggged_internal_guidance
+            + untagged_external_guidance
+            + untagged_templates
+        ):
             assert guidance.title not in str(page.content)
 
-        for guidance in taggged_internal_guidance + tagged_external_guidance:
+        for guidance in (
+            taggged_internal_guidance + tagged_external_guidance + tagged_templates
+        ):
             assert guidance.title in str(page.content)
