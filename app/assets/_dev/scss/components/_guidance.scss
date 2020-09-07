@@ -1,0 +1,13 @@
+.template-guidance {
+  &__warning {
+    background-color: $color_nhsuk-pale-yellow;
+    padding: 12px;
+    @include print-hide();
+
+    &__body {
+      @extend %nhsuk-body-s;
+      padding: 0;
+      margin: 0;
+    }
+  }
+}
