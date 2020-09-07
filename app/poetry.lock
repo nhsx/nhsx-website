@@ -1306,7 +1306,7 @@ description = "Model choosers for Wagtail admin"
 name = "wagtail-modelchooser"
 optional = false
 python-versions = "*"
-version = "2.3.0"
+version = "2.3.3"
 
 [package.dependencies]
 wagtail = ">=2.2"
@@ -1435,7 +1435,7 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["jaraco.itertools", "func-timeout"]
 
 [metadata]
-content-hash = "acb25717e665446805e5759f9f3f5d7112a3e8bce265e8521d1fd4e626b5a862"
+content-hash = "61b9060366401862a60722b37682a643c9fccc90e0ddd3d7d3ff0331f6ee786f"
 lock-version = "1.0"
 python-versions = "^3.6"
 
@@ -2024,8 +2024,8 @@ wagtail-factories = [
     {file = "wagtail_factories-2.0.0.tar.gz", hash = "sha256:416196b88dcdb2d2787926692d7eef7fa0664556900eb6166537026b085d9fbf"},
 ]
 wagtail-modelchooser = [
-    {file = "wagtail-modelchooser-2.3.0.tar.gz", hash = "sha256:cab342ca5512a1682c9c785acd95972eee2cebe74f374738102123623fe81b19"},
-    {file = "wagtail_modelchooser-2.3.0-py2.py3-none-any.whl", hash = "sha256:1ea1daccb3e1a562214bc00bbecd5aa2450ab49256f6f5f4b107bd12571336ac"},
+    {file = "wagtail-modelchooser-2.3.3.tar.gz", hash = "sha256:87099ad70fdc22db7caea140b28aebbdefd7556b2e6cbe6c91a477925a531743"},
+    {file = "wagtail_modelchooser-2.3.3-py2.py3-none-any.whl", hash = "sha256:975b127fed84078b18d59af995385d8a5478d99da1af3c32148da0393f3398a1"},
 ]
 wagtail-nhsuk-frontend = [
     {file = "wagtail-nhsuk-frontend-0.4.1.tar.gz", hash = "sha256:6e36338f25f581f5ae0ab7ca97a33ee88f3cf70f7e19b9fd889ce280010d609c"},
