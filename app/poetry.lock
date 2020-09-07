@@ -330,11 +330,11 @@ category = "main"
 description = "A slick ORM cache with automatic granular event-driven invalidation for Django."
 name = "django-cacheops"
 optional = false
-python-versions = "*"
-version = "4.2"
+python-versions = ">=3.5"
+version = "5.0.1"
 
 [package.dependencies]
-django = ">=1.8"
+django = ">=2.1"
 funcy = ">=1.8,<2.0"
 redis = ">=2.9.1"
 six = ">=1.4.0"
@@ -1435,7 +1435,7 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["jaraco.itertools", "func-timeout"]
 
 [metadata]
-content-hash = "6d351f95782d253ee3507a7f7e8360684f46ace2b45b1284ba0798cbc59b7d30"
+content-hash = "46752f9fde2683d3689f97d88738ee386c9e49b2a7735e649d950fe9a6843abd"
 lock-version = "1.0"
 python-versions = "^3.6"
 
@@ -1582,8 +1582,8 @@ django-autocomplete-light = [
     {file = "django-autocomplete-light-3.5.1.tar.gz", hash = "sha256:52e8d468060a5911c44300a374d74058c90e65bfdf87ace151abac67279c4ae5"},
 ]
 django-cacheops = [
-    {file = "django-cacheops-4.2.tar.gz", hash = "sha256:56ea95ad4eb1b61b6c014b7b23f3203ef8816611c9e8a097a7e99628810e9f16"},
-    {file = "django_cacheops-4.2-py2.py3-none-any.whl", hash = "sha256:a94418c8ba816c7c65d8cc2dd265313e042f4339c3b62a3682ebec89d75ff222"},
+    {file = "django-cacheops-5.0.1.tar.gz", hash = "sha256:be48a8278abf124a4b3753d545f087bb67e221a5501ec758fc8cd1c4e915d9a0"},
+    {file = "django_cacheops-5.0.1-py2.py3-none-any.whl", hash = "sha256:f6a389fdfcdc98c735a775dde235a6192ed87e0309110129484c518974a328a4"},
 ]
 django-extensions = [
     {file = "django-extensions-2.2.9.tar.gz", hash = "sha256:2f81b618ba4d1b0e58603e25012e5c74f88a4b706e0022a3b21f24f0322a6ce6"},
