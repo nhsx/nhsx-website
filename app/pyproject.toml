@@ -35,7 +35,7 @@ boto = "^2.49.0"
 rollbar = "^0.15.0"
 black = "^19.10b0"
 wagtail_factories = "^2.0.0"
-faker = "4.0.3"
+faker = "4.1.2"
 
 
 
