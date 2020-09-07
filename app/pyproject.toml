@@ -10,7 +10,7 @@ python = "^3.6"
 wagtail = "2.9.3"
 
 psycopg2 = "^2.8"
-django-redis = "^4.10"
+django-redis = "^4.12"
 hiredis = "^1.0"
 django-storages = "^1.7"
 boto3 = "^1.9"
