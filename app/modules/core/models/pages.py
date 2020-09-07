@@ -1,4 +1,6 @@
 # 3rd party
+from django.db import models
+
 from wagtail.core import fields
 from wagtail.admin.edit_handlers import StreamFieldPanel, FieldPanel
 from wagtail.images.edit_handlers import ImageChooserPanel
@@ -33,6 +35,9 @@ class SectionPage(BasePage, InlineHeroMixin, SubNavMixin):
         "core.ArticlePage",
         "core.SectionPage",
         "core.CookieFormPage",
+        "people.PeopleListingPage",
+        "meeting_minutes.MeetingMinutesListingPage",
+        "ig_guidance.GuidanceListingPage",
     ]
 
     subnav_panels: list = SubNavMixin.panels
@@ -41,6 +46,11 @@ class SectionPage(BasePage, InlineHeroMixin, SubNavMixin):
 
     body = fields.StreamField(
         section_page_blocks, blank=True, verbose_name="Body blocks"
+    )
+    page_width = models.CharField(
+        choices=[("two-thirds", "Two Thirds"), ("full", "Full")],
+        max_length=20,
+        default="two-thirds",
     )
 
     @cached_classmethod
@@ -67,6 +77,8 @@ class SectionPage(BasePage, InlineHeroMixin, SubNavMixin):
         ImageChooserPanel("image"),
         StreamFieldPanel("body"),
     ]
+
+    settings_panels = [*Page.settings_panels, FieldPanel("page_width")]
 
 
 ################################################################################

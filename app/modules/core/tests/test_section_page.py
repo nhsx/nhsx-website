@@ -23,6 +23,23 @@ def test_section_page_200(section_page):
     assert rv.status_code == 200
 
 
+def test_section_page_can_have_width_specified(section_page):
+    """Test that the section page has a default content width, and
+    that width can be altered if necessary
+    """
+    rv = client.get(section_page.url)
+
+    assert "nhsuk-grid-column-two-thirds" in str(rv.content)
+
+    section_page.page_width = "full"
+
+    section_page.save_revision().publish()
+
+    rv = client.get(section_page.url)
+
+    assert "nhsuk-grid-column-full" in str(rv.content)
+
+
 def test_section_page_get_children(section_page, article_pages):
     """Check that section_page has 10 children
     """
@@ -146,6 +163,40 @@ def test_section_page_with_latest_blog_posts(section_page, blog_posts):
     rendered = p.body.render_as_block()
 
     assert "Blog Posts" in rendered
+
+    for post in tagged_posts:
+        assert post.title in rendered
+
+
+def test_section_page_with_latest_news(section_page, news_items):
+    """Test that we can list blog posts with a specific tag
+        when using that block"""
+
+    p = section_page
+
+    tagged_posts = news_items[:3]
+
+    for post in tagged_posts:
+        post.tags.add("tag1")
+        post.save_revision().publish()
+
+    p.body = json.dumps(
+        [
+            {
+                "type": "latest_news",
+                "value": {
+                    "heading": "News",
+                    "number_of_posts": "3",
+                    "tag_id": Tag.objects.get(name="tag1").id,
+                },
+            }
+        ]
+    )
+    p.save_revision().publish()
+
+    rendered = p.body.render_as_block()
+
+    assert "News" in rendered
 
     for post in tagged_posts:
         assert post.title in rendered

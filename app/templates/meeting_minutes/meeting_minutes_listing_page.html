@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags static wagtailuserbar nhsukfrontend_tags wagtailimages_tags %}
+
+{% block body_class %}template-minutes-listing-page{% endblock %}
+
+{% block extra_css %}
+{% endblock extra_css %}
+
+{% block content %}
+<section class="nhsx-section nhsx-section--white">
+  <div class="nhsuk-width-container">
+    <main class="nhsuk-main-wrapper" id="maincontent">
+      <div class="nhsuk-grid-row">
+        <div class="nhsuk-grid-column-two-thirds nhsuk-u-margin-bottom-5">
+          <h1 class="nhsuk-heading-xl nhsuk-u-margin-bottom-5">{{ page.title }}</h1>
+          {{ page.body }}
+
+          <ul>
+            {% for meeting in page.get_children.live.specific %}
+            <li>
+              <a href="{% pageurl meeting %}">{{ meeting.title }}</a>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </main>
+  </div>
+</section>
+{% endblock content %}
+{% include 'wagtailnhsukfrontend/footer.html' %}

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags static wagtailuserbar nhsukfrontend_tags wagtailimages_tags %}
+
+{% block body_class %}template-homepage{% endblock %}
+
+{% block extra_css %}
+{% endblock extra_css %}
+
+{% block content %}
+{% breadcrumb %}
+<section class="nhsx-section nhsx-section--white people-listing">
+  <div class="nhsuk-width-container">
+    <main class="nhsuk-main-wrapper" id="maincontent">
+      <div class="nhsuk-grid-row">
+        <div class="nhsuk-grid-column-full nhsuk-u-margin-bottom-5">
+          <h1 class="nhsuk-heading-xl nhsuk-u-margin-bottom-5">{{ page.title }}</h1>
+          {{ page.body }}
+
+          {% for group in page.get_children.specific|chunk:4 %}
+          <div class="nhsuk-grid-row">
+            {% for person in group %}
+            {% include 'people/_partials/person.html' with person=person %}
+            {% endfor %}
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </main>
+  </div>
+</section>
+{% endblock content %}
+{% include 'wagtailnhsukfrontend/footer.html' %}

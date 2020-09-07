@@ -548,3 +548,46 @@ class BaseIndexPage(BasePage, InlineHeroMixin):
     def get_admin_tabs(cls):
         tabs = super().get_admin_tabs()
         return tabs
+
+
+################################################################################
+# Slugged Topic
+################################################################################
+
+
+class SluggedCategory(models.Model):
+
+    """A base Django model that can be used to categorise content
+    """
+
+    class Meta:
+        abstract = True
+
+    name = models.CharField(max_length=30)
+    slug = models.SlugField(max_length=30, null=True, unique=True)
+
+    panels = [
+        FieldPanel("name"),
+    ]
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = self._get_unique_slug()
+        return super().save(*args, **kwargs)
+
+    def _get_unique_slug(self):
+        slug = slugify(self.name)
+        unique_slug = slug
+        counter = 1
+        while self.__class__.objects.filter(slug=unique_slug).exists():
+            if (
+                self.__class__.objects.filter(slug=unique_slug).values("id")[0]["id"]
+                == id
+            ):
+                break
+            unique_slug = "{}-{}".format(slug, counter)
+            counter += 1
+        return unique_slug
+
+    def __str__(self):
+        return self.name

@@ -1,0 +1,14 @@
+{% load wagtailcore_tags wagtailimages_tags %}
+
+<div class="nhsuk-grid-column-one-quarter people-listing__item">
+  <div class="people-listing__item__image-wrapper">
+    {% image person.photo fill-220x220 %}
+  </div>
+
+  <div class="people-listing__item__content">
+    <h3 class="nhsuk-heading-s">
+      <a href="{% pageurl person %}">{{person.title}}</a>
+    </h3>
+    <p class="nhsuk-body-s">{{person.specific.body|striptags|truncatewords:20}}</p>
+  </div>
+</div>
