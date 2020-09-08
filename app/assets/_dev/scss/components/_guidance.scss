@@ -1,12 +1,12 @@
 .template-guidance {
   &__warning {
     background-color: $color_nhsuk-pale-yellow;
-    padding: 12px;
+    padding: 0 0 12px 0;
     @include print-hide();
 
     &__body {
       @extend %nhsuk-body-s;
-      padding: 0;
+      padding: 12px 0 0 0;
       margin: 0;
     }
   }
