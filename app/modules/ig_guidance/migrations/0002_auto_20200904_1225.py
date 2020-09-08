@@ -6,12 +6,11 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('ig_guidance', '0001_initial'),
+        ("ig_guidance", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='igtemplate',
-            options={'verbose_name': 'Template'},
+            name="igtemplate", options={"verbose_name": "Template"},
         ),
     ]

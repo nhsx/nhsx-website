@@ -12,9 +12,14 @@
   <main class="nhsuk-main-wrapper" id="maincontent">
     <div class="nhsuk-grid-row">
       <div class="nhsuk-grid-column-two-thirds">
-        <h1 class="nhsuk-heading-xl nhsuk-u-margin-bottom-5">{{ page.title }}</h1>
-        {% if page.position %}
-        <p>{{ page.position }}</p>
+        <h1 class="nhsuk-heading-xl nhsuk-u-margin-bottom-5">
+          {% if page.position %}
+          <span class="nhsuk-caption-l">{{ page.position }}</span>
+          {% endif %}
+          {{ page.title }}
+        </h1>
+        {% if page.qualifications %}
+        <p class="nhsuk-body">{{ page.qualifications }}</p>
         {% endif %}
       </div>
     </div>

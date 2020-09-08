@@ -7,6 +7,7 @@ from django.shortcuts import redirect
 from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
 from wagtail.snippets.models import register_snippet
 from wagtail.core.models import Page
+from wagtail.core import fields
 from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.documents.edit_handlers import DocumentChooserPanel
@@ -14,6 +15,7 @@ from wagtail.documents.edit_handlers import DocumentChooserPanel
 from modelcluster.fields import ParentalManyToManyField
 
 from modules.core.models.abstract import BasePage, SluggedCategory
+from modules.core.blocks import nhsx_blocks
 
 
 @register_snippet
@@ -77,8 +79,20 @@ class IGGuidance(BasePage):
 
 
 class InternalGuidance(IGGuidance):
+    service_user_body = fields.StreamField(
+        nhsx_blocks, blank=True, verbose_name="Service User content"
+    )
+    healthcare_worker_body = fields.StreamField(
+        nhsx_blocks, blank=True, verbose_name="Healthcare worker content"
+    )
+    ig_professional_body = fields.StreamField(
+        nhsx_blocks, blank=True, verbose_name="IG professional content"
+    )
+
     content_panels = IGGuidance.content_panels + [
-        StreamFieldPanel("body"),
+        StreamFieldPanel("service_user_body"),
+        StreamFieldPanel("healthcare_worker_body"),
+        StreamFieldPanel("ig_professional_body"),
     ]
 
     class Meta:
@@ -103,7 +117,6 @@ class IGTemplate(IGGuidance):
     content_panels = IGGuidance.content_panels + [
         StreamFieldPanel("body"),
     ]
-    template = "ig_guidance/internal_guidance.html"
 
     class Meta:
         verbose_name = "Template"

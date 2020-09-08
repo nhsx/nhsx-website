@@ -13,6 +13,7 @@ class Person(BasePage):
     parent_page_types = ["PeopleListingPage"]
     subpage_types = []
 
+    qualifications = models.CharField(max_length=255, default="", blank=True)
     position = models.CharField(max_length=255, default="", blank=True)
 
     photo = models.ForeignKey(
@@ -25,6 +26,7 @@ class Person(BasePage):
 
     content_panels = [
         *Page.content_panels,
+        FieldPanel("qualifications"),
         FieldPanel("position"),
         ImageChooserPanel("photo"),
         StreamFieldPanel("body"),
