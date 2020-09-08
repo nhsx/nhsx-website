@@ -40,7 +40,33 @@
         {% include 'ai_lab/_partials/image_download.html' with page=page classes="nhsai-resource__image nhsai-resource__image__mobile" %}
         {% endif %}
 
-        {% include_block page.body %}
+
+        <ul class="nhsuk-list nhsuk-list--bullet">
+          <li><a href="#service_user">I'm a patient/service user - what do I need to know?</a></li>
+          <li><a href="#healthcare_worker">I work in a health and care organisation - what do I need to know?</a></li>
+          <li><a href="#ig_professional">I'm an IG Professional - what do I need to know?</a></li>
+        </ul>
+
+        <hr class="nhsuk-section-break nhsuk-section-break--xl nhsuk-section-break--visible">
+
+        <div id="service_user">
+          <h2 class="nhsuk-heading-l">Guidance for patients and service users</h2>
+          {% include_block page.service_user_body %}
+        </div>
+
+        <hr class="nhsuk-section-break nhsuk-section-break--xl nhsuk-section-break--visible">
+
+        <div id="healthcare_worker">
+          <h2 class="nhsuk-heading-l">Guidance for healthcare workers</h2>
+          {% include_block page.healthcare_worker_body %}
+        </div>
+
+        <hr class="nhsuk-section-break nhsuk-section-break--xl nhsuk-section-break--visible">
+
+        <div id="ig_professional">
+          <h2 class="nhsuk-heading-l">Guidance for IG professionals</h2>
+          {% include_block page.ig_professional_body %}
+        </div>
 
         {% block extra_content %}
         {% endblock %}
