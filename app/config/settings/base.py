@@ -267,7 +267,6 @@ AUTH_USER_MODEL = "users.User"
 WAGTAILIMAGES_IMAGE_MODEL = "images.NHSXImage"
 WAGTAILDOCS_DOCUMENT_MODEL = "documents.NHSXDocument"
 WAGTAIL_SITE_NAME = "NHSX"
-LOGIN_URL = "auth:login"
 
 DEFAULT_AUTHOR_AVATAR = "avatar.png"
 
