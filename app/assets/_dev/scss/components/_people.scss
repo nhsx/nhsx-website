@@ -20,4 +20,11 @@
       border-bottom: 5px solid $nhsx-blue;
     }
   }
+
+  &__qualifications {
+    @include nhsuk-typography-responsive(16);
+
+    font-weight: normal;
+    color: $nhsuk-secondary-text-color;
+  }
 }
