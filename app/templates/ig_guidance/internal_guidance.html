@@ -40,6 +40,9 @@
         {% include 'ai_lab/_partials/image_download.html' with page=page classes="nhsai-resource__image nhsai-resource__image__mobile" %}
         {% endif %}
 
+        {% include_block page.introduction %}
+
+        <hr class="nhsuk-section-break nhsuk-section-break--xl nhsuk-section-break--visible">
 
         <ul class="nhsuk-list nhsuk-list--bullet">
           <li><a href="#service_user">I'm a patient/service user - what do I need to know?</a></li>
