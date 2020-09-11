@@ -79,6 +79,9 @@ class IGGuidance(BasePage):
 
 
 class InternalGuidance(IGGuidance):
+    introduction = fields.StreamField(
+        nhsx_blocks, blank=True, verbose_name="Introduction"
+    )
     service_user_body = fields.StreamField(
         nhsx_blocks, blank=True, verbose_name="Service User content"
     )
@@ -90,6 +93,7 @@ class InternalGuidance(IGGuidance):
     )
 
     content_panels = IGGuidance.content_panels + [
+        StreamFieldPanel("introduction"),
         StreamFieldPanel("service_user_body"),
         StreamFieldPanel("healthcare_worker_body"),
         StreamFieldPanel("ig_professional_body"),
