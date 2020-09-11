@@ -11,16 +11,17 @@
 <div class="nhsuk-width-container people-view">
   <main class="nhsuk-main-wrapper" id="maincontent">
     <div class="nhsuk-grid-row">
-      <div class="nhsuk-grid-column-two-thirds">
+      <div class="nhsuk-grid-column-full">
         <h1 class="nhsuk-heading-xl nhsuk-u-margin-bottom-5">
-          {% if page.position %}
-          <span class="nhsuk-caption-l">{{ page.position }}</span>
-          {% endif %}
           {{ page.title }}
+          {% if page.qualifications %}
+          <span class="people-view__qualifications">{{ page.qualifications }}</span>
+          {% endif %}
+          {% if page.position %}
+          <span class="nhsuk-u-visually-hidden">-</span>
+          <span class="nhsuk-caption-l nhsuk-caption--bottom">{{ page.position }}</span>
+          {% endif %}
         </h1>
-        {% if page.qualifications %}
-        <p class="nhsuk-body">{{ page.qualifications }}</p>
-        {% endif %}
       </div>
     </div>
     <div class="nhsuk-grid-row">
