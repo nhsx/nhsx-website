@@ -27,4 +27,8 @@
     font-weight: normal;
     color: $nhsuk-secondary-text-color;
   }
+
+  .block-rich_text:first-child p:first-child {
+    @include nhsuk-typography-responsive(19);
+  }
 }
