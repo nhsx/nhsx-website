@@ -162,14 +162,14 @@ description = "Automatic error monitoring for django, flask, etc."
 name = "bugsnag"
 optional = false
 python-versions = "*"
-version = "3.6.0"
+version = "3.9.0"
 
 [package.dependencies]
 six = ">=1.9,<2"
 webob = "*"
 
 [package.extras]
-flask = ["blinker", "flask"]
+flask = ["flask", "blinker"]
 
 [[package]]
 category = "main"
@@ -1425,7 +1425,7 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["jaraco.itertools", "func-timeout"]
 
 [metadata]
-content-hash = "71e7f4c08e7b92333cec6d76a3ffad6b8afc0d703faf8dbba6105c603d342d1b"
+content-hash = "ee128bb2096d52c7889b2d914a4c0aae5d6e78c736547957f56006fbc56030f1"
 lock-version = "1.0"
 python-versions = "^3.6"
 
@@ -1484,8 +1484,8 @@ botocore = [
     {file = "botocore-1.15.31.tar.gz", hash = "sha256:3d4684f61ff07aa1b4cd30d13a6b8e6416142be5a2a55aedcc1d7974b9415bb1"},
 ]
 bugsnag = [
-    {file = "bugsnag-3.6.0-py3-none-any.whl", hash = "sha256:5a7c996c799622ef1ed1f7f2360ed40b4c0152325de0487afb9af636c5a3df3a"},
-    {file = "bugsnag-3.6.0.tar.gz", hash = "sha256:67b8c01719e92f193f8424595a94e3a527bc0f9fcb7f2bc47a20af87de81929d"},
+    {file = "bugsnag-3.9.0-py2.py3-none-any.whl", hash = "sha256:33cfcc6410a8c42311dd3958b5e5f5704e36617cd49bb53b59832a0cd6b90151"},
+    {file = "bugsnag-3.9.0.tar.gz", hash = "sha256:2b4c2e2e0ab8b74328d187441ad02973a52a3e1d31beaffbc972788801dd8874"},
 ]
 certifi = [
     {file = "certifi-2019.11.28-py2.py3-none-any.whl", hash = "sha256:017c25db2a153ce562900032d5bc68e9f191e44e9a0f762f373977de9df1fbb3"},
