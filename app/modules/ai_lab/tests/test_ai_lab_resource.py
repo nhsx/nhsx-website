@@ -75,7 +75,7 @@ class TestAiLabResource:
             assert case_study.title in str(page.content)
             assert case_study.title in str(page.content)
 
-    def test_case_study_shows_resources_with_the_same_tag(self):
+    def test_case_study_shows_live_resources_with_the_same_tag(self):
         topic1 = AiLabTopicFactory.create()
         topic2 = AiLabTopicFactory.create()
         category_page = AiLabUnderstandIndexPageFactory.create()
@@ -86,20 +86,20 @@ class TestAiLabResource:
 
         AiLabCaseStudyFactory.create_batch(4, parent=category_page)
 
-        featured_case_study_1 = AiLabCaseStudyFactory.create(
-            parent=category_page, topics=[topic1]
+        live_featured_case_study = AiLabCaseStudyFactory.create(
+            parent=category_page, topics=[topic1], live=True
         )
-        featured_case_study_2 = AiLabCaseStudyFactory.create(
-            parent=category_page, topics=[topic2]
+        draft_featured_case_study = AiLabCaseStudyFactory.create(
+            parent=category_page, topics=[topic2], live=False
         )
 
         page = client.get(case_study.url)
 
         assert page.status_code == 200
 
-        assert featured_case_study_1.title in str(page.content)
-        assert featured_case_study_2.title in str(page.content)
-
+        assert live_featured_case_study.title in str(page.content)
+        assert draft_featured_case_study.title not in str(page.content)
+        
     def test_case_study_shows_featured_resources(self):
         topic = AiLabTopicFactory.create()
         category_page = AiLabUnderstandIndexPageFactory.create()

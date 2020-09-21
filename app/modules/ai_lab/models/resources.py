@@ -86,7 +86,8 @@ class AiLabResourceMixin(models.Model):
         from modules.ai_lab.models import AiLabResourceIndexPage
 
         root_page = AiLabResourceIndexPage.objects.all()[0]
-        child_resources = list(root_page._get_resources())
+
+        child_resources = list(root_page._get_resources().live())
 
         if self in child_resources:
             child_resources.remove(self)
