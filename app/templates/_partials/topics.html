@@ -1,0 +1,16 @@
+{% load guidance_tags %}
+
+<div class="topics nhsai-topics">
+  <span class="tag">
+    <a href="{{ page.url }}">
+      View all
+    </a>
+  </span>
+  {% for topic in topics %}
+  <span class="{{ topic|guidance_tag:current_topic }}">
+    <a href="{{ page|guidance_tag_url:topic }}">
+      {{ topic.name }}
+    </a>
+  </span>
+  {% endfor %}
+</div>
