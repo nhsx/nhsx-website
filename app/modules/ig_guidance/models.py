@@ -100,7 +100,7 @@ class InternalGuidance(IGGuidance):
     ]
 
     class Meta:
-        verbose_name = "Internal Guidance"
+        verbose_name = "Panel Guidance"
 
 
 class ExternalGuidance(IGGuidance):
