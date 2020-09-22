@@ -14,6 +14,7 @@
       <div class="nhsuk-grid-column-full nhsuk-u-margin-bottom-5">
         <h1 class="nhsuk-heading-xl nhsuk-u-margin-bottom-5">{{ page.title }}</h1>
         {{ page.body }}
+        {% include '_partials/topics.html' with page=page topics=tags current_topic=tag %}
         {% regroup guidance|dictsort:"topic.name" by topic.name as item_list %}
         {% for items in item_list %}
         <h2>{{ items.grouper }}</h2>
