@@ -100,7 +100,7 @@ class InternalGuidance(IGGuidance):
     ]
 
     class Meta:
-        verbose_name = "Internal Guidance"
+        verbose_name = "Panel Guidance"
 
 
 class ExternalGuidance(IGGuidance):
@@ -146,8 +146,14 @@ class GuidanceListingPage(RoutablePageMixin, BasePage):
                     ids.append(obj.id)
             guidance = Page.objects.filter(id__in=(ids)).specific()
 
+        tags = IGGuidanceTag.objects.all()
+
         context.update(
-            {"guidance": guidance,}
+            {
+                "guidance": guidance,
+                "tags": tags,
+                "tag": tag,
+            }
         )
 
         return TemplateResponse(request, template, context)
