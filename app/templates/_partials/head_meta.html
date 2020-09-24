@@ -24,12 +24,12 @@
 {% if settings.core.SocialMediaSettings.twitter %}<meta name="twitter:site" content="@{{ settings.core.SocialMediaSettings.twitter }}" />{% endif %}
 <meta name="twitter:title" content="{{ page.title }}" />
 <meta name="twitter:description" content="{{ page|twitter_card_description:request.site }}">
-{% if page|twitter_card_image:request.site %}<meta property="og:image" content="{{ page|twitter_card_image:request.site }}" />{% endif %}
+{% if page|twitter_card_image:request.site %}<meta property="og:image" content="{% image page|twitter_card_image:request.site fill-1000x1000 as twitter_card_image %}{{ page.get_site.root_url }}{{ twitter_card_image.url }}" />{% endif %}
 {% if settings.core.SocialMediaSettings.facebook_app_id %}<meta property="fb:app_id" content="{{ settings.SocialMediaSettings.facebook_app_id }}" />{% endif %}
 <meta property="og:type" content="website" />
 <meta property="og:url" content="{{ page.full_url }}" />
 <meta property="og:title" content="{{ page.title }}" />
-{% if page|fb_image:request.site %}<meta property="og:image" content="{{ page|fb_image:request.site }}" />{% endif %}
+{% if page|fb_image:request.site %}<meta property="og:image" content="{% image page|fb_image:request.site fill-1200x630 as fb_image %}{{ page.get_site.root_url }}{{ fb_image.url }}" />{% endif %}
 <meta property="og:description" content="{{ page|fb_og_description:request.site }}" />
 {% if settings.core.SocialMediaSettings.site_name %}<meta property="og:site_name" content="{{ settings.core.SocialMediaSettings.site_name }}" />{% endif %}
 {% endif %}
