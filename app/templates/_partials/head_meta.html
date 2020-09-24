@@ -24,7 +24,7 @@
 {% if settings.core.SocialMediaSettings.twitter %}<meta name="twitter:site" content="@{{ settings.core.SocialMediaSettings.twitter }}" />{% endif %}
 <meta name="twitter:title" content="{{ page.title }}" />
 <meta name="twitter:description" content="{{ page|twitter_card_description:request.site }}">
-{% if page|twitter_image:request.site %}<meta property="og:image" content="{{ page|twitter_image:request.site }}" />{% endif %}
+{% if page|twitter_card_image:request.site %}<meta property="og:image" content="{{ page|twitter_card_image:request.site }}" />{% endif %}
 {% if settings.core.SocialMediaSettings.facebook_app_id %}<meta property="fb:app_id" content="{{ settings.SocialMediaSettings.facebook_app_id }}" />{% endif %}
 <meta property="og:type" content="website" />
 <meta property="og:url" content="{{ page.full_url }}" />

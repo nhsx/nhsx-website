@@ -32,9 +32,9 @@ def twitter_card_description(page, site):
         return MetaTagSettings.for_site(site).description
 
 
-@register.filter(name="twitter_image")
-def twitter_image(page, site):
-    if hasattr(page, "twitter_image") and page.twitter_image is not None:
-        return page.twitter_image
+@register.filter(name="twitter_card_image")
+def twitter_card_image(page, site):
+    if hasattr(page, "twitter_card_image") and page.twitter_card_image is not None:
+        return page.twitter_card_image
     else:
         return MetaTagSettings.for_site(site).image
