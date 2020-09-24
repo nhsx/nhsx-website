@@ -75,6 +75,10 @@ class SocialMediaSettings(CachedSetting):
         max_length=255, help_text="Your YouTube url", null=True, blank=True
     )
 
+    site_name = models.CharField(
+        max_length=255, help_text="The name of the website which will be associated with some social media shares", null=True, blank=True
+    )
+
 
 @register_setting
 class MetaTagSettings(CachedSetting):
