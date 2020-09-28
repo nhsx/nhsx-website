@@ -20,7 +20,7 @@
       <div class="nhsai-resource__meta nhsuk-grid-column-two-thirds">
         <h1 class="nhsuk-heading-xl">{{ page.title }}</h1>
         <time class="time"
-          datetime="{{page.first_published_at|date:"c"}}">{{page.first_published_at|date:"j F Y"}}</time>
+          datetime="{{page.last_published_at|date:"c"}}">{{page.last_published_at|date:"j F Y"}}</time>
 
         <div class="topics nhsai-topics">
           {% with index_page=page.get_parent.specific %}
