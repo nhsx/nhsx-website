@@ -2,13 +2,17 @@
     background: $white;
     padding-bottom: 16px;
     position: relative;
+
     h2 {
         margin-top: 20px !important;
         margin-bottom: 50px;
+        padding-top: 20px;
     }
+
     .nhsuk-grid-row div {
         z-index: 999;
     }
+
     &::before {
         content: "";
         position: absolute;
