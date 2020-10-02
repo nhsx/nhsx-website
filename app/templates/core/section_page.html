@@ -40,7 +40,9 @@ template-section
         </div>
 
         {% if page.subnav_pages|length %}
-        <h2 class="nhsuk-heading-m">{% if page.sidebar_title %}{{ page.sidebar_title }}{% endif %}</h2>
+        {% if page.sidebar_title %}
+        <h2 class="nhsuk-heading-m">{{ page.sidebar_title }}</h2>
+        {% endif %}
         {% for row in page.subnav_pages|chunk:page.subnav_items_per_row %}
         <div class="nhsuk-grid-row nhsuk-promo-group">
           {% for promo in row %}
