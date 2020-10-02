@@ -1,7 +1,14 @@
 {% extends "base.html" %}
 {% load wagtailcore_tags static wagtailuserbar nhsukfrontend_tags wagtailimages_tags %}
 
-{% block body_class %}template-section{% endblock %}
+
+{% block body_class %}
+{% if page.page_width == "full" %}
+template-homepage section-page
+{% else %}
+template-section
+{% endif %}
+{% endblock %}
 
 {% block extra_css %}
 {% endblock extra_css %}
@@ -11,40 +18,45 @@
 {% image page.image width-1000 as hero_image %}
 {% include '_partials/hero.html' with hero_text=page.sub_head hero_heading=page.title hero_image=hero_image.url %}
 {% endif %}
-<div class="nhsuk-width-container">
-  <main class="nhsuk-main-wrapper" id="maincontent">
-    {% if hero_image or page.sub_head %}
-    <div class="nhsuk-grid-row nhsuk-u-margin-top-5">
-      {%else %}
-      <div class="nhsuk-grid-row">
-        {% endif %}
-        <div class="nhsuk-grid-column-{{ page.page_width }}">
-          {% if not page.image and not page.sub_head %}
-          <h1 class="nhsuk-heading-xl nhsuk-u-margin-bottom-5">{{ page.title }}</h1>
+
+{% if page.page_width == "full" %}
+<div class="nhsuk-width-container section-page__homepage">
+  {% else %}
+  <div class="nhsuk-width-container">
+    {% endif %}
+    <main class="nhsuk-main-wrapper" id="maincontent">
+      {% if hero_image or page.sub_head %}
+      <div class="nhsuk-grid-row nhsuk-u-margin-top-5">
+        {%else %}
+        <div class="nhsuk-grid-row">
           {% endif %}
+          <div class="nhsuk-grid-column-{{ page.page_width }}">
+            {% if not page.image and not page.sub_head %}
+            <h1 class="nhsuk-heading-xl nhsuk-u-margin-bottom-5">{{ page.title }}</h1>
+            {% endif %}
 
-          {% include_block page.body %}
-        </div>
-      </div>
-
-      {% if page.subnav_pages|length %}
-      <h2 class="nhsuk-heading-m">{% if page.sidebar_title %}{{ page.sidebar_title }}{% endif %}</h2>
-      {% for row in page.subnav_pages|chunk:page.subnav_items_per_row %}
-      <div class="nhsuk-grid-row nhsuk-promo-group">
-        {% for promo in row %}
-        <div class="nhsuk-grid-column-{{ page.subnav_column_class }} nhsuk-promo-group__item nhsuk-promo-group__item">
-          <div class="nhsuk-promo">
-            <a class="nhsuk-promo__link-wrapper" href="{{ promo.url }}">
-              <div class="nhsuk-promo__content">
-                <h2 class="nhsuk-promo__heading">{{ promo.title }}</h2>
-              </div>
-            </a>
+            {% include_block page.body %}
           </div>
         </div>
+
+        {% if page.subnav_pages|length %}
+        <h2 class="nhsuk-heading-m">{% if page.sidebar_title %}{{ page.sidebar_title }}{% endif %}</h2>
+        {% for row in page.subnav_pages|chunk:page.subnav_items_per_row %}
+        <div class="nhsuk-grid-row nhsuk-promo-group">
+          {% for promo in row %}
+          <div class="nhsuk-grid-column-{{ page.subnav_column_class }} nhsuk-promo-group__item nhsuk-promo-group__item">
+            <div class="nhsuk-promo">
+              <a class="nhsuk-promo__link-wrapper" href="{{ promo.url }}">
+                <div class="nhsuk-promo__content">
+                  <h2 class="nhsuk-promo__heading">{{ promo.title }}</h2>
+                </div>
+              </a>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
         {% endfor %}
-      </div>
-      {% endfor %}
-      {% endif %}
-  </main>
-</div>
-{% endblock content %}
+        {% endif %}
+    </main>
+  </div>
+  {% endblock content %}

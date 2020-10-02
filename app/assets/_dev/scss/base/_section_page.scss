@@ -2,15 +2,19 @@
 
 .nhsuk-hero--image-description .nhsuk-hero-content {
   background-color: $nhsx-dark-blue;
-  .nhsuk-hero__arrow:after, .nhsuk-hero__arrow:before {
+
+  .nhsuk-hero__arrow:after,
+  .nhsuk-hero__arrow:before {
     border-color: $nhsx-dark-blue;
   }
 }
 
 //Fullwidth white section
-.nhsx-section--white, .nhsx-promo--white {
+.nhsx-section--white,
+.nhsx-promo--white {
   background-color: $white;
 }
+
 @media screen and (min-width: $medium-screen) {
   .nhsx-section {
     padding-bottom: nhsuk-spacing(8);
@@ -21,4 +25,100 @@
 .nhsx-section {
   padding-bottom: nhsuk-spacing(5);
   padding-top: nhsuk-spacing(5);
+}
+
+.template-homepage.section-page {
+
+  .nhsuk-width-container,
+  .nhsuk-header__navigation {
+    @media (min-width: 1220px) {
+      max-width: 1170px;
+    }
+  }
+
+  .nhsuk-hero__wrapper {
+    .nhsuk-heading-l {
+      font-size: 2.5rem;
+
+      @media (min-width: 40.0625em) {
+        font-size: 3rem;
+      }
+    }
+
+    .nhsuk-body-l {
+      font-size: 1.5rem;
+
+      @media (min-width: 40.0625em) {
+        font-size: 2rem;
+      }
+    }
+  }
+
+  .block-rich_text {
+    p {
+      max-width: 824px;
+    }
+  }
+}
+
+.section-page__homepage {
+  .nhsuk-main-wrapper {
+    padding: 80px 0 0 0;
+  }
+
+  h2:not(.nhsuk-promo__heading) {
+    margin-top: 80px;
+    color: $nhsx-blue;
+
+    &:before {
+      height: 3px;
+      width: 100%;
+      content: '';
+      background: $nhsx-blue;
+      display: block;
+      margin-bottom: 24px;
+    }
+
+    @media (min-width: 40.0625em) {
+      font-size: 2.5rem;
+    }
+  }
+
+  h3.section-title {
+    max-width: none;
+    color: $nhsx-blue;
+    margin-top: 24px;
+    text-transform: uppercase;
+    font-weight: 500;
+
+    &:after {
+      height: 1px;
+      width: 100%;
+      content: '';
+      background: $nhsx-blue;
+      display: block;
+      margin-top: 12px;
+    }
+
+    @media (min-width: 40.0625em) {
+      font-size: 1.5rem;
+    }
+  }
+
+  .block-latest_blog_posts {
+    h2 {
+      padding-top: 0;
+    }
+  }
+
+  .nhsuk-promo-group {
+    .nhsuk-promo__content__nolink {
+      background: $white;
+      height: 100%;
+
+      .nhsuk-promo__heading {
+        text-decoration: none;
+      }
+    }
+  }
 }
