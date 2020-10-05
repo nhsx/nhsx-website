@@ -38,3 +38,12 @@ def twitter_card_image(page, site):
         return page.twitter_card_image
     else:
         return MetaTagSettings.for_site(site).image
+
+
+@register.filter(name="social_tag_url")
+def social_tag_url(page, image):
+    if image.url.startswith("http"):
+        return image.url
+    else:
+        return page.get_site().root_url + image.url
+
