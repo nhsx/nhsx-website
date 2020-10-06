@@ -149,11 +149,7 @@ class GuidanceListingPage(RoutablePageMixin, BasePage):
         tags = IGGuidanceTag.objects.all()
 
         context.update(
-            {
-                "guidance": guidance,
-                "tags": tags,
-                "tag": tag,
-            }
+            {"guidance": guidance, "tags": tags, "tag": tag,}
         )
 
         return TemplateResponse(request, template, context)

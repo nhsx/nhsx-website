@@ -69,14 +69,20 @@ class SocialMediaSettings(CachedSetting):
         max_length=255, help_text="Your Instagram url", null=True, blank=True
     )
     twitter = models.CharField(
-        max_length=255, help_text="Your Twitter username (without the @ symbol, for example \"NHSX\")", null=True, blank=True
+        max_length=255,
+        help_text='Your Twitter username (without the @ symbol, for example "NHSX")',
+        null=True,
+        blank=True,
     )
     youtube = models.CharField(
         max_length=255, help_text="Your YouTube url", null=True, blank=True
     )
 
     site_name = models.CharField(
-        max_length=255, help_text="The name of the website which will be associated with some social media shares", null=True, blank=True
+        max_length=255,
+        help_text="The name of the website which will be associated with some social media shares",
+        null=True,
+        blank=True,
     )
 
 

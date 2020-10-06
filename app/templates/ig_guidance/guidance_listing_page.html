@@ -9,23 +9,36 @@
 {% block content %}
 {% breadcrumb %}
 <div class="nhsuk-width-container">
-  <main class="nhsuk-main-wrapper" id="maincontent">
+  <main class="nhsuk-main-wrapper section-page__homepage" id="maincontent">
     <div class="nhsuk-grid-row">
       <div class="nhsuk-grid-column-full nhsuk-u-margin-bottom-5">
         <h1 class="nhsuk-heading-xl nhsuk-u-margin-bottom-5">{{ page.title }}</h1>
         {{ page.body }}
         {% include '_partials/topics.html' with page=page topics=tags current_topic=tag %}
         {% regroup guidance|dictsort:"topic.name" by topic.name as item_list %}
-        {% for items in item_list %}
-        <h2>{{ items.grouper }}</h2>
-        <div class="block-promo_group">
-          <div class="nhsuk-grid-row nhsuk-promo-group nhsai-resources-group">
-            {% for guidance in items.list %}
-            {% include 'ig_guidance/_partials/guidance.html' with guidance=guidance %}
-            {% endfor %}
+        <div class="ai-lab-resource-block">
+          {% for items in item_list %}
+          <div class="resource-block resource-block__{{ items.grouper|slugify }} carousel">
+            <div class="ai-lab-resource-block__top">
+              <h3 class="section-title">{{ items.grouper }}</h3>
+              {% if items.list|length > 3 %}
+              <div class="ai-lab-resource-block__arrows">
+                <a href="#" title="Go left" class="previous">&lt;</a>
+                <a href="#" title="Go right" class="next">&gt;</a>
+              </div>
+              {% endif %}
+            </div>
+
+            <div class="block-promo_group">
+              <div class="nhsuk-grid-row nhsuk-promo-group nhsai-resources-group">
+                {% for guidance in items.list %}
+                {% include 'ig_guidance/_partials/guidance.html' with guidance=guidance %}
+                {% endfor %}
+              </div>
+            </div>
           </div>
+          {% endfor %}
         </div>
-        {% endfor %}
       </div>
     </div>
   </main>

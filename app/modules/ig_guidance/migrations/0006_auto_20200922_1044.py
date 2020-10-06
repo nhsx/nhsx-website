@@ -6,12 +6,11 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('ig_guidance', '0005_internalguidance_introduction'),
+        ("ig_guidance", "0005_internalguidance_introduction"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='internalguidance',
-            options={'verbose_name': 'Panel Guidance'},
+            name="internalguidance", options={"verbose_name": "Panel Guidance"},
         ),
     ]
