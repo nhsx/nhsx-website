@@ -21,11 +21,12 @@
           <div class="resource-block resource-block__{{ items.grouper|slugify }} carousel">
             <div class="ai-lab-resource-block__top">
               <h3 class="section-title">{{ items.grouper }}</h3>
-
+              {% if items.list|length > 3 %}
               <div class="ai-lab-resource-block__arrows">
                 <a href="#" title="Go left" class="previous">&lt;</a>
                 <a href="#" title="Go right" class="next">&gt;</a>
               </div>
+              {% endif %}
             </div>
 
             <div class="block-promo_group">
