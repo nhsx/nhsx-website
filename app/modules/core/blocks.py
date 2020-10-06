@@ -269,6 +269,27 @@ class LatestNewsBlock(LatestItemBlockMixin):
         template = "blocks/latest_news.html"
 
 
+class NewsletterBlock(blocks.StructBlock):
+    heading = blocks.CharBlock(required=True)
+    heading_level = blocks.IntegerBlock(
+        min_value=2,
+        max_value=4,
+        default=3,
+        help_text="The heading level affects users with screen readers. Default=3, Min=2, Max=4.",
+    )
+
+    description = blocks.CharBlock(required=False)
+    mailing_list_id = blocks.CharBlock(required=True)
+
+    def get_context(self, value, parent_context=None):
+        context = super().get_context(value, parent_context=parent_context)
+        return context
+
+    class Meta:
+        icon = "mail"
+        template = "blocks/newsletter.html"
+
+
 blog_link_blocks = [
     (
         "link",
@@ -320,4 +341,6 @@ section_page_blocks = nhsx_blocks + [
     ("latest_blog_posts", LatestBlogPostsBlock(group=" Content")),
     ("latest_news", LatestNewsBlock(group=" Content")),
     ("promo_banner", PromoBanner(group=" Content")),
+    ("newsletter_signup", NewsletterBlock(group=" Content")),
 ]
+

@@ -1,0 +1,30 @@
+{% load wagtailcore_tags layout_tags %}
+<div class="block-rich_text">
+  <div class="rich-text">
+    <h{{ value.heading_level }}>{{ value.heading }}</h{{ value.heading_level }}>
+    <form class="js-cm-form" id="subForm" class="js-cm-form"
+      action="https://www.createsend.com/t/subscribeerror?description=" method="post"
+      data-id="{{ value.mailing_list_id }}">
+
+      {% if value.description %}
+      <span class="nhsuk-hint">{{ value.description }}</span>
+      {% endif %}
+
+      <div class="nhsuk-form-group">
+        <label class="nhsuk-label" for="example">
+          Your email address
+        </label>
+        <input class="nhsuk-input js-cm-email-input qa-input-email sc-iwsKbI iMsgpL" id="fieldEmail" maxlength="200"
+          name="cm-eutdhl-eutdhl" type="email">
+      </div>
+
+      <button type="submit" class="nhsuk-button js-cm-submit-button sc-jKJlTe cmThVr">Subscribe</button>
+
+      <p class="nhsuk-body-s">
+        <a href="https://www.england.nhs.uk/contact-us/privacy-notice/how-we-use-your-information/public-and-partners/subscribers-to-our-mailing-lists/"
+          rel="noopener" target="_blank">View our Privacy policy</a>
+      </p>
+    </form>
+  </div>
+</div>
+<script type="text/javascript" src="https://js.createsend1.com/javascript/copypastesubscribeformlogic.js"></script>
