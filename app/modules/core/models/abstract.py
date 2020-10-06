@@ -563,8 +563,8 @@ class SluggedCategory(models.Model):
     class Meta:
         abstract = True
 
-    name = models.CharField(max_length=30)
-    slug = models.SlugField(max_length=30, null=True, unique=True)
+    name = models.CharField(max_length=60)
+    slug = models.SlugField(max_length=60, null=True, unique=True)
 
     panels = [
         FieldPanel("name"),
