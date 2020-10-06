@@ -99,7 +99,7 @@ class TestAiLabResource:
 
         assert live_featured_case_study.title in str(page.content)
         assert draft_featured_case_study.title not in str(page.content)
-        
+
     def test_case_study_shows_featured_resources(self):
         topic = AiLabTopicFactory.create()
         category_page = AiLabUnderstandIndexPageFactory.create()

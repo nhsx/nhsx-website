@@ -6,13 +6,18 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('core', '0033_auto_20200924_0935'),
+        ("core", "0033_auto_20200924_0935"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='socialmediasettings',
-            name='site_name',
-            field=models.CharField(blank=True, help_text='The name of the website which will be associated with some social media shares', max_length=255, null=True),
+            model_name="socialmediasettings",
+            name="site_name",
+            field=models.CharField(
+                blank=True,
+                help_text="The name of the website which will be associated with some social media shares",
+                max_length=255,
+                null=True,
+            ),
         ),
     ]

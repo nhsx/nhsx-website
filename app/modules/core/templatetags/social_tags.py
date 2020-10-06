@@ -46,4 +46,3 @@ def social_tag_url(page, image):
         return image.url
     else:
         return page.get_site().root_url + image.url
-

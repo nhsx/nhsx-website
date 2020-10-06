@@ -343,4 +343,3 @@ section_page_blocks = nhsx_blocks + [
     ("promo_banner", PromoBanner(group=" Content")),
     ("newsletter_signup", NewsletterBlock(group=" Content")),
 ]
-
