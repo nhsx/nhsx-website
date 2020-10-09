@@ -131,6 +131,7 @@ class AiLabResourceCollection(AiLabFilterableResourceMixin, SectionPage):
 
     resources = fields.StreamField(resource_link_blocks, blank=True)
     topics = ParentalManyToManyField("AiLabTopic", blank=False)
+    summary = models.CharField(max_length=255)
     featured_image = models.ForeignKey(
         settings.WAGTAILIMAGES_IMAGE_MODEL,
         null=True,
@@ -141,6 +142,7 @@ class AiLabResourceCollection(AiLabFilterableResourceMixin, SectionPage):
 
     content_panels = [
         FieldPanel("title"),
+        FieldPanel("summary", widget=forms.Textarea),
         FieldPanel("sub_head"),
         ImageChooserPanel("featured_image"),
         StreamFieldPanel("body"),
