@@ -45,6 +45,27 @@ class TestAiLabResources:
             assert subpage.title in str(page.content)
             assert subpage.summary_body in str(page.content)
 
+    def test_index_page_does_not_show_resources_in_a_collection(self):
+        resource_index_page = AiLabResourceIndexPageFactory.create()
+        understand = AiLabUnderstandIndexPageFactory.create(parent=resource_index_page)
+
+        understand_case_studies = AiLabCaseStudyFactory.create_batch(
+            3, parent=understand
+        )
+        listed_case_studies = AiLabCaseStudyFactory.create_batch(2, parent=understand)
+
+        AiLabResourceCollectionFactory.create(resource_list=listed_case_studies)
+
+        page = client.get(resource_index_page.url)
+
+        assert page.status_code == 200
+
+        for subpage in understand_case_studies:
+            assert subpage.title in str(page.content)
+
+        for subpage in listed_case_studies:
+            assert subpage.title not in str(page.content)
+
     def test_index_page_lists_topics(self):
         topics = AiLabTopicFactory.create_batch(7)
         index_page = AiLabResourceIndexPageFactory.create()
@@ -118,6 +139,26 @@ class TestAiLabResources:
 
         for resource in case_studies + external_resources:
             assert resource.title in str(page.content)
+
+    def test_resource_index_page_does_not_show_resources_in_a_collection(self):
+        resource_index_page = AiLabUnderstandIndexPageFactory.create()
+
+        case_studies = AiLabCaseStudyFactory.create_batch(2, parent=resource_index_page)
+        listed_case_studies = AiLabCaseStudyFactory.create_batch(
+            2, parent=resource_index_page
+        )
+
+        AiLabResourceCollectionFactory.create(resource_list=listed_case_studies)
+
+        page = client.get(resource_index_page.url)
+
+        assert page.status_code == 200
+
+        for resource in case_studies:
+            assert resource.title in str(page.content)
+
+        for resource in listed_case_studies:
+            assert resource.title not in str(page.content)
 
     def test_resource_index_page_lists_topics(self):
         topics = AiLabTopicFactory.create_batch(7)
