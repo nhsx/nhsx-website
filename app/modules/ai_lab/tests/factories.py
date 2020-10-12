@@ -1,6 +1,7 @@
 import wagtail_factories
 import factory
 import pytest
+import json
 
 from modules.ai_lab.models.home_page import AiLabHomePage
 from modules.ai_lab.models.resource_listings import (
@@ -8,6 +9,7 @@ from modules.ai_lab.models.resource_listings import (
     AiLabUnderstandIndexPage,
     AiLabDevelopIndexPage,
     AiLabAdoptIndexPage,
+    AiLabResourceCollection,
 )
 from modules.ai_lab.models.resources import (
     AiLabCaseStudy,
@@ -86,6 +88,25 @@ class AiLabExternalResourceFactory(ResourceFactory):
 
     class Meta:
         model = AiLabExternalResource
+
+
+class AiLabResourceCollectionFactory(ResourceFactory):
+    title = factory.Sequence(lambda n: "Resource Collection %d" % n)
+
+    @factory.lazy_attribute
+    def resource_list(self):
+        return [AiLabCaseStudyFactory.create()]
+
+    @factory.lazy_attribute
+    def resources(self):
+        r = []
+        for resource in self.resource_list:
+            r.append({"type": "link", "value": resource.id})
+        return json.dumps(r)
+
+    class Meta:
+        model = AiLabResourceCollection
+        exclude = ("resource_list",)
 
 
 class AiLabResourceIndexPageFactory(CorePageFactory):

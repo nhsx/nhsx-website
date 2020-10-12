@@ -73,10 +73,10 @@ class AiLabFilterableResourceMixin(RoutablePageMixin):
         else:
             resources = self._filter_by_topic(topic)
 
-        if resource_type is None:
-            return resources
-        else:
-            return resources.type(resource_type)
+        if resource_type is not None:
+            resources = resources.type(resource_type)
+
+        return resources.exclude(id__in=self._sub_resource_ids())
 
     def _filter_by_topic(self, topic):
         ids = self._get_ids_for_topic(topic)
@@ -101,6 +101,14 @@ class AiLabFilterableResourceMixin(RoutablePageMixin):
             .filter(topics__slug=topic)
             .values_list("id", flat=True)
         )
+
+    def _sub_resource_ids(self):
+        ids = []
+        for collection in AiLabResourceCollection.objects.all():
+            for resource in collection.resources:
+                ids.append(resource.value.id)
+
+        return ids
 
     @route(r"^type/([a-z\-0-9]+)/$")
     @route(r"^type/([a-z\-0-9]+)/topic/([a-z\-0-9]+)/$")
@@ -213,10 +221,10 @@ class AiLabResourceIndexPage(AiLabFilterableResourceMixin, BasePage):
 
         resources = Page.objects.filter(id__in=resource_ids).specific()
 
-        if resource_type is None:
-            return resources
-        else:
-            return resources.type(resource_type)
+        if resource_type is not None:
+            resources = resources.type(resource_type)
+
+        return resources.exclude(id__in=self._sub_resource_ids())
 
 
 class AiLabCategoryIndexPageMixin(AiLabFilterableResourceMixin, SectionPage):
