@@ -3,7 +3,8 @@ set -e -u -o pipefail
 
 SECRET=$(openssl rand -base64 32 | sed -e 's/[\/&]/\\&/g')
 cp docker-compose.env.example docker-compose.env
-sed -i '' -e "s/SECRET_KEY_GOES_HERE/$SECRET/g" docker-compose.env
+sed -i.bak -e "s/SECRET_KEY_GOES_HERE/$SECRET/g" docker-compose.env
+rm docker-compose.env.bak
 
 docker-compose build
 script/manpy migrate
