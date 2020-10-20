@@ -127,6 +127,34 @@ class PromoGroupBlock(FlattenValueContext, blocks.StructBlock):
     promos = blocks.ListBlock(BasePromoBlock)
 
 
+class StepBlock(FlattenValueContext, blocks.StructBlock):
+    class Meta:
+        icon = "pick"
+        template = "core/blocks/step.html"
+
+    heading = blocks.CharBlock(required=True)
+    heading_level = blocks.IntegerBlock(
+        min_value=2,
+        max_value=4,
+        default=2,
+        help_text="The heading level affects users with screen readers. Default=2, Min=2, Max=4.",
+    )
+    body = blocks.RichTextBlock(required=False)
+
+
+class StepGroupBlock(FlattenValueContext, blocks.StructBlock):
+    class Meta:
+        template = "core/blocks/step_group.html"
+
+    heading = blocks.CharBlock(required=False)
+
+    def get_context(self, value, parent_context=None):
+        context = super().get_context(value, parent_context)
+        return context
+
+    steps = blocks.ListBlock(StepBlock)
+
+
 class TableBlock(OGTableBlock):
     class Meta:
         template = "core/blocks/table.html"
@@ -342,4 +370,5 @@ section_page_blocks = nhsx_blocks + [
     ("latest_news", LatestNewsBlock(group=" Content")),
     ("promo_banner", PromoBanner(group=" Content")),
     ("newsletter_signup", NewsletterBlock(group=" Content")),
+    ("step_group", StepGroupBlock(group=" Content")),
 ]

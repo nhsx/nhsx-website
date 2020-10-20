@@ -116,3 +116,97 @@
     }
   }
 }
+
+.step-by-step {
+  position: relative;
+  list-style: none;
+  padding-left: 0px;
+  counter-reset: stepper; }
+  .step-by-step:after {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 5px;
+    height: 3px;
+    width: 25px;
+    background: #aeb7bd; }
+  .step-by-step__step {
+    padding-left: 60px;
+    position: relative;
+    margin-bottom: 0px; }
+    @media screen and (min-width: 641px) {
+      .step-by-step__step {
+        padding-left: 70px; } }
+    .step-by-step__step:after {
+      content: "";
+      display: block;
+      width: 3px;
+      background: #aeb7bd;
+      height: 100%;
+      position: absolute;
+      left: 16px;
+      top: 35px;
+      z-index: 1; }
+      @media screen and (min-width: 641px) {
+        .step-by-step__step:after {
+          top: 45px; } }
+    .step-by-step__step:last-of-type:after {
+      bottom: 0px;
+      height: inherit; }
+    .step-by-step__step:before {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 35px;
+      height: 35px;
+      font-weight: bold;
+      border-radius: 100px;
+      border: 3px solid #aeb7bd;
+      counter-increment: stepper;
+      content: counter(stepper);
+      position: absolute;
+      left: 0;
+      top: 25px;
+      background: #f0f4f5;
+      z-index: 2; }
+      @media screen and (min-width: 641px) {
+        .step-by-step__step:before {
+          top: 35px; } }
+  .step-by-step details {
+    border-top: 2px solid #d8dde0;
+    padding: 20px 0px; }
+    @media screen and (min-width: 641px) {
+      .step-by-step details {
+        padding: 30px 0px; } }
+    .step-by-step details[open] summary:after {
+      content: "Hide"; }
+  .step-by-step summary {
+    display: block;
+    cursor: pointer; }
+    .step-by-step summary::-webkit-details-marker {
+      display: none; }
+    .step-by-step summary:first-of-type {
+      list-style-type: none; }
+    .step-by-step summary h2 {
+      margin-bottom: 5px; }
+    .step-by-step summary:after {
+      content: "Show";
+      color: #005eb8; }
+    .step-by-step summary:hover {
+      color: #005eb8; }
+      .step-by-step summary:hover:after {
+        text-decoration: underline; }
+    .step-by-step summary:focus {
+      outline: 3px solid transparent;
+      color: #212b32;
+      background: #ffeb3b;
+      box-shadow: 0 -2px #ffeb3b, 0 4px #212b32; }
+      .step-by-step summary:focus:after {
+        color: #212b32; }
+  .step-by-step__description {
+    margin-top: 25px; }
+  .step-by-step__content-list {
+    list-style: none;
+    margin-top: 25px;
+    padding-left: 0px; }

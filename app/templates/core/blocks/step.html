@@ -1,0 +1,12 @@
+{% load wagtailimages_tags %}
+
+<li class="step-by-step__step">
+    <details>
+        <summary>
+            <h{{ heading_level }} >{{ heading }}</h{{ heading_level }} >
+        </summary>
+        {% if body %}
+        <p class="step-by-step__description">{{ body }}</p>
+        {% endif %}
+    </details>
+</li>

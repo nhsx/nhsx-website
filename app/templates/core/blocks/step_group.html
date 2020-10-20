@@ -1,0 +1,18 @@
+{% load wagtailcore_tags %}
+{% load nhsukfrontend_tags %}
+
+{% if heading %}
+<div class="nhsuk-grid-row">
+  <h1 class="nhsuk-heading-xl nhsuk-u-margin-bottom-5">{{ heading }}</h1>
+</div>
+{% endif %}
+<div class="nhsuk-grid-row">
+  <article class="content-area">    
+    <p class="nhsuk-lede-text"></p>
+    <ol class="step-by-step">
+      {% for step in steps %}
+        {% include_block step %}
+      {% endfor %}
+    </ol>
+  </article>
+</div>
