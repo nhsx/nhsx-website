@@ -12,6 +12,7 @@ from wagtail.documents.models import Document as WagtailDocument, AbstractDocume
 class NHSXDocument(AbstractDocument):
 
     admin_form_fields = WagtailDocument.admin_form_fields
+    download_count = models.IntegerField(default=0)
 
 
 Document = NHSXDocument
