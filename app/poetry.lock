@@ -149,18 +149,17 @@ urllib3 = {version = ">=1.20,<1.26", markers = "python_version != \"3.4\""}
 
 [[package]]
 name = "bugsnag"
-version = "3.6.0"
+version = "4.0.1"
 description = "Automatic error monitoring for django, flask, etc."
 category = "main"
 optional = false
-python-versions = "*"
+python-versions = ">=3.5.*, <4"
 
 [package.dependencies]
-six = ">=1.9,<2"
 webob = "*"
 
 [package.extras]
-flask = ["blinker", "flask"]
+flask = ["flask", "blinker"]
 
 [[package]]
 name = "certifi"
@@ -449,7 +448,7 @@ python-versions = "*"
 [package.extras]
 html5lib = ["beautifulsoup4 (>=4.4.1,<5)", "html5lib (>=0.999,<=1.0.1)"]
 lxml = ["lxml (>=4.2.0,<5)"]
-testing = ["tox (>=2.3.1)", "markov-draftjs (0.1.1)", "memory-profiler (0.47)", "psutil (5.4.1)", "coverage (>=4.1.0)", "flake8 (>=3.2.0)", "isort (4.2.5)", "beautifulsoup4 (>=4.4.1,<5)", "html5lib (>=0.999,<=1.0.1)", "lxml (>=4.2.0,<5)"]
+testing = ["tox (>=2.3.1)", "markov-draftjs (==0.1.1)", "memory-profiler (==0.47)", "psutil (==5.4.1)", "coverage (>=4.1.0)", "flake8 (>=3.2.0)", "isort (==4.2.5)", "beautifulsoup4 (>=4.4.1,<5)", "html5lib (>=0.999,<=1.0.1)", "lxml (>=4.2.0,<5)"]
 
 [[package]]
 name = "envkey"
@@ -645,8 +644,8 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 parso = ">=0.5.2"
 
 [package.extras]
-qa = ["flake8 (3.7.9)"]
-testing = ["colorama (0.4.1)", "docopt", "pytest (>=3.9.0,<5.0.0)"]
+qa = ["flake8 (==3.7.9)"]
+testing = ["colorama (==0.4.1)", "docopt", "pytest (>=3.9.0,<5.0.0)"]
 
 [[package]]
 name = "jmespath"
@@ -887,7 +886,7 @@ py = ">=1.5.0"
 wcwidth = "*"
 
 [package.extras]
-checkqa-mypy = ["mypy (v0.761)"]
+checkqa-mypy = ["mypy (==v0.761)"]
 testing = ["argcomplete", "hypothesis (>=3.56)", "mock", "nose", "requests", "xmlschema"]
 
 [[package]]
@@ -903,7 +902,7 @@ coverage = ">=4.4"
 pytest = ">=4.6"
 
 [package.extras]
-testing = ["fields", "hunter", "process-tests (2.0.2)", "six", "pytest-xdist", "virtualenv"]
+testing = ["fields", "hunter", "process-tests (==2.0.2)", "six", "pytest-xdist", "virtualenv"]
 
 [[package]]
 name = "pytest-django"
@@ -1051,7 +1050,7 @@ urllib3 = ">=1.21.1,<1.25.0 || >1.25.0,<1.25.1 || >1.25.1,<1.26"
 
 [package.extras]
 security = ["pyOpenSSL (>=0.14)", "cryptography (>=1.3.4)"]
-socks = ["PySocks (>=1.5.6,<1.5.7 || >1.5.7)", "win-inet-pton"]
+socks = ["PySocks (>=1.5.6,!=1.5.7)", "win-inet-pton"]
 
 [[package]]
 name = "rollbar"
@@ -1167,7 +1166,7 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, <4"
 [package.extras]
 brotli = ["brotlipy (>=0.6.0)"]
 secure = ["pyOpenSSL (>=0.14)", "cryptography (>=1.3.4)", "idna (>=2.0.0)", "certifi", "ipaddress"]
-socks = ["PySocks (>=1.5.6,<1.5.7 || >1.5.7,<2.0)"]
+socks = ["PySocks (>=1.5.6,!=1.5.7,<2.0)"]
 
 [[package]]
 name = "uwsgi"
@@ -1202,8 +1201,8 @@ Willow = ">=1.3,<1.4"
 xlsxwriter = ">=1.2.8,<2.0"
 
 [package.extras]
-docs = ["pyenchant (1.6.8)", "sphinxcontrib-spelling (>=2.3.0)", "Sphinx (>=1.5.2)", "sphinx-autobuild (>=0.6.0)", "sphinx-rtd-theme (>=0.1.9)"]
-testing = ["python-dateutil (>=2.2)", "pytz (>=2014.7)", "elasticsearch (>=1.0.0,<3.0)", "Jinja2 (>=2.8,<3.0)", "boto3 (>=1.4,<1.5)", "freezegun (>=0.3.8)", "openpyxl (>=2.6.4)", "coverage (>=3.7.0)", "flake8 (>=3.6.0)", "isort (4.2.5)", "flake8-blind-except (0.1.1)", "flake8-print (2.0.2)", "jinjalint (>=0.5)", "docutils (0.15)", "django-taggit (>=1.3.0,<2.0)"]
+docs = ["pyenchant (==1.6.8)", "sphinxcontrib-spelling (>=2.3.0)", "Sphinx (>=1.5.2)", "sphinx-autobuild (>=0.6.0)", "sphinx-rtd-theme (>=0.1.9)"]
+testing = ["python-dateutil (>=2.2)", "pytz (>=2014.7)", "elasticsearch (>=1.0.0,<3.0)", "Jinja2 (>=2.8,<3.0)", "boto3 (>=1.4,<1.5)", "freezegun (>=0.3.8)", "openpyxl (>=2.6.4)", "coverage (>=3.7.0)", "flake8 (>=3.6.0)", "isort (==4.2.5)", "flake8-blind-except (==0.1.1)", "flake8-print (==2.0.2)", "jinjalint (>=0.5)", "docutils (==0.15)", "django-taggit (>=1.3.0,<2.0)"]
 
 [[package]]
 name = "wagtail-2fa"
@@ -1222,7 +1221,7 @@ Wagtail = ">=2.2"
 
 [package.extras]
 docs = ["sphinx (>=1.4.1)", "sphinx-rtd-theme (>=0.4.3)"]
-test = ["coverage (5.0.3)", "pytest (5.3.5)", "pytest-cov (2.8.1)", "pytest-django (3.8.0)", "isort (4.3.21)", "flake8 (3.7.9)", "flake8-blind-except (0.1.1)", "flake8-debugger (3.2.1)"]
+test = ["coverage (==5.0.3)", "pytest (==5.3.5)", "pytest-cov (==2.8.1)", "pytest-django (==3.8.0)", "isort (==4.3.21)", "flake8 (==3.7.9)", "flake8-blind-except (==0.1.1)", "flake8-debugger (==3.2.1)"]
 
 [[package]]
 name = "wagtail-cache"
@@ -1252,7 +1251,7 @@ wagtail = ">=2.0"
 
 [package.extras]
 docs = ["sphinx (>=1.4.0)"]
-test = ["pytest (5.0.1)", "pytest-django (3.5.1)", "pytest-cov (2.7.1)", "pytest-pythonpath (0.7.3)", "psycopg2 (>=2.3.1)", "coverage (4.5.3)", "isort (4.3.21)", "flake8 (3.7.8)", "flake8-blind-except (0.1.1)", "flake8-debugger (3.1.0)"]
+test = ["pytest (==5.0.1)", "pytest-django (==3.5.1)", "pytest-cov (==2.7.1)", "pytest-pythonpath (==0.7.3)", "psycopg2 (>=2.3.1)", "coverage (==4.5.3)", "isort (==4.3.21)", "flake8 (==3.7.8)", "flake8-blind-except (==0.1.1)", "flake8-debugger (==3.1.0)"]
 
 [[package]]
 name = "wagtail-modelchooser"
@@ -1277,7 +1276,7 @@ python-versions = "*"
 Wagtail = ">=2.0"
 
 [package.extras]
-testing = ["beautifulsoup4 (4.7.1)"]
+testing = ["beautifulsoup4 (==4.7.1)"]
 
 [[package]]
 name = "wagtailfontawesome"
@@ -1388,7 +1387,7 @@ testing = ["jaraco.itertools", "func-timeout"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.6"
-content-hash = "c3d5187186b5c8f5cc4f278b50fc470ee26e091ccb10014fd515df3b20c3ba80"
+content-hash = "17d84c7190062832706fb5383bdf9cdf9652252c05db7556cb7b7275297d2829"
 
 [metadata.files]
 aiocontextvars = [
@@ -1445,8 +1444,8 @@ botocore = [
     {file = "botocore-1.15.31.tar.gz", hash = "sha256:3d4684f61ff07aa1b4cd30d13a6b8e6416142be5a2a55aedcc1d7974b9415bb1"},
 ]
 bugsnag = [
-    {file = "bugsnag-3.6.0-py3-none-any.whl", hash = "sha256:5a7c996c799622ef1ed1f7f2360ed40b4c0152325de0487afb9af636c5a3df3a"},
-    {file = "bugsnag-3.6.0.tar.gz", hash = "sha256:67b8c01719e92f193f8424595a94e3a527bc0f9fcb7f2bc47a20af87de81929d"},
+    {file = "bugsnag-4.0.1-py3-none-any.whl", hash = "sha256:d708b091c230fdf007eb0f49d1c71c81da27965d3d56adf690b90c259e179aa9"},
+    {file = "bugsnag-4.0.1.tar.gz", hash = "sha256:01c2186f6c2a6f801b66d8fc73b8986bd2d4931a6ab40b720e5fd0b66757facc"},
 ]
 certifi = [
     {file = "certifi-2019.11.28-py2.py3-none-any.whl", hash = "sha256:017c25db2a153ce562900032d5bc68e9f191e44e9a0f762f373977de9df1fbb3"},
