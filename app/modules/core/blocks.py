@@ -1,6 +1,7 @@
 # 3rd party
 import collections
 
+from bs4 import BeautifulSoup
 from django import forms
 
 from wagtail.core import blocks
@@ -179,14 +180,21 @@ class EmbedBlock(WagtailEmbedBlock):
 
     def get_context(self, value, parent_context={}):
         context = super().get_context(value, parent_context=parent_context)
+
         embed_url = getattr(value, "url", None)
         if embed_url:
             embed = embeds.get_embed(embed_url)
-            context["embed_html"] = embed.html
+            context["embed_html"] = self._add_title_to_iframe(embed)
             context["embed_url"] = embed_url
             context["ratio"] = embed.ratio
 
         return context
+
+    def _add_title_to_iframe(self, embed):
+        html = BeautifulSoup(embed.html, "html5lib")
+        html.iframe["title"] = embed.title
+
+        return str(html.iframe)
 
 
 class CaptionedEmbedBlock(blocks.StructBlock):
