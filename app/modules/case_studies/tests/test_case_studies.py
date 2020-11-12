@@ -16,7 +16,5 @@ client = Client()
 class TestCaseStudy:
     def test_case_study_can_be_created(self):
         casestudy = CaseStudyFactory.create()
-        assert isinstance(casestudy, CaseStudy)
+        assert isinstance(casestudy, CaseStudyPage)
         assert casestudy is not None
-
-
