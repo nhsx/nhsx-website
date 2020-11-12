@@ -25,6 +25,10 @@ from wagtailnhsukfrontend.blocks import (  # NOQA
     ActionLinkBlock,
 )
 
+from modules.case_studies.abstract import (
+    CaseStudyTag,
+    CaseStudyTags,
+)
 
 class BasePromoBlock(FlattenValueContext, blocks.StructBlock):
     class Meta:
@@ -254,6 +258,9 @@ class NHSXExpanderBlock(ExpanderBlock):
 def get_tag_list():
     return [(_.id, _.name) for _ in Tag.objects.all()]
 
+def get_casestudy_tag_list():
+    return [(_.id, _.name) for _ in CaseStudyTag.objects.all()]
+
 
 class LatestItemBlockMixin(blocks.StructBlock):
     heading = blocks.CharBlock(required=True)
@@ -326,6 +333,48 @@ class NewsletterBlock(blocks.StructBlock):
         template = "blocks/newsletter.html"
 
 
+class CaseStudyBlock(blocks.StructBlock):
+    heading = blocks.CharBlock(required=False)
+    heading_level = blocks.IntegerBlock(
+        min_value=2,
+        max_value=4,
+        default=3,
+        help_text="The heading level affects users with screen readers. Default=3, Min=2, Max=4.",
+    )
+    column = blocks.ChoiceBlock(
+        [("one-half", "One-half"), ("one-third", "One-third"),],
+        default="one-third",
+        required=True,
+    )
+    tag_id = blocks.ChoiceBlock(choices=get_casestudy_tag_list, required=True)
+
+    def get_context(self, value, parent_context=None):
+        context = super().get_context(value, parent_context=parent_context)
+        context["num_columns"] = {"one-half": 2, "one-third": 3,}[value["column"]]
+        value["tag"] = CaseStudyTag.objects.get(id=value["tag_id"])
+        value["items"] = self._get_items(value["tag_id"], 99)
+        context.update(value)
+        return context
+
+    class Meta:
+        abstract = True
+
+class CaseStudiesBlock(CaseStudyBlock):
+    def _get_items(self, tag_id, limit):
+        from modules.case_studies.models import CaseStudyPage
+
+        return (
+            CaseStudyPage.objects.live()
+            .filter(tags__id=tag_id)
+            .live()
+            .order_by("display_order")
+        )[:limit]
+
+    class Meta:
+        icon = "doc-full"
+        template = "blocks/filtered_case_studies.html"
+
+
 blog_link_blocks = [
     (
         "link",
@@ -379,4 +428,5 @@ section_page_blocks = nhsx_blocks + [
     ("promo_banner", PromoBanner(group=" Content")),
     ("newsletter_signup", NewsletterBlock(group=" Content")),
     ("step_group", StepGroupBlock(group=" Content")),
+    ("case_studies", CaseStudiesBlock(group=" Content")),
 ]
