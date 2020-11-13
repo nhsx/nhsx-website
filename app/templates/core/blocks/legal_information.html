@@ -1,0 +1,8 @@
+{% load wagtailcore_tags layout_tags %}
+{% if value.legal_information %}
+<div class="block-rich_text">
+  <div class="rich-text">
+    {{ value.legal_information.body|richtext }}
+  </div>
+</div>
+{% endif %}

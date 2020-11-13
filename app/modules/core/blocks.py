@@ -10,6 +10,7 @@ from wagtail.embeds.blocks import EmbedBlock as WagtailEmbedBlock
 from wagtail.documents.blocks import DocumentChooserBlock
 from wagtail.contrib.table_block.blocks import TableBlock as OGTableBlock
 from wagtail.images.blocks import ImageChooserBlock
+from wagtail.snippets.blocks import SnippetChooserBlock
 
 from taggit.models import Tag
 
@@ -24,6 +25,9 @@ from wagtailnhsukfrontend.blocks import (  # NOQA
     FlattenValueContext,
     ActionLinkBlock,
 )
+
+# Project specific Models
+from modules.core.models.snippets import LegalInformation
 
 from modules.case_studies.abstract import (
     CaseStudyTag,
@@ -375,6 +379,16 @@ class CaseStudiesBlock(CaseStudyBlock):
         template = "blocks/filtered_case_studies.html"
 
 
+# Legal Information from Snippet
+class LegalInformationBlock(blocks.StructBlock):
+
+    legal_information = SnippetChooserBlock(LegalInformation)
+    
+    class Meta:
+        icon = "doc-full"
+        template = "core/blocks/legal_information.html"
+
+
 blog_link_blocks = [
     (
         "link",
@@ -418,6 +432,7 @@ nhs_blocks = [
     ("table", TableBlock(group=" NHS Components")),
     ("panel_table", PanelTableBlock(group=" NHS Components")),
     ("action_link", ActionLinkBlock(group=" NHS Components")),
+    ("legal_information", LegalInformationBlock(group=" NHS Components")),
 ]
 
 nhsx_blocks = content_blocks + nhs_blocks
