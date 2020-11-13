@@ -1,0 +1,62 @@
+{% load wagtailcore_tags layout_tags %}
+{% load wagtailimages_tags %}
+{% load nhsukfrontend_tags %}
+
+{% if items %}
+<div class="block-promo_group">
+  {% if heading %}
+  <h{{ heading_level }}>{{ heading }}</h{{ heading_level }}>
+  {% endif %}
+  
+  {% for row in items|chunk:num_columns %}
+  <div class="nhsuk-grid-row nhsuk-promo-group">
+    {% for casestudy in row %}
+
+    {% image casestudy.image width-320 as one_image %}
+    {% image casestudy.image width-510 as two_image %}
+    {% image casestudy.image width-640 as three_image %}
+    {% image casestudy.image width-767 as four_image %}
+    {% image casestudy.image width-1019 as five_image %}
+    {% image casestudy.image width-1125 as six_image %}
+    {% image casestudy.image width-1534 as seven_image %}
+
+    <div class="{% promo_group_column_class num_columns %} nhsuk-promo-group__item">
+      
+      <div class="nhsuk-promo{% if size == 'small' %} nhsuk-promo--small{% endif %}">
+        <a class="nhsuk-promo__link-wrapper" href="{{ casestudy.url }}">
+          {% if casestudy.image %}          
+            <img
+              class="nhsuk-promo__img"
+              src="{{ one_image.url }}"
+              sizes="
+                  (min-width: 1020px) 320px
+                  (min-width: 768px) 50vw
+                  100vw"
+              srcset="
+                   {{ one_image.url }} 320w,
+                   {{ two_image.url }} 510w,
+                   {{ three_image.url }} 640w,
+                   {{ four_image.url }} 767w,
+                   {{ five_image.url }} 1019w,
+                   {{ six_image.url }} 1125w,
+                   {{ seven_image.url }} 1534w,
+                "
+              alt="{{ casestudy.alt_text }}"
+            />
+         {% endif %}
+
+          <div class="nhsuk-promo__content">
+            <h{{ heading_level }} class="nhsuk-promo__heading">{{ casestudy.title }}</h{{ heading_level }}>
+            {% if casestudy.sub_head %}
+              <p class="nhsuk-promo__description">{{ casestudy.sub_head }}</p>
+            {% endif %}
+          </div>
+        </a>
+      </div>
+      
+    </div>
+    {% endfor %}
+  </div>
+  {% endfor %}
+</div>
+{% endif %}
