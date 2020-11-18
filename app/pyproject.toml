@@ -7,7 +7,7 @@ authors = ["andy@hactar.is"]
 [tool.poetry.dependencies]
 python = "^3.6"
 
-wagtail = "2.9.3"
+wagtail = "2.11.2"
 
 psycopg2 = "^2.8"
 django-redis = "^4.12"
