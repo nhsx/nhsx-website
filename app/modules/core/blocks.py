@@ -1,6 +1,7 @@
 # 3rd party
 import collections
 
+from bs4 import BeautifulSoup
 from django import forms
 
 from wagtail.core import blocks
@@ -9,6 +10,7 @@ from wagtail.embeds.blocks import EmbedBlock as WagtailEmbedBlock
 from wagtail.documents.blocks import DocumentChooserBlock
 from wagtail.contrib.table_block.blocks import TableBlock as OGTableBlock
 from wagtail.images.blocks import ImageChooserBlock
+from wagtail.snippets.blocks import SnippetChooserBlock
 
 from taggit.models import Tag
 
@@ -24,6 +26,13 @@ from wagtailnhsukfrontend.blocks import (  # NOQA
     ActionLinkBlock,
 )
 
+# Project specific Models
+from modules.core.models.snippets import LegalInformation
+
+from modules.case_studies.abstract import (
+    CaseStudyTag,
+    CaseStudyTags,
+)
 
 class BasePromoBlock(FlattenValueContext, blocks.StructBlock):
     class Meta:
@@ -127,6 +136,34 @@ class PromoGroupBlock(FlattenValueContext, blocks.StructBlock):
     promos = blocks.ListBlock(BasePromoBlock)
 
 
+class StepBlock(FlattenValueContext, blocks.StructBlock):
+    class Meta:
+        icon = "pick"
+        template = "core/blocks/step.html"
+
+    heading = blocks.CharBlock(required=True)
+    heading_level = blocks.IntegerBlock(
+        min_value=2,
+        max_value=4,
+        default=2,
+        help_text="The heading level affects users with screen readers. Default=2, Min=2, Max=4.",
+    )
+    body = blocks.RichTextBlock(required=False)
+
+
+class StepGroupBlock(FlattenValueContext, blocks.StructBlock):
+    class Meta:
+        template = "core/blocks/step_group.html"
+
+    heading = blocks.CharBlock(required=False)
+
+    def get_context(self, value, parent_context=None):
+        context = super().get_context(value, parent_context)
+        return context
+
+    steps = blocks.ListBlock(StepBlock)
+
+
 class TableBlock(OGTableBlock):
     class Meta:
         template = "core/blocks/table.html"
@@ -151,14 +188,21 @@ class EmbedBlock(WagtailEmbedBlock):
 
     def get_context(self, value, parent_context={}):
         context = super().get_context(value, parent_context=parent_context)
+
         embed_url = getattr(value, "url", None)
         if embed_url:
             embed = embeds.get_embed(embed_url)
-            context["embed_html"] = embed.html
+            context["embed_html"] = self._add_title_to_iframe(embed)
             context["embed_url"] = embed_url
             context["ratio"] = embed.ratio
 
         return context
+
+    def _add_title_to_iframe(self, embed):
+        html = BeautifulSoup(embed.html, "html5lib")
+        html.iframe["title"] = embed.title
+
+        return str(html.iframe)
 
 
 class CaptionedEmbedBlock(blocks.StructBlock):
@@ -217,6 +261,9 @@ class NHSXExpanderBlock(ExpanderBlock):
 
 def get_tag_list():
     return [(_.id, _.name) for _ in Tag.objects.all()]
+
+def get_casestudy_tag_list():
+    return [(_.id, _.name) for _ in CaseStudyTag.objects.all()]
 
 
 class LatestItemBlockMixin(blocks.StructBlock):
@@ -290,6 +337,58 @@ class NewsletterBlock(blocks.StructBlock):
         template = "blocks/newsletter.html"
 
 
+class CaseStudyBlock(blocks.StructBlock):
+    heading = blocks.CharBlock(required=False)
+    heading_level = blocks.IntegerBlock(
+        min_value=2,
+        max_value=4,
+        default=3,
+        help_text="The heading level affects users with screen readers. Default=3, Min=2, Max=4.",
+    )
+    column = blocks.ChoiceBlock(
+        [("one-half", "One-half"), ("one-third", "One-third"),],
+        default="one-third",
+        required=True,
+    )
+    tag_id = blocks.ChoiceBlock(choices=get_casestudy_tag_list, required=True)
+
+    def get_context(self, value, parent_context=None):
+        context = super().get_context(value, parent_context=parent_context)
+        context["num_columns"] = {"one-half": 2, "one-third": 3,}[value["column"]]
+        value["tag"] = CaseStudyTag.objects.get(id=value["tag_id"])
+        value["items"] = self._get_items(value["tag_id"], 99)
+        context.update(value)
+        return context
+
+    class Meta:
+        abstract = True
+
+class CaseStudiesBlock(CaseStudyBlock):
+    def _get_items(self, tag_id, limit):
+        from modules.case_studies.models import CaseStudyPage
+
+        return (
+            CaseStudyPage.objects.live()
+            .filter(tags__id=tag_id)
+            .live()
+            .order_by("display_order")
+        )[:limit]
+
+    class Meta:
+        icon = "doc-full"
+        template = "blocks/filtered_case_studies.html"
+
+
+# Legal Information from Snippet
+class LegalInformationBlock(blocks.StructBlock):
+
+    legal_information = SnippetChooserBlock(LegalInformation)
+    
+    class Meta:
+        icon = "doc-full"
+        template = "core/blocks/legal_information.html"
+
+
 blog_link_blocks = [
     (
         "link",
@@ -333,6 +432,7 @@ nhs_blocks = [
     ("table", TableBlock(group=" NHS Components")),
     ("panel_table", PanelTableBlock(group=" NHS Components")),
     ("action_link", ActionLinkBlock(group=" NHS Components")),
+    ("legal_information", LegalInformationBlock(group=" NHS Components")),
 ]
 
 nhsx_blocks = content_blocks + nhs_blocks
@@ -342,4 +442,6 @@ section_page_blocks = nhsx_blocks + [
     ("latest_news", LatestNewsBlock(group=" Content")),
     ("promo_banner", PromoBanner(group=" Content")),
     ("newsletter_signup", NewsletterBlock(group=" Content")),
+    ("step_group", StepGroupBlock(group=" Content")),
+    ("case_studies", CaseStudiesBlock(group=" Content")),
 ]

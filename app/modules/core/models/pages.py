@@ -38,6 +38,7 @@ class SectionPage(BasePage, InlineHeroMixin, SubNavMixin):
         "people.PeopleListingPage",
         "meeting_minutes.MeetingMinutesListingPage",
         "ig_guidance.GuidanceListingPage",
+        "case_studies.CaseStudyPage",
     ]
 
     subnav_panels: list = SubNavMixin.panels
