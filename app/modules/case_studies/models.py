@@ -23,8 +23,8 @@ from modules.case_studies.abstract import (
 from modules.core.models.abstract import (
     BasePage,
     BaseIndexPage,
-    InlineHeroMixin, 
-    SidebarMixin, 
+    InlineHeroMixin,
+    SidebarMixin,
     SubNavMixin,
 )
 
@@ -35,19 +35,12 @@ logger = logging.getLogger(__name__)
 # Page models
 ################################################################################
 
-class CaseStudyPage(BasePage, InlineHeroMixin, SidebarMixin):
-   
-    display_order = models.IntegerField(
-        default=0,
-        null=False,
-        blank=False,
-    )
 
-    alt_text = models.CharField(
-        max_length=300,
-        null=True,
-        blank=True,
-    )
+class CaseStudyPage(BasePage, InlineHeroMixin, SidebarMixin):
+
+    display_order = models.IntegerField(default=0, null=False, blank=False,)
+
+    alt_text = models.CharField(max_length=300, null=True, blank=True,)
 
     tags = ClusterTaggableManager(through=CaseStudyTags, blank=True)
 
@@ -60,10 +53,10 @@ class CaseStudyPage(BasePage, InlineHeroMixin, SidebarMixin):
     ]
 
     subpage_types: list = []
- 
+
     content_panels = [
         *Page.content_panels,
-        FieldPanel("display_order"),        
+        FieldPanel("display_order"),
         ImageChooserPanel("image"),
         FieldPanel("alt_text"),
         FieldPanel("sub_head"),
@@ -78,4 +71,3 @@ class CaseStudyPage(BasePage, InlineHeroMixin, SidebarMixin):
         tabs = super().get_admin_tabs()
         tabs.insert(1, (cls.sidebar_panels, "Sidebar"))
         return tabs
-
