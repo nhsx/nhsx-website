@@ -34,6 +34,7 @@ from modules.case_studies.abstract import (
     CaseStudyTags,
 )
 
+
 class BasePromoBlock(FlattenValueContext, blocks.StructBlock):
     class Meta:
         icon = "pick"
@@ -262,6 +263,7 @@ class NHSXExpanderBlock(ExpanderBlock):
 def get_tag_list():
     return [(_.id, _.name) for _ in Tag.objects.all()]
 
+
 def get_casestudy_tag_list():
     return [(_.id, _.name) for _ in CaseStudyTag.objects.all()]
 
@@ -363,6 +365,7 @@ class CaseStudyBlock(blocks.StructBlock):
     class Meta:
         abstract = True
 
+
 class CaseStudiesBlock(CaseStudyBlock):
     def _get_items(self, tag_id, limit):
         from modules.case_studies.models import CaseStudyPage
@@ -383,7 +386,7 @@ class CaseStudiesBlock(CaseStudyBlock):
 class LegalInformationBlock(blocks.StructBlock):
 
     legal_information = SnippetChooserBlock(LegalInformation)
-    
+
     class Meta:
         icon = "doc-full"
         template = "core/blocks/legal_information.html"

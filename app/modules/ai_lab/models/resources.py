@@ -7,7 +7,7 @@ from django.conf import settings
 from django.utils.text import slugify
 from django.shortcuts import redirect
 
-from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
+from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel, PageChooserPanel
 from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 from wagtail.core.models import Page
 from wagtail.core import fields
@@ -142,20 +142,51 @@ class AiLabReport(AiLabResourceMixin, ArticlePage):
         verbose_name_plural = "Reports"
 
 
-class AiLabExternalResource(AiLabResourceMixin, Page):
-    external_url = models.URLField()
+class AiLabLinkedResourceMixin(AiLabResourceMixin):
     content_panels = [
         FieldPanel("title"),
         FieldPanel("summary", widget=forms.Textarea),
         ImageChooserPanel("featured_image"),
         FieldPanel("first_published_at"),
-        FieldPanel("external_url", widget=forms.URLInput()),
         FieldPanel("topics", widget=forms.CheckboxSelectMultiple),
     ]
 
     def serve(self, request, *args, **kwargs):
-        return redirect(self.external_url)
+        return redirect(self.resource_url())
+
+    class Meta:
+        abstract = True
+
+
+class AiLabExternalResource(AiLabLinkedResourceMixin, Page):
+    external_url = models.URLField()
+    content_panels = AiLabLinkedResourceMixin.content_panels + [
+        FieldPanel("external_url", widget=forms.URLInput())
+    ]
+
+    def resource_url(self):
+        return self.external_url
 
     class Meta:
         verbose_name = "External Resource"
         verbose_name_plural = "External Resources"
+
+
+class AiLabInternalResource(AiLabLinkedResourceMixin, Page):
+    page = models.ForeignKey(
+        "wagtailcore.Page",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+    )
+    content_panels = AiLabLinkedResourceMixin.content_panels + [
+        PageChooserPanel("page")
+    ]
+
+    def resource_url(self):
+        return self.page.url
+
+    class Meta:
+        verbose_name = "Internal Resource"
+        verbose_name_plural = "Internal Resources"
