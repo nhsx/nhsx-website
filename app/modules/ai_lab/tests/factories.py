@@ -14,6 +14,7 @@ from modules.ai_lab.models.resource_listings import (
 from modules.ai_lab.models.resources import (
     AiLabCaseStudy,
     AiLabExternalResource,
+    AiLabInternalResource,
     AiLabGuidance,
     AiLabReport,
     AiLabTopic,
@@ -88,6 +89,13 @@ class AiLabExternalResourceFactory(ResourceFactory):
 
     class Meta:
         model = AiLabExternalResource
+
+
+class AiLabInternalResourceFactory(ResourceFactory):
+    title = factory.Sequence(lambda n: "Internal Resource %d" % n)
+
+    class Meta:
+        model = AiLabInternalResource
 
 
 class AiLabResourceCollectionFactory(ResourceFactory):

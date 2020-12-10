@@ -1,20 +1,18 @@
 from django import template
 from django.utils.text import slugify
+from django.utils.html import mark_safe
 
 register = template.Library()
 
 
 @register.filter
 def resource_type(resource):
-    return resource._meta.verbose_name
-
-
-@register.filter
-def resource_target(resource):
-    if resource.__class__.__name__ == "AiLabExternalResource":
-        return "_blank"
+    if resource._meta.verbose_name != "Internal Resource":
+        return mark_safe(
+            '<p class="nhsai_resource__type">' + resource._meta.verbose_name + "</p>"
+        )
     else:
-        return "_self"
+        return ""
 
 
 @register.filter

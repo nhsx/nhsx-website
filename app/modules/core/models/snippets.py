@@ -12,9 +12,10 @@ from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
 # Legal Snippets
 ################################################################################
 
+
 @register_snippet
 class LegalInformation(models.Model):
-    
+
     name = models.CharField(max_length=100)
     body = RichTextField(blank=True)
 
@@ -29,5 +30,3 @@ class LegalInformation(models.Model):
 
     def __str__(self):
         return self.name
-
-

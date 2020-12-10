@@ -61,6 +61,18 @@ class TestAiLabResource:
         assert page.status_code == 302
         assert page.url == "https://example.com"
 
+    def test_internal_resource_redirects_to_a_page(self):
+        category_page = AiLabUnderstandIndexPageFactory.create()
+        resource = AiLabCaseStudyFactory.create(parent=category_page)
+        internal_resource = AiLabInternalResourceFactory.create(
+            page=resource, parent=category_page
+        )
+
+        page = client.get(internal_resource.url)
+
+        assert page.status_code == 302
+        assert page.url == resource.url
+
     def test_case_study_shows_three_random_resources(self):
         category_page = AiLabUnderstandIndexPageFactory.create()
 
