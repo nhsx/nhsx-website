@@ -25,6 +25,7 @@ from modules.ai_lab.blocks import resource_link_blocks
 from modules.ai_lab.models.resources import (
     AiLabCaseStudy,
     AiLabExternalResource,
+    AiLabInternalResource,
     AiLabTopic,
     AiLabGuidance,
     AiLabReport,
@@ -236,6 +237,7 @@ class AiLabCategoryIndexPageMixin(AiLabFilterableResourceMixin, SectionPage):
     subpage_types = [
         "AiLabCaseStudy",
         "AiLabExternalResource",
+        "AiLabInternalResource",
         "AiLabGuidance",
         "AiLabReport",
         "AiLabResourceCollection",
