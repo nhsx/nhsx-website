@@ -29,7 +29,7 @@
 <meta name="twitter:title" content="{{ page.title }}" />
 <meta name="twitter:description" content="{{ page|twitter_card_description:request.site }}">
 {% if page|twitter_card_image:request.site %}
-{% image page|twitter_card_image:request.site fill-1000x1000 as twitter_card_image %}
+{% image page|twitter_card_image:request.site max-4096x4096  as twitter_card_image %}
 <meta property="twitter:image" content="{{ page|social_tag_url:twitter_card_image }}" />
 {% endif %}
 {% if settings.core.SocialMediaSettings.facebook_app_id %}
