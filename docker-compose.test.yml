@@ -21,6 +21,7 @@ services:
       - /bin/bash
       - -c
       - |
+        set -e
         black --check .
         python manage.py assets clean
         python manage.py assets build
