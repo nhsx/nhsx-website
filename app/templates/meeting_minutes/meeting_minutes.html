@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags static wagtailuserbar nhsukfrontend_tags wagtailimages_tags %}
+{% load wagtailcore_tags static wagtailuserbar nhsukfrontend_tags wagtailimages_tags time_tags %}
 
 {% block body_class %}template-article{% endblock %}
 
@@ -17,7 +17,7 @@
             <span class="nhsuk-caption-l">{{ page.get_parent.title }}</span>
             {{ page.title }}
           </h1>
-          <p class="nhsuk-body-l">{{ page.start_time }} - {{ page.end_time }}</p>
+          <p class="nhsuk-body-l">{{ page.start_time|format_time }} - {{ page.end_time|format_time }}</p>
           <p class="nhsuk-body-l">{{ page.venue }}</p>
 
           <hr class="nhsuk-section-break nhsuk-section-break--l nhsuk-section-break--visible">
