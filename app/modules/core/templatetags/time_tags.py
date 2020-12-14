@@ -10,5 +10,7 @@ def format_time(time_obj):
         return "midday"
     elif time_obj.hour == 0 and time_obj.minute == 0:
         return "midnight"
+    elif time_obj.minute == 0:
+        return time(time_obj, "gA").lower()
     else:
         return time(time_obj, "g.iA").lower()
