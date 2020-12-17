@@ -16,3 +16,7 @@ docker-compose run \
     --noinput \
     --email admin@example.com
 
+echo "***** cleaning, building and collecting the assets *****"
+script/manpy assets clean
+script/manpy assets build
+script/manpy collectstatic --no-input -i node_modules

@@ -48,7 +48,7 @@ hosts` and add the following to make the site available at
 The following script runs the tests:
 
 ```bash
-script/tests
+script/test
 ```
 
 For more on the approach to testing, see [docs/testing.md](https://github.com/nhsx/nhsx-website/blob/dev/docs/testing.md)
