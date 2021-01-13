@@ -38,7 +38,7 @@
         {% if hero_image or hero_text %}
         <div class="nhsuk-grid-row nhsuk-u-margin-top-5">
           {%else %}
-         <div class="nhsuk-grid-row">
+         <div class="nhsuk-grid-row dxw-card-group">
         {% endif %}
           {% for post in pages.object_list %}
             {% if post.id not in page.specific.featured_ids %}

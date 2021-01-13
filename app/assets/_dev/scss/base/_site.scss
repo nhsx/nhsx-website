@@ -1,45 +1,55 @@
 // make images show at the width of the column
 
 figure.nhsuk-image {
-    width: 100%;
+  width: 100%;
 }
 
-div.fixed-height{
-    height: 400px;
+div.fixed-height {
+  height: 400px;
 }
 
-
-img.richtext-image, img.full-width{
-    width: 100%;
-    height: auto;
+img.richtext-image,
+img.full-width {
+  width: 100%;
+  height: auto;
 }
 div.rich-text:last-child {
   p {
-    margin-bottom:nhsuk-spacing(4);
+    margin-bottom: nhsuk-spacing(4);
   }
 }
 
 //responsive embed videos
 
-.responsive-embed, .responsive-object {
-    height: 100%;
-    position: relative;
-    padding-bottom: 56.25%;
-    height: 0;
-    margin: 0 auto;
-    max-height: 100vh;
+.responsive-embed,
+.responsive-object {
+  height: 100%;
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  margin: 0 auto;
+  max-height: 100vh;
+  width: 100%;
+  video,
+  iframe,
+  img,
+  a {
+    position: absolute;
+    min-width: 100%;
+    min-height: 100%;
     width: 100%;
-    video, iframe, img, a {
-      position: absolute;
-      min-width: 100%;
-      min-height: 100%;
-      width: 100%;
-      height: auto;
-      max-height: 100vh;
-      overflow: hidden;
-    }
-    video, iframe {
-      z-index: 1;
-    }
+    height: auto;
+    max-height: 100vh;
+    overflow: hidden;
+  }
+  video,
+  iframe {
+    z-index: 1;
+  }
 }
 
+//basic flexbox layout
+
+.dxw-card-group {
+  @include flex();
+}
