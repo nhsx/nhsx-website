@@ -1,18 +1,17 @@
-
 //article page
 .template-article {
   .topics {
-    margin-bottom:  nhsuk-spacing(3);
+    margin-bottom: nhsuk-spacing(3);
   }
 }
 .block-block_quote {
-  @include nhsuk-responsive-margin(5, 'left');
+  @include nhsuk-responsive-margin(5, "left");
   &:before {
     content: "\201C";
     font-size: 30px;
     float: left;
     clear: both;
-    margin-right:nhsuk-spacing(3);
+    margin-right: nhsuk-spacing(3);
     line-height: 38px;
   }
   blockquote {
@@ -22,7 +21,6 @@
     }
   }
 }
-
 
 //Rich text first paragraph selector
 .block-rich_text:first-child {
@@ -37,10 +35,16 @@
   }
 }
 
+//Rich text handle long anchor links overflow
+.rich-text {
+  a {
+    @include word-wrap;
+  }
+}
 
 //sidebar
 .nhsuk-contents-list {
   h2 {
-    margin-bottom:13px;
+    margin-bottom: 13px;
   }
 }
