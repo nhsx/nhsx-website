@@ -140,8 +140,6 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "wagtail_2fa.middleware.VerifyUserMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    # WAGTAIL
-    "wagtail.core.middleware.SiteMiddleware",
     # ROLLBAR
     "rollbar.contrib.django.middleware.RollbarNotifierMiddleware",
     # CACHE
