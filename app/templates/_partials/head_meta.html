@@ -6,7 +6,7 @@
     {% block title_prefix %}{{ TITLE_PREFIX }}{% endblock %}{% block title %}{% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }}{% endif %}{% endblock %}{% block title_suffix %}
     - NHSX{% endblock %}</title>
 <meta name="description"
-    content="{% if page.search_description %}{{ page.search_description }}{% else %}{{ page|fb_og_description:request.site }}{% endif %}" />
+    content="{% if page.search_description %}{{ page.search_description }}{% else %}{{ page|fb_og_description:request }}{% endif %}" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 {% if page.canonical_rel %}
@@ -27,9 +27,9 @@
 {% if settings.core.SocialMediaSettings.twitter %}
 <meta name="twitter:site" content="@{{ settings.core.SocialMediaSettings.twitter }}" />{% endif %}
 <meta name="twitter:title" content="{{ page.title }}" />
-<meta name="twitter:description" content="{{ page|twitter_card_description:request.site }}">
-{% if page|twitter_card_image:request.site %}
-{% image page|twitter_card_image:request.site max-4096x4096  as twitter_card_image %}
+<meta name="twitter:description" content="{{ page|twitter_card_description:request }}">
+{% if page|twitter_card_image:request %}
+{% image page|twitter_card_image:request max-4096x4096  as twitter_card_image %}
 <meta property="twitter:image" content="{{ page|social_tag_url:twitter_card_image }}" />
 {% endif %}
 {% if settings.core.SocialMediaSettings.facebook_app_id %}
@@ -37,11 +37,11 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="{{ page.full_url }}" />
 <meta property="og:title" content="{{ page.title }}" />
-{% if page|fb_image:request.site %}
-{% image page|fb_image:request.site fill-1200x630 as fb_image %}
+{% if page|fb_image:request %}
+{% image page|fb_image:request fill-1200x630 as fb_image %}
 <meta property="og:image" content="{{ page|social_tag_url:fb_image }}" />
 {% endif %}
-<meta property="og:description" content="{{ page|fb_og_description:request.site }}" />
+<meta property="og:description" content="{{ page|fb_og_description:request }}" />
 {% if settings.core.SocialMediaSettings.site_name %}
 <meta property="og:site_name" content="{{ settings.core.SocialMediaSettings.site_name }}" />{% endif %}
 {% endif %}
