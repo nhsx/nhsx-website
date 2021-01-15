@@ -219,7 +219,7 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 
 [[package]]
 name = "consoler"
-version = "0.1.2"
+version = "0.1.3"
 description = ""
 category = "main"
 optional = false
@@ -227,7 +227,7 @@ python-versions = ">=3.6,<4.0"
 
 [package.dependencies]
 arrow = ">=0.15.5,<0.16.0"
-loguru = ">=0.4.1,<0.5.0"
+loguru = ">=0.4.1"
 
 [[package]]
 name = "contextvars"
@@ -1477,7 +1477,7 @@ testing = ["jaraco.itertools", "func-timeout"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.6"
-content-hash = "e6e371363e7333ece48ae084bf4b165716df539bb633010a9d8eb8964d212db3"
+content-hash = "aff3fcb78e8e9fe3cbf18e1d2745c735a901890d66737b0cb329e8ecdaaa5f0d"
 
 [metadata.files]
 aiocontextvars = [
@@ -1562,8 +1562,8 @@ colorama = [
     {file = "colorama-0.4.3.tar.gz", hash = "sha256:e96da0d330793e2cb9485e9ddfd918d456036c7149416295932478192f4436a1"},
 ]
 consoler = [
-    {file = "consoler-0.1.2-py3-none-any.whl", hash = "sha256:a087a1ca5f9bb66313af32689b407e58693c1083ad900437598b9db691347184"},
-    {file = "consoler-0.1.2.tar.gz", hash = "sha256:9113ad1fe28cb8c7ca34fa07f5b28dcd1768eb2bd754d8023b50f2e3d058404b"},
+    {file = "consoler-0.1.3-py3-none-any.whl", hash = "sha256:d70d0e725bb1da40d16099719bb5fbd217d110f09fd97bb04de82cd3481e40b8"},
+    {file = "consoler-0.1.3.tar.gz", hash = "sha256:9107962341e88ef38b0d75904a2eb13f724bfe80f1c4356e5fc51fccfd55c974"},
 ]
 contextvars = [
     {file = "contextvars-2.4.tar.gz", hash = "sha256:f38c908aaa59c14335eeea12abea5f443646216c4e29380d7bf34d2018e2c39e"},
@@ -1662,6 +1662,7 @@ django-treebeard = [
 ]
 djangorestframework = [
     {file = "djangorestframework-3.12.2-py3-none-any.whl", hash = "sha256:0209bafcb7b5010fdfec784034f059d512256424de2a0f084cb82b096d6dd6a7"},
+    {file = "djangorestframework-3.12.2.tar.gz", hash = "sha256:0898182b4737a7b584a2c73735d89816343369f259fea932d90dc78e35d8ac33"},
 ]
 docutils = [
     {file = "docutils-0.15.2-py2-none-any.whl", hash = "sha256:9e4d7ecfc600058e07ba661411a2b7de2fd0fafa17d1a7f7361cd47b1175c827"},
