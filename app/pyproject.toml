@@ -11,7 +11,7 @@ wagtail = "2.11.3"
 
 psycopg2 = "^2.8"
 django-redis = "^4.12"
-hiredis = "^1.0"
+hiredis = "^1.1"
 django-storages = "^1.7"
 boto3 = "^1.9"
 whitenoise = "^5.2"
