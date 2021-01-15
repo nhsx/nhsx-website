@@ -472,14 +472,14 @@ testing = ["tox (>=2.3.1)", "markov-draftjs (==0.1.1)", "memory-profiler (==0.47
 
 [[package]]
 name = "envkey"
-version = "1.2.4"
+version = "1.2.5"
 description = "EnvKey's Python library. Protect API keys and credentials. Keep configuration in sync."
 category = "main"
 optional = false
 python-versions = "*"
 
 [package.dependencies]
-python-dotenv = ">=0.8.2"
+python-dotenv = ">=0.13.0"
 
 [[package]]
 name = "et-xmlfile"
@@ -1017,7 +1017,7 @@ six = ">=1.5"
 
 [[package]]
 name = "python-dotenv"
-version = "0.12.0"
+version = "0.15.0"
 description = "Add .env support to your django/flask apps in development and deployments"
 category = "main"
 optional = false
@@ -1662,6 +1662,7 @@ django-treebeard = [
 ]
 djangorestframework = [
     {file = "djangorestframework-3.12.2-py3-none-any.whl", hash = "sha256:0209bafcb7b5010fdfec784034f059d512256424de2a0f084cb82b096d6dd6a7"},
+    {file = "djangorestframework-3.12.2.tar.gz", hash = "sha256:0898182b4737a7b584a2c73735d89816343369f259fea932d90dc78e35d8ac33"},
 ]
 docutils = [
     {file = "docutils-0.15.2-py2-none-any.whl", hash = "sha256:9e4d7ecfc600058e07ba661411a2b7de2fd0fafa17d1a7f7361cd47b1175c827"},
@@ -1673,7 +1674,7 @@ draftjs-exporter = [
     {file = "draftjs_exporter-2.1.7.tar.gz", hash = "sha256:5839cbc29d7bce2fb99837a404ca40c3a07313f2a20e2700de7ad6aa9a9a18fb"},
 ]
 envkey = [
-    {file = "envkey-1.2.4-py2.py3-none-any.whl", hash = "sha256:dced02bd8ad51b798b1b10bd71b6359f9b287ba1e0e474bba958622417a507ab"},
+    {file = "envkey-1.2.5-py2.py3-none-any.whl", hash = "sha256:7a2981e9cd2500ab041ee361d792063ffe53791caddb8206d2dec92019905b1c"},
 ]
 et-xmlfile = [
     {file = "et_xmlfile-1.0.1.tar.gz", hash = "sha256:614d9722d572f6246302c4491846d2c393c199cfa4edc9af593437691683335b"},
@@ -1948,8 +1949,8 @@ python-dateutil = [
     {file = "python_dateutil-2.8.1-py2.py3-none-any.whl", hash = "sha256:75bb3f31ea686f1197762692a9ee6a7550b59fc6ca3a1f4b5d7e32fb98e2da2a"},
 ]
 python-dotenv = [
-    {file = "python-dotenv-0.12.0.tar.gz", hash = "sha256:92b3123fb2d58a284f76cc92bfe4ee6c502c32ded73e8b051c4f6afc8b6751ed"},
-    {file = "python_dotenv-0.12.0-py2.py3-none-any.whl", hash = "sha256:81822227f771e0cab235a2939f0f265954ac4763cafd806d845801c863bf372f"},
+    {file = "python-dotenv-0.15.0.tar.gz", hash = "sha256:587825ed60b1711daea4832cf37524dfd404325b7db5e25ebe88c495c9f807a0"},
+    {file = "python_dotenv-0.15.0-py2.py3-none-any.whl", hash = "sha256:0c8d1b80d1a1e91717ea7d526178e3882732420b03f08afea0406db6402e220e"},
 ]
 python-memcached = [
     {file = "python-memcached-1.59.tar.gz", hash = "sha256:a2e28637be13ee0bf1a8b6843e7490f9456fd3f2a4cb60471733c7b5d5557e4f"},
