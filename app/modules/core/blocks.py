@@ -178,7 +178,24 @@ class PanelTableBlock(blocks.StructBlock):
     table = TableBlock()
 
 
-class EmbedBlock(WagtailEmbedBlock):
+class EmbedWithTitle:
+    def fetch_from_url(self, url):
+        embed = embeds.get_embed(url)
+
+        return {
+            "html": self._add_title_to_iframe(embed),
+            "url": url,
+            "ratio": embed.ratio,
+        }
+
+    def _add_title_to_iframe(self, embed):
+        html = BeautifulSoup(embed.html, "html5lib")
+        html.iframe["title"] = embed.title
+
+        return str(html.iframe)
+
+
+class EmbedBlock(WagtailEmbedBlock, EmbedWithTitle):
 
     """Overriding the built in Wagtail embed so that we can have proper
     responsive markup.
@@ -192,25 +209,29 @@ class EmbedBlock(WagtailEmbedBlock):
 
         embed_url = getattr(value, "url", None)
         if embed_url:
-            embed = embeds.get_embed(embed_url)
-            context["embed_html"] = self._add_title_to_iframe(embed)
-            context["embed_url"] = embed_url
-            context["ratio"] = embed.ratio
+            data = self.fetch_from_url(embed_url)
+            context["embed_html"] = data["html"]
+            context["embed_url"] = data["url"]
+            context["ratio"] = data["ratio"]
 
         return context
 
-    def _add_title_to_iframe(self, embed):
-        html = BeautifulSoup(embed.html, "html5lib")
-        html.iframe["title"] = embed.title
 
-        return str(html.iframe)
-
-
-class CaptionedEmbedBlock(blocks.StructBlock):
+class CaptionedEmbedBlock(blocks.StructBlock, EmbedWithTitle):
 
     """Overriding the built in Wagtail embed so that we can have proper
     responsive markup.
     """
+
+    def get_context(self, value, parent_context={}):
+        context = super().get_context(value, parent_context=parent_context)
+        embed_url = value["embed"].url
+
+        if embed_url:
+            data = self.fetch_from_url(embed_url)
+            context["value"]["embed"].html = data["html"]
+
+        return context
 
     class Meta:
         template = "core/blocks/captioned_embed.html"
