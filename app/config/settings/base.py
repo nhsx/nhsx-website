@@ -140,8 +140,6 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "wagtail_2fa.middleware.VerifyUserMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    # WAGTAIL
-    "wagtail.core.middleware.SiteMiddleware",
     # ROLLBAR
     "rollbar.contrib.django.middleware.RollbarNotifierMiddleware",
     # CACHE
@@ -272,8 +270,8 @@ WAGTAIL_SITE_NAME = "NHSX"
 DEFAULT_AUTHOR_AVATAR = "avatar.png"
 
 WAGTAILADMIN_RICH_TEXT_EDITORS = {
-    "default": {"WIDGET": "wagtail.admin.rich_text.HalloRichTextArea"},
-    "alt": {"WIDGET": "wagtail.admin.rich_text.DraftailRichTextArea"},
+    "default": {"WIDGET": "wagtail.admin.rich_text.DraftailRichTextArea"},
+    "alt": {"WIDGET": "wagtail.admin.rich_text.HalloRichTextArea"},
 }
 
 DATA_UPLOAD_MAX_NUMBER_FIELDS = 10000

@@ -1,10 +1,13 @@
 # 3rd party
 from consoler import console  # NOQA
 from django.apps import apps
+from django.conf import settings
 from wagtail.core.models import Page, Site, Collection
 from mixer.backend.django import mixer  # NOQA
 from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
+
+from wagtail.core.utils import get_supported_content_language_variant
 
 
 def fake_initial_migration():
@@ -61,8 +64,17 @@ def add_root_collection():
     Collection.objects.get_or_create(path="0001", depth=1, name="Root")
 
 
+def create_initial_locale():
+    Locale = apps.get_model("wagtailcore.Locale")
+
+    Locale.objects.create(
+        language_code=get_supported_content_language_variant(settings.LANGUAGE_CODE),
+    )
+
+
 def setup():
     console.warn("SETTING UP")
+    create_initial_locale()
     root = Page.objects.create(path="0001", depth=1, slug="root", title="root")
 
     Site.objects.create(
