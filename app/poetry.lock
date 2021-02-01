@@ -306,7 +306,7 @@ webassets = ">=2.0"
 
 [[package]]
 name = "django-autocomplete-light"
-version = "3.5.1"
+version = "3.8.1"
 description = "Fresh autocompletes for Django"
 category = "main"
 optional = false
@@ -1477,7 +1477,7 @@ testing = ["jaraco.itertools", "func-timeout"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.6"
-content-hash = "e6e371363e7333ece48ae084bf4b165716df539bb633010a9d8eb8964d212db3"
+content-hash = "cd972402441effd53f77ef761c9240efc34fe93f2f679584e1ea3f61912c2060"
 
 [metadata.files]
 aiocontextvars = [
@@ -1638,7 +1638,7 @@ django-assets = [
     {file = "django_assets-2.0-py3-none-any.whl", hash = "sha256:3e4267a453bb6a30a4bcfb4f971a6876a542b5f500167afda892973335c8ac60"},
 ]
 django-autocomplete-light = [
-    {file = "django-autocomplete-light-3.5.1.tar.gz", hash = "sha256:52e8d468060a5911c44300a374d74058c90e65bfdf87ace151abac67279c4ae5"},
+    {file = "django-autocomplete-light-3.8.1.tar.gz", hash = "sha256:4e84a6d95d272b0d7221614332e2bd54ffff15ec06e78947279398f6507ce225"},
 ]
 django-cacheops = [
     {file = "django-cacheops-5.0.1.tar.gz", hash = "sha256:be48a8278abf124a4b3753d545f087bb67e221a5501ec758fc8cd1c4e915d9a0"},
