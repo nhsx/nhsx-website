@@ -270,7 +270,24 @@ WAGTAIL_SITE_NAME = "NHSX"
 DEFAULT_AUTHOR_AVATAR = "avatar.png"
 
 WAGTAILADMIN_RICH_TEXT_EDITORS = {
-    "default": {"WIDGET": "wagtail.admin.rich_text.DraftailRichTextArea"},
+    "default": {
+        "WIDGET": "wagtail.admin.rich_text.DraftailRichTextArea",
+        "OPTIONS": {
+            "features": [
+                "h2",
+                "h3",
+                "h4",
+                "ol",
+                "ul",
+                "hr",
+                "bold",
+                "italic",
+                "link",
+                "document-link",
+                "image",
+            ]
+        },
+    },
     "alt": {"WIDGET": "wagtail.admin.rich_text.HalloRichTextArea"},
 }
 
