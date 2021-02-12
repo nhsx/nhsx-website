@@ -6,14 +6,36 @@
 }
 .block-block_quote {
   @include nhsuk-responsive-margin(5, "left");
-  &:before {
-    content: "\201C";
+  display: flex;
+  &:before, &:after {
     font-size: 30px;
-    float: left;
-    clear: both;
-    margin-right: nhsuk-spacing(3);
+    content: "\201C";
     line-height: 38px;
+    margin-top: 10px;
   }
+  &:before {
+    text-align: right;
+  }
+  &:after {
+    text-align: left;
+    margin-right: nhsuk-spacing(3);
+  }
+  // &:before {
+  //   content: "\201C";
+  //   font-size: 30px;
+  //   float: left;
+  //   clear: both;
+  //   margin-right: nhsuk-spacing(3);
+  //   line-height: 38px;
+  // }
+  // &:after {
+  //   content: "\201C";
+  //   font-size: 30px;
+  //   float: left;
+  //   clear: both;
+  //   margin-right: nhsuk-spacing(3);
+  //   line-height: 38px;
+  // }
   blockquote {
     margin-left: nhsuk-spacing(5);
     &:last-child {
