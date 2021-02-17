@@ -513,7 +513,10 @@ class BaseIndexPage(BasePage, InlineHeroMixin):
             tags = request_tags.split(",")
 
         if request.GET.get("page", None):
-            page = int(request.GET.get("page", 1))
+            try:
+                page = int(request.GET.get("page", 1))
+            except ValueError:
+                page = 1
 
         children = self._paginator(request, page, tags)
 
