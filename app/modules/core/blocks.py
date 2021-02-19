@@ -457,6 +457,7 @@ nhs_blocks = [
     ("panel_table", PanelTableBlock(group=" NHS Components")),
     ("action_link", ActionLinkBlock(group=" NHS Components")),
     ("legal_information", LegalInformationBlock(group=" NHS Components")),
+    ("newsletter_signup", NewsletterBlock(group=" Content")),
 ]
 
 nhsx_blocks = content_blocks + nhs_blocks
