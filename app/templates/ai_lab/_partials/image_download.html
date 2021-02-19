@@ -12,6 +12,9 @@
           </svg>
           <span>Download full PDF</span>
         </a>
+        <span>
+          ({{ page.download.file_extension|upper }}, {{ page.download.file_size|filesizeformat }})
+        </span>        
       </p>
     {% endif %}
 </div>
