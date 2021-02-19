@@ -1313,7 +1313,7 @@ dev = ["flake8", "mypy", "pytest", "pytest-cov", "pytest-django", "sphinx", "twi
 
 [[package]]
 name = "wagtail-factories"
-version = "2.0.0"
+version = "2.0.1"
 description = "Factory boy classes for wagtail"
 category = "main"
 optional = false
@@ -1325,7 +1325,7 @@ wagtail = ">=2.0"
 
 [package.extras]
 docs = ["sphinx (>=1.4.0)"]
-test = ["pytest (==5.0.1)", "pytest-django (==3.5.1)", "pytest-cov (==2.7.1)", "pytest-pythonpath (==0.7.3)", "psycopg2 (>=2.3.1)", "coverage (==4.5.3)", "isort (==4.3.21)", "flake8 (==3.7.8)", "flake8-blind-except (==0.1.1)", "flake8-debugger (==3.1.0)"]
+test = ["pytest (==6.0.1)", "pytest-django (==3.9.0)", "pytest-cov (==2.7.1)", "pytest-pythonpath (==0.7.3)", "psycopg2 (>=2.3.1)", "coverage (==4.5.3)", "isort (==4.3.21)", "flake8 (==3.7.8)", "flake8-blind-except (==0.1.1)", "flake8-debugger (==3.1.0)"]
 
 [[package]]
 name = "wagtail-modelchooser"
@@ -1477,7 +1477,7 @@ testing = ["jaraco.itertools", "func-timeout"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.6"
-content-hash = "b6e8541c20c8d67f7b5c50deae827a820f1be1d33c02c8a64d1aca5876bd2844"
+content-hash = "a34c2e08ca69ad0a9dc5de35612fc6b9530cfe8c963306326a7b78d3bb483425"
 
 [metadata.files]
 aiocontextvars = [
@@ -2106,8 +2106,8 @@ wagtail-cache = [
     {file = "wagtail_cache-1.0.0-py3-none-any.whl", hash = "sha256:6c585af2aa402444fd80c35de6ed4b529248e0b506652fec23daca6602d27653"},
 ]
 wagtail-factories = [
-    {file = "wagtail_factories-2.0.0-py2.py3-none-any.whl", hash = "sha256:2198e791854ef3883812f532a4d1b364aae1c68abc58a48b8ecec8c61e4a151f"},
-    {file = "wagtail_factories-2.0.0.tar.gz", hash = "sha256:416196b88dcdb2d2787926692d7eef7fa0664556900eb6166537026b085d9fbf"},
+    {file = "wagtail_factories-2.0.1-py2.py3-none-any.whl", hash = "sha256:e2bd1a22e67b70e1603fc292e97f6f998ee0169477e1f71b5c53368630f1d088"},
+    {file = "wagtail_factories-2.0.1.tar.gz", hash = "sha256:3eeb55199f2c9ffbfe14979a94766d724c9e9f4d8f561df61097884e63bd537f"},
 ]
 wagtail-modelchooser = [
     {file = "wagtail-modelchooser-2.3.3.tar.gz", hash = "sha256:87099ad70fdc22db7caea140b28aebbdefd7556b2e6cbe6c91a477925a531743"},
