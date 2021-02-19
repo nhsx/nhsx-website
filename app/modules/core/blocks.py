@@ -413,6 +413,17 @@ class LegalInformationBlock(blocks.StructBlock):
         template = "core/blocks/legal_information.html"
 
 
+class HTMLAnchorBlock(blocks.StructBlock):
+    anchor = blocks.CharBlock(
+        help_text="Some where in the page you will need to add the anchor link to this ID. e.g. Use the 'rich text' block to add the anchor link",
+        label="ID for anchor",
+    )
+
+    class Meta:
+        icon = "link"
+        template = "core/blocks/html_anchor.html"
+
+
 blog_link_blocks = [
     (
         "link",
@@ -441,6 +452,7 @@ content_blocks = [
     ("block_quote", blocks.BlockQuoteBlock(group=" Content")),
     ("embed", EmbedBlock(group=" Content")),
     ("captioned_embed", CaptionedEmbedBlock(group=" Content")),
+    ("html_anchor", HTMLAnchorBlock(group=" Content")),
 ]
 
 nhs_blocks = [
