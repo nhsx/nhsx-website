@@ -1299,7 +1299,7 @@ test = ["coverage (==5.0.3)", "pytest (==5.3.5)", "pytest-cov (==2.8.1)", "pytes
 
 [[package]]
 name = "wagtail-cache"
-version = "1.0.0"
+version = "1.0.1"
 description = "A simple page cache for Wagtail based on the Django cache middleware."
 category = "main"
 optional = false
@@ -1307,9 +1307,6 @@ python-versions = "*"
 
 [package.dependencies]
 wagtail = ">=2.0"
-
-[package.extras]
-dev = ["flake8", "mypy", "pytest", "pytest-cov", "pytest-django", "sphinx", "twine", "wheel"]
 
 [[package]]
 name = "wagtail-factories"
@@ -1477,7 +1474,7 @@ testing = ["jaraco.itertools", "func-timeout"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.6"
-content-hash = "a34c2e08ca69ad0a9dc5de35612fc6b9530cfe8c963306326a7b78d3bb483425"
+content-hash = "564326f252f495f09134b074b2a484eb2b9b1af88b034e7fbd318bfe0746396b"
 
 [metadata.files]
 aiocontextvars = [
@@ -2102,8 +2099,8 @@ wagtail-2fa = [
     {file = "wagtail_2fa-1.4.2-py3-none-any.whl", hash = "sha256:59895c700a4735d2afe7aeb7bab2e6277c1f80f838da1f999b5a76e0e1ed1a18"},
 ]
 wagtail-cache = [
-    {file = "wagtail-cache-1.0.0.tar.gz", hash = "sha256:aae065e5f2228da5fdee89672df0ef4dde0f733a60036caed72db2bb018ea554"},
-    {file = "wagtail_cache-1.0.0-py3-none-any.whl", hash = "sha256:6c585af2aa402444fd80c35de6ed4b529248e0b506652fec23daca6602d27653"},
+    {file = "wagtail-cache-1.0.1.tar.gz", hash = "sha256:9fdbefe091130cb2e72f220a0d6f8e74e668775bf5b2c80202c2d861191d1df0"},
+    {file = "wagtail_cache-1.0.1-py3-none-any.whl", hash = "sha256:beaf34a1aeb2027c5f1f64c06987b537826643d4a707359f45218b708ab4f924"},
 ]
 wagtail-factories = [
     {file = "wagtail_factories-2.0.1-py2.py3-none-any.whl", hash = "sha256:e2bd1a22e67b70e1603fc292e97f6f998ee0169477e1f71b5c53368630f1d088"},
