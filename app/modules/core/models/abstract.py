@@ -151,7 +151,7 @@ class SidebarMixin(PageLinksMixin):
 
     @cached_property
     def _siblings(self):
-        sibs = self.get_siblings()
+        sibs = self.get_siblings().live()
         return [{"title": _.title, "url": _.url} for _ in sibs]
 
     @cached_property
