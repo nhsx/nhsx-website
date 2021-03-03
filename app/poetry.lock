@@ -322,6 +322,20 @@ nested = ["django-nested-admin (>=3.0.21)"]
 tags = ["django-taggit"]
 
 [[package]]
+name = "django-basic-auth-ip-whitelist"
+version = "0.3.4"
+description = "Hide your Django site behind basic authentication mechanism with IP whitelisting support."
+category = "main"
+optional = false
+python-versions = ">=3.4"
+
+[package.dependencies]
+Django = ">=1.8,<4"
+
+[package.extras]
+lint = ["isort (==4.3.21)", "flake8 (==3.8.3)", "black (==19.10b0)"]
+
+[[package]]
 name = "django-cacheops"
 version = "5.1"
 description = "A slick ORM cache with automatic granular event-driven invalidation for Django."
@@ -1477,7 +1491,7 @@ testing = ["jaraco.itertools", "func-timeout"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.6"
-content-hash = "a34c2e08ca69ad0a9dc5de35612fc6b9530cfe8c963306326a7b78d3bb483425"
+content-hash = "fc75b5a5bedf4757b2f92282917137a86e29343963e074fb6580eb57a377f71f"
 
 [metadata.files]
 aiocontextvars = [
@@ -1639,6 +1653,10 @@ django-assets = [
 ]
 django-autocomplete-light = [
     {file = "django-autocomplete-light-3.5.1.tar.gz", hash = "sha256:52e8d468060a5911c44300a374d74058c90e65bfdf87ace151abac67279c4ae5"},
+]
+django-basic-auth-ip-whitelist = [
+    {file = "django-basic-auth-ip-whitelist-0.3.4.tar.gz", hash = "sha256:b148082b336e276f328b4cad48744f160469bfc34e8f5bac0ef449abc297bc4e"},
+    {file = "django_basic_auth_ip_whitelist-0.3.4-py3-none-any.whl", hash = "sha256:9d20210755b4a2db069326cedafa589453386cebe147ed0a9f1f9b55da927b02"},
 ]
 django-cacheops = [
     {file = "django-cacheops-5.1.tar.gz", hash = "sha256:d5851cd7bf3087384a1fcecfa8dddb8f55030eedfd6fdf127225b75bca0f99dd"},
