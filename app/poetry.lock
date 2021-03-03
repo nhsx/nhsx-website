@@ -1116,7 +1116,7 @@ socks = ["PySocks (>=1.5.6,!=1.5.7)", "win-inet-pton"]
 
 [[package]]
 name = "rollbar"
-version = "0.15.0"
+version = "0.15.2"
 description = "Easy and powerful exception tracking with Rollbar. Send messages and exceptions with arbitrary context, get back aggregates, and debug production issues quickly."
 category = "main"
 optional = false
@@ -1491,7 +1491,7 @@ testing = ["jaraco.itertools", "func-timeout"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.6"
-content-hash = "fc75b5a5bedf4757b2f92282917137a86e29343963e074fb6580eb57a377f71f"
+content-hash = "f8e88effd2ac254e47f95d2014edd952ac7235541df58bef79f5d1c1ba5ea145"
 
 [metadata.files]
 aiocontextvars = [
@@ -2031,7 +2031,7 @@ requests = [
     {file = "requests-2.23.0.tar.gz", hash = "sha256:b3f43d496c6daba4493e7c431722aeb7dbc6288f52a6e04e7b6023b0247817e6"},
 ]
 rollbar = [
-    {file = "rollbar-0.15.0.tar.gz", hash = "sha256:75add43e634f3f75e069e1edd2b793b8d1e8800f16419a1d83065b49dd5d1372"},
+    {file = "rollbar-0.15.2.tar.gz", hash = "sha256:5e80fe7c9b15e84f5b72e45ebaa85bba1c13234e447a5f3801d094eb379c2d0e"},
 ]
 s3transfer = [
     {file = "s3transfer-0.3.3-py2.py3-none-any.whl", hash = "sha256:2482b4259524933a022d59da830f51bd746db62f047d6eb213f2f8855dcb8a13"},
