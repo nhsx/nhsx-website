@@ -306,7 +306,7 @@ webassets = ">=2.0"
 
 [[package]]
 name = "django-autocomplete-light"
-version = "3.5.1"
+version = "3.8.2"
 description = "Fresh autocompletes for Django"
 category = "main"
 optional = false
@@ -1491,7 +1491,7 @@ testing = ["jaraco.itertools", "func-timeout"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.6"
-content-hash = "fc75b5a5bedf4757b2f92282917137a86e29343963e074fb6580eb57a377f71f"
+content-hash = "74d70dc88a20003285c2237c266b926d4ec9af7884921d40b0f161de0d2e8489"
 
 [metadata.files]
 aiocontextvars = [
@@ -1652,7 +1652,7 @@ django-assets = [
     {file = "django_assets-2.0-py3-none-any.whl", hash = "sha256:3e4267a453bb6a30a4bcfb4f971a6876a542b5f500167afda892973335c8ac60"},
 ]
 django-autocomplete-light = [
-    {file = "django-autocomplete-light-3.5.1.tar.gz", hash = "sha256:52e8d468060a5911c44300a374d74058c90e65bfdf87ace151abac67279c4ae5"},
+    {file = "django-autocomplete-light-3.8.2.tar.gz", hash = "sha256:25f0ea71b59a8f1f97a8a564e33e429570b0ea77c5eac81f7beb283073b4ba90"},
 ]
 django-basic-auth-ip-whitelist = [
     {file = "django-basic-auth-ip-whitelist-0.3.4.tar.gz", hash = "sha256:b148082b336e276f328b4cad48744f160469bfc34e8f5bac0ef449abc297bc4e"},
