@@ -528,11 +528,11 @@ six = "*"
 
 [[package]]
 name = "faker"
-version = "4.0.3"
+version = "6.6.0"
 description = "Faker is a Python package that generates fake data for you."
 category = "main"
 optional = false
-python-versions = ">=3.4"
+python-versions = ">=3.6"
 
 [package.dependencies]
 python-dateutil = ">=2.4"
@@ -1491,7 +1491,7 @@ testing = ["jaraco.itertools", "func-timeout"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.6"
-content-hash = "fc75b5a5bedf4757b2f92282917137a86e29343963e074fb6580eb57a377f71f"
+content-hash = "be7250852b13622b0a0aa8ce0d81c33b6f3c1969a1a1a82e5f51b132fe4af890"
 
 [metadata.files]
 aiocontextvars = [
@@ -1721,8 +1721,8 @@ fake-factory = [
     {file = "fake_factory-0.5.7-py2.py3-none-any.whl", hash = "sha256:608b84d746781781cacab5fa3f7a52fece46047b03f4e8619ade3ce26d0c84f2"},
 ]
 faker = [
-    {file = "Faker-4.0.3-py3-none-any.whl", hash = "sha256:53bf2c8a2de8af271466e7b9cc2f08ecf83c4c947981680eb61080779a0adace"},
-    {file = "Faker-4.0.3.tar.gz", hash = "sha256:7292806948ed848f1bcea1e7b963bae6f398687d1da0ea096e156fea2787f454"},
+    {file = "Faker-6.6.0-py3-none-any.whl", hash = "sha256:38bd2ff0afb7d9956fed477a2cd1007a7012b401a9ffd3de5fb909d739880582"},
+    {file = "Faker-6.6.0.tar.gz", hash = "sha256:0a68a539b236a614157581a135c82a27024a66dc96b9a491883fe583ae3689f9"},
 ]
 fancycompleter = [
     {file = "fancycompleter-0.9.1-py3-none-any.whl", hash = "sha256:dd076bca7d9d524cc7f25ec8f35ef95388ffef9ef46def4d3d25e9b044ad7080"},
