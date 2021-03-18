@@ -1354,7 +1354,7 @@ wagtail = ">=2.2"
 
 [[package]]
 name = "wagtail-nhsuk-frontend"
-version = "0.4.1"
+version = "0.7.0"
 description = "NHSUK Frontend Styles for Wagtail"
 category = "main"
 optional = false
@@ -1362,9 +1362,6 @@ python-versions = "*"
 
 [package.dependencies]
 Wagtail = ">=2.0"
-
-[package.extras]
-testing = ["beautifulsoup4 (==4.7.1)"]
 
 [[package]]
 name = "wagtailfontawesome"
@@ -1491,7 +1488,7 @@ testing = ["jaraco.itertools", "func-timeout"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.6"
-content-hash = "fc75b5a5bedf4757b2f92282917137a86e29343963e074fb6580eb57a377f71f"
+content-hash = "39a7cef8119f7eb3757bae3052f2a5b630735f2fd089d94421a221aab18bce31"
 
 [metadata.files]
 aiocontextvars = [
@@ -2132,7 +2129,7 @@ wagtail-modelchooser = [
     {file = "wagtail_modelchooser-2.3.3-py2.py3-none-any.whl", hash = "sha256:975b127fed84078b18d59af995385d8a5478d99da1af3c32148da0393f3398a1"},
 ]
 wagtail-nhsuk-frontend = [
-    {file = "wagtail-nhsuk-frontend-0.4.1.tar.gz", hash = "sha256:6e36338f25f581f5ae0ab7ca97a33ee88f3cf70f7e19b9fd889ce280010d609c"},
+    {file = "wagtail-nhsuk-frontend-0.7.0.tar.gz", hash = "sha256:5dd46dc2411cacd73596832fe6b13bdfdd2635a8edba850783d161dad4b442ef"},
 ]
 wagtailfontawesome = [
     {file = "wagtailfontawesome-1.2.1-py2.py3-none-any.whl", hash = "sha256:76b1c64c4f1042d468a83e4352f74b57bda4a4aa09cdfeeb8663dead5ed632be"},
