@@ -4,22 +4,28 @@
     margin-bottom: nhsuk-spacing(3);
   }
 }
+
 .block-block_quote {
   @include nhsuk-responsive-margin(5, "left");
   display: flex;
-  &:before, &:after {
+
+  &:before,
+  &:after {
     font-size: 30px;
     content: "\201C";
     line-height: 38px;
     margin-top: 10px;
   }
+
   &:before {
     text-align: right;
   }
+
   &:after {
     text-align: left;
     margin-right: nhsuk-spacing(3);
   }
+
   // &:before {
   //   content: "\201C";
   //   font-size: 30px;
@@ -38,6 +44,7 @@
   // }
   blockquote {
     margin-left: nhsuk-spacing(5);
+
     &:last-child {
       margin-bottom: nhsuk-spacing(4);
     }
@@ -48,10 +55,12 @@
 .block-rich_text:first-child {
   p:first-child {
     font-size: 19px;
+
     @media (min-width: 40.0625em) {
       font-size: 24px;
     }
   }
+
   div.rich-text :last-child {
     margin-bottom: 24px;
   }

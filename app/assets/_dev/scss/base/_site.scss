@@ -13,6 +13,20 @@ img.full-width {
   width: 100%;
   height: auto;
 }
+
+//Some max-width for images in rich-text
+//Ideally this should be done in the wagtail-nhsuk-frontend package
+//But not possible at this time
+
+img.richtext-image {
+
+  // full width already catered for above
+  &.left,
+  &.right {
+    max-width: 280px;
+  }
+}
+
 div.rich-text:last-child {
   p {
     margin-bottom: nhsuk-spacing(4);
@@ -30,6 +44,7 @@ div.rich-text:last-child {
   margin: 0 auto;
   max-height: 100vh;
   width: 100%;
+
   video,
   iframe,
   img,
@@ -42,6 +57,7 @@ div.rich-text:last-child {
     max-height: 100vh;
     overflow: hidden;
   }
+
   video,
   iframe {
     z-index: 1;
