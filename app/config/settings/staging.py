@@ -3,8 +3,13 @@ from .remote import *  # NOQA
 from .base import MEDIA_ROOT, BASE_DIR  # NOQA
 
 DEBUG = False
+WAGTAIL_CACHE = False
 
 BASE_URL = "https://web.staging.nhsx-website.dalmatian.dxw.net"
+
+MIDDLEWARE += ["baipw.middleware.BasicAuthIPWhitelistMiddleware"]
+BASIC_AUTH_LOGIN = os.environ.get("BASIC_AUTH_LOGIN", "")
+BASIC_AUTH_PASSWORD = os.environ.get("BASIC_AUTH_PASSWORD", "")
 
 ####################################################################################################
 # Static assets served by Whitenoise
