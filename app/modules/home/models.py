@@ -12,6 +12,7 @@ class HomePage(BasePage, HeroImageContentMixin):
         "core.SectionPage",
         "core.ArticlePage",
         "blog_posts.BlogPostIndexPage",
+        "longform.LongformPostIndexPage",
         "news.NewsIndexPage",
         "ai_lab.AiLabHomePage",
     ]
