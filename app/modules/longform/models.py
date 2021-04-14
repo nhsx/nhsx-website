@@ -81,9 +81,13 @@ class LongformPost(BasePage, PageAuthorsMixin, CanonicalMixin):
         context['repr'] = ''
         html_list = []
         for block in self.body._raw_data:
-            replacement_html, new_toc = replace_headers(block['value'])
-            context['toc'].extend(new_toc)
-            html_list.append(replacement_html)
+            # TODO consider diving deeper into expander nodes
+            if block['type'] == 'rich_text':
+                replacement_html, new_toc = replace_headers(block['value'])
+                context['toc'].extend(new_toc)
+                html_list.append(replacement_html)
+            else:
+                html_list.append(block['value'])
         for i, html in enumerate(html_list):
             self.body._raw_data[i]['value'] = html 
             # TODO consider changing id?
