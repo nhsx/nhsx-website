@@ -3,8 +3,29 @@ import pytest
 
 from wagtail.core.models import Page
 from modules.longform.models import LongformPost, LongformPostIndexPage
+from wagtail.tests.utils.form_data import rich_text, streamfield, nested_form_data
+from wagtail.core.blocks.stream_block import StreamValue
+import wagtail.core.blocks.stream_block
+from wagtail.core.blocks import RichTextBlock
 
 pytestmark = pytest.mark.django_db
+
+
+def replacement(self, item):
+    if isinstance(item, StreamValue.StreamChild):
+        return item
+
+    try:
+        type_name, value, block_id = item
+    except ValueError:
+        type_name, value = item
+        block_id = None
+
+    print(self.stream_block.child_blocks.keys())
+    block_def = self.stream_block.child_blocks[type_name]
+
+
+wagtail.core.blocks.stream_block._construct_stream_child = replacement
 
 
 def _create_longform_post(title: str, parent: Page) -> LongformPost:
@@ -37,6 +58,7 @@ def _create_longform_post_index_page(title: str, parent: Page) -> LongformPostIn
         LongformPostIndexPage: Description
     """
     p = LongformPostIndexPage()
+    print(p.get_children())
     p.title = title
     parent.add_child(instance=p)
     p.save_revision().publish()

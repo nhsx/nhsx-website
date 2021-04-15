@@ -1,9 +1,19 @@
 import pytest
-from django.test import Client
+from django.test import Client, TestCase
+from django.core.management.commands import loaddata
 
 pytestmark = pytest.mark.django_db
 
 client = Client()
+
+
+@pytest.mark.skip(reason="placeholder")
+class FixtureTestCase(TestCase):
+    # docs.django.com/en/3.0/topics/testing/tools#topics-testing-fixtures
+    fixtures = ["dbdump.json"]
+
+    def test_longform_is_complicated(longform_post):
+        raise RuntimeError("expected failure")
 
 
 def test_longform_post_gets_created(longform_post):

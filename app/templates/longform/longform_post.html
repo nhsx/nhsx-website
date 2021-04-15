@@ -1,8 +1,47 @@
-{% load wagtailcore_tags %}
-include 'core/article_page.html' with show_meta=True 
-{% for name, anchor in toc %}
-  <a href='#{{anchor}}'>{{name}}</a><br>
-{% endfor %}
-{% for block in page.body %}
-  {% include_block block %}
-{% endfor %}
+{% extends "base.html" %}
+{% load wagtailcore_tags static wagtailuserbar nhsukfrontend_tags wagtailimages_tags time_tags %}
+
+{% block body_class %}template-article{% endblock %}
+
+{% block extra_css %}
+{% endblock extra_css %}
+
+{% block content %}
+{% breadcrumb %}
+<section class="nhsx-section nhsx-section--white">
+  <div class="nhsuk-width-container">
+    <main class="nhsuk-main-wrapper" id="maincontent">
+      <div class="nhsuk-grid-row">
+        <div class="nhsuk-grid-column-two-thirds">
+          <h1 class="nhsuk-heading-xl nhsuk-u-margin-bottom-5">
+            {{ page.title }}
+          </h1>
+
+          <hr class="nhsuk-section-break nhsuk-section-break--l nhsuk-section-break--visible">
+
+	  <h2>Authors</h2>
+	  <!-- TODO: use partials/page_meta -->
+          {% for author in page.author_list %}
+            {% if author.salutation %}{{ author.salutation }} {% endif %}{{ author.first_name }} {{ author.last_name }}{% if author.job_title %} ({{ author.job_title }}){% endif %}{% if not forloop.last %}, {% endif %}
+          {% endfor %}
+
+	  <div style='border:1px solid black;'>
+            <h2>Table of Contents</h2>
+	    {% for name, anchor in toc %}
+              <a href='#{{anchor}}'>{{name}}</a><br>
+            {% endfor %}
+  	  </div>
+          
+	  <hr class="nhsuk-section-break nhsuk-section-break--l nhsuk-section-break--visible">
+	  
+
+          {% for block in page.body %}
+            {% include_block block %}
+          {% endfor %}
+
+        </div>
+      </div>
+    </main>
+  </div>
+</section>
+{% endblock content %}
