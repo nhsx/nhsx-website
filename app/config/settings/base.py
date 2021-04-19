@@ -155,7 +155,6 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = "config.urls"
 WSGI_APPLICATION = "config.wsgi.application"
-BASE_URL = "https://globalwitness.org"
 SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", None)
 INTERNAL_IPS = ["127.0.0.1"]
 APPEND_SLASH = True
