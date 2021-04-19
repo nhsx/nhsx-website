@@ -4,6 +4,7 @@ import re
 import lxml.html
 import hashlib
 import random
+from collections import Counter
 
 # 3rd party
 from django.db import models
@@ -17,6 +18,7 @@ from wagtail.utils.decorators import cached_classmethod
 from modelcluster.contrib.taggit import ClusterTaggableManager
 from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
 from django.views.decorators.cache import cache_page
+from django.utils.text import slugify
 
 # Project
 from modules.core.models.abstract import (
@@ -30,25 +32,11 @@ from modules.core.models.abstract import (
 logger = logging.getLogger(__name__)
 
 
-def make_stub(name):
-    # TODO make unique even if name same
-    # TODO make stub meaningful to humans
-    return hashlib.sha1(name.encode("utf-8")).hexdigest()[:8]
-
-
-def replace_headers(html):
-    """Make headers provide id attributes so they can be used as anchors
-    and provide a list of them to build a table of contents."""
-    header_tags = ["h2"]
-    toc = []
-    root = lxml.html.fromstring(html)
-    for tag_name in header_tags:
-        for tag in root.xpath(f"//{tag_name}"):
-            header_name = tag.text
-            stub = make_stub(header_name)
-            tag.set("id", stub)
-            toc.append((header_name, stub))
-    return lxml.html.tostring(root).decode("utf-8"), toc
+def slug_count_text(number):
+    if number == 1:
+        return ""
+    else:
+        return "-" + str(number)
 
 
 ################################################################################
@@ -67,11 +55,28 @@ class LongformPost(BasePage, PageAuthorsMixin, CanonicalMixin):
     content_panels = [
         *Page.content_panels,
         FieldPanel("first_published_at"),
+        # FieldPanel("last_published_at"), # TODO is this the correct behaviour?
         FieldPanel("authors", widget=ModelSelect2Multiple(url="author-autocomplete")),
         StreamFieldPanel("body"),
     ]
 
     settings_panels = CanonicalMixin.panels + BasePage.settings_panels
+
+    def replace_headers(self, html):
+        """Make headers provide id attributes so they can be used as anchors
+        and provide a list of them to build a table of contents."""
+        header_tags = ["h2"]
+        toc = []
+        root = lxml.html.fromstring(html)
+        for tag_name in header_tags:
+            for tag in root.xpath(f"//{tag_name}"):
+                header_name = tag.text
+                bare_slug = slugify(header_name, allow_unicode=True)
+                self.slug_count[bare_slug] += 1
+                slug = bare_slug + slug_count_text(self.slug_count[bare_slug])
+                tag.set("id", slug)
+                toc.append((header_name, slug))
+        return lxml.html.tostring(root).decode("utf-8"), toc
 
     def get_context(self, request):
         print(self.body.stream_block._constructor_args[0][0][0][1].__dict__)
@@ -79,10 +84,11 @@ class LongformPost(BasePage, PageAuthorsMixin, CanonicalMixin):
         context["toc"] = []
         context["repr"] = ""
         html_list = []
+        self.slug_count = Counter()
         for block in self.body._raw_data:
             # TODO consider diving deeper into expander nodes
             if block["type"] == "rich_text":
-                replacement_html, new_toc = replace_headers(block["value"])
+                replacement_html, new_toc = self.replace_headers(block["value"])
                 context["toc"].extend(new_toc)
                 html_list.append(replacement_html)
             else:
