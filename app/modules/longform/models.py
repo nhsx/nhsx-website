@@ -49,10 +49,15 @@ class LongformPost(BasePage, PageAuthorsMixin, CanonicalMixin):
     # which also gives subcategories for StreamField
     parent_page_types = ["LongformPostIndexPage"]
     subpage_types = []
-    updated_at = models.DateTimeField(editable=True, null=True, blank=True,
-        verbose_name="Updated at (leave blank for initial publication)")
-    history = RichTextField(blank=True,
-        verbose_name="Version history (leave blank for initial publication)")
+    updated_at = models.DateTimeField(
+        editable=True,
+        null=True,
+        blank=True,
+        verbose_name="Updated at (leave blank for initial publication)",
+    )
+    history = RichTextField(
+        blank=True, verbose_name="Version history (leave blank for initial publication)"
+    )
 
     content_panels = [
         *Page.content_panels,

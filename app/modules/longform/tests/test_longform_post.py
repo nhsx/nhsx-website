@@ -5,6 +5,7 @@ from django.test import Client, TestCase
 from django.core.management.commands import loaddata
 from modules.longform.models import LongformPost
 from datetime import datetime
+
 pytestmark = pytest.mark.django_db
 client = Client()
 
@@ -33,6 +34,7 @@ def test_longform_streamfield_has_anchors(longform_post):
     assert "<a href='#a-title-3'>" in rv.rendered_content
     assert "<a href='#a-different-title'>" in rv.rendered_content
 
+
 def test_longform_post_has_dates(longform_post):
     rv = client.get(longform_post.url)
     assert "Published" in rv.rendered_content
@@ -42,6 +44,7 @@ def test_longform_post_has_dates(longform_post):
     rv = client.get(longform_post.url)
     assert "First published" in rv.rendered_content
     assert "Updated" in rv.rendered_content
+
 
 def test_longform_post_has_history(longform_post):
     rv = client.get(longform_post.url)
@@ -54,7 +57,6 @@ def test_longform_post_has_history(longform_post):
     assert "See all versions" in rv.rendered_content
     assert "History" in rv.rendered_content
 
-    
 
 def test_longform_post_gets_created(longform_post):
     """Test that we have a longform post created by the fixture
