@@ -12,6 +12,18 @@
   <div class="nhsuk-width-container">
     <main class="nhsuk-main-wrapper" id="maincontent">
       <div class="nhsuk-grid-row">
+        <div class="nhsuk-grid-column-one-third">
+
+          <nav id="toc" class="nhsuk-contents-list" role="navigation" aria-label="Sections in this page">
+              <h2>Contents</h2>
+              <ol class="nhsuk-contents-list__list">
+              {% for name, anchor in toc %}
+              <li class="nhsuk-contents-list__item"><a class="nhsuk-contents-list__link" href='#{{anchor}}'>{{name}}</a></li>
+              {% endfor %}
+              </ol>
+          </nav>
+
+        </div>
         <div class="nhsuk-grid-column-two-thirds">
           <h1 class="nhsuk-heading-xl nhsuk-u-margin-bottom-5">
             {{ page.title }}
@@ -34,20 +46,20 @@
 
           <hr class="nhsuk-section-break nhsuk-section-break--l nhsuk-section-break--visible">
 
-	    <nav class="nhsuk-contents-list" role="navigation" aria-label="Sections in this page">
-          <h2>Table of Contents</h2>
-          <ol class="nhsuk-contents-list__list">
-          {% for name, anchor in toc %}
-          <li class="nhsuk-contents-list__item"><a class="nhsuk-contents-list__link" href='#{{anchor}}'>{{name}}</a></li>
+	  <h2>Authors</h2>
+	  <!-- TODO: use partials/page_meta -->
+          {% for author in page.author_list %}
+            {% if author.salutation %}{{ author.salutation }} {% endif %}{{ author.first_name }} {{ author.last_name }}{% if author.job_title %} ({{ author.job_title }}){% endif %}{% if not forloop.last %}, {% endif %}
           {% endfor %}
-          </ol>
-  	  </nav>
           
 	    <hr class="nhsuk-section-break nhsuk-section-break--l nhsuk-section-break--visible">
 	  
 
           {% for block in page.body %}
             {% include_block block %}
+            <div class="nhsuk-u-margin-top-5 nhsuk-u-margin-bottom-5">
+              <a class="nhsuk-link" href="#toc">Back to contents</a>
+            </div>
           {% endfor %}
 
 	  {% if page.history %}
