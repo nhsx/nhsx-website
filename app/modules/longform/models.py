@@ -11,6 +11,7 @@ from wagtail.search import index
 from dal_select2.widgets import ModelSelect2Multiple
 from modelcluster.fields import ParentalKey
 from wagtail.core.models import Page
+from wagtail.core.fields import RichTextField
 from wagtail.utils.decorators import cached_classmethod
 from modelcluster.contrib.taggit import ClusterTaggableManager
 from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
@@ -48,13 +49,17 @@ class LongformPost(BasePage, PageAuthorsMixin, CanonicalMixin):
     # which also gives subcategories for StreamField
     parent_page_types = ["LongformPostIndexPage"]
     subpage_types = []
+    updated_at = models.DateTimeField(editable=True, null=True, blank=True,
+        verbose_name="Updated at (leave blank for initial publication)")
+    history = RichTextField(blank=True,
+        verbose_name="Version history (leave blank for initial publication)")
 
     content_panels = [
         *Page.content_panels,
         FieldPanel("first_published_at"),
-        # FieldPanel("last_published_at"), # TODO is this the correct behaviour?
-        FieldPanel("authors", widget=ModelSelect2Multiple(url="author-autocomplete")),
+        FieldPanel("updated_at"),
         StreamFieldPanel("body"),
+        FieldPanel("history"),
     ]
 
     settings_panels = CanonicalMixin.panels + BasePage.settings_panels

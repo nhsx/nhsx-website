@@ -16,21 +16,28 @@
           <h1 class="nhsuk-heading-xl nhsuk-u-margin-bottom-5">
             {{ page.title }}
           </h1>
+          <p>
+	  {% if page.first_published_at %}
+	    {% if page.updated_at %}First published{% else %}Published{% endif %} {{page.first_published_at}}
+	  {% endif %}
+	  </p>
+
+	  <p>
+	  {% if page.updated_at %}
+	    Updated {{page.updated_at}}.
+	  {% endif %}
+
+	  {% if page.history %}
+	  <a href='#version-history'>See all versions.</a>
+	  {% endif %}
+	    </p>
 
           <hr class="nhsuk-section-break nhsuk-section-break--l nhsuk-section-break--visible">
 
-	  <h2>Authors</h2>
-	  <!-- TODO: use partials/page_meta -->
-          {% for author in page.author_list %}
-            {% if author.salutation %}{{ author.salutation }} {% endif %}{{ author.first_name }} {{ author.last_name }}{% if author.job_title %} ({{ author.job_title }}){% endif %}{% if not forloop.last %}, {% endif %}
+          <h2>Contents</h2>
+	  {% for name, anchor in toc %}
+            <a href='#{{anchor}}'>{{name}}</a><br>
           {% endfor %}
-
-	  <div style='border:1px solid black;'>
-            <h2>Table of Contents</h2>
-	    {% for name, anchor in toc %}
-              <a href='#{{anchor}}'>{{name}}</a><br>
-            {% endfor %}
-  	  </div>
           
 	  <hr class="nhsuk-section-break nhsuk-section-break--l nhsuk-section-break--visible">
 	  
@@ -38,6 +45,11 @@
           {% for block in page.body %}
             {% include_block block %}
           {% endfor %}
+
+	  {% if page.history %}
+	    <h2 id='version-history'>History</h2>
+	    {% include_block page.history %}
+	  {% endif %}
 
         </div>
       </div>
