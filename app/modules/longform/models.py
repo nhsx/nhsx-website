@@ -1,9 +1,6 @@
 # stdlib
 import logging
-import re
 import lxml.html
-import hashlib
-import random
 from collections import Counter
 
 # 3rd party
@@ -63,40 +60,38 @@ class LongformPost(BasePage, PageAuthorsMixin, CanonicalMixin):
     settings_panels = CanonicalMixin.panels + BasePage.settings_panels
 
     def replace_headers(self, html):
-        """Make headers provide id attributes so they can be used as anchors
-        and provide a list of them to build a table of contents."""
+        """Given a html string, return a html string where the header tags
+        have id attributes so they can be used as anchors, and list the ids
+        and text of those tags so we can make a table of contents."""
         header_tags = ["h2"]
         toc = []
         root = lxml.html.fromstring(html)
         for tag_name in header_tags:
             for tag in root.xpath(f"//{tag_name}"):
+                # create a slugged name for the tag of the form tag-text-3
                 header_name = tag.text
                 bare_slug = slugify(header_name, allow_unicode=True)
                 self.slug_count[bare_slug] += 1
                 slug = bare_slug + slug_count_text(self.slug_count[bare_slug])
+                # modify the tag and record the details
                 tag.set("id", slug)
                 toc.append((header_name, slug))
         return lxml.html.tostring(root).decode("utf-8"), toc
 
     def get_context(self, request):
-        print(self.body.stream_block._constructor_args[0][0][0][1].__dict__)
+        """Pass the html of each richtext node within the streamfield to
+        replace_headers, creating a page-wide table of contents. We use
+        self.slug_count to preserve the list of slugs seen so far across
+        multiple rich_text blocks."""
         context = super().get_context(request)
-        context["toc"] = []
-        context["repr"] = ""
-        html_list = []
+        context["toc"] = []  # table of contents
         self.slug_count = Counter()
-        for block in self.body._raw_data:
+        for i, block in enumerate(self.body._raw_data):
             # TODO consider diving deeper into expander nodes
             if block["type"] == "rich_text":
                 replacement_html, new_toc = self.replace_headers(block["value"])
                 context["toc"].extend(new_toc)
-                html_list.append(replacement_html)
-            else:
-                html_list.append(block["value"])
-        for i, html in enumerate(html_list):
-            self.body._raw_data[i]["value"] = html
-            # TODO consider changing id?
-
+                self.body._raw_data[i]["value"] = replacement_html
         return context
 
 

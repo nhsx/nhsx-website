@@ -5,7 +5,6 @@ from django.test import Client, TestCase
 from django.core.management.commands import loaddata
 from modules.longform.models import LongformPost
 
-
 pytestmark = pytest.mark.django_db
 client = Client()
 

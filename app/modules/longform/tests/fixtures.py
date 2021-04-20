@@ -11,23 +11,6 @@ from wagtail.core.blocks import RichTextBlock
 pytestmark = pytest.mark.django_db
 
 
-def replacement(self, item):
-    if isinstance(item, StreamValue.StreamChild):
-        return item
-
-    try:
-        type_name, value, block_id = item
-    except ValueError:
-        type_name, value = item
-        block_id = None
-
-    print(self.stream_block.child_blocks.keys())
-    block_def = self.stream_block.child_blocks[type_name]
-
-
-wagtail.core.blocks.stream_block._construct_stream_child = replacement
-
-
 def _create_longform_post(title: str, parent: Page) -> LongformPost:
     """Abstracting this allows us to test more scenarios than just passing the
     fixture around.
