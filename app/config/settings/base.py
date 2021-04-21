@@ -107,7 +107,7 @@ SITE_APPS = [
     "modules.documents",
     "modules.users",
     "modules.blog_posts",
-    "modules.longform",
+    "modules.publications",
     "modules.news",
     "modules.ai_lab",
     "modules.people",

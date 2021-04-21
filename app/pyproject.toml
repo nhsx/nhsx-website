@@ -7,7 +7,7 @@ authors = ["andy@hactar.is"]
 [tool.poetry.dependencies]
 python = "^3.6"
 
-wagtail = "2.12.3"
+wagtail = "2.12.4"
 
 psycopg2 = "^2.8"
 django-redis = "^4.12"
@@ -35,10 +35,10 @@ boto = "^2.49.0"
 rollbar = "^0.15.0"
 black = "^19.10b0"
 wagtail_factories = "^2.0.1"
-faker = "4.0.3"
 beautifulsoup4 = "^4.8.2"
 django-basic-auth-ip-whitelist = "^0.3.4"
 lxml = "^4.6.3"
+faker = "4.0.3"
 
 
 [tool.poetry.dev-dependencies]
@@ -51,7 +51,7 @@ jsmin = "*"
 mixer = "*"
 ipdb = "*"
 pdbpp = "*"
-pytest = "6.2.3"
+pytest = "^6.2.3"
 pytest-cov = "*"
 pytest-django = "*"
 pytest-factoryboy = "*"
