@@ -9,12 +9,12 @@ from modules.core.tests.factories import CorePageFactory
 from wagtail.core.models import Site
 
 
-class LongformFactory(CorePageFactory):
+class PublicationFactory(CorePageFactory):
     title = factory.Faker("sentence")
     first_published_at = datetime.now(tz=timezone.utc)
 
     class Meta:
-        model = LongformPost
+        model = PublicationPost
 
     @factory.post_generation
     def tags(self, create, extracted, **kwargs):

@@ -2,7 +2,7 @@ from typing import List
 import pytest
 
 from wagtail.core.models import Page
-from modules.longform.models import LongformPost, LongformPostIndexPage
+from modules.publications.models import PublicationPage, PublicationIndexPage
 from wagtail.tests.utils.form_data import rich_text, streamfield, nested_form_data
 from wagtail.core.blocks.stream_block import StreamValue
 import wagtail.core.blocks.stream_block
@@ -11,7 +11,7 @@ from wagtail.core.blocks import RichTextBlock
 pytestmark = pytest.mark.django_db
 
 
-def _create_longform_post(title: str, parent: Page) -> LongformPost:
+def _create_publication_page(title: str, parent: Page) -> PublicationPage:
     """Abstracting this allows us to test more scenarios than just passing the
     fixture around.
 
@@ -20,16 +20,16 @@ def _create_longform_post(title: str, parent: Page) -> LongformPost:
         parent (Page): A page to attach our post to
 
     Returns:
-        LongformPost: Description
+        PublicationPage: Description
     """
-    p = LongformPost()
+    p = PublicationPage()
     p.title = title
     parent.add_child(instance=p)
     p.save_revision().publish()
     return p
 
 
-def _create_longform_post_index_page(title: str, parent: Page) -> LongformPostIndexPage:
+def _create_publication_index_page(title: str, parent: Page) -> PublicationIndexPage:
     """Abstracting this allows us to test more scenarios than just passing the
     fixture around.
 
@@ -38,9 +38,9 @@ def _create_longform_post_index_page(title: str, parent: Page) -> LongformPostIn
         parent (Page): A page to attach our post index page to
 
     Returns:
-        LongformPostIndexPage: Description
+        PublicationIndexPage: Description
     """
-    p = LongformPostIndexPage()
+    p = PublicationIndexPage()
     print(p.get_children())
     p.title = title
     parent.add_child(instance=p)
@@ -49,23 +49,25 @@ def _create_longform_post_index_page(title: str, parent: Page) -> LongformPostIn
 
 
 @pytest.fixture(scope="function")
-def longform_post_index_page(home_page) -> LongformPostIndexPage:
-    p = _create_longform_post_index_page("Test Longform Post Index Page", home_page)
+def publication_index_page(home_page) -> PublicationIndexPage:
+    p = _create_publication_index_page("Test Publication Index Page", home_page)
     return p
 
 
 @pytest.fixture(scope="function")
-def longform_post(longform_post_index_page) -> LongformPost:
-    p = _create_longform_post("Test Longform Post", longform_post_index_page)
+def publication_page(publication_index_page) -> PublicationPage:
+    p = _create_publication_page("Test Publication Page", publication_index_page)
     return p
 
 
 @pytest.fixture(scope="function")
-def longform_posts(longform_post_index_page) -> List[LongformPost]:
-    """Fixture providing 10 LongformPost objects attached to longform_post_index_page
+def publication_pages(publication_index_page) -> List[PublicationPage]:
+    """Fixture providing 10 PublicationPage objects attached to publication_index_page
     """
     rv = []
     for _ in range(0, 10):
-        p = _create_longform_post(f"Test Longform Post {_}", longform_post_index_page)
+        p = _create_publication_page(
+            f"Test Publication Page {_}", publication_index_page
+        )
         rv.append(p)
     return rv

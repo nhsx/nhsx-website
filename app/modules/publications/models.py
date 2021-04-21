@@ -42,7 +42,7 @@ def slug_count_text(number):
 ################################################################################
 
 
-class LongformPost(BasePage, CanonicalMixin):
+class PublicationPage(BasePage, CanonicalMixin):
     # standard approach appears to be
     # (via https://docs.wagtail.io/en/latest/topics/streamfield.html)
     # author = models.Charfield(max_length=255)
@@ -50,7 +50,7 @@ class LongformPost(BasePage, CanonicalMixin):
 
     # next two lines would make the post less available but by commenting out
     # instead we make it available anywhere that doesn't exclude it
-    # parent_page_types = ["LongformPostIndexPage"]
+    # parent_page_types = ["PublicationIndexPage"]
     # subpage_types = []
 
     updated_at = models.DateTimeField(
@@ -101,7 +101,6 @@ class LongformPost(BasePage, CanonicalMixin):
         context["toc"] = []  # table of contents
         self.slug_count = Counter()
         for i, block in enumerate(self.body._raw_data):
-            # TODO consider diving deeper into expander nodes
             if block["type"] == "rich_text":
                 replacement_html, new_toc = self.replace_headers(block["value"])
                 context["toc"].extend(new_toc)
@@ -109,8 +108,9 @@ class LongformPost(BasePage, CanonicalMixin):
         return context
 
 
-class LongformPostIndexPage(BaseIndexPage):
-    _child_model = LongformPost
+class PublicationIndexPage(BaseIndexPage):
+    # TODO - deprecate
+    _child_model = PublicationPage
 
-    subpage_types = ["LongformPost"]
+    subpage_types = ["PublicationPage"]
     max_count = 1
