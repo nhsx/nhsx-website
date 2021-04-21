@@ -1,0 +1,18 @@
+@media print {
+    .nhsuk-cookie-banner,
+    .nhsuk-header,
+    [role=contentinfo] {
+        display: none !important;
+    }
+    .nhsuk-main-wrapper,
+    .nhsx-section {
+        padding-top: 0 !important;
+    }
+    .nhsuk-contents-list__list {
+        padding-left: 30px !important;
+    }
+    .nhsuk-contents-list__item {
+        padding-left: 0 !important;
+        list-style-type: square !important;
+    }
+}
