@@ -1334,7 +1334,7 @@ python-versions = "*"
 
 [[package]]
 name = "wagtail"
-version = "2.12.3"
+version = "2.12.4"
 description = "A Django content management system."
 category = "main"
 optional = false
@@ -1560,7 +1560,7 @@ testing = ["pytest (>=4.6)", "pytest-checkdocs (>=1.2.3)", "pytest-flake8", "pyt
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.6"
-content-hash = "da7980e7926b26875a402b618ac6bf94a0f4ed15cb5cf95a09a37dda301dbe8c"
+content-hash = "af4236cbcc60e85960212756dd14d10012fea9a25783665a6e19bc586145fadb"
 
 [metadata.files]
 aiocontextvars = [
@@ -2249,8 +2249,8 @@ uwsgi = [
     {file = "uWSGI-2.0.19.1.tar.gz", hash = "sha256:faa85e053c0b1be4d5585b0858d3a511d2cd10201802e8676060fd0a109e5869"},
 ]
 wagtail = [
-    {file = "wagtail-2.12.3-py3-none-any.whl", hash = "sha256:28a7f8d1363891c3bbf16726f1dc1ef0fa2487153e6a4b71e8eb9bc31b0f355c"},
-    {file = "wagtail-2.12.3.tar.gz", hash = "sha256:15bdca888410fae0586767eedddf0205ee676653171da2d45792a739814d3587"},
+    {file = "wagtail-2.12.4-py3-none-any.whl", hash = "sha256:22487db9b721598eb5ffab17efd66ed4e82a283b86423e2e0db2ec4b5a498e58"},
+    {file = "wagtail-2.12.4.tar.gz", hash = "sha256:ca4c56efcd0833c38c75be05274f442f40dd88e15bf0136a4fe15663162a6c5d"},
 ]
 wagtail-2fa = [
     {file = "wagtail-2fa-1.4.2.tar.gz", hash = "sha256:b9f06ffc9e8ac37df461dd0e97ca08754849610b2e7ca180010f95d5523a35ac"},
