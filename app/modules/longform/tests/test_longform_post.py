@@ -29,10 +29,10 @@ def test_longform_streamfield_has_anchors(longform_post):
     assert '<h2 id="a-title-2">' in rv.rendered_content
     assert '<h2 id="a-title-3">' in rv.rendered_content
     assert '<h2 id="a-different-title">' in rv.rendered_content
-    assert "<a href='#a-title'>" in rv.rendered_content
-    assert "<a href='#a-title-2'>" in rv.rendered_content
-    assert "<a href='#a-title-3'>" in rv.rendered_content
-    assert "<a href='#a-different-title'>" in rv.rendered_content
+    assert re.search("\<a[^>]+href='#a-title'\>", rv.rendered_content)
+    assert re.search("\<a[^>]+href='#a-title-2'\>", rv.rendered_content)
+    assert re.search("\<a[^>]+href='#a-title-3'\>", rv.rendered_content)
+    assert re.search("\<a[^>]+href='#a-different-title'\>", rv.rendered_content)
 
 
 def test_longform_post_has_dates(longform_post):

@@ -42,13 +42,17 @@ def slug_count_text(number):
 ################################################################################
 
 
-class LongformPost(BasePage, PageAuthorsMixin, CanonicalMixin):
+class LongformPost(BasePage, CanonicalMixin):
     # standard approach appears to be
     # (via https://docs.wagtail.io/en/latest/topics/streamfield.html)
     # author = models.Charfield(max_length=255)
     # which also gives subcategories for StreamField
-    parent_page_types = ["LongformPostIndexPage"]
-    subpage_types = []
+
+    # next two lines would make the post less available but by commenting out
+    # instead we make it available anywhere that doesn't exclude it
+    # parent_page_types = ["LongformPostIndexPage"]
+    # subpage_types = []
+
     updated_at = models.DateTimeField(
         editable=True,
         null=True,
