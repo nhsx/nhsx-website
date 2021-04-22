@@ -30,13 +30,13 @@
           </h1>
           <p>
 	  {% if page.first_published_at %}
-	    {% if page.updated_at %}First published{% else %}Published{% endif %} {{page.first_published_at}}
+	    {% if page.updated_at %}First published{% else %}Published{% endif %} {{page.first_published_at}}.
 	  {% endif %}
 	  </p>
 
 	  <p>
 	  {% if page.updated_at %}
-	    Updated {{page.updated_at}}.
+	    Updated {{page.updated_at}}
 	  {% endif %}
 
 	  {% if page.history %}
@@ -44,15 +44,7 @@
 	  {% endif %}
 	    </p>
 
-          <hr class="nhsuk-section-break nhsuk-section-break--l nhsuk-section-break--visible">
-
-	  <h2>Authors</h2>
-	  <!-- TODO: use partials/page_meta -->
-          {% for author in page.author_list %}
-            {% if author.salutation %}{{ author.salutation }} {% endif %}{{ author.first_name }} {{ author.last_name }}{% if author.job_title %} ({{ author.job_title }}){% endif %}{% if not forloop.last %}, {% endif %}
-          {% endfor %}
-          
-	    <hr class="nhsuk-section-break nhsuk-section-break--l nhsuk-section-break--visible">
+	  <hr class="nhsuk-section-break nhsuk-section-break--l nhsuk-section-break--visible">
 	  
 
           {% for block in page.body %}
