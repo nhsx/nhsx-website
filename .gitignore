@@ -1,6 +1,7 @@
 .env
 TEMP/**/*
 *.pyc
+*.py.swp
 *.scssc
 .DS_Store
 media/**/*
