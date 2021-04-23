@@ -107,7 +107,6 @@ class TestGuidance:
         ):
             assert guidance.title in str(page.content)
 
-
     def test_guidance_can_have_linked_publication(self, section_page):
         listing_page = GuidanceListingPageFactory.create(parent=section_page)
         template, _, _, _ = IGTemplateFactory.create_batch(
@@ -115,6 +114,5 @@ class TestGuidance:
         )
         publication = PublicationFactory.create(parent=template, title="panther")
         page = client.get(template.url)
-        print (page.content)
+        print(page.content)
         assert "panther" in str(page.rendered_content)
- 

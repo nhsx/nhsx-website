@@ -126,6 +126,7 @@ class AiLabTopic(SluggedCategory):
 
 class AiLabCaseStudy(AiLabResourceMixin, ArticlePage):
     subpage_types = ["publications.PublicationPage"]
+
     class Meta:
         verbose_name = "Case Study"
         verbose_name_plural = "Case Studies"
@@ -133,6 +134,7 @@ class AiLabCaseStudy(AiLabResourceMixin, ArticlePage):
 
 class AiLabGuidance(AiLabResourceMixin, ArticlePage):
     subpage_types = ["publications.PublicationPage"]
+
     class Meta:
         verbose_name = "Guidance"
         verbose_name_plural = "Guidance"
@@ -140,6 +142,7 @@ class AiLabGuidance(AiLabResourceMixin, ArticlePage):
 
 class AiLabReport(AiLabResourceMixin, ArticlePage):
     subpage_types = ["publications.PublicationPage"]
+
     class Meta:
         verbose_name = "Report"
         verbose_name_plural = "Reports"

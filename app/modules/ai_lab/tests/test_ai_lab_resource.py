@@ -140,13 +140,10 @@ class TestAiLabResource:
         assert featured_case_study_1.title in str(page.content)
         assert featured_case_study_2.title in str(page.content)
 
-    
     def test_case_study_can_have_linked_publication(self):
         category_page = AiLabUnderstandIndexPageFactory.create()
         case_study = AiLabCaseStudyFactory.create(parent=category_page)
         publication = PublicationFactory.create(parent=case_study, title="ocelot")
         page = client.get(case_study.url)
-        print (page.content)
+        print(page.content)
         assert "ocelot" in str(page.rendered_content)
-
-
