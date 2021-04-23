@@ -13,6 +13,9 @@
     <div class="nhsuk-grid-row">
       <div class="nhsai-resource__meta nhsuk-grid-column-two-thirds">
         <h1 class="nhsuk-heading-xl">{{ page.title }}</h1>
+	{% for pub in page.get_children %}
+	Full publication: <a href="{{pub.url}}">{{pub.title}}</a>
+	{% endfor %}
         <p class="author">{{ page.author.first_name }} {{ page.author.last_name }}</p>
         <time class="time"
           datetime="{{page.first_published_at|date:"c"}}">{{page.first_published_at|date:"j F Y"}}</time>

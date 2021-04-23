@@ -4,7 +4,7 @@ import pytest
 from datetime import datetime
 from django.utils import timezone
 
-from modules.blog_posts.models import BlogPost
+from modules.publications.models import PublicationPage
 from modules.core.tests.factories import CorePageFactory
 from wagtail.core.models import Site
 
@@ -14,7 +14,7 @@ class PublicationFactory(CorePageFactory):
     first_published_at = datetime.now(tz=timezone.utc)
 
     class Meta:
-        model = PublicationPost
+        model = PublicationPage
 
     @factory.post_generation
     def tags(self, create, extracted, **kwargs):
