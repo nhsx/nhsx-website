@@ -101,7 +101,7 @@ class PublicationPage(BasePage, CanonicalMixin):
                 slug = bare_slug + slug_count_text(self.slug_count[bare_slug])
                 # modify the tag and record the details
                 tag.set("id", slug)
-                # add content link before it - 
+                # add content link before it -
                 if not self.first_h2:
                     tag.addprevious(contents_link_element())
                 self.first_h2 = False
