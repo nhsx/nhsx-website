@@ -1,0 +1,19 @@
+.sticky-link {
+    position: fixed;
+    bottom: 2rem;
+    display: none;
+    width: 100%;
+    left: 0;
+    @media screen and (max-height: $small-screen) {
+        position: relative;
+        right: auto;
+        padding: 0;
+    }
+    &--show {
+        display: block;
+    }
+    a {
+        padding: 1rem;
+        background-color: #fff;
+    }
+}
