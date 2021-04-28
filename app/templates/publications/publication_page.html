@@ -14,7 +14,7 @@
       <div class="nhsuk-grid-row">
         <div class="nhsuk-grid-column-one-third">
 
-          <nav id="toc" class="nhsuk-contents-list" role="navigation" aria-label="Sections in this page">
+          <nav id="contents" class="nhsuk-contents-list" role="navigation" aria-label="Sections in this page">
               <h2>Contents</h2>
               <ol class="nhsuk-contents-list__list">
               {% for name, anchor in toc %}
@@ -50,7 +50,7 @@
           {% for block in page.body %}
             {% include_block block %}
             <div class="nhsuk-u-margin-top-5 nhsuk-u-margin-bottom-5">
-              <a class="nhsuk-link" href="#toc">Back to contents</a>
+              <a class="nhsuk-link" href="#contents">Back to contents</a>
             </div>
           {% endfor %}
 

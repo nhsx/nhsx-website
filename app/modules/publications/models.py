@@ -99,7 +99,7 @@ class PublicationPage(BasePage, CanonicalMixin):
         multiple rich_text blocks."""
         context = super().get_context(request)
         context["toc"] = []  # table of contents
-        self.slug_count = Counter()
+        self.slug_count = Counter({"contents": 1})
         for i, block in enumerate(self.body._raw_data):
             if block["type"] == "rich_text":
                 replacement_html, new_toc = self.replace_headers(block["value"])
