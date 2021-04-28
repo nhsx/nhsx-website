@@ -37,6 +37,18 @@ def slug_count_text(number):
         return "-" + str(number)
 
 
+def contents_link_element():
+    a = lxml.html.Element("a")
+    a.set("class", "nhsuk-link")
+    a.set("href", "#contents")
+    a.text = "Back to contents"
+
+    div = lxml.html.Element("div")
+    div.set("class", "nhsuk-u-margin-top-5 nhsuk-u-margin-bottom-5")
+    div.append(a)
+    return div
+
+
 ################################################################################
 # Page models
 ################################################################################
@@ -89,6 +101,10 @@ class PublicationPage(BasePage, CanonicalMixin):
                 slug = bare_slug + slug_count_text(self.slug_count[bare_slug])
                 # modify the tag and record the details
                 tag.set("id", slug)
+                # add content link before it -
+                if not self.first_h2:
+                    tag.addprevious(contents_link_element())
+                self.first_h2 = False
                 toc.append((header_name, slug))
         return lxml.html.tostring(root).decode("utf-8"), toc
 
@@ -99,7 +115,8 @@ class PublicationPage(BasePage, CanonicalMixin):
         multiple rich_text blocks."""
         context = super().get_context(request)
         context["toc"] = []  # table of contents
-        self.slug_count = Counter()
+        self.slug_count = Counter({"contents": 1})
+        self.first_h2 = True
         for i, block in enumerate(self.body._raw_data):
             if block["type"] == "rich_text":
                 replacement_html, new_toc = self.replace_headers(block["value"])
@@ -109,7 +126,8 @@ class PublicationPage(BasePage, CanonicalMixin):
 
 
 class PublicationIndexPage(BaseIndexPage):
-    # TODO - deprecate
+    # Deprecated -- should not be available.
+    parent_page_types = []
     _child_model = PublicationPage
 
     subpage_types = ["PublicationPage"]

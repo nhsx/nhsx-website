@@ -14,7 +14,7 @@
       <div class="nhsuk-grid-row">
         <div class="nhsuk-grid-column-one-third">
 
-          <nav id="toc" class="nhsuk-contents-list" role="navigation" aria-label="Sections in this page">
+          <nav id="contents" class="nhsuk-contents-list" role="navigation" aria-label="Sections in this page">
               <h2>Contents</h2>
               <ol class="nhsuk-contents-list__list">
               {% for name, anchor in toc %}
@@ -30,17 +30,17 @@
           </h1>
           <p>
 	  {% if page.first_published_at %}
-	    {% if page.updated_at %}First published{% else %}Published{% endif %} {{page.first_published_at}}.
+	    {% if page.updated_at %}First published{% else %}Published{% endif %} {{page.first_published_at|date:"j F Y"}}.
 	  {% endif %}
 	  </p>
 
 	  <p>
 	  {% if page.updated_at %}
-	    Updated {{page.updated_at}}
+	    Updated {{page.updated_at|date:"j F Y"}}.
 	  {% endif %}
 
 	  {% if page.history %}
-	  <a href='#version-history'>See all versions.</a>
+	  <a href='#version-history'>See updates.</a>
 	  {% endif %}
 	    </p>
 
@@ -49,10 +49,11 @@
 
           {% for block in page.body %}
             {% include_block block %}
-            <div class="nhsuk-u-margin-top-5 nhsuk-u-margin-bottom-5">
-              <a class="nhsuk-link" href="#toc">Back to contents</a>
-            </div>
           {% endfor %}
+
+          <div class="nhsuk-u-margin-top-5 nhsuk-u-margin-bottom-5">
+            <a class="nhsuk-link" href="#contents">Back to contents</a>
+          </div>
 
 	  {% if page.history %}
 	    <h2 id='version-history'>History</h2>
