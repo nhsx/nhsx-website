@@ -49,10 +49,11 @@
 
           {% for block in page.body %}
             {% include_block block %}
-            <div class="nhsuk-u-margin-top-5 nhsuk-u-margin-bottom-5">
-              <a class="nhsuk-link" href="#contents">Back to contents</a>
-            </div>
           {% endfor %}
+
+          <div class="nhsuk-u-margin-top-5 nhsuk-u-margin-bottom-5">
+            <a class="nhsuk-link" href="#contents">Back to contents</a>
+          </div>
 
 	  {% if page.history %}
 	    <h2 id='version-history'>History</h2>
