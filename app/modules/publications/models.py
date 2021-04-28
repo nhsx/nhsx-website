@@ -126,7 +126,8 @@ class PublicationPage(BasePage, CanonicalMixin):
 
 
 class PublicationIndexPage(BaseIndexPage):
-    # TODO - deprecate
+    # Deprecated -- should not be available. 
+    parent_page_types = []
     _child_model = PublicationPage
 
     subpage_types = ["PublicationPage"]
