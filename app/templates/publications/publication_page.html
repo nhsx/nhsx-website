@@ -30,13 +30,13 @@
           </h1>
           <p>
 	  {% if page.first_published_at %}
-	    {% if page.updated_at %}First published{% else %}Published{% endif %} {{page.first_published_at}}.
+	    {% if page.updated_at %}First published{% else %}Published{% endif %} {{page.first_published_at|date:"j F Y"}}.
 	  {% endif %}
 	  </p>
 
 	  <p>
 	  {% if page.updated_at %}
-	    Updated {{page.updated_at}}
+	    Updated {{page.updated_at|date:"j F Y"}}.
 	  {% endif %}
 
 	  {% if page.history %}
