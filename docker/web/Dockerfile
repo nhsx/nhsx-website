@@ -1,4 +1,5 @@
-FROM alpine:3.7 as base
+FROM alpine:3.11 as base
+# not the most recent but 3.12+ don't contain mdocml-apropos
 
 ENV VERSION 1.9.1
 
@@ -38,7 +39,7 @@ RUN apk update && apk add --no-cache \
     openssh \
     pango \
     postgresql-dev \
-    py-pysqlite \
+    # py-pysqlite \ #  not in alpine 3.11, not needed by python3
     readline-dev \
     sqlite-dev \
     sqlite \
@@ -62,7 +63,7 @@ RUN npm config set unsafe-perm true
 
 # Install babel?
 RUN npm install --no-cache --global babel-cli \
-    babel-preset-es2015 \
+    babel-preset-env \
     uglify-js \
     wait-for && \
     rm -f /usr/lib/node_modules/npm/node_modules/update-notifier/node_modules/configstore/node_modules/dot-prop/license

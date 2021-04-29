@@ -46,6 +46,7 @@ class IGGuidanceTag(SluggedCategory):
 
 
 class IGGuidance(BasePage):
+    subpage_types = ["publications.PublicationPage"]
     topic = models.ForeignKey(
         IGGuidanceTopic, on_delete=models.PROTECT, related_name="+"
     )

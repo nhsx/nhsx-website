@@ -107,6 +107,7 @@ SITE_APPS = [
     "modules.documents",
     "modules.users",
     "modules.blog_posts",
+    "modules.publications",
     "modules.news",
     "modules.ai_lab",
     "modules.people",
@@ -154,7 +155,6 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = "config.urls"
 WSGI_APPLICATION = "config.wsgi.application"
-BASE_URL = "https://globalwitness.org"
 SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", None)
 INTERNAL_IPS = ["127.0.0.1"]
 APPEND_SLASH = True

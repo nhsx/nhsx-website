@@ -5,10 +5,16 @@ from wagtail.core import fields
 from wagtail.core.models import Page
 from wagtail.admin.edit_handlers import StreamFieldPanel, FieldPanel
 from wagtail.images.edit_handlers import ImageChooserPanel
+from modules.publications.models import PublicationPage
 
 
 class AiLabHomePage(SectionPage):
-    subpage_types = ["AiLabResourceIndexPage", "core.ArticlePage", "core.SectionPage"]
+    subpage_types = [
+        "AiLabResourceIndexPage",
+        "core.ArticlePage",
+        "core.SectionPage",
+        "publications.PublicationPage",
+    ]
     max_count = 1
     homepage_body = fields.StreamField(
         ai_lab_home_page_blocks, blank=True, verbose_name="Body blocks"

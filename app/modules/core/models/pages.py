@@ -14,6 +14,7 @@ from modules.core.blocks import nhsx_blocks
 from .abstract import BasePage, InlineHeroMixin, SidebarMixin, SubNavMixin
 
 from modules.core.blocks import section_page_blocks
+from modules.publications.models import PublicationPage
 
 ################################################################################
 # SectionPage
@@ -39,6 +40,7 @@ class SectionPage(BasePage, InlineHeroMixin, SubNavMixin):
         "meeting_minutes.MeetingMinutesListingPage",
         "ig_guidance.GuidanceListingPage",
         "case_studies.CaseStudyPage",
+        "publications.PublicationPage",
     ]
 
     subnav_panels: list = SubNavMixin.panels
