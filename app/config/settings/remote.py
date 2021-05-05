@@ -23,7 +23,7 @@ AWS_S3_FILE_OVERWRITE = False
 AWS_IS_GZIPPED = True
 AWS_S3_SECURE_URLS = True
 AWS_PRELOAD_METADATA = False
-
+AWS_DEFAULT_ACL = "public-read"
 
 DEFAULT_FILE_STORAGE = "helpers.storage.MediaRootS3BotoStorage"
 SECURE_SSL_REDIRECT = True
