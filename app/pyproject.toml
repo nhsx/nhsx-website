@@ -39,7 +39,7 @@ wagtail_factories = "^2.0.1"
 beautifulsoup4 = "^4.8.2"
 django-basic-auth-ip-whitelist = "^0.3.4"
 lxml = "^4.6.3"
-faker = "4.0.3"
+faker = "8.4.0"
 
 
 [tool.poetry.dev-dependencies]
