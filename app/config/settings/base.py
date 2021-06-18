@@ -35,6 +35,9 @@ THE_FUTURE = date.today() + timedelta(days=365 * 10)
 WAGTAILEMBEDS_RESPONSIVE_HTML = True
 PAGINATION_ITEMS_PER_PAGE = 10
 
+# Suppress error messages from upgrading to Django 3.2 by keeping the old 32-bit ID number field
+# https://koenwoortman.com/python-django-auto-created-primary-key-used-when-not-defining-primary-key-type/
+DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 
 ####################################################################################################
 # Django Dev Panel recommendations and other security
