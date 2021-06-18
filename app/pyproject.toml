@@ -3,11 +3,12 @@ name = "NHSX"
 version = "0.1.0"
 description = "NHSX Wagtail site"
 authors = ["andy@hactar.is"]
+maintainers = ["dragon@dxw.com"]
 
 [tool.poetry.dependencies]
 python = "^3.6"
 
-wagtail = "2.12.4"
+wagtail = "^2.12.5"
 
 psycopg2 = "^2.8"
 django-redis = "^4.12"
