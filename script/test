@@ -3,7 +3,7 @@ set -e
 
 if [ $# -eq 0 ]; then
   echo "Linting code..."
-  script/poetry run black .
+  script/poetry run black --exclude "migrations" .
 fi
 
 echo "Running tests..."
