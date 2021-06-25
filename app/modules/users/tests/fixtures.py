@@ -30,8 +30,7 @@ def _create_user(first_name: str, last_name: str, email: str) -> User:
 def _create_profile_user(
     first_name: str, last_name: str, email: str, salutation: str, job_title: str
 ) -> User:
-    """
-    """
+    """"""
     user = User()
     user.first_name = first_name
     user.last_name = last_name
@@ -53,8 +52,7 @@ def user() -> User:
 
 @pytest.fixture(scope="function")
 def users() -> List[User]:
-    """Fixture providing 10 BlogPost objects attached to blog_post_index_page
-    """
+    """Fixture providing 10 BlogPost objects attached to blog_post_index_page"""
     rv = []
     for _ in range(0, 10):
         p = _create_user("User", f"{_}", f"user{_}@example.com")
@@ -64,8 +62,7 @@ def users() -> List[User]:
 
 @pytest.fixture(scope="function")
 def authors() -> List[User]:
-    """Fixture providing 2 user objects with profiles
-    """
+    """Fixture providing 2 user objects with profiles"""
     u1 = _create_profile_user(
         "Firsty", "Lasty", "user_profile_1@example.com", "Dr.", "Doctor"
     )

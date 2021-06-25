@@ -63,7 +63,13 @@ class PromoBlock(BasePromoBlock):
     class Meta:
         template = "wagtailnhsukfrontend/promo.html"
 
-    size = blocks.ChoiceBlock([("", "Default"), ("small", "Small"),], required=False)
+    size = blocks.ChoiceBlock(
+        [
+            ("", "Default"),
+            ("small", "Small"),
+        ],
+        required=False,
+    )
 
     heading_level = blocks.IntegerBlock(
         min_value=2,
@@ -85,7 +91,12 @@ class PromoBanner(BasePromoBlock):
         help_text="The heading level affects users with screen readers. Default=3, Min=2, Max=4.",
     )
     image_alignment = blocks.ChoiceBlock(
-        [("right", "Right"), ("left", "Left"),], default="right", required=True,
+        [
+            ("right", "Right"),
+            ("left", "Left"),
+        ],
+        default="right",
+        required=True,
     )
 
     def get_form_context(self, value, prefix="", errors=None):
@@ -115,16 +126,28 @@ class PromoGroupBlock(FlattenValueContext, blocks.StructBlock):
         template = "wagtailnhsukfrontend/promo_group.html"
 
     column = blocks.ChoiceBlock(
-        [("one-half", "One-half"), ("one-third", "One-third"),],
+        [
+            ("one-half", "One-half"),
+            ("one-third", "One-third"),
+        ],
         default="one-half",
         required=True,
     )
 
-    size = blocks.ChoiceBlock([("", "Default"), ("small", "Small"),], required=False)
+    size = blocks.ChoiceBlock(
+        [
+            ("", "Default"),
+            ("small", "Small"),
+        ],
+        required=False,
+    )
 
     def get_context(self, value, parent_context=None):
         context = super().get_context(value, parent_context)
-        context["num_columns"] = {"one-half": 2, "one-third": 3,}[value["column"]]
+        context["num_columns"] = {
+            "one-half": 2,
+            "one-third": 3,
+        }[value["column"]]
         return context
 
     heading_level = blocks.IntegerBlock(
@@ -369,7 +392,10 @@ class CaseStudyBlock(blocks.StructBlock):
         help_text="The heading level affects users with screen readers. Default=3, Min=2, Max=4.",
     )
     column = blocks.ChoiceBlock(
-        [("one-half", "One-half"), ("one-third", "One-third"),],
+        [
+            ("one-half", "One-half"),
+            ("one-third", "One-third"),
+        ],
         default="one-third",
         required=True,
     )
@@ -377,7 +403,10 @@ class CaseStudyBlock(blocks.StructBlock):
 
     def get_context(self, value, parent_context=None):
         context = super().get_context(value, parent_context=parent_context)
-        context["num_columns"] = {"one-half": 2, "one-third": 3,}[value["column"]]
+        context["num_columns"] = {
+            "one-half": 2,
+            "one-third": 3,
+        }[value["column"]]
         value["tag"] = CaseStudyTag.objects.get(id=value["tag_id"])
         value["items"] = self._get_items(value["tag_id"], 99)
         context.update(value)

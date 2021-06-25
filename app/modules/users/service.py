@@ -18,7 +18,7 @@ from .models import User, UserProfile
 class UserService(Service):
 
     """
-        Service for managing Users
+    Service for managing Users
     """
 
     __model__ = User
@@ -58,7 +58,7 @@ _users = UserService()
 class UserProfileService(Service):
 
     """
-        Service for managing author profiles
+    Service for managing author profiles
     """
 
     __model__ = UserProfile
@@ -70,7 +70,7 @@ _user_profiles = UserProfileService()
 class AuthorService(Service):
 
     """
-        Service for managing Authors
+    Service for managing Authors
     """
 
     __model__ = User
@@ -119,7 +119,7 @@ _authors = AuthorService()
 class AuthorProfileService(Service):
 
     """
-        Service for managing author profiles
+    Service for managing author profiles
     """
 
     __model__ = UserProfile

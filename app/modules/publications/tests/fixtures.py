@@ -62,8 +62,7 @@ def publication_page(publication_index_page) -> PublicationPage:
 
 @pytest.fixture(scope="function")
 def publication_pages(publication_index_page) -> List[PublicationPage]:
-    """Fixture providing 10 PublicationPage objects attached to publication_index_page
-    """
+    """Fixture providing 10 PublicationPage objects attached to publication_index_page"""
     rv = []
     for _ in range(0, 10):
         p = _create_publication_page(

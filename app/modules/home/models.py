@@ -25,6 +25,5 @@ class HomePage(BasePage, HeroImageContentMixin):
 
     @classmethod
     def can_create_at(cls, parent):
-        """This stops admin users from creating more than one HomePage.
-        """
+        """This stops admin users from creating more than one HomePage."""
         return super().can_create_at(parent) and not cls.objects.exists()

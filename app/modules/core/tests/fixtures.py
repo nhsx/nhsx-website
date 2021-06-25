@@ -60,8 +60,7 @@ def article_page(section_page) -> ArticlePage:
 
 @pytest.fixture(scope="function")
 def section_pages(section_page) -> List[SectionPage]:
-    """Fixture providing 10 SectionPages attached to section_page
-    """
+    """Fixture providing 10 SectionPages attached to section_page"""
     rv = []
     for _ in range(0, 10):
         p = _create_section_page(f"Test Section Page {_}", section_page)
@@ -71,8 +70,7 @@ def section_pages(section_page) -> List[SectionPage]:
 
 @pytest.fixture(scope="function")
 def article_pages(section_page) -> List[ArticlePage]:
-    """Fixture providing 10 ArticlePages attached to section_page
-    """
+    """Fixture providing 10 ArticlePages attached to section_page"""
     rv = []
     for _ in range(0, 10):
         p = _create_article_page(f"Test Article Page {_}", section_page)

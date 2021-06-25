@@ -57,8 +57,7 @@ def news_page(news_index_page) -> News:
 
 @pytest.fixture(scope="function")
 def news_items(news_index_page) -> List[News]:
-    """Fixture providing 10 News objects attached to news_index_page
-    """
+    """Fixture providing 10 News objects attached to news_index_page"""
     rv = []
     for _ in range(0, 10):
         p = _create_news_page(f"Test News Page {_}", news_index_page)

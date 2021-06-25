@@ -57,8 +57,7 @@ def blog_post(blog_post_index_page) -> BlogPost:
 
 @pytest.fixture(scope="function")
 def blog_posts(blog_post_index_page) -> List[BlogPost]:
-    """Fixture providing 10 BlogPost objects attached to blog_post_index_page
-    """
+    """Fixture providing 10 BlogPost objects attached to blog_post_index_page"""
     rv = []
     for _ in range(0, 10):
         p = _create_blog_post(f"Test Blog Post {_}", blog_post_index_page)

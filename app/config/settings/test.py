@@ -20,12 +20,17 @@ ALLOWED_HOSTS = ["*"]
 
 # Use in-memory SQLite for the tests for speed.
 DATABASES = {
-    "default": {"ENGINE": "django.db.backends.sqlite3", "NAME": "file::memory:",}
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": "file::memory:",
+    }
 }
 
 # Use basic DB search backend for tests
 WAGTAILSEARCH_BACKENDS = {
-    "default": {"BACKEND": "wagtail.search.backends.db",},
+    "default": {
+        "BACKEND": "wagtail.search.backends.db",
+    },
 }
 
 # Override the cache settings so they never interfere with cached keys
