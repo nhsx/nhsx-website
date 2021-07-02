@@ -22,7 +22,7 @@ services:
       - -c
       - |
         set -e
-        black --check .
+        black --check --exclude "migrations" .
         python manage.py assets clean
         python manage.py assets build
         python manage.py collectstatic --no-input -i node_modules

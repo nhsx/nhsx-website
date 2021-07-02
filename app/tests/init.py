@@ -55,11 +55,11 @@ def fake_group_collection_migration():
 
 
 def add_root_collection():
-    """ id:AutoField                   1
-        path:CharField                 0001
-        depth:PositiveIntegerField     1
-        numchild:PositiveIntegerField  5
-        name:CharField                 Root
+    """id:AutoField                   1
+    path:CharField                 0001
+    depth:PositiveIntegerField     1
+    numchild:PositiveIntegerField  5
+    name:CharField                 Root
     """
     Collection.objects.get_or_create(path="0001", depth=1, name="Root")
 

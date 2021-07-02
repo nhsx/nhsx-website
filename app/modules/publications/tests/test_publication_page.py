@@ -59,13 +59,11 @@ def test_publication_page_has_history(publication_page):
 
 
 def test_publication_page_gets_created(publication_page):
-    """Test that we have a publication page created by the fixture
-    """
+    """Test that we have a publication page created by the fixture"""
     assert publication_page is not None
 
 
 def test_publication_page_200(publication_page):
-    """Test that we have a publication page created by the fixture
-    """
+    """Test that we have a publication page created by the fixture"""
     rv = client.get(publication_page.url)
     assert rv.status_code == 200

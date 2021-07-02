@@ -127,8 +127,14 @@ class TestAiLabResource:
             topics=[topic],
             featured_resources=json.dumps(
                 [
-                    {"type": "link", "value": featured_case_study_1.id,},
-                    {"type": "link", "value": featured_case_study_2.id,},
+                    {
+                        "type": "link",
+                        "value": featured_case_study_1.id,
+                    },
+                    {
+                        "type": "link",
+                        "value": featured_case_study_2.id,
+                    },
                 ]
             ),
         )
