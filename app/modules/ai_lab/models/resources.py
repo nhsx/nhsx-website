@@ -20,6 +20,7 @@ from modelcluster.fields import ParentalManyToManyField
 
 from modules.core.models.abstract import BasePage, SluggedCategory
 from modules.core.models.pages import SectionPage, ArticlePage
+from modules.publications.models import PublicationPage
 from modules.blog_posts.models import BlogPost
 from modules.ai_lab.blocks import resource_link_blocks
 
@@ -122,6 +123,16 @@ class AiLabTopic(SluggedCategory):
     class Meta:
         verbose_name = "AI Lab Topic"
         verbose_name_plural = "AI Lab Topics"
+
+
+class AiLabPublication(PublicationPage, AiLabResourceMixin):
+    subpage_types = ["publications.PublicationPage"]
+    content_panels = PublicationPage.content_panels + AiLabResourceMixin.content_panels
+    topics = ParentalManyToManyField("AiLabTopic", blank=False)
+
+    class Meta:
+        verbose_name = "Publication"
+        verbose_name_plural = "Publications"
 
 
 class AiLabCaseStudy(AiLabResourceMixin, ArticlePage):
