@@ -29,6 +29,7 @@ from modules.ai_lab.models.resources import (
     AiLabTopic,
     AiLabGuidance,
     AiLabReport,
+    AiLabPublication,
 )
 
 
@@ -241,6 +242,7 @@ class AiLabCategoryIndexPageMixin(AiLabFilterableResourceMixin, SectionPage):
         "AiLabGuidance",
         "AiLabReport",
         "AiLabResourceCollection",
+        "AiLabPublication",
     ]
     max_count = 1
 

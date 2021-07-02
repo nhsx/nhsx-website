@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags static wagtailuserbar nhsukfrontend_tags wagtailimages_tags time_tags topic_tags %}
+
+{% block body_class %}template-article{% endblock %}
+
+{% block extra_css %}
+{% endblock extra_css %}
+
+{% block content %}
+{% breadcrumb %}
+<section class="nhsx-section nhsx-section--white">
+  <div class="nhsuk-width-container">
+    <main class="nhsuk-main-wrapper" id="maincontent">
+      <div class="nhsuk-grid-row">
+        <div class="nhsuk-grid-column-one-third">
+
+          <nav id="contents" class="nhsuk-contents-list" role="navigation" aria-label="Sections in this page">
+              <h2>Contents</h2>
+              <ol class="nhsuk-contents-list__list">
+              {% for name, anchor in toc %}
+              <li class="nhsuk-contents-list__item"><a class="nhsuk-contents-list__link" href='#{{anchor}}'>{{name}}</a></li>
+              {% endfor %}
+              </ol>
+          </nav>
+
+        </div>
+        <div class="nhsuk-grid-column-two-thirds">
+          <h1 class="nhsuk-heading-xl nhsuk-u-margin-bottom-5">
+            {{ page.title }}
+          </h1>
+          <p>
+	  {% if page.first_published_at %}
+	    {% if page.updated_at %}First published{% else %}Published{% endif %} {{page.first_published_at|date:"j F Y"}}.
+	  {% endif %}
+	  </p>
+
+	  <p>
+	  {% if page.updated_at %}
+	    Updated {{page.updated_at|date:"j F Y"}}.
+	  {% endif %}
+
+	  {% if page.history %}
+	  <a href='#version-history'>See updates.</a>
+	  {% endif %}
+	    </p>
+
+	  <hr class="nhsuk-section-break nhsuk-section-break--l nhsuk-section-break--visible">
+	  
+    <div class="topics nhsai-topics">
+      {% with index_page=page.get_parent.specific.get_parent.specific %}
+      {% for topic in page.topics.all %}
+      <span class="tag"><a href="{{ index_page|topic_url:topic }}">{{ topic }}</a></span>
+      {% endfor %}
+      {% endwith %}
+    </div>
+
+    {% if page.featured_image or page.download %}
+    {% include 'ai_lab/_partials/image_download.html' with page=page classes="nhsai-resource__image nhsai-resource__image__mobile" %}
+    {% endif %}
+
+          {% for block in page.body %}
+            {% include_block block %}
+          {% endfor %}
+
+          <div id="js-top" class="sticky-link nhsuk-u-margin-top-5 nhsuk-u-margin-bottom-5">
+            <div class="nhsuk-width-container">
+              <a class="nhsuk-link" href="#contents">Back to contents</a>
+            </div>
+          </div>
+
+          {% if page.history %}
+            <h2 id='version-history'>History</h2>
+            {% include_block page.history %}
+          {% endif %}
+
+          {% if page.featured_image or page.download %}
+          {% include 'ai_lab/_partials/image_download.html' with page=page classes="nhsai-resource__image nhsai-resource__image__desktop nhsuk-grid-column-one-third" %}
+          {% endif %}
+          <div class="nhsuk-grid-column-full">
+            <h2>Explore Further</h2>
+            <div class="nhsuk-grid-row nhsuk-promo-group nhsai-resources-group">
+              {% for resource in featured_resources %}
+              {% include 'ai_lab/_partials/resource.html' with resource=resource.specific page=resource.get_parent.specific %}
+              {% endfor %}
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </main>
+  </div>
+</section>
+{% endblock content %}

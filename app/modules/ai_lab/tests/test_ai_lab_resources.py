@@ -200,33 +200,33 @@ class TestAiLabResources:
         for resource in other_case_studies + other_external_resources:
             assert resource.title not in str(page.content)
 
-    def test_resource_index_page_filters_by_type(self):
+    def resource_index_page_filters_by_type(self, page_type, factory):
         resource_index_page = AiLabUnderstandIndexPageFactory.create()
         topic = AiLabTopicFactory(name="Access Funding")
 
         case_studies = [
-            AiLabCaseStudyFactory.create(parent=resource_index_page),
-            AiLabCaseStudyFactory.create(parent=resource_index_page, topics=[topic]),
+            factory.create(parent=resource_index_page),
+            factory.create(parent=resource_index_page, topics=[topic]),
         ]
         external_resources = AiLabExternalResourceFactory.create_batch(
             3, parent=resource_index_page
         )
 
         url = resource_index_page.url + resource_index_page.reverse_subpage(
-            "filter_by_type", args=("case-study",)
+            "filter_by_type", args=(page_type,)
         )
         page = client.get(url)
 
         assert page.status_code == 200
 
         for resource in case_studies:
-            assert resource.title in str(page.content)
+            assert resource.title in str(page.content), f"{resource.title}, {url}"
 
         for resource in external_resources:
             assert resource.title not in str(page.content)
 
         url = resource_index_page.url + resource_index_page.reverse_subpage(
-            "filter_by_type", args=("case-study", topic.slug)
+            "filter_by_type", args=(page_type, topic.slug)
         )
 
         page2 = client.get(url)
@@ -235,6 +235,16 @@ class TestAiLabResources:
 
         assert case_studies[0].title not in str(page2.content)
         assert case_studies[1].title in str(page2.content)
+
+    def test_resource_index_page_filters_by_type_publication(self):
+        self.resource_index_page_filters_by_type(
+            page_type="publication", factory=AiLabPublicationFactory
+        )
+
+    def test_resource_index_page_filters_by_type_publication(self):
+        self.resource_index_page_filters_by_type(
+            page_type="case-study", factory=AiLabCaseStudyFactory
+        )
 
     def test_index_page_filters_by_topics(self):
         index_page = AiLabResourceIndexPageFactory.create()
