@@ -18,7 +18,6 @@ from modules.ai_lab.models.resources import (
     AiLabGuidance,
     AiLabReport,
     AiLabTopic,
-    AiLabPublication,
 )
 
 from modules.core.tests.factories import CorePageFactory
@@ -68,13 +67,6 @@ class AiLabCaseStudyFactory(ResourceFactory):
 
     class Meta:
         model = AiLabCaseStudy
-
-
-class AiLabPublicationFactory(ResourceFactory):
-    title = factory.Sequence(lambda n: "Case Study %d" % n)
-
-    class Meta:
-        model = AiLabPublication
 
 
 class AiLabGuidanceFactory(ResourceFactory):
