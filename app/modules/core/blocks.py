@@ -2,7 +2,6 @@
 import collections
 
 from bs4 import BeautifulSoup
-from django import forms
 
 from wagtail.core import blocks
 from wagtail.embeds import embeds
@@ -18,12 +17,26 @@ from wagtailnhsukfrontend.blocks import (  # NOQA
     ImageBlock,
     PanelBlock,
     ExpanderBlock,
-    GreyPanelBlock,
+    GreyPanelBlock,  # deprecated, not in v5 (0.8)
     InsetTextBlock,
-    PanelListBlock,
+    PanelListBlock,  # deprecated, not in v5 (0.8)
     WarningCalloutBlock,
     FlattenValueContext,
     ActionLinkBlock,
+    # below here appear new to v5 (0.7+)
+    CareCardBlock,
+    ExpanderGroupBlock,
+    DetailsBlock,
+    CardGroupBlock,
+    CardFeatureBlock,
+    CardImageBlock,
+    CardClickableBlock,
+    CardBasicBlock,
+    SummaryListBlock,
+    SummaryListRowBlock,
+    BasePromoBlock,
+    DontBlock,
+    DoBlock,
 )
 
 # Project specific Models
@@ -484,22 +497,43 @@ content_blocks = [
     ("html_anchor", HTMLAnchorBlock(group=" Content")),
 ]
 
-nhs_blocks = [
-    ("image", ImageBlock(group=" NHS Components")),
-    ("panel", PanelBlock(group=" NHS Components")),
-    ("promo", PromoBlock(group=" NHS Components")),
-    ("expander", NHSXExpanderBlock(group=" NHS Components")),
-    ("grey_panel", GreyPanelBlock(group=" NHS Components")),
-    ("inset_text", InsetTextBlock(group=" NHS Components")),
-    ("panel_list", PanelListBlock(group=" NHS Components")),
-    ("promo_group", PromoGroupBlock(group=" NHS Components")),
-    ("warning_callout", WarningCalloutBlock(group=" NHS Components")),
-    ("table", TableBlock(group=" NHS Components")),
-    ("panel_table", PanelTableBlock(group=" NHS Components")),
-    ("action_link", ActionLinkBlock(group=" NHS Components")),
-    ("legal_information", LegalInformationBlock(group=" NHS Components")),
-    ("newsletter_signup", NewsletterBlock(group=" Content")),
+deprecated_blocks = [
+    ("grey_panel", GreyPanelBlock(group="Deprecated")),
+    ("panel", PanelBlock(group="Deprecated")),
+    ("panel_list", PanelListBlock(group="Deprecated")),
+    ("promo", PromoBlock(group="Deprecated")),
+    ("promo_group", PromoGroupBlock(group="Deprecated")),
 ]
+
+v5_blocks = [
+    ("care_card", CareCardBlock(group=" NHS Components")),
+    ("expander_group", ExpanderGroupBlock(group=" NHS Components")),
+    ("details", DetailsBlock(group=" NHS Components")),
+    ("card_group", CardGroupBlock(group=" NHS Components")),
+    ("card_feature", CardFeatureBlock(group=" NHS Components")),
+    ("card_image", CardImageBlock(group=" NHS Components")),
+    ("card_clickable", CardClickableBlock(group=" NHS Components")),
+    ("card_basic", CardBasicBlock(group=" NHS Components")),
+    ("summary_list", SummaryListBlock(group=" NHS Components")),
+    ("summary_list_row", SummaryListRowBlock(group=" NHS Components")),
+    ("dont", DontBlock(group=" NHS Components")),
+    ("do", DoBlock(group=" NHS Components")),
+]
+nhs_blocks = (
+    [
+        ("image", ImageBlock(group=" NHS Components")),
+        ("expander", NHSXExpanderBlock(group=" NHS Components")),
+        ("inset_text", InsetTextBlock(group=" NHS Components")),
+        ("warning_callout", WarningCalloutBlock(group=" NHS Components")),
+        ("table", TableBlock(group=" NHS Components")),
+        ("panel_table", PanelTableBlock(group=" NHS Components")),
+        ("action_link", ActionLinkBlock(group=" NHS Components")),
+        ("legal_information", LegalInformationBlock(group=" NHS Components")),
+        ("newsletter_signup", NewsletterBlock(group=" Content")),
+    ]
+    + v5_blocks
+    + deprecated_blocks
+)
 
 nhsx_blocks = content_blocks + nhs_blocks
 
