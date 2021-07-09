@@ -20,7 +20,6 @@ from modelcluster.fields import ParentalManyToManyField
 
 from modules.core.models.abstract import BasePage, SluggedCategory
 from modules.core.models.pages import SectionPage, ArticlePage
-from modules.publications.models import PublicationPage
 from modules.blog_posts.models import BlogPost
 from modules.ai_lab.blocks import resource_link_blocks
 
@@ -123,31 +122,6 @@ class AiLabTopic(SluggedCategory):
     class Meta:
         verbose_name = "AI Lab Topic"
         verbose_name_plural = "AI Lab Topics"
-
-
-class AiLabPublication(AiLabResourceMixin, PublicationPage):
-    subpage_types = ["publications.PublicationPage"]
-    content_panels = PublicationPage.content_panels + [
-        FieldPanel("summary", widget=forms.Textarea),
-        ImageChooserPanel("featured_image"),
-        DocumentChooserPanel("download"),
-        FieldPanel("topics", widget=forms.CheckboxSelectMultiple),
-    ]
-
-    def get_context(self, *args, **kwargs):
-        context = PublicationPage.get_context(self, *args, **kwargs)
-        topics = self.topics.all()
-        if len(self.featured_resources) == 0:
-            context["featured_resources"] = self._get_featured_resources(topics)
-        else:
-            context["featured_resources"] = [
-                resource.value for resource in self.featured_resources
-            ]
-        return context
-
-    class Meta:
-        verbose_name = "Publication"
-        verbose_name_plural = "Publications"
 
 
 class AiLabCaseStudy(AiLabResourceMixin, ArticlePage):
