@@ -7,4 +7,4 @@ if [ $# -eq 0 ]; then
 fi
 
 echo "Running tests..."
-docker-compose run --rm web pytest "$@"
+docker-compose run --rm web pytest --disable-pytest-warnings "$@"
