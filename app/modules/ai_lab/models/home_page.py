@@ -31,6 +31,7 @@ class AiLabHomePage(SectionPage):
         context = super().get_context(request)
         blog_posts = (
             BlogPost.objects.filter(tags__slug="ai-lab")
+            .live()
             .distinct()
             .order_by("-first_published_at")[:3]
         )
