@@ -8,12 +8,12 @@
 
 {% block content %}
 {% breadcrumb %}
-<section class="nhsx-section nhsx-section--white">
   <div class="nhsuk-width-container">
     <main class="nhsuk-main-wrapper" id="maincontent">
       <div class="nhsuk-grid-row">
         <div class="nhsuk-grid-column-one-third">
 
+          {% if toc %}
           <nav id="contents" class="nhsuk-contents-list" role="navigation" aria-label="Sections in this page">
               <h2>Contents</h2>
               <ol class="nhsuk-contents-list__list">
@@ -22,6 +22,7 @@
               {% endfor %}
               </ol>
           </nav>
+          {% endif %}
 
         </div>
         <div class="nhsuk-grid-column-two-thirds">
@@ -30,17 +31,21 @@
           </h1>
           <p>
 	  {% if page.first_published_at %}
-	    {% if page.updated_at %}First published{% else %}Published{% endif %} {{page.first_published_at|date:"j F Y"}}.
+	    {% if page.updated_at %}First published{% else %}Published{% endif %} {{page.first_published_at|date:"j F Y"}}
 	  {% endif %}
 	  </p>
 
 	  <p>
 	  {% if page.updated_at %}
-	    Updated {{page.updated_at|date:"j F Y"}}.
+	    Updated {{page.updated_at|date:"j F Y"}}
 	  {% endif %}
 
+    {% if page.updated_at and page.history %}
+    &ndash;
+    {% endif %}
+
 	  {% if page.history %}
-	  <a href='#version-history'>See updates.</a>
+	  <a href='#version-history'>see updates.</a>
 	  {% endif %}
 	    </p>
 
@@ -59,12 +64,11 @@
 
 	  {% if page.history %}
 	    <h2 id='version-history'>History</h2>
-	    {% include_block page.history %}
+      {{ page.history|richtext}}
 	  {% endif %}
 
         </div>
       </div>
     </main>
   </div>
-</section>
 {% endblock content %}
