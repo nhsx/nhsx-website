@@ -101,7 +101,7 @@ class PublicationPage(BasePage, CanonicalMixin):
         context["toc"] = []  # table of contents
         self.slug_count = Counter({"contents": 1})
         for i, block in enumerate(self.body._raw_data):
-            if block["type"] == "rich_text":
+            if block and block["type"] == "rich_text":  # block can be None
                 replacement_html, new_toc = self.replace_headers(block["value"])
                 context["toc"].extend(new_toc)
                 self.body._raw_data[i]["value"] = replacement_html
