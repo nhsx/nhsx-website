@@ -39,5 +39,5 @@ class FinderBlock(StreamBlock):
         'renderer': 'text',
         'autoColumnSize': True,
     }
-    person=PersonBlock()
     table=TableBlock(table_options=default_table_options)
+    person=PersonBlock()
