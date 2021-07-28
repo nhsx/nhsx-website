@@ -1,9 +1,16 @@
 from wagtail.contrib.table_block.blocks import TableBlock 
-from wagtail.core.blocks import StreamBlock
+from wagtail.core.blocks import StreamBlock, StructBlock, CharBlock
 
 """Docs for underlying TableBlock:
 https://docs.wagtail.io/en/stable/reference/contrib/table_block.html
 """
+class PersonBlock(StructBlock):
+    first_name = CharBlock()
+
+    class Meta:
+        icon = 'user'
+        form_classname = 'person-block struct-block'
+        template = 'finder/blocks/finder_js_block.html'
 
 class FinderBlock(StreamBlock):
 
@@ -32,5 +39,5 @@ class FinderBlock(StreamBlock):
         'renderer': 'text',
         'autoColumnSize': True,
     }
-
+    person=PersonBlock()
     table=TableBlock(table_options=default_table_options)
