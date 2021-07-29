@@ -4,6 +4,11 @@ from wagtail.core.blocks import StreamBlock, StructBlock, CharBlock
 """Docs for underlying TableBlock:
 https://docs.wagtail.io/en/stable/reference/contrib/table_block.html
 """
+
+class SearchableTableBlock(TableBlock):
+    class Meta:
+        template = 'finder/blocks/finder_block.html'
+
 class PersonBlock(StructBlock):
     first_name = CharBlock()
 
@@ -39,5 +44,5 @@ class FinderBlock(StreamBlock):
         'renderer': 'text',
         'autoColumnSize': True,
     }
-    table=TableBlock(table_options=default_table_options)
+    table=SearchableTableBlock(table_options=default_table_options)
     person=PersonBlock()
