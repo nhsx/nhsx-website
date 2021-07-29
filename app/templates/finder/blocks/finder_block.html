@@ -1,6 +1,128 @@
 {# inital version from https://github.com/wagtail/wagtail/blob/main/wagtail/contrib/table_block/templates/table_block/blocks/table.html #}
 {% load table_block_tags %}
 
+{# yeah, this is supposed to be in the head tag #}
+<style>
+.container { 
+	margin: auto;
+	max-width: 960px;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+      }
+      
+      /* Standard table styling, change as desired */
+      table {
+	border-collapse: collapse;
+	border-spacing: 0;
+      }
+	
+      caption { 
+	font-size: 24px;
+	font-weight: 700;
+	text-align: left;
+      }
+	
+      th {
+	border-bottom: 1px solid #bfc1c3;
+	font-size: 19px;
+	padding: 0.5em 1em 0.5em 0;
+	text-align: left;
+      }
+	
+      td {
+	font-size: 19px;
+	padding: 0.5em 1em 0.5em 0;
+      }
+      
+      /* Responsive table styling */
+      .responsive-table { 
+	margin-bottom: 0;
+	width: 100%;
+      }
+      
+      thead {
+	border: 0;
+	clip: rect(0 0 0 0);
+	-webkit-clip-path: inset(50%);
+	clip-path: inset(50%);
+	height: 1px;
+	margin: 0;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	white-space: nowrap;
+	width: 1px;
+      }
+      
+      tbody tr {
+	display: block;
+	margin-bottom: 1.5em;
+	padding: 0 0 1.5em;
+      }
+      
+      tbody tr td {
+	display: flex;
+	min-width: 1px;
+	text-align: left;
+      }
+      
+      .responsive-table__heading {
+	font-size: 1.4em;
+	font-weight: bold;
+	margin-bottom: .25em;
+      }
+      
+      .responsive-table__subheading {
+	font-weight: 600;
+	padding-right: 1em;
+	padding-bottom: 0;
+	text-align: left;
+	word-break: initial;
+	width: 10em;
+	flex-shrink: 0;
+      }
+      
+      /* remove appended zeros (e.g. 768px) to see original */ 
+      
+      @media (max-width: 7680px) {
+	tbody tr td {
+	  padding-right: 0;
+	}
+	tbody tr td:last-child {
+	  border-bottom: 0
+	}
+	tbody tr {
+	  border-bottom: 2px solid grey;
+	}
+      }
+      
+      @media (min-width: 7690px) {
+	thead {
+	  clip: auto;
+	  -webkit-clip-path: none;
+	  clip-path: none;
+	  display: table-header-group;
+	  height: auto;
+	  overflow: auto;
+	  position: relative;
+	  width: auto;
+	}
+	
+	tbody tr {
+	  display: table-row;
+	}
+	
+	tbody tr td {
+	  display: table-cell;
+	  text-align: left;
+	}
+	
+	.responsive-table__subheading {
+	  display: none;
+	}
+      }
+</style>
+
+
 <table>
     {% if table_caption %}
        <caption>{{ table_caption }}</caption>
