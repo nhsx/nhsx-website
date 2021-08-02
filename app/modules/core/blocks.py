@@ -531,7 +531,7 @@ nhs_blocks = (
         ("action_link", ActionLinkBlock(group=" NHS Components")),
         ("legal_information", LegalInformationBlock(group=" NHS Components")),
         ("newsletter_signup", NewsletterBlock(group=" Content")),
-        ("finder", FinderBlock(group=" NHS Components"))
+        ("finder", FinderBlock(group=" NHS Components")),
     ]
     + v5_blocks
     + deprecated_blocks
