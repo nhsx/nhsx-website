@@ -124,8 +124,8 @@
 
 
 <form onsubmit = "filter(event);">
-    <input name="inpSearch" type="text" onchange="filter(event)">
-    <button type="submit"></button>
+    <input name="inpSearch" type="text">
+    <button type="submit">Submit</button>
 </form>
 
 
@@ -202,9 +202,8 @@
         //var slcCols = frm.slcColumns;
         //var slcOperators = frm.slcOperators;
         var query = frm.inpSearch.value;
-
         // Set the column's filter value
-        tf.setFilterValue("*", query);
+        tf.setFilterValue(0, "*"+query); // column 0, * = contains
 
         // Filter the table
         tf.filter();
@@ -217,7 +216,8 @@
 <script data-config>
     var filtersConfig = {
         base_path: '/static/_dev/js/lib/',
-        // auto_filter: {delay: 100 }, // milliseconds -- works
+        //grid: false,  // turn off search-per-column
+        // auto_filter: {delay: 100 }, // milliseconds -- works with original filter
         // highlight_keywords: true, // feels good but renders terribly
     };
 
