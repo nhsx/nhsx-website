@@ -1,5 +1,5 @@
 {# inital version from https://github.com/wagtail/wagtail/blob/main/wagtail/contrib/table_block/templates/table_block/blocks/table.html #}
-{% load table_block_tags %}
+{% load table_block_tags layout_tags %}
 
 {# yeah, this is supposed to be in the head tag #}
 <style>
@@ -123,6 +123,12 @@
 </style>
 
 
+<form onsubmit = "filter(event);">
+    <input name="inpSearch" type="text" onchange="filter(event)">
+    <button type="submit"></button>
+</form>
+
+
 <table class="responsive-table" role="table">
     {% if table_caption %}
        <caption>{{ table_caption }}</caption>
@@ -168,7 +174,9 @@
                             {% if html_renderer %}
                                 {{ column.strip|safe|linebreaksbr }}
                             {% else %}
-                                <span class="responsive-table__subheading">Subheader</span>
+                                <span class="responsive-table__subheading">
+                                    {{table_header|index:col_index}}
+                                </span>
                                 {{ column.strip|linebreaksbr }}
                             {% endif %}
                         {% endif %}
@@ -187,10 +195,32 @@
 
 <script src="/static/_dev/js/lib/tablefilter.js"></script>
 
+<script>
+        // Form submission logic for filtering the table
+        function filter(evt){
+        var frm = document.forms[0];
+        //var slcCols = frm.slcColumns;
+        //var slcOperators = frm.slcOperators;
+        var query = frm.inpSearch.value;
+
+        // Set the column's filter value
+        tf.setFilterValue("*", query);
+
+        // Filter the table
+        tf.filter();
+
+        // Prevent form submission
+        evt.preventDefault();
+    };
+</script>
+
 <script data-config>
     var filtersConfig = {
         base_path: '/static/_dev/js/lib/',
+        // auto_filter: {delay: 100 }, // milliseconds -- works
+        // highlight_keywords: true, // feels good but renders terribly
     };
+
     var tf = new TableFilter(document.querySelector("table"), filtersConfig);
     tf.init();
 
