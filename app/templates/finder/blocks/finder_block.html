@@ -1,0 +1,227 @@
+{# inital version from https://github.com/wagtail/wagtail/blob/main/wagtail/contrib/table_block/templates/table_block/blocks/table.html #}
+{% load table_block_tags layout_tags %}
+
+{# yeah, this is supposed to be in the head tag #}
+<style>
+.container { 
+	margin: auto;
+	max-width: 960px;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+      }
+      
+      /* Standard table styling, change as desired */
+      table {
+	border-collapse: collapse;
+	border-spacing: 0;
+      }
+	
+      caption { 
+	font-size: 24px;
+	font-weight: 700;
+	text-align: left;
+      }
+	
+      th {
+	border-bottom: 1px solid #bfc1c3;
+	font-size: 19px;
+	padding: 0.5em 1em 0.5em 0;
+	text-align: left;
+      }
+	
+      td {
+	font-size: 19px;
+	padding: 0.5em 1em 0.5em 0;
+      }
+      
+      /* Responsive table styling */
+      .responsive-table { 
+	margin-bottom: 0;
+	width: 100%;
+      }
+      
+      thead {
+	border: 0;
+	clip: rect(0 0 0 0);
+	-webkit-clip-path: inset(50%);
+	clip-path: inset(50%);
+	height: 1px;
+	margin: 0;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	white-space: nowrap;
+	width: 1px;
+      }
+      
+      tbody tr {
+	display: block;
+	margin-bottom: 1.5em;
+	padding: 0 0 1.5em;
+      }
+      
+      tbody tr td {
+	display: flex;
+	min-width: 1px;
+	text-align: left;
+      }
+      
+      .responsive-table__heading {
+	font-size: 1.4em;
+	font-weight: bold;
+	margin-bottom: .25em;
+      }
+      
+      .responsive-table__subheading {
+	font-weight: 600;
+	padding-right: 1em;
+	padding-bottom: 0;
+	text-align: left;
+	word-break: initial;
+	width: 10em;
+	flex-shrink: 0;
+      }
+      
+      /* remove appended zeros (e.g. 768px) to see original */ 
+      
+      @media (max-width: 7680px) {
+	tbody tr td {
+	  padding-right: 0;
+	}
+	tbody tr td:last-child {
+	  border-bottom: 0
+	}
+	tbody tr {
+	  border-bottom: 2px solid grey;
+	}
+      }
+      
+      @media (min-width: 7690px) {
+	thead {
+	  clip: auto;
+	  -webkit-clip-path: none;
+	  clip-path: none;
+	  display: table-header-group;
+	  height: auto;
+	  overflow: auto;
+	  position: relative;
+	  width: auto;
+	}
+	
+	tbody tr {
+	  display: table-row;
+	}
+	
+	tbody tr td {
+	  display: table-cell;
+	  text-align: left;
+	}
+	
+	.responsive-table__subheading {
+	  display: none;
+	}
+      }
+</style>
+
+
+<form onsubmit = "filter(event);">
+    <input name="inpSearch" type="text">
+    <button type="submit">Submit</button>
+</form>
+
+
+<table class="responsive-table" role="table">
+    {% if table_caption %}
+       <caption>{{ table_caption }}</caption>
+    {% endif %}
+    {% if table_header %}
+        <thead role="rowgroup">
+        <tr role="row">
+            {% for column in table_header %}
+            {% with forloop.counter0 as col_index %}
+                <th role="columnheader" scope="col" {% cell_classname 0 col_index %}>
+                    {% if column.strip %}
+                        {% if html_renderer %}
+                            {{ column.strip|safe|linebreaksbr }}
+                        {% else %}
+                            {{ column.strip|linebreaksbr }}
+                        {% endif %}
+                    {% endif %}
+                </th>
+            {% endwith %}
+            {% endfor %}
+        </tr>
+        </thead>
+    {% endif %}
+    <tbody>
+    {% for row in data %}
+    {% with forloop.counter0 as row_index %}
+        <tr role="row">
+            {% for column in row %}
+            {% with forloop.counter0 as col_index %}
+                {% if forloop.first and column.strip %}
+                    <th role="cell" scope="row" {% cell_classname row_index col_index table_header %}>
+                        {% if column.strip %}
+                            {% if html_renderer %}
+                                {{ column.strip|safe|linebreaksbr }}
+                            {% else %}
+                                {{ column.strip|linebreaksbr }}
+                            {% endif %}
+                        {% endif %}
+                    </th>
+                 {% elif column.strip %}
+                    <td role="cell" {% cell_classname row_index col_index table_header %}>
+                        {% if column.strip %}
+                            {% if html_renderer %}
+                                {{ column.strip|safe|linebreaksbr }}
+                            {% else %}
+                                <span class="responsive-table__subheading">
+                                    {{table_header|index:col_index}}
+                                </span>
+                                {{ column.strip|linebreaksbr }}
+                            {% endif %}
+                        {% endif %}
+                    </td>
+                 {% endif %}
+            {% endwith %}
+            {% endfor %}
+        </tr>
+    {% endwith %}
+    {% endfor %}
+    </tbody>
+</table>
+
+{# Filter Javascript #}
+
+
+<script src="/static/_dev/tablefilter/tablefilter.js"></script>
+
+<script>
+        // Form submission logic for filtering the table
+        function filter(evt){
+        var frm = document.forms[0];
+        //var slcCols = frm.slcColumns;
+        //var slcOperators = frm.slcOperators;
+        var query = frm.inpSearch.value;
+        // Set the column's filter value
+        tf.setFilterValue(0, "*"+query); // column 0, * = contains
+
+        // Filter the table
+        tf.filter();
+
+        // Prevent form submission
+        evt.preventDefault();
+    };
+</script>
+
+<script data-config>
+    var filtersConfig = {
+        base_path: '/static/_dev/tablefilter/',
+        //grid: false,  // turn off search-per-column
+        // auto_filter: {delay: 100 }, // milliseconds -- works with original filter
+        // highlight_keywords: true, // feels good but renders terribly
+    };
+
+    var tf = new TableFilter(document.querySelector("table"), filtersConfig);
+    tf.init();
+
+</script>

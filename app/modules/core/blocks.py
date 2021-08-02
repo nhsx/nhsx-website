@@ -41,6 +41,7 @@ from wagtailnhsukfrontend.blocks import (  # NOQA
 
 # Project specific Models
 from modules.core.models.snippets import LegalInformation
+from modules.finder.blocks import FinderBlock
 
 from modules.case_studies.abstract import (
     CaseStudyTag,
@@ -530,6 +531,7 @@ nhs_blocks = (
         ("action_link", ActionLinkBlock(group=" NHS Components")),
         ("legal_information", LegalInformationBlock(group=" NHS Components")),
         ("newsletter_signup", NewsletterBlock(group=" Content")),
+        ("finder", FinderBlock(group=" NHS Components")),
     ]
     + v5_blocks
     + deprecated_blocks
