@@ -158,7 +158,7 @@
         <tr role="row">
             {% for column in row %}
             {% with forloop.counter0 as col_index %}
-                {% if first_col_is_header and forloop.first %}
+                {% if forloop.first and column.strip %}
                     <th role="cell" scope="row" {% cell_classname row_index col_index table_header %}>
                         {% if column.strip %}
                             {% if html_renderer %}
@@ -168,7 +168,7 @@
                             {% endif %}
                         {% endif %}
                     </th>
-                 {% else %}
+                 {% elif column.strip %}
                     <td role="cell" {% cell_classname row_index col_index table_header %}>
                         {% if column.strip %}
                             {% if html_renderer %}
