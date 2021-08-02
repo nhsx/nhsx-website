@@ -183,29 +183,15 @@
 </table>
 
 {# Filter Javascript #}
-<script>
-    var scr  = document.createElement('script'),
-    head = document.head || document.getElementsByTagName('head')[0];
-    scr.src = 'https://unpkg.com/tablefilter@0.7.2/dist/tablefilter/tablefilter.js';
-    scr.async = false; // optionally
-    head.insertBefore(scr, head.firstChild);
 
-    function whenAvailable(name, callback) {
-    var interval = 10; // ms
-    window.setTimeout(function() {
-        if (window[name]) {
-            callback(window[name]);
-        } else {
-            whenAvailable(name, callback);
-        }
-    }, interval);
-}
 
-whenAvailable("TableFilter", function(t) {
-        var tf = new TableFilter(document.querySelector("table"), {
-	base_path: 'https://unpkg.com/tablefilter@0.7.2/dist/tablefilter/tablefilter.js'
-    });
-    tf.init();// do something
-});
+<script src="/static/_dev/js/lib/tablefilter.js"></script>
+
+<script data-config>
+    var filtersConfig = {
+        base_path: '/static/_dev/js/lib/',
+    };
+    var tf = new TableFilter(document.querySelector("table"), filtersConfig);
+    tf.init();
 
 </script>
