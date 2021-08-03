@@ -3,7 +3,15 @@
 
 {# yeah, this is supposed to be in the head tag #}
 <style>
-.container { 
+    .table-wrapper {
+        overflow: auto;
+    }
+
+    /*.fltrow {display: none;
+    }
+    */
+
+    .container { 
 	margin: auto;
 	max-width: 960px;
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
@@ -124,11 +132,29 @@
 
 
 <form id="finderform" onsubmit = "filter(event);">
-    <input name="inpSearch" type="text">
-    <button type="submit">Submit</button>
+    <div class="nhsuk-form-group">
+    <label class="nhsuk-label" for="inpSearch">
+        Filter table:
+    <input class="nhsuk-input" name="inpSearch" type="text">
+    </label>
+    </div>
+
+    <div class="nhsuk-form-group">
+        <label class="nhsuk-label" for="facetSelect">
+        Record types:
+        </label>
+      <select class="nhsuk-select" id="facetSelect" name="facetSelect">
+        <option value="" selected>All</option>
+        {% for facet in facets %}
+        <option value="{{facet}}">{{facet}}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+      <button type="submit" class="nhsuk-button">Filter</button>
 </form>
 
-
+<div class="table-wrapper" tabindex=0>
 <table class="responsive-table" role="table">
     {% if table_caption %}
        <caption>{{ table_caption }}</caption>
@@ -136,59 +162,48 @@
     {% if table_header %}
         <thead role="rowgroup">
         <tr role="row">
-            {% for column in table_header %}
-            {% with forloop.counter0 as col_index %}
-                <th role="columnheader" scope="col" {% cell_classname 0 col_index %}>
-                    {% if column.strip %}
-                        {% if html_renderer %}
-                            {{ column.strip|safe|linebreaksbr }}
-                        {% else %}
-                            {{ column.strip|linebreaksbr }}
-                        {% endif %}
-                    {% endif %}
-                </th>
-            {% endwith %}
-            {% endfor %}
         </tr>
         </thead>
     {% endif %}
     <tbody>
     {% for row in data %}
     {% with forloop.counter0 as row_index %}
-        <tr role="row">
-            {% for column in row %}
-            {% with forloop.counter0 as col_index %}
-                {% if forloop.first %}
-                    <th role="cell" scope="row" {% cell_classname row_index col_index table_header %}>
-                        {% if column.strip %}
-                            {% if html_renderer %}
-                                {{ column.strip|safe|linebreaksbr }}
-                            {% else %}
-                                {{ column.strip|linebreaksbr }}
+        {% if forloop.last %}
+        {% else %}
+            <tr role="row">
+                {% for column in row %}
+                {% with forloop.counter0 as col_index %}
+                    {% if forloop.first %}
+                        <th role="cell" scope="row" {% cell_classname row_index col_index table_header %}>
+                            {% if column.strip %}
+                                {% if html_renderer %}
+                                    {{ column.strip|safe|linebreaksbr }}
+                                {% else %}
+                                    {{ column.strip|linebreaksbr }}
+                                {% endif %}
                             {% endif %}
-                        {% endif %}
-                    </th>
-                 {% else %}
-                    <td role="cell" {% cell_classname row_index col_index table_header %}>
-                        {% if column.strip %}
-                            {% if html_renderer %}
-                                {{ column.strip|safe|linebreaksbr }}
-                            {% else %}
-                                <span class="responsive-table__subheading">
-                                    {{table_header|index:col_index}}
-                                </span>
-                                {{ column.strip|linebreaksbr }}
-                            {% endif %}
-                        {% endif %}
-                    </td>
-                 {% endif %}
-            {% endwith %}
-            {% endfor %}
-        </tr>
+                        </th>
+                    {% else %}
+                        <td role="cell" {% cell_classname row_index col_index table_header %}>
+                                {% if html_renderer %}
+                                    {{ column.strip|safe|linebreaksbr }}
+                                {% else %}
+                                    <span class="responsive-table__subheading">
+                                        {{table_header|index:col_index}}
+                                    </span>
+                                    {{ column.strip|linebreaksbr }}
+                                {% endif %}
+                        </td>
+                    {% endif %}
+                {% endwith %}
+                {% endfor %}
+            </tr>
+        {% endif %}
     {% endwith %}
     {% endfor %}
     </tbody>
 </table>
+</div>
 
 {# Filter Javascript #}
 
@@ -200,9 +215,11 @@
         function filter(evt){
         var frm = document.getElementById('finderform');
         var query = frm.inpSearch.value;
+        var facet = frm.facetSelect.value;
 
         // Filter the table
         tf.setFilterValue(0, "*"+query); // column 0, * = contains
+        tf.setFilterValue(1, "*"+facet);
         tf.filter();
 
         // Prevent form submission
@@ -220,5 +237,4 @@
 
     var tf = new TableFilter(document.querySelector("table"), filtersConfig);
     tf.init();
-    facets = {{ facets }} ;
 </script>

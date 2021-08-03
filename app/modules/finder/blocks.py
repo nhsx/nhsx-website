@@ -13,11 +13,14 @@ class FinderBlock(TableBlock):
         self.table_options["autoColumnSize"] = True
 
     def render(self, value, **context):
-        data = value.get('data', [[]])
-        offset = int(value.get('first_row_is_table_header', 0))
-        # if the first row is a header, we skip it (offset=1) otherwise we don't (offset=0) 
-        # and we get the second column (row[1]) and use it as a facet  
-        context['context']['facets'] = list(set([row[1] for row in data[offset:]]))
+        data = value.get("data", [[]])
+        offset = int(value.get("first_row_is_table_header", 0))
+        # if the first row is a header, we skip it (offset=1) otherwise we don't (offset=0)
+        # and we get the second column (row[1]) and use it as a facet
+        # and ignore None values (if row[1])
+        context["context"]["facets"] = sorted(
+            list(set([row[1] for row in data[offset:] if row[1]]))
+        )
         return super().render(value, **context)
 
     class Meta:
