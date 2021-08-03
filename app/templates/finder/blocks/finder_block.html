@@ -123,7 +123,7 @@
 </style>
 
 
-<form onsubmit = "filter(event);">
+<form id="finderform" onsubmit = "filter(event);">
     <input name="inpSearch" type="text">
     <button type="submit">Submit</button>
 </form>
@@ -158,7 +158,7 @@
         <tr role="row">
             {% for column in row %}
             {% with forloop.counter0 as col_index %}
-                {% if forloop.first and column.strip %}
+                {% if forloop.first %}
                     <th role="cell" scope="row" {% cell_classname row_index col_index table_header %}>
                         {% if column.strip %}
                             {% if html_renderer %}
@@ -168,7 +168,7 @@
                             {% endif %}
                         {% endif %}
                     </th>
-                 {% elif column.strip %}
+                 {% else %}
                     <td role="cell" {% cell_classname row_index col_index table_header %}>
                         {% if column.strip %}
                             {% if html_renderer %}
@@ -198,14 +198,11 @@
 <script>
         // Form submission logic for filtering the table
         function filter(evt){
-        var frm = document.forms[0];
-        //var slcCols = frm.slcColumns;
-        //var slcOperators = frm.slcOperators;
+        var frm = document.getElementById('finderform');
         var query = frm.inpSearch.value;
-        // Set the column's filter value
-        tf.setFilterValue(0, "*"+query); // column 0, * = contains
 
         // Filter the table
+        tf.setFilterValue(0, "*"+query); // column 0, * = contains
         tf.filter();
 
         // Prevent form submission
@@ -223,5 +220,5 @@
 
     var tf = new TableFilter(document.querySelector("table"), filtersConfig);
     tf.init();
-
+    facets = {{ facets }} ;
 </script>
