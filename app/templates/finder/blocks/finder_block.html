@@ -140,13 +140,14 @@
     </div>
 
     <div class="nhsuk-form-group">
-        <label class="nhsuk-label" for="facet-select">
+        <label class="nhsuk-label" for="facetSelect">
         Record types:
         </label>
-      <select class="nhsuk-select" id="facet-select" name="facet-select">
+      <select class="nhsuk-select" id="facetSelect" name="facetSelect">
         <option value="" selected>All</option>
-        <option value="=Clinical">Clinical</option>
-        <option value="=Dental">Dental</option>
+        {% for facet in facets %}
+        <option value="{{facet}}">{{facet}}</option>
+        {% endfor %}
       </select>
     </div>
 
@@ -214,9 +215,11 @@
         function filter(evt){
         var frm = document.getElementById('finderform');
         var query = frm.inpSearch.value;
+        var facet = frm.facetSelect.value;
 
         // Filter the table
         tf.setFilterValue(0, "*"+query); // column 0, * = contains
+        tf.setFilterValue(1, "*"+facet);
         tf.filter();
 
         // Prevent form submission
@@ -234,5 +237,4 @@
 
     var tf = new TableFilter(document.querySelector("table"), filtersConfig);
     tf.init();
-    facets = 0{{ facetsX }} ;
 </script>
