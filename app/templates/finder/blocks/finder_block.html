@@ -128,11 +128,25 @@
 
 
 <form id="finderform" onsubmit = "filter(event);">
-    <label class="nhsuk-label" for="example">
+    <div class="nhsuk-form-group">
+    <label class="nhsuk-label" for="inpSearch">
         Filter table:
-    <input name="inpSearch" type="text">
+    <input class="nhsuk-input" name="inpSearch" type="text">
     </label>
-    <button type="submit">Submit</button>
+    </div>
+
+    <div class="nhsuk-form-group">
+        <label class="nhsuk-label" for="facet-select">
+        Record types:
+        </label>
+      <select class="nhsuk-select" id="facet-select" name="facet-select">
+        <option value="" selected>All</option>
+        <option value="=Clinical">Clinical</option>
+        <option value="=Dental">Dental</option>
+      </select>
+    </div>
+
+      <button type="submit" class="nhsuk-button">Filter</button>
 </form>
 
 <div class="table-wrapper" tabindex=0>
@@ -143,19 +157,6 @@
     {% if table_header %}
         <thead role="rowgroup">
         <tr role="row">
-            {% for column in table_header %}
-            {% with forloop.counter0 as col_index %}
-                <th role="columnheader" scope="col" {% cell_classname 0 col_index %}>
-                    {% if column.strip %}
-                        {% if html_renderer %}
-                            {{ column.strip|safe|linebreaksbr }}
-                        {% else %}
-                            {{ column.strip|linebreaksbr }}
-                        {% endif %}
-                    {% endif %}
-                </th>
-            {% endwith %}
-            {% endfor %}
         </tr>
         </thead>
     {% endif %}
