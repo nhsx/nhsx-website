@@ -7,6 +7,10 @@
         overflow: auto;
     }
 
+    /*.fltrow {display: none;
+    }
+    */
+
     .container { 
 	margin: auto;
 	max-width: 960px;
@@ -163,36 +167,37 @@
     <tbody>
     {% for row in data %}
     {% with forloop.counter0 as row_index %}
-        <tr role="row">
-            {% for column in row %}
-            {% with forloop.counter0 as col_index %}
-                {% if forloop.first %}
-                    <th role="cell" scope="row" {% cell_classname row_index col_index table_header %}>
-                        {% if column.strip %}
-                            {% if html_renderer %}
-                                {{ column.strip|safe|linebreaksbr }}
-                            {% else %}
-                                {{ column.strip|linebreaksbr }}
+        {% if forloop.last %}
+        {% else %}
+            <tr role="row">
+                {% for column in row %}
+                {% with forloop.counter0 as col_index %}
+                    {% if forloop.first %}
+                        <th role="cell" scope="row" {% cell_classname row_index col_index table_header %}>
+                            {% if column.strip %}
+                                {% if html_renderer %}
+                                    {{ column.strip|safe|linebreaksbr }}
+                                {% else %}
+                                    {{ column.strip|linebreaksbr }}
+                                {% endif %}
                             {% endif %}
-                        {% endif %}
-                    </th>
-                 {% else %}
-                    <td role="cell" {% cell_classname row_index col_index table_header %}>
-                        {% if column.strip %}
-                            {% if html_renderer %}
-                                {{ column.strip|safe|linebreaksbr }}
-                            {% else %}
-                                <span class="responsive-table__subheading">
-                                    {{table_header|index:col_index}}
-                                </span>
-                                {{ column.strip|linebreaksbr }}
-                            {% endif %}
-                        {% endif %}
-                    </td>
-                 {% endif %}
-            {% endwith %}
-            {% endfor %}
-        </tr>
+                        </th>
+                    {% else %}
+                        <td role="cell" {% cell_classname row_index col_index table_header %}>
+                                {% if html_renderer %}
+                                    {{ column.strip|safe|linebreaksbr }}
+                                {% else %}
+                                    <span class="responsive-table__subheading">
+                                        {{table_header|index:col_index}}
+                                    </span>
+                                    {{ column.strip|linebreaksbr }}
+                                {% endif %}
+                        </td>
+                    {% endif %}
+                {% endwith %}
+                {% endfor %}
+            </tr>
+        {% endif %}
     {% endwith %}
     {% endfor %}
     </tbody>
@@ -229,5 +234,5 @@
 
     var tf = new TableFilter(document.querySelector("table"), filtersConfig);
     tf.init();
-    facets = {{ facets }} ;
+    facets = 0{{ facetsX }} ;
 </script>
