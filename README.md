@@ -82,4 +82,4 @@ script/manpy COMMAND
 
 ## License
 
-Released under the MIT license.
+Released under the MIT license
