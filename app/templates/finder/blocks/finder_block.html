@@ -230,8 +230,10 @@
         var query = frm.inpSearch.value;
         var facet = frm.facetSelect.value;
 
-        // Filter the table
-        tf.setFilterValue(0, "*"+query); // column 0, * = contains
+        // Filter the table with all words
+        and_query = query.replace(/ /g, ' && *')
+
+        tf.setFilterValue(0, "*"+and_query); // column 0, * = contains
         tf.setFilterValue(1, "*"+facet);
         tf.filter();
 
