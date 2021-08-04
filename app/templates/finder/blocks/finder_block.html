@@ -21,6 +21,7 @@
       table {
 	border-collapse: collapse;
 	border-spacing: 0;
+  border-top: 2px solid grey;
       }
 	
       caption { 
@@ -141,7 +142,11 @@
 
     <div class="nhsuk-form-group">
         <label class="nhsuk-label" for="facetselect">
-        Record type:
+          {% if table_header %} 
+            {{data.0.1}}:
+          {% else %}
+            Category:
+          {% endif %}
         </label>
       <select class="nhsuk-select" id="facetSelect" name="facetSelect">
         <option value="" selected>All</option>
@@ -152,6 +157,7 @@
     </div>
 
       <button type="submit" class="nhsuk-button">Search</button>
+      <p><a href="javascript:reset()">clear search</a></p>
 </form>
 
 <div class="table-wrapper" tabindex=0>
@@ -211,25 +217,37 @@
 <script src="/static/_dev/tablefilter/tablefilter.js"></script>
 
 <script>
+
+        function reset(evt){
+          var frm = document.getElementById('finderform');
+          frm.inpSearch.value="";
+          frm.facetSelect.value="";
+          filter(evt);
+        }
         // Form submission logic for filtering the table
         function filter(evt){
         var frm = document.getElementById('finderform');
         var query = frm.inpSearch.value;
         var facet = frm.facetSelect.value;
 
-        // Filter the table
-        tf.setFilterValue(0, "*"+query); // column 0, * = contains
+        // Filter the table with all words
+        and_query = query.replace(/ /g, ' && *')
+
+        tf.setFilterValue(0, "*"+and_query); // column 0, * = contains
         tf.setFilterValue(1, "*"+facet);
         tf.filter();
 
         // Prevent form submission
-        evt.preventDefault();
+        if (evt) {evt.preventDefault()};
     };
 </script>
 
 <script data-config>
     var filtersConfig = {
         base_path: '/static/_dev/tablefilter/',
+        single_filter: {exclude_cols: [],
+                        css_class: 'nhsuk-input',
+                        auto_filter: {delay: 100}}
         //grid: false,  // turn off search-per-column
         // auto_filter: {delay: 100 }, // milliseconds -- works with original filter
         // highlight_keywords: true, // feels good but renders terribly

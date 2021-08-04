@@ -18,9 +18,9 @@ class FinderBlock(TableBlock):
         # if the first row is a header, we skip it (offset=1) otherwise we don't (offset=0)
         # and we get the second column (row[1]) and use it as a facet
         # and ignore None values (if row[1])
-        context["context"]["facets"] = sorted(
-            list(set([row[1] for row in data[offset:] if row[1]]))
-        )
+        all_facets = [row[1] for row in data[offset:] if row[1]]
+        context["context"]["facets"] = list(dict.fromkeys(all_facets))
+
         return super().render(value, **context)
 
     class Meta:
