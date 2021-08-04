@@ -157,6 +157,7 @@
     </div>
 
       <button type="submit" class="nhsuk-button">Search</button>
+      <p><a href="javascript:reset()">clear search</a></p>
 </form>
 
 <div class="table-wrapper" tabindex=0>
@@ -216,6 +217,13 @@
 <script src="/static/_dev/tablefilter/tablefilter.js"></script>
 
 <script>
+
+        function reset(evt){
+          var frm = document.getElementById('finderform');
+          frm.inpSearch.value="";
+          frm.facetSelect.value="";
+          filter(evt);
+        }
         // Form submission logic for filtering the table
         function filter(evt){
         var frm = document.getElementById('finderform');
@@ -228,7 +236,7 @@
         tf.filter();
 
         // Prevent form submission
-        evt.preventDefault();
+        if (evt) {evt.preventDefault()};
     };
 </script>
 
