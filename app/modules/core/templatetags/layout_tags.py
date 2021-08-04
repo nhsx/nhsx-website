@@ -7,7 +7,9 @@ register = template.Library()
 def index(list, index):
     try:
         return list[index]
-    except IndexError:  # might not be a list
+    except TypeError:  # might not be a list, might be None
+        return None
+    except IndexError:  # list might be too short
         return None
 
 
