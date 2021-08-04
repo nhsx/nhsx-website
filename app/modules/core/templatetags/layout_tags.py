@@ -5,7 +5,10 @@ register = template.Library()
 
 @register.filter
 def index(list, index):
-    return list[index]
+    try:
+        return list[index]
+    except IndexError:  # might not be a list
+        return None
 
 
 @register.filter
