@@ -21,6 +21,7 @@
       table {
 	border-collapse: collapse;
 	border-spacing: 0;
+  border-top: 2px solid grey;
       }
 	
       caption { 
@@ -141,7 +142,11 @@
 
     <div class="nhsuk-form-group">
         <label class="nhsuk-label" for="facetselect">
-        Record type:
+          {% if table_header %} 
+            {{data.0.1}}:
+          {% else %}
+            Category:
+          {% endif %}
         </label>
       <select class="nhsuk-select" id="facetSelect" name="facetSelect">
         <option value="" selected>All</option>
