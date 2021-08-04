@@ -159,12 +159,10 @@
     {% if table_caption %}
        <caption>{{ table_caption }}</caption>
     {% endif %}
-    {% if table_header %}
         <thead role="rowgroup">
         <tr role="row">
         </tr>
         </thead>
-    {% endif %}
     <tbody>
     {% for row in data %}
     {% with forloop.counter0 as row_index %}
@@ -188,9 +186,11 @@
                                 {% if html_renderer %}
                                     {{ column.strip|safe|linebreaksbr }}
                                 {% else %}
-                                    <span class="responsive-table__subheading">
-                                        {{table_header|index:col_index}}
-                                    </span>
+                                    {% if table_header %}
+                                        <span class="responsive-table__subheading">
+                                            {{table_header|index:col_index}}
+                                        </span>
+                                    {% endif %}
                                     {{ column.strip|linebreaksbr }}
                                 {% endif %}
                         </td>
