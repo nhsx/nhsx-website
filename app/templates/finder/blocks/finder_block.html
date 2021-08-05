@@ -16,7 +16,8 @@
 	max-width: 960px;
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
       }
-      
+    
+    .hidden-cell {display: none;}
       /* Standard table styling, change as desired */
       table {
 	border-collapse: collapse;
@@ -132,7 +133,7 @@
 </style>
 
 
-<form id="finderform" onsubmit = "filter(event);">
+<form id="finderform" onsubmit="filter(event);">
     <div class="nhsuk-form-group">
     <label class="nhsuk-label" for="inpSearch">
         Search:
@@ -175,6 +176,16 @@
         {% if forloop.last %}
         {% else %}
             <tr role="row">
+              {# search cell #}
+              <td role="cell" class="hidden-cell" aria-hidden="true" {% cell_classname row_index col_index table_header %}>
+              {% for column in row %}
+                         {% if html_renderer %}
+                             {{ column.strip|safe|linebreaksbr }}
+                         {% else %}
+                             {{ column.strip|linebreaksbr }}
+                         {% endif %}
+                         {% endfor %}
+                       </td>
                 {% for column in row %}
                 {% with forloop.counter0 as col_index %}
                     {% if forloop.first %}
@@ -201,8 +212,13 @@
                                 {% endif %}
                         </td>
                     {% endif %}
+
+
+
+
                 {% endwith %}
                 {% endfor %}
+            
             </tr>
         {% endif %}
     {% endwith %}
@@ -234,7 +250,7 @@
         and_query = query.replace(/ /g, ' && *')
 
         tf.setFilterValue(0, "*"+and_query); // column 0, * = contains
-        tf.setFilterValue(1, "*"+facet);
+        tf.setFilterValue(2, "*"+facet);
         tf.filter();
 
         // Prevent form submission
@@ -248,11 +264,12 @@
         //single_filter: {exclude_cols: [],
         //                css_class: 'nhsuk-input',
         //                auto_filter: {delay: 100}}
-        //grid: false,  // turn off search-per-column
+        // grid: false,  // turn off search-per-column
         // auto_filter: {delay: 100 }, // milliseconds -- works with original filter
         // highlight_keywords: true, // feels good but renders terribly
     };
 
+    
     var tf = new TableFilter(document.querySelector("table"), filtersConfig);
     tf.init();
 </script>
