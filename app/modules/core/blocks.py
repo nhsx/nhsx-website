@@ -2,7 +2,6 @@
 import collections
 
 from bs4 import BeautifulSoup
-from django import forms
 
 from wagtail.core import blocks
 from wagtail.embeds import embeds
@@ -18,16 +17,31 @@ from wagtailnhsukfrontend.blocks import (  # NOQA
     ImageBlock,
     PanelBlock,
     ExpanderBlock,
-    GreyPanelBlock,
+    GreyPanelBlock,  # deprecated, not in v5 (0.8)
     InsetTextBlock,
-    PanelListBlock,
+    PanelListBlock,  # deprecated, not in v5 (0.8)
     WarningCalloutBlock,
     FlattenValueContext,
     ActionLinkBlock,
+    # below here appear new to v5 (0.7+)
+    CareCardBlock,
+    ExpanderGroupBlock,
+    DetailsBlock,
+    CardGroupBlock,
+    CardFeatureBlock,
+    CardImageBlock,
+    CardClickableBlock,
+    CardBasicBlock,
+    SummaryListBlock,
+    SummaryListRowBlock,
+    BasePromoBlock,
+    DontBlock,
+    DoBlock,
 )
 
 # Project specific Models
 from modules.core.models.snippets import LegalInformation
+from modules.finder.blocks import FinderBlock
 
 from modules.case_studies.abstract import (
     CaseStudyTag,
@@ -63,7 +77,13 @@ class PromoBlock(BasePromoBlock):
     class Meta:
         template = "wagtailnhsukfrontend/promo.html"
 
-    size = blocks.ChoiceBlock([("", "Default"), ("small", "Small"),], required=False)
+    size = blocks.ChoiceBlock(
+        [
+            ("", "Default"),
+            ("small", "Small"),
+        ],
+        required=False,
+    )
 
     heading_level = blocks.IntegerBlock(
         min_value=2,
@@ -85,7 +105,12 @@ class PromoBanner(BasePromoBlock):
         help_text="The heading level affects users with screen readers. Default=3, Min=2, Max=4.",
     )
     image_alignment = blocks.ChoiceBlock(
-        [("right", "Right"), ("left", "Left"),], default="right", required=True,
+        [
+            ("right", "Right"),
+            ("left", "Left"),
+        ],
+        default="right",
+        required=True,
     )
 
     def get_form_context(self, value, prefix="", errors=None):
@@ -115,16 +140,28 @@ class PromoGroupBlock(FlattenValueContext, blocks.StructBlock):
         template = "wagtailnhsukfrontend/promo_group.html"
 
     column = blocks.ChoiceBlock(
-        [("one-half", "One-half"), ("one-third", "One-third"),],
+        [
+            ("one-half", "One-half"),
+            ("one-third", "One-third"),
+        ],
         default="one-half",
         required=True,
     )
 
-    size = blocks.ChoiceBlock([("", "Default"), ("small", "Small"),], required=False)
+    size = blocks.ChoiceBlock(
+        [
+            ("", "Default"),
+            ("small", "Small"),
+        ],
+        required=False,
+    )
 
     def get_context(self, value, parent_context=None):
         context = super().get_context(value, parent_context)
-        context["num_columns"] = {"one-half": 2, "one-third": 3,}[value["column"]]
+        context["num_columns"] = {
+            "one-half": 2,
+            "one-third": 3,
+        }[value["column"]]
         return context
 
     heading_level = blocks.IntegerBlock(
@@ -369,7 +406,10 @@ class CaseStudyBlock(blocks.StructBlock):
         help_text="The heading level affects users with screen readers. Default=3, Min=2, Max=4.",
     )
     column = blocks.ChoiceBlock(
-        [("one-half", "One-half"), ("one-third", "One-third"),],
+        [
+            ("one-half", "One-half"),
+            ("one-third", "One-third"),
+        ],
         default="one-third",
         required=True,
     )
@@ -377,7 +417,10 @@ class CaseStudyBlock(blocks.StructBlock):
 
     def get_context(self, value, parent_context=None):
         context = super().get_context(value, parent_context=parent_context)
-        context["num_columns"] = {"one-half": 2, "one-third": 3,}[value["column"]]
+        context["num_columns"] = {
+            "one-half": 2,
+            "one-third": 3,
+        }[value["column"]]
         value["tag"] = CaseStudyTag.objects.get(id=value["tag_id"])
         value["items"] = self._get_items(value["tag_id"], 99)
         context.update(value)
@@ -455,22 +498,44 @@ content_blocks = [
     ("html_anchor", HTMLAnchorBlock(group=" Content")),
 ]
 
-nhs_blocks = [
-    ("image", ImageBlock(group=" NHS Components")),
-    ("panel", PanelBlock(group=" NHS Components")),
-    ("promo", PromoBlock(group=" NHS Components")),
-    ("expander", NHSXExpanderBlock(group=" NHS Components")),
-    ("grey_panel", GreyPanelBlock(group=" NHS Components")),
-    ("inset_text", InsetTextBlock(group=" NHS Components")),
-    ("panel_list", PanelListBlock(group=" NHS Components")),
-    ("promo_group", PromoGroupBlock(group=" NHS Components")),
-    ("warning_callout", WarningCalloutBlock(group=" NHS Components")),
-    ("table", TableBlock(group=" NHS Components")),
-    ("panel_table", PanelTableBlock(group=" NHS Components")),
-    ("action_link", ActionLinkBlock(group=" NHS Components")),
-    ("legal_information", LegalInformationBlock(group=" NHS Components")),
-    ("newsletter_signup", NewsletterBlock(group=" Content")),
+deprecated_blocks = [
+    ("grey_panel", GreyPanelBlock(group="Deprecated")),
+    ("panel", PanelBlock(group="Deprecated")),
+    ("panel_list", PanelListBlock(group="Deprecated")),
+    ("promo", PromoBlock(group="Deprecated")),
+    ("promo_group", PromoGroupBlock(group="Deprecated")),
 ]
+
+v5_blocks = [
+    ("care_card", CareCardBlock(group=" NHS Components")),
+    ("expander_group", ExpanderGroupBlock(group=" NHS Components")),
+    ("details", DetailsBlock(group=" NHS Components")),
+    ("card_group", CardGroupBlock(group=" NHS Components")),
+    ("card_feature", CardFeatureBlock(group=" NHS Components")),
+    ("card_image", CardImageBlock(group=" NHS Components")),
+    ("card_clickable", CardClickableBlock(group=" NHS Components")),
+    ("card_basic", CardBasicBlock(group=" NHS Components")),
+    ("summary_list", SummaryListBlock(group=" NHS Components")),
+    ("summary_list_row", SummaryListRowBlock(group=" NHS Components")),
+    ("dont", DontBlock(group=" NHS Components")),
+    ("do", DoBlock(group=" NHS Components")),
+]
+nhs_blocks = (
+    [
+        ("image", ImageBlock(group=" NHS Components")),
+        ("expander", NHSXExpanderBlock(group=" NHS Components")),
+        ("inset_text", InsetTextBlock(group=" NHS Components")),
+        ("warning_callout", WarningCalloutBlock(group=" NHS Components")),
+        ("table", TableBlock(group=" NHS Components")),
+        ("panel_table", PanelTableBlock(group=" NHS Components")),
+        ("action_link", ActionLinkBlock(group=" NHS Components")),
+        ("legal_information", LegalInformationBlock(group=" NHS Components")),
+        ("newsletter_signup", NewsletterBlock(group=" Content")),
+        ("finder", FinderBlock(group=" NHS Components")),
+    ]
+    + v5_blocks
+    + deprecated_blocks
+)
 
 nhsx_blocks = content_blocks + nhs_blocks
 

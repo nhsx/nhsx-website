@@ -37,7 +37,7 @@ class AiLabFilterableResourceMixin(RoutablePageMixin):
     @route(r"^topic/([a-z\-0-9]+)/$")
     def filter_by_topic(self, request, topic=None, resource_type=None):
         context = self.get_context(request)
-        resources = self._get_resources(topic, resource_type).live()
+        resources = self._get_resources(topic, resource_type)
         template = self.get_template(request)
         topics = AiLabTopic.objects.all()
 
@@ -70,19 +70,19 @@ class AiLabFilterableResourceMixin(RoutablePageMixin):
 
     def _get_resources(self, topic=None, resource_type=None):
         if topic is None:
-            resources = self.get_children().specific()
+            resources = self.get_children().specific().live()
         else:
             resources = self._filter_by_topic(topic)
 
         if resource_type is not None:
-            resources = resources.type(resource_type)
+            resources = resources.type(resource_type).live()
 
         return resources.exclude(id__in=self._sub_resource_ids())
 
     def _filter_by_topic(self, topic):
         ids = self._get_ids_for_topic(topic)
 
-        return Page.objects.filter(id__in=(ids)).specific()
+        return Page.objects.filter(id__in=(ids)).specific().live()
 
     def _get_ids_for_topic(self, topic):
         ids = []
@@ -101,11 +101,12 @@ class AiLabFilterableResourceMixin(RoutablePageMixin):
             .objects.child_of(self)
             .filter(topics__slug=topic)
             .values_list("id", flat=True)
+            .live()
         )
 
     def _sub_resource_ids(self):
         ids = []
-        for collection in AiLabResourceCollection.objects.all():
+        for collection in AiLabResourceCollection.objects.all().live():
             for resource in collection.resources:
                 ids.append(resource.value.id)
 
@@ -173,7 +174,7 @@ class AiLabResourceCollection(AiLabFilterableResourceMixin, SectionPage):
                 ]
             )
 
-        resources = Page.objects.filter(id__in=resource_ids).specific()
+        resources = Page.objects.live().filter(id__in=resource_ids).specific()
 
         if resource_type is None:
             return resources
@@ -210,17 +211,17 @@ class AiLabResourceIndexPage(AiLabFilterableResourceMixin, BasePage):
 
     def _get_resources(self, topic=None, resource_type=None):
         resource_ids = []
-        children = self.get_children().specific()
+        children = self.get_children().specific().live()
 
         for child in children:
             if topic is None:
-                for resource in child.get_children().specific():
+                for resource in child.get_children().specific().live():
                     resource_ids.append(resource.id)
             else:
                 for id in child._get_ids_for_topic(topic):
                     resource_ids.append(id)
 
-        resources = Page.objects.filter(id__in=resource_ids).specific()
+        resources = Page.objects.live().filter(id__in=resource_ids).specific()
 
         if resource_type is not None:
             resources = resources.type(resource_type)

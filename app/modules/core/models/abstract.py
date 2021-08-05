@@ -198,15 +198,15 @@ class PageAuthorsMixin(models.Model):
 
 class SocialMetaMixin(models.Model):
     """
-        Adds social media meta stuff to the promote tab.
+    Adds social media meta stuff to the promote tab.
 
-        Twitter summary card image
-        Twitter summary card image alt text
-        Twitter summary card title
-        Twitter summary card description
-        FB OG title
-        FB OG description
-        FB OG image
+    Twitter summary card image
+    Twitter summary card image alt text
+    Twitter summary card title
+    Twitter summary card description
+    FB OG title
+    FB OG description
+    FB OG image
     """
 
     class Meta:
@@ -452,8 +452,7 @@ class BasePage(Page, SocialMetaMixin):
 
     @cached_classmethod
     def get_edit_handler(cls) -> TabbedInterface:  # NOQA
-        """
-        """
+        """"""
         tabs = cls.get_admin_tabs()
         edit_handler = TabbedInterface(
             [
@@ -560,8 +559,7 @@ class BaseIndexPage(BasePage, InlineHeroMixin):
 
 class SluggedCategory(models.Model):
 
-    """A base Django model that can be used to categorise content
-    """
+    """A base Django model that can be used to categorise content"""
 
     class Meta:
         abstract = True

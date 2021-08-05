@@ -23,9 +23,7 @@ from modules.publications.models import PublicationPage
 
 class SectionPage(BasePage, InlineHeroMixin, SubNavMixin):
 
-    """SectionPage is a top level page for containing grouped articles.
-
-    """
+    """SectionPage is a top level page for containing grouped articles."""
 
     parent_page_types: list = [
         "home.HomePage",
@@ -91,9 +89,7 @@ class SectionPage(BasePage, InlineHeroMixin, SubNavMixin):
 
 class ArticlePage(BasePage, SidebarMixin):
 
-    """ArticlePage is a generic content page.
-
-    """
+    """ArticlePage is a generic content page."""
 
     parent_page_types: list = [
         "core.SectionPage",

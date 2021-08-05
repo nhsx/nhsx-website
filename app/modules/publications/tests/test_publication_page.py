@@ -48,24 +48,22 @@ def test_publication_page_has_dates(publication_page):
 
 def test_publication_page_has_history(publication_page):
     rv = client.get(publication_page.url)
-    assert "See updates" not in rv.rendered_content
+    assert "see updates" not in rv.rendered_content
     assert "History" not in rv.rendered_content
     publication_page.history = "<h3>are doomed to repeat it<h3>"
     publication_page.save_revision().publish()
     rv = client.get(publication_page.url)
     assert "are doomed to repeat it" in rv.rendered_content
-    assert "See updates" in rv.rendered_content
+    assert "see updates" in rv.rendered_content
     assert "History" in rv.rendered_content
 
 
 def test_publication_page_gets_created(publication_page):
-    """Test that we have a publication page created by the fixture
-    """
+    """Test that we have a publication page created by the fixture"""
     assert publication_page is not None
 
 
 def test_publication_page_200(publication_page):
-    """Test that we have a publication page created by the fixture
-    """
+    """Test that we have a publication page created by the fixture"""
     rv = client.get(publication_page.url)
     assert rv.status_code == 200

@@ -11,14 +11,12 @@ client = Client()
 
 
 def test_section_page_gets_created(section_page):
-    """Test that we have a section page created by the fixture
-    """
+    """Test that we have a section page created by the fixture"""
     assert section_page is not None
 
 
 def test_section_page_200(section_page):
-    """Test that the section page is reachable and returns a 200
-    """
+    """Test that the section page is reachable and returns a 200"""
     rv = client.get(section_page.url)
     assert rv.status_code == 200
 
@@ -41,14 +39,12 @@ def test_section_page_can_have_width_specified(section_page):
 
 
 def test_section_page_get_children(section_page, article_pages):
-    """Check that section_page has 10 children
-    """
+    """Check that section_page has 10 children"""
     assert len(section_page.get_children()) == 10
 
 
 def section_page_can_have_section_pages_as_children(section_page, section_pages):
-    """Check that section_page can have other section pages as children
-    """
+    """Check that section_page can have other section pages as children"""
     assert len(section_page.get_children()) == 10
 
 
@@ -136,7 +132,7 @@ def test_section_page_title_without_hero(section_page):
 
 def test_section_page_with_latest_blog_posts(section_page, blog_posts):
     """Test that we can list blog posts with a specific tag
-        when using that block"""
+    when using that block"""
 
     p = section_page
 
@@ -170,7 +166,7 @@ def test_section_page_with_latest_blog_posts(section_page, blog_posts):
 
 def test_section_page_with_latest_news(section_page, news_items):
     """Test that we can list blog posts with a specific tag
-        when using that block"""
+    when using that block"""
 
     p = section_page
 

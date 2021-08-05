@@ -15,7 +15,7 @@ image_widget = AdminImageChooser(
 class AuthorForm(forms.ModelForm):
 
     """
-        Form used by admins to register a new author with profile
+    Form used by admins to register a new author with profile
     """
 
     class Meta:

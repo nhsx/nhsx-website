@@ -38,9 +38,17 @@ logger = logging.getLogger(__name__)
 
 class CaseStudyPage(BasePage, InlineHeroMixin, SidebarMixin):
 
-    display_order = models.IntegerField(default=0, null=False, blank=False,)
+    display_order = models.IntegerField(
+        default=0,
+        null=False,
+        blank=False,
+    )
 
-    alt_text = models.CharField(max_length=300, null=True, blank=True,)
+    alt_text = models.CharField(
+        max_length=300,
+        null=True,
+        blank=True,
+    )
 
     tags = ClusterTaggableManager(through=CaseStudyTags, blank=True)
 

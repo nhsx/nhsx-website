@@ -167,7 +167,11 @@ class HeaderSettings(ClusterableModel, BaseSetting):
             heading="Service",
         ),
         MultiFieldPanel(
-            [PageChooserPanel("logo_link"), FieldPanel("logo_aria"),], heading="Logo"
+            [
+                PageChooserPanel("logo_link"),
+                FieldPanel("logo_aria"),
+            ],
+            heading="Logo",
         ),
         FieldPanel("show_search"),
         InlinePanel("navigation_links", heading="Navigation"),
@@ -181,7 +185,10 @@ class AbstractLink(Orderable):
 
     label = models.CharField(max_length=255)
     page = models.ForeignKey(
-        "wagtailcore.Page", null=True, on_delete=models.SET_NULL, related_name="+",
+        "wagtailcore.Page",
+        null=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
     )
 
     panels = [
@@ -192,7 +199,9 @@ class AbstractLink(Orderable):
 
 class NavigationLink(AbstractLink):
     setting = ParentalKey(
-        HeaderSettings, on_delete=models.CASCADE, related_name="navigation_links",
+        HeaderSettings,
+        on_delete=models.CASCADE,
+        related_name="navigation_links",
     )
 
 
@@ -221,5 +230,7 @@ class FooterSettings(ClusterableModel, BaseSetting):
 class FooterLinks(AbstractLink):
 
     setting = ParentalKey(
-        FooterSettings, on_delete=models.CASCADE, related_name="footer_links",
+        FooterSettings,
+        on_delete=models.CASCADE,
+        related_name="footer_links",
     )
