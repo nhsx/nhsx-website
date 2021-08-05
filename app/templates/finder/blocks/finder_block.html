@@ -143,7 +143,7 @@
     <div class="nhsuk-form-group">
         <label class="nhsuk-label" for="facetselect">
           {% if table_header %} 
-            {{data.0.1}}:
+            {{table_header.1}}:
           {% else %}
             Category:
           {% endif %}
@@ -245,9 +245,9 @@
 <script data-config>
     var filtersConfig = {
         base_path: '/static/_dev/tablefilter/',
-        single_filter: {exclude_cols: [],
-                        css_class: 'nhsuk-input',
-                        auto_filter: {delay: 100}}
+        //single_filter: {exclude_cols: [],
+        //                css_class: 'nhsuk-input',
+        //                auto_filter: {delay: 100}}
         //grid: false,  // turn off search-per-column
         // auto_filter: {delay: 100 }, // milliseconds -- works with original filter
         // highlight_keywords: true, // feels good but renders terribly
