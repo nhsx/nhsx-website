@@ -1,0 +1,29 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.0.1
+    hooks:
+      - id: check-yaml
+        exclude: deployment/
+      - id: trailing-whitespace
+      - id: check-merge-conflict
+      - id: fix-byte-order-marker
+      - id: debug-statements
+      - id: check-json
+  - repo: https://github.com/psf/black
+    rev: 21.6b0
+    hooks:
+      - id: black
+        exclude: migrations/
+  - repo: https://github.com/Lucas-C/pre-commit-hooks-bandit
+    rev: v1.0.5
+    hooks:
+      - id: python-bandit-vulnerability-check
+  - repo: https://github.com/Lucas-C/pre-commit-hooks-safety
+    rev: v1.2.1
+    hooks:
+      - id: python-safety-dependencies-check
+  - repo: https://github.com/pryorda/dockerfilelint-precommit-hooks
+    rev: v0.1.0
+    hooks:
+      - id: dockerfilelint
+        stages: [commit]
