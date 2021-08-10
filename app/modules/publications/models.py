@@ -23,7 +23,6 @@ from modules.core.models.abstract import (
     BasePage,
     BaseIndexPage,
     CanonicalMixin,
-    PageAuthorsMixin,
 )
 
 
@@ -80,6 +79,7 @@ class PublicationPage(BasePage, CanonicalMixin):
         header_tags = ["h2"]
         toc = []
         # NOTE: we import as HTML because we don't have a wrapping tag
+        print(html, type(html))
         root = lxml.html.fromstring(html)
         for tag_name in header_tags:
             for tag in root.xpath(f"//{tag_name}"):
@@ -104,11 +104,15 @@ class PublicationPage(BasePage, CanonicalMixin):
         context = super().get_context(request)
         context["toc"] = []  # table of contents
         self.slug_count = Counter({"contents": 1})
-        for i, block in enumerate(self.body._raw_data):
-            if block and block["type"] == "rich_text":  # block can be None
-                replacement_html, new_toc = self.replace_headers(block["value"])
+        for streamblock in self.body:
+            if (
+                streamblock.block and streamblock.block_type == "rich_text"
+            ):  # block might be None
+                replacement_html, new_toc = self.replace_headers(
+                    streamblock.value.source
+                )
                 context["toc"].extend(new_toc)
-                self.body._raw_data[i]["value"] = replacement_html
+                streamblock.value.source = replacement_html
         return context
 
 
