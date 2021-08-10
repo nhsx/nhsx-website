@@ -79,6 +79,7 @@ class PublicationPage(BasePage, CanonicalMixin):
         and text of those tags so we can make a table of contents."""
         header_tags = ["h2"]
         toc = []
+        # NOTE: we import as HTML because we don't have a wrapping tag
         root = lxml.html.fromstring(html)
         for tag_name in header_tags:
             for tag in root.xpath(f"//{tag_name}"):
@@ -90,7 +91,10 @@ class PublicationPage(BasePage, CanonicalMixin):
                 # modify the tag and record the details
                 tag.set("id", slug)
                 toc.append((header_name, slug))
-        return lxml.html.tostring(root).decode("utf-8"), toc
+        # NOTE: we use the XML exporter because the embedded image substitution code
+        # is finicky about the difference between <embed /> and <embed></embed>:
+        # only the former is permissible.
+        return lxml.html.tostring(root, method="xml").decode("utf-8"), toc
 
     def get_context(self, request):
         """Pass the html of each richtext node within the streamfield to
