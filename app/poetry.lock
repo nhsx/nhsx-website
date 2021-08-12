@@ -952,17 +952,6 @@ dev = ["pre-commit", "tox"]
 
 [[package]]
 name = "prompt-toolkit"
-version = "3.0.3"
-description = "Library for building powerful interactive command lines in Python"
-category = "dev"
-optional = false
-python-versions = ">=3.6"
-
-[package.dependencies]
-wcwidth = "*"
-
-[[package]]
-name = "prompt-toolkit"
 version = "3.0.19"
 description = "Library for building powerful interactive command lines in Python"
 category = "dev"
@@ -1324,20 +1313,6 @@ python-versions = ">=2.6, !=3.0.*, !=3.1.*, !=3.2.*"
 
 [[package]]
 name = "traitlets"
-version = "5.0.5"
-description = "Traitlets Python configuration system"
-category = "dev"
-optional = false
-python-versions = ">=3.7"
-
-[package.dependencies]
-ipython-genutils = "*"
-
-[package.extras]
-test = ["pytest"]
-
-[[package]]
-name = "traitlets"
 version = "4.3.3"
 description = "Traitlets Python config system"
 category = "dev"
@@ -1391,7 +1366,7 @@ python-versions = "*"
 
 [[package]]
 name = "wagtail"
-version = "2.14"
+version = "2.14.1"
 description = "A Django content management system."
 category = "main"
 optional = false
@@ -2119,8 +2094,6 @@ pluggy = [
     {file = "pluggy-0.13.1.tar.gz", hash = "sha256:15b2acde666561e1298d71b523007ed7364de07029219b604cf808bfa1c765b0"},
 ]
 prompt-toolkit = [
-    {file = "prompt_toolkit-3.0.3-py3-none-any.whl", hash = "sha256:c93e53af97f630f12f5f62a3274e79527936ed466f038953dfa379d4941f651a"},
-    {file = "prompt_toolkit-3.0.3.tar.gz", hash = "sha256:a402e9bf468b63314e37460b68ba68243d55b2f8c4d0192f85a019af3945050e"},
     {file = "prompt_toolkit-3.0.19-py3-none-any.whl", hash = "sha256:7089d8d2938043508aa9420ec18ce0922885304cddae87fb96eebca942299f88"},
     {file = "prompt_toolkit-3.0.19.tar.gz", hash = "sha256:08360ee3a3148bdb5163621709ee322ec34fc4375099afa4bbf751e9b7b7fa4f"},
 ]
@@ -2282,8 +2255,6 @@ toml = [
     {file = "toml-0.10.2.tar.gz", hash = "sha256:b3bda1d108d5dd99f4a20d24d9c348e91c4db7ab1b749200bded2f839ccbe68f"},
 ]
 traitlets = [
-    {file = "traitlets-5.0.5-py3-none-any.whl", hash = "sha256:69ff3f9d5351f31a7ad80443c2674b7099df13cc41fc5fa6e2f6d3b0330b0426"},
-    {file = "traitlets-5.0.5.tar.gz", hash = "sha256:178f4ce988f69189f7e523337a3e11d91c786ded9360174a3d9ca83e79bc5396"},
     {file = "traitlets-4.3.3-py2.py3-none-any.whl", hash = "sha256:70b4c6a1d9019d7b4f6846832288f86998aa3b9207c6821f3578a6a6a467fe44"},
     {file = "traitlets-4.3.3.tar.gz", hash = "sha256:d023ee369ddd2763310e4c3eae1ff649689440d4ae59d7485eb4cfbbe3e359f7"},
 ]
@@ -2332,8 +2303,8 @@ uwsgi = [
     {file = "uWSGI-2.0.19.1.tar.gz", hash = "sha256:faa85e053c0b1be4d5585b0858d3a511d2cd10201802e8676060fd0a109e5869"},
 ]
 wagtail = [
-    {file = "wagtail-2.14-py3-none-any.whl", hash = "sha256:7ac092d212bbf798aafe3b82d7476c48a38239d63e648dbbf4f9954486beaa8b"},
-    {file = "wagtail-2.14.tar.gz", hash = "sha256:5058f9ba80821364caa3d4197eacb74f0a31495cd39113991c74db225113c544"},
+    {file = "wagtail-2.14.1-py3-none-any.whl", hash = "sha256:45de88c0573baee1517cebb86b3102b5f77778791c5fba8fada32fbc4e47e756"},
+    {file = "wagtail-2.14.1.tar.gz", hash = "sha256:e4bec0ecb24da6aa3bbe6feb6e62518c8d155d86a3bb26b3d7fcaa01688d4c99"},
 ]
 wagtail-2fa = [
     {file = "wagtail-2fa-1.4.2.tar.gz", hash = "sha256:b9f06ffc9e8ac37df461dd0e97ca08754849610b2e7ca180010f95d5523a35ac"},
