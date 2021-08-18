@@ -1676,6 +1676,7 @@ boto3 = [
 botocore = [
     {file = "botocore-1.21.17-py3-none-any.whl", hash = "sha256:5b665142bdb2c30fc86b15bc48dd8b74c9cac69dc3e20b6d8f79cb60ff368797"},
     {file = "botocore-1.21.17.tar.gz", hash = "sha256:a0d64369857d86b3a6d01b0c5933671c2394584311ce3af702271ba221b09afa"},
+
 ]
 bugsnag = [
     {file = "bugsnag-4.1.0-py3-none-any.whl", hash = "sha256:4ae7fc4ec923aefc3a54466b45cfce4953fd77b14213fa2f85409be0a092494d"},
