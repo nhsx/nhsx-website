@@ -21,9 +21,14 @@ img.full-width {
 img.richtext-image {
 
   // full width already catered for above
-  &.left,
+  &.left {
+    max-width: 280px;
+    float: left;
+  }
+
   &.right {
     max-width: 280px;
+    float: right;
   }
 }
 
