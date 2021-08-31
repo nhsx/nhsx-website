@@ -14,7 +14,7 @@
       <div class="nhsai-resource__meta nhsuk-grid-column-two-thirds">
         <h1 class="nhsuk-heading-xl">{{ page.title }}</h1>
 
-        {% for pub in page.get_children %}
+        {% for pub in page.get_children.live %}
         <div class="nhsuk-action-link">
           <a class="nhsuk-action-link__link" href="{{pub.url}}">
             <svg class="nhsuk-icon nhsuk-icon__arrow-right-circle" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 384 512" aria-hidden="true">
