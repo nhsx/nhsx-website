@@ -16,7 +16,7 @@
           <h1 class="nhsuk-heading-xl nhsuk-u-margin-bottom-5">{{ page.title }}</h1>
           {{ page.body }}
 
-          {% for group in page.get_children.specific|chunk:4 %}
+          {% for group in page.get_children.live.specific|chunk:4 %}
           <div class="nhsuk-grid-row">
             {% for person in group %}
             {% include 'people/_partials/person.html' with person=person %}
