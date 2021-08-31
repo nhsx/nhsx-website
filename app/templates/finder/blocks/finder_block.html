@@ -133,7 +133,7 @@
 </style>
 
 
-<form id="finderform" onsubmit="filter(event);">
+<form id="finderform-{{block.id}}" onsubmit="filter('{{block.id}}', event);">
     <div class="nhsuk-form-group">
     <label class="nhsuk-label" for="inpSearch">
         Search:
@@ -142,14 +142,14 @@
     </div>
 
     <div class="nhsuk-form-group">
-        <label class="nhsuk-label" for="facetselect">
+        <label class="nhsuk-label" for="facetSelect-{{block.id}}">
           {% if table_header %} 
             {{table_header.1}}:
           {% else %}
             Category:
           {% endif %}
         </label>
-      <select class="nhsuk-select" id="facetSelect" name="facetSelect">
+      <select class="nhsuk-select" id="facetSelect-{{block.id}}" name="facetSelect">
         <option value="" selected>All</option>
         {% for facet in facets %}
         <option value="{{facet}}">{{facet}}</option>
@@ -158,11 +158,11 @@
     </div>
 
       <button type="submit" class="nhsuk-button">Search</button>
-      <p><a href="javascript:reset()">clear search</a></p>
+      <p><a href="javascript:reset('{{block.id}}', null)">clear search</a></p>
 </form>
 
 <div class="table-wrapper" tabindex=0>
-<table class="responsive-table" role="table">
+<table class="responsive-table finder-table-{{block.id}}" role="table">
     {% if table_caption %}
        <caption>{{ table_caption }}</caption>
     {% endif %}
@@ -234,24 +234,24 @@
 
 <script>
 
-        function reset(evt){
-          var frm = document.getElementById('finderform');
+        function reset(blockid, evt){
+          var frm = document.getElementById('finderform-'+blockid);
           frm.inpSearch.value="";
           frm.facetSelect.value="";
-          filter(evt);
+          filter(blockid, evt);
         }
         // Form submission logic for filtering the table
-        function filter(evt){
-        var frm = document.getElementById('finderform');
+        function filter(blockid, evt){
+        var frm = document.getElementById('finderform-'+blockid);
         var query = frm.inpSearch.value;
         var facet = frm.facetSelect.value;
 
         // Filter the table with all words
         and_query = query.replace(/ /g, ' && *')
 
-        tf.setFilterValue(0, "*"+and_query); // column 0, * = contains
-        tf.setFilterValue(2, "*"+facet);
-        tf.filter();
+        tf[blockid].setFilterValue(0, "*"+and_query); // column 0, * = contains
+        tf[blockid].setFilterValue(2, "*"+facet);
+        tf[blockid].filter();
 
         // Prevent form submission
         if (evt) {evt.preventDefault()};
@@ -269,7 +269,9 @@
         // highlight_keywords: true, // feels good but renders terribly
     };
 
-    
-    var tf = new TableFilter(document.querySelector("table"), filtersConfig);
-    tf.init();
+    if (typeof tf === 'undefined') {
+      var tf = []
+    }
+    tf['{{block.id}}'] = new TableFilter(document.querySelector(".finder-table-{{block.id}}"), filtersConfig);
+    tf['{{block.id}}'].init();
 </script>
