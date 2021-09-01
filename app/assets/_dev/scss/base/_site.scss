@@ -24,13 +24,27 @@ img.richtext-image {
   &.left {
     max-width: 280px;
     float: left;
+    clear: right;
+    margin-right: 0.5rem;
   }
 
   &.right {
     max-width: 280px;
     float: right;
+    clear: left;
+    margin-left: 0.5rem;
   }
 }
+
+img.richtext-image.left + p {
+  clear: right;
+}
+
+img.richtext-image.right + p {
+  clear: left;
+}
+
+
 
 div.rich-text:last-child {
   p {
