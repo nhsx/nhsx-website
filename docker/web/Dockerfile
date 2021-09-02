@@ -1,5 +1,4 @@
-FROM alpine:3.11 as base
-# not the most recent but 3.12+ don't contain mdocml-apropos
+FROM alpine:3.14 as base
 
 ENV VERSION 1.9.1
 
@@ -34,18 +33,16 @@ RUN apk update && apk add --no-cache \
     libxslt-dev \
     linux-headers \
     make \
-    mdocml-apropos \
     nano \
     openssh \
     pango \
     postgresql-dev \
-    # py-pysqlite \ #  not in alpine 3.11, not needed by python3
     readline-dev \
     sqlite-dev \
     sqlite \
     zlib-dev \
     nodejs \
-    nodejs-npm \
+    npm \
     zsh && \
     rm -f /tmp/* /etc/apk/cache/* /root/.cache
 
@@ -84,16 +81,21 @@ ENV POETRY_VIRTUALENVS_CREATE=0 \
     POETRY_VIRTUALENVS_PATH="/usr/venvs" \
     POETRY_REPOSITORIES={}
 
-RUN apk add --no-cache --update py3-pip && \
+# Attempting to fix issues with broken pip installs -- something like:
+# ImportError: cannot import name 'InvalidSchemeCombination' from 'pip._internal.exceptions' 
+# https://askubuntu.com/questions/1025189/pip-is-not-working-importerror-no-module-named-pip-internal
+
+# Linking of pip/python and deleting of directories from original pip install: not known if needed.
+
+RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && \
+    python3 get-pip.py --force-reinstall && \
     rm /usr/bin/pip && \
     ln -s /usr/bin/pip3 /usr/bin/pip && \
     rm /usr/bin/python && \
     ln -s /usr/bin/python3 /usr/bin/python && \
-    rm -f /tmp/* /etc/apk/cache/* /root/.cache
+    rm -rf /tmp/* /etc/apk/cache/* /root/.cache
 
-RUN set -ex pip install --no-cache-dir pip --upgrade && \
-    rm -f /tmp/* /etc/apk/cache/* /root/.cache && \
-    curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python && \
+RUN curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python && \
     source $HOME/.poetry/env
 
 RUN mkdir -p /usr/srv/app/
