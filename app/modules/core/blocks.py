@@ -387,6 +387,9 @@ class NewsletterBlock(blocks.StructBlock):
 
     description = blocks.CharBlock(required=False)
     mailing_list_id = blocks.CharBlock(required=True)
+    email_name = blocks.CharBlock(
+        required=True, help_text="Looks like cm-byhjrud-byhjrud"
+    )
 
     def get_context(self, value, parent_context=None):
         context = super().get_context(value, parent_context=parent_context)
