@@ -277,6 +277,12 @@ AUTH_USER_MODEL = "users.User"
 WAGTAILIMAGES_IMAGE_MODEL = "images.NHSXImage"
 WAGTAILDOCS_DOCUMENT_MODEL = "documents.NHSXDocument"
 WAGTAIL_SITE_NAME = "NHSX"
+WAGTAILEMBEDS_FINDERS = [
+    {
+        "class": "helpers.finders.OSMFinder",
+        # Any other options will be passed as kwargs to the __init__ method
+    }
+]
 
 DEFAULT_AUTHOR_AVATAR = "avatar.png"
 
