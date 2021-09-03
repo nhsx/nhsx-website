@@ -279,7 +279,7 @@ WAGTAILDOCS_DOCUMENT_MODEL = "documents.NHSXDocument"
 WAGTAIL_SITE_NAME = "NHSX"
 WAGTAILEMBEDS_FINDERS = [
     {
-        'class': 'helpers.finders.OSMFinder',
+        "class": "helpers.finders.OSMFinder",
         # Any other options will be passed as kwargs to the __init__ method
     }
 ]
