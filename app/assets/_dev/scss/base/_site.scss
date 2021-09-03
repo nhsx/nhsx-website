@@ -17,20 +17,49 @@ img.full-width {
 //Some max-width for images in rich-text
 //Ideally this should be done in the wagtail-nhsuk-frontend package
 //But not possible at this time
+@media (min-width: 560px) {
+  img.richtext-image.left {
+    float: left;
+    clear: right;
+    margin-right: 0.5rem;
+  }
+  img.richtext-image.right {
+    float: right;
+    clear: left;
+    margin-left: 0.5rem;
+  }
+}
+
+@media (max-width: 559.99px) {
+  img.richtext-image.left,
+  img.richtext-image.right {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
+}
 
 img.richtext-image {
 
   // full width already catered for above
   &.left {
     max-width: 280px;
-    float: left;
   }
 
   &.right {
     max-width: 280px;
-    float: right;
   }
 }
+
+img.richtext-image.left + p {
+  clear: right;
+}
+
+img.richtext-image.right + p {
+  clear: left;
+}
+
+
 
 div.rich-text:last-child {
   p {
