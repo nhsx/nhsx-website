@@ -79,7 +79,7 @@ class PublicationPage(BasePage, CanonicalMixin):
         header_tags = ["h2"]
         toc = []
         # NOTE: we import as HTML because we don't have a wrapping tag
-        print(html, type(html))
+        # print(html, type(html))
         root = lxml.html.fromstring(html)
         for tag_name in header_tags:
             for tag in root.xpath(f"//{tag_name}"):
