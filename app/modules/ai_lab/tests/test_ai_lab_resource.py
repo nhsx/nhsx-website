@@ -151,5 +151,4 @@ class TestAiLabResource:
         case_study = AiLabCaseStudyFactory.create(parent=category_page)
         publication = PublicationFactory.create(parent=case_study, title="ocelot")
         page = client.get(case_study.url)
-        print(page.content)
         assert "ocelot" in str(page.rendered_content)
