@@ -28,7 +28,7 @@ consoler = "^0.1.2"
 wagtail_cache = "^1.0.0"
 python-memcached = "^1.59"
 # Grey Panel Block and others are due to be deleted -- update wagtail-nhsuk-frontend with caution!
-wagtail-nhsuk-frontend = "0.7.0"  
+wagtail-nhsuk-frontend = "0.7.0"
 uwsgi = "^2.0.18"
 django-assets = "^2.0"
 django-autocomplete-light = "^3.5"
@@ -41,7 +41,7 @@ beautifulsoup4 = "^4.8.2"
 django-basic-auth-ip-whitelist = "^0.3.4"
 lxml = "^4.6.3"
 # faker has issues with higher versions
-faker = "4.0.3"
+faker = "9.2.0"
 
 
 [tool.poetry.dev-dependencies]
@@ -50,7 +50,7 @@ coverage = "*"
 csscompressor = "*"
 cssmin = "*"
 factory-boy = "*"
-jsmin = "*"
+jsmin = "3"
 mixer = "*"
 ipdb = "*"
 pdbpp = "*"
