@@ -45,3 +45,7 @@ app/.pytest_cache/**/*
 devops/*.retry
 /docker-compose.env
 /app/data.json
+
+# Databases
+app/nhsx
+*.sqlite3
