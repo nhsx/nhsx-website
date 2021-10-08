@@ -114,5 +114,4 @@ class TestGuidance:
         )
         publication = PublicationFactory.create(parent=template, title="panther")
         page = client.get(template.url)
-        print(page.content)
         assert "panther" in str(page.rendered_content)

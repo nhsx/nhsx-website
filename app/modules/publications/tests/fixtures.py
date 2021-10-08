@@ -41,7 +41,6 @@ def _create_publication_index_page(title: str, parent: Page) -> PublicationIndex
         PublicationIndexPage: Description
     """
     p = PublicationIndexPage()
-    print(p.get_children())
     p.title = title
     parent.add_child(instance=p)
     p.save_revision().publish()
