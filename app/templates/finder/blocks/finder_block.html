@@ -11,12 +11,12 @@
     }
     */
 
-    .container { 
+    .container {
 	margin: auto;
 	max-width: 960px;
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
       }
-    
+
     .hidden-cell {display: none;}
       /* Standard table styling, change as desired */
       table {
@@ -24,31 +24,31 @@
 	border-spacing: 0;
   border-top: 2px solid grey;
       }
-	
-      caption { 
+
+      caption {
 	font-size: 24px;
 	font-weight: 700;
 	text-align: left;
       }
-	
+
       th {
 	border-bottom: 1px solid #bfc1c3;
 	font-size: 19px;
 	padding: 0.5em 1em 0.5em 0;
 	text-align: left;
       }
-	
+
       td {
 	font-size: 19px;
 	padding: 0.5em 1em 0.5em 0;
       }
-      
+
       /* Responsive table styling */
-      .responsive-table { 
+      .responsive-table {
 	margin-bottom: 0;
 	width: 100%;
       }
-      
+
       thead {
 	border: 0;
 	clip: rect(0 0 0 0);
@@ -62,25 +62,25 @@
 	white-space: nowrap;
 	width: 1px;
       }
-      
+
       tbody tr {
 	display: block;
 	margin-bottom: 1.5em;
 	padding: 0 0 1.5em;
       }
-      
+
       tbody tr td {
 	display: flex;
 	min-width: 1px;
 	text-align: left;
       }
-      
+
       .responsive-table__heading {
 	font-size: 1.4em;
 	font-weight: bold;
 	margin-bottom: .25em;
       }
-      
+
       .responsive-table__subheading {
 	font-weight: 600;
 	padding-right: 1em;
@@ -90,9 +90,9 @@
 	width: 10em;
 	flex-shrink: 0;
       }
-      
-      /* remove appended zeros (e.g. 768px) to see original */ 
-      
+
+      /* remove appended zeros (e.g. 768px) to see original */
+
       @media (max-width: 7680px) {
 	tbody tr td {
 	  padding-right: 0;
@@ -104,7 +104,7 @@
 	  border-bottom: 2px solid grey;
 	}
       }
-      
+
       @media (min-width: 7690px) {
 	thead {
 	  clip: auto;
@@ -116,16 +116,16 @@
 	  position: relative;
 	  width: auto;
 	}
-	
+
 	tbody tr {
 	  display: table-row;
 	}
-	
+
 	tbody tr td {
 	  display: table-cell;
 	  text-align: left;
 	}
-	
+
 	.responsive-table__subheading {
 	  display: none;
 	}
@@ -143,7 +143,7 @@
 
     <div class="nhsuk-form-group">
         <label class="nhsuk-label" for="facetSelect-{{block.id}}">
-          {% if table_header %} 
+          {% if table_header %}
             {{table_header.1}}:
           {% else %}
             Category:
@@ -188,37 +188,21 @@
                        </td>
                 {% for column in row %}
                 {% with forloop.counter0 as col_index %}
-                    {% if forloop.first %}
-                        <th role="cell" scope="row" {% cell_classname row_index col_index table_header %}>
-                            {% if column.strip %}
-                                {% if html_renderer %}
-                                    {{ column.strip|safe|linebreaksbr }}
-                                {% else %}
-                                    {{ column.strip|linebreaksbr }}
-                                {% endif %}
-                            {% endif %}
-                        </th>
-                    {% else %}
-                        <td role="cell" {% cell_classname row_index col_index table_header %}>
-                                {% if html_renderer %}
-                                    {{ column.strip|safe|linebreaksbr }}
-                                {% else %}
-                                    {% if table_header %}
-                                        <span class="responsive-table__subheading">
-                                            {{table_header|index:col_index}}
-                                        </span>
-                                    {% endif %}
-                                    {{ column.strip|linebreaksbr }}
-                                {% endif %}
-                        </td>
-                    {% endif %}
-
-
-
-
+                  <td role="cell" {% cell_classname row_index col_index table_header %}>
+                          {% if html_renderer %}
+                              {{ column.strip|safe|linebreaksbr }}
+                          {% else %}
+                              {% if table_header %}
+                                  <span class="responsive-table__subheading">
+                                      {{table_header|index:col_index}}
+                                  </span>
+                              {% endif %}
+                              {{ column.strip|linebreaksbr }}
+                          {% endif %}
+                  </td>
                 {% endwith %}
                 {% endfor %}
-            
+
             </tr>
         {% endif %}
     {% endwith %}
