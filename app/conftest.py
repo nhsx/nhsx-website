@@ -36,3 +36,9 @@ def enable_db_access_for_all_tests(db):
 def django_db_setup(django_db_setup, django_db_blocker):
     with django_db_blocker.unblock():
         setup()
+
+
+@pytest.fixture(scope="session", autouse=True)
+def faker_session_locale():
+    return "en_US"
+    return ["it_IT", "ja_JP", "en_US"]

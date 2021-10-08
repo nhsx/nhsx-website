@@ -136,14 +136,14 @@ python-versions = "*"
 
 [[package]]
 name = "boto3"
-version = "1.18.56"
+version = "1.18.57"
 description = "The AWS SDK for Python"
 category = "main"
 optional = false
 python-versions = ">= 3.6"
 
 [package.dependencies]
-botocore = ">=1.21.56,<1.22.0"
+botocore = ">=1.21.57,<1.22.0"
 jmespath = ">=0.7.1,<1.0.0"
 s3transfer = ">=0.5.0,<0.6.0"
 
@@ -152,7 +152,7 @@ crt = ["botocore[crt] (>=1.21.0,<2.0a0)"]
 
 [[package]]
 name = "botocore"
-version = "1.21.56"
+version = "1.21.57"
 description = "Low-level, data-driven core of boto 3."
 category = "main"
 optional = false
@@ -539,20 +539,8 @@ dev = ["coverage", "django", "flake8", "isort", "pillow", "sqlalchemy", "mongoen
 doc = ["sphinx", "sphinx-rtd-theme", "sphinxcontrib-spelling"]
 
 [[package]]
-name = "fake-factory"
-version = "0.5.7"
-description = "Faker is a Python package that generates fake data for you."
-category = "dev"
-optional = false
-python-versions = "*"
-
-[package.dependencies]
-python-dateutil = ">=2.4"
-six = "*"
-
-[[package]]
 name = "faker"
-version = "4.0.3"
+version = "4.0.0"
 description = "Faker is a Python package that generates fake data for you."
 category = "main"
 optional = false
@@ -836,14 +824,14 @@ traitlets = "*"
 
 [[package]]
 name = "mixer"
-version = "5.5.7"
+version = "7.0.6"
 description = "Mixer -- Is a fixtures replacement. Supported Django ORM, SqlAlchemy ORM, Mongoengine ODM and custom python objects."
 category = "dev"
 optional = false
 python-versions = "*"
 
 [package.dependencies]
-fake-factory = "0.5.7"
+Faker = "4.0.0"
 
 [[package]]
 name = "mypy-extensions"
@@ -1626,7 +1614,7 @@ testing = ["pytest (>=4.6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytes
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.6"
-content-hash = "fbd307b4286116f52e48def7ec0dcca3fd4efa6fd101956a55078fd28d70d0e9"
+content-hash = "0c42fa50993ee391e05cc8624383f1ac49c12c509217438bc84afffb1f82f090"
 
 [metadata.files]
 aiocontextvars = [
@@ -1678,12 +1666,12 @@ boto = [
     {file = "boto-2.49.0.tar.gz", hash = "sha256:ea0d3b40a2d852767be77ca343b58a9e3a4b00d9db440efb8da74b4e58025e5a"},
 ]
 boto3 = [
-    {file = "boto3-1.18.56-py3-none-any.whl", hash = "sha256:42828d83acddfa2361411b13683eedf7c1c0a15e896b45960ed04a26efe7adfb"},
-    {file = "boto3-1.18.56.tar.gz", hash = "sha256:d43e3651ad1b0b5de6f77df82df27e0f1e6cd854f725c808c70a1fb956f0b699"},
+    {file = "boto3-1.18.57-py3-none-any.whl", hash = "sha256:3e6176b3ccdd039427f63365bdf25c312ec9e88cc72ba907beea006ccf32116b"},
+    {file = "boto3-1.18.57.tar.gz", hash = "sha256:56a4c68a4ee131527e8bd65ab71270b06d985e6687ef27e9dfa992250fcc4c15"},
 ]
 botocore = [
-    {file = "botocore-1.21.56-py3-none-any.whl", hash = "sha256:d712f572022670916bd77fbe421155dcf575398b9dced88035ed3658679883bd"},
-    {file = "botocore-1.21.56.tar.gz", hash = "sha256:43fab79905e3dfe56f92a137314ef1afbf040f7c06516a003351c24322cbfd7c"},
+    {file = "botocore-1.21.57-py3-none-any.whl", hash = "sha256:2a00acb822b148abf6a452c10c5f0b85d245e4bde7a0465ca2a5f8c990c07fc1"},
+    {file = "botocore-1.21.57.tar.gz", hash = "sha256:4fd374e2dad91b2375db08e0c8a0bbd03b5e741b7dc4c5e730a544993cc46850"},
 ]
 bugsnag = [
     {file = "bugsnag-4.1.1-py3-none-any.whl", hash = "sha256:03a3c39549fa248842a53b6d195fa3d64f5906aff4e2eeba98aadd033e1da968"},
@@ -1835,13 +1823,9 @@ factory-boy = [
     {file = "factory_boy-3.2.0-py2.py3-none-any.whl", hash = "sha256:1d3db4b44b8c8c54cdd8b83ae4bdb9aeb121e464400035f1f03ae0e1eade56a4"},
     {file = "factory_boy-3.2.0.tar.gz", hash = "sha256:401cc00ff339a022f84d64a4339503d1689e8263a4478d876e58a3295b155c5b"},
 ]
-fake-factory = [
-    {file = "fake-factory-0.5.7.tar.gz", hash = "sha256:405db32eaea36eb962e6130e4d0087762d50018b14237b02c8c4fe966d5615b2"},
-    {file = "fake_factory-0.5.7-py2.py3-none-any.whl", hash = "sha256:608b84d746781781cacab5fa3f7a52fece46047b03f4e8619ade3ce26d0c84f2"},
-]
 faker = [
-    {file = "Faker-4.0.3-py3-none-any.whl", hash = "sha256:53bf2c8a2de8af271466e7b9cc2f08ecf83c4c947981680eb61080779a0adace"},
-    {file = "Faker-4.0.3.tar.gz", hash = "sha256:7292806948ed848f1bcea1e7b963bae6f398687d1da0ea096e156fea2787f454"},
+    {file = "Faker-4.0.0-py3-none-any.whl", hash = "sha256:047d4d1791bfb3756264da670d99df13d799bb36e7d88774b1585a82d05dbaec"},
+    {file = "Faker-4.0.0.tar.gz", hash = "sha256:1b1a58961683b30c574520d0c739c4443e0ef6a185c04382e8cc888273dbebed"},
 ]
 fancycompleter = [
     {file = "fancycompleter-0.9.1-py3-none-any.whl", hash = "sha256:dd076bca7d9d524cc7f25ec8f35ef95388ffef9ef46def4d3d25e9b044ad7080"},
@@ -2027,8 +2011,8 @@ matplotlib-inline = [
     {file = "matplotlib_inline-0.1.3-py3-none-any.whl", hash = "sha256:aed605ba3b72462d64d475a21a9296f400a19c4f74a31b59103d2a99ffd5aa5c"},
 ]
 mixer = [
-    {file = "mixer-5.5.7-py2.py3-none-any.whl", hash = "sha256:65348ff2d1617abcd65a4f103083791d12da897a804951afa9bcaa8fe40e9f19"},
-    {file = "mixer-5.5.7.tar.gz", hash = "sha256:847f085f86b861a76a0cd1a9d23f83838ec3619ca20c3d79a7161e035b6a77b3"},
+    {file = "mixer-7.0.6-py3-none-any.whl", hash = "sha256:7d2b787d02f35979d8cba8cd88860eb1a53556f3546d8906f8a30f9114e9621a"},
+    {file = "mixer-7.0.6.tar.gz", hash = "sha256:a207fc77015446ed2b70dcb132b6a18c25165f56ce293384c94b1e5482d4b6f1"},
 ]
 mypy-extensions = [
     {file = "mypy_extensions-0.4.3-py2.py3-none-any.whl", hash = "sha256:090fedd75945a69ae91ce1303b5824f428daf5a028d2f6ab8a299250a846f15d"},
