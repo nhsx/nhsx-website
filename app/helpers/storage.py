@@ -1,5 +1,5 @@
 import os
-from tempfile import SpooledTemporaryFile
+from tempfile import TemporaryFile
 from django.core.exceptions import SuspiciousOperation
 
 from storages.backends.s3boto3 import S3Boto3Storage
@@ -70,7 +70,7 @@ class MediaRootS3BotoStorage(S3Boto3Storage):
         # Create a temporary file that will write to disk after a specified
         # size. This file will be automatically deleted when closed by
         # boto3 or after exiting the `with` statement if the boto3 is fixed
-        with SpooledTemporaryFile() as content_autoclose:
+        with TemporaryFile() as content_autoclose:
 
             # Write our original content into our copy that will be closed by boto3
             content_autoclose.write(content.read())
