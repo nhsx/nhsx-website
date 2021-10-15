@@ -1387,7 +1387,7 @@ python-versions = "*"
 
 [[package]]
 name = "wagtail"
-version = "2.14.1"
+version = "2.14.2"
 description = "A Django content management system."
 category = "main"
 optional = false
