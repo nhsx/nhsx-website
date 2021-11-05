@@ -87,7 +87,6 @@ WAGTAIL_APPS = [
     "wagtail.documents",
     "wagtail.images",
     "wagtail.search",
-    "wagtail.contrib.postgres_search",
     "wagtail.admin",
     "wagtail.core",
     "wagtail.contrib.forms",
