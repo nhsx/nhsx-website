@@ -29,7 +29,7 @@ DATABASES = {
 # Use basic DB search backend for tests
 WAGTAILSEARCH_BACKENDS = {
     "default": {
-        "BACKEND": "wagtail.search.backends.db",
+        "BACKEND": "wagtail.search.backends.database",
     },
 }
 
