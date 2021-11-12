@@ -187,7 +187,7 @@ DATABASES = {
 
 WAGTAILSEARCH_BACKENDS = {
     "default": {
-        "BACKEND": "wagtail.contrib.postgres_search.backend",
+        "BACKEND": "wagtail.search.backends.database",
         "SEARCH_CONFIG": "english",
         "AUTO_UPDATE": True,
     }
