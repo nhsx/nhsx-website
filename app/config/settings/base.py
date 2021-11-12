@@ -280,6 +280,7 @@ WAGTAIL_SITE_NAME = "NHSX"
 WAGTAILEMBEDS_FINDERS = [
     {
         "class": "helpers.finders.OSMFinder",
+        "class": "wagtail.embeds.finders.oembed"
         # Any other options will be passed as kwargs to the __init__ method
     }
 ]
