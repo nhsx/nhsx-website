@@ -1365,7 +1365,7 @@ python-versions = "*"
 
 [[package]]
 name = "wagtail"
-version = "2.15"
+version = "2.15.1"
 description = "A Django content management system."
 category = "main"
 optional = false
@@ -1375,7 +1375,7 @@ python-versions = ">=3.6"
 anyascii = ">=0.1.5"
 beautifulsoup4 = ">=4.8,<4.10"
 Django = ">=3.0,<3.3"
-django-filter = ">=2.2,<3.0"
+django-filter = ">=2.2,<22"
 django-modelcluster = ">=5.2,<6.0"
 django-taggit = ">=1.0,<2.0"
 django-treebeard = ">=4.2.0,<4.5 || >4.5,<5.0"
@@ -2331,8 +2331,8 @@ uwsgi = [
     {file = "uwsgi-2.0.20.tar.gz", hash = "sha256:88ab9867d8973d8ae84719cf233b7dafc54326fcaec89683c3f9f77c002cdff9"},
 ]
 wagtail = [
-    {file = "wagtail-2.15-py3-none-any.whl", hash = "sha256:5a8f59e46179a7f13b9ba3da3ab1d3c274da373854882741ca507f4bc0131e2f"},
-    {file = "wagtail-2.15.tar.gz", hash = "sha256:2ee964bca4888bd12301c36fa8e22d75fc144b6811c0077d22c642cb9a00a1f2"},
+    {file = "wagtail-2.15.1-py3-none-any.whl", hash = "sha256:6f1bc7960a7028a6e665a0f5a15ef2ba89faad66060bc4b3952a922fbef1713b"},
+    {file = "wagtail-2.15.1.tar.gz", hash = "sha256:97eb520db0056d576b698e832de2ecfa3d795e9ed12e4b9ab738623c1b6277a0"},
 ]
 wagtail-2fa = [
     {file = "wagtail-2fa-1.5.0.tar.gz", hash = "sha256:a625c83e9e597c7619c7b44a58dc5f7a0c1e34dc3097ee3823404b50553a51af"},
