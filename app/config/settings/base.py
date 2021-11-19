@@ -87,7 +87,6 @@ WAGTAIL_APPS = [
     "wagtail.documents",
     "wagtail.images",
     "wagtail.search",
-    "wagtail.contrib.postgres_search",
     "wagtail.admin",
     "wagtail.core",
     "wagtail.contrib.forms",
@@ -188,7 +187,7 @@ DATABASES = {
 
 WAGTAILSEARCH_BACKENDS = {
     "default": {
-        "BACKEND": "wagtail.contrib.postgres_search.backend",
+        "BACKEND": "wagtail.search.backends.database",
         "SEARCH_CONFIG": "english",
         "AUTO_UPDATE": True,
     }
@@ -279,10 +278,8 @@ WAGTAILIMAGES_IMAGE_MODEL = "images.NHSXImage"
 WAGTAILDOCS_DOCUMENT_MODEL = "documents.NHSXDocument"
 WAGTAIL_SITE_NAME = "NHSX"
 WAGTAILEMBEDS_FINDERS = [
-    {
-        "class": "helpers.finders.OSMFinder",
-        # Any other options will be passed as kwargs to the __init__ method
-    }
+    {"class": "helpers.finders.OSMFinder"},
+    {"class": "wagtail.embeds.finders.oembed"},
 ]
 
 DEFAULT_AUTHOR_AVATAR = "avatar.png"

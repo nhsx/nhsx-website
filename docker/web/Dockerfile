@@ -64,6 +64,7 @@ RUN npm install --no-cache --global babel-cli \
     uglify-js \
     wait-for && \
     rm -f /usr/lib/node_modules/npm/node_modules/update-notifier/node_modules/configstore/node_modules/dot-prop/license
+RUN npm config set unsafe-perm false
 
 # Install libsass
 RUN pip install --no-cache-dir \
@@ -82,7 +83,7 @@ ENV POETRY_VIRTUALENVS_CREATE=0 \
     POETRY_REPOSITORIES={}
 
 # Attempting to fix issues with broken pip installs -- something like:
-# ImportError: cannot import name 'InvalidSchemeCombination' from 'pip._internal.exceptions' 
+# ImportError: cannot import name 'InvalidSchemeCombination' from 'pip._internal.exceptions'
 # https://askubuntu.com/questions/1025189/pip-is-not-working-importerror-no-module-named-pip-internal
 
 # Linking of pip/python and deleting of directories from original pip install: not known if needed.
