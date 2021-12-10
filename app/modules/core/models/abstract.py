@@ -29,6 +29,7 @@ from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _  # NOQA
 from wagtail.utils.decorators import cached_classmethod
 from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtailcache.cache import WagtailCacheMixin
 from wagtail.admin.edit_handlers import (
     ObjectList,
     TabbedInterface,
@@ -403,7 +404,7 @@ class InlineHeroMixin(HeroMixin):
 ################################################################################
 
 
-class BasePage(Page, SocialMetaMixin):
+class BasePage(WagtailCacheMixin, Page, SocialMetaMixin):
 
     """Make sure any new pages you create extend this one, so that there is a
     centralised place where we can add functionality to all page types.
