@@ -8,6 +8,7 @@
 
 {% block content %}
 
+{% include '_partials/rebrand.html' %}
 {% image page.image width-1000 as hero_image %}
 {% include '_partials/hero.html' with hero_text=page.sub_head hero_heading=page.title hero_image=hero_image.url %}
 {% if page.specific.featured_posts|length %}
