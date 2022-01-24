@@ -103,3 +103,15 @@ div.rich-text:last-child {
 .dxw-card-group {
   @include flex();
 }
+
+.rebrand-banner {
+  background-color: $nhs-pale-grey;
+  color: $nhs-dark-grey;
+  font-size: 19px;
+  width: 100vw;
+}
+
+.rebrand-title {
+  font-size: 24px;
+  font-weight: 600;
+}
