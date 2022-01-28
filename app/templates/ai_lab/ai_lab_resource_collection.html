@@ -6,9 +6,11 @@
 {% block extra_css %}
 {% endblock extra_css %}
 
-{% block content %}
+{% block breadcrumb %}
 {% breadcrumb %}
+{% endblock breadcrumb %}
 
+{% block content %}
 {% include '_partials/hero.html' with hero_text=page.sub_head hero_heading=page.title %}
 <div class="nhsuk-width-container">
   <main class="nhsuk-main-wrapper" id="maincontent">
