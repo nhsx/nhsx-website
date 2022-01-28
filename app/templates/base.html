@@ -21,6 +21,11 @@
         {% wagtailuserbar %}
 
         {% header %}
+
+        {% block breadcrumb %}
+        {% endblock %}
+
+        {% include '_partials/rebrand.html' %}
         {% block content %}
 
         {% endblock %}
