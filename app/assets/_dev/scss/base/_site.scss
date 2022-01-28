@@ -105,10 +105,12 @@ div.rich-text:last-child {
 }
 
 .rebrand-banner {
-  background-color: $nhs-pale-grey;
+  background-color: $nhsx-pale-grey;
   color: $nhs-dark-grey;
   font-size: 19px;
   width: 100vw;
+  padding-bottom: 24px;
+  padding-top: 24px;
 }
 
 .rebrand-title {
