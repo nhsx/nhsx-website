@@ -1,0 +1,26 @@
+{
+  "name": "nhsx-website",
+  "version": "1.0.0",
+  "description": "A Wagtail implementation of the NHSX website.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dxw/nhsx-website.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dxw/nhsx-website/issues"
+  },
+  "homepage": "https://github.com/dxw/nhsx-website#readme",
+  "dependencies": {
+    "nhsuk-frontend": "^4.1.0"
+  }
+}

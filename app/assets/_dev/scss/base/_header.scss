@@ -6,6 +6,7 @@
 @media screen and (min-width: $large-screen) {
   .nhsuk-header__navigation--nhsx {
     background-color: $nhsx-dark-blue !important;
+    max-width: $big-screen;
   }
 }
 
