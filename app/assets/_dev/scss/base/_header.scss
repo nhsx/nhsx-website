@@ -1,11 +1,11 @@
 //header
 .nhsuk-header--nhsx {
-  background-color: $nhsx-blue;
+  background-color: $nhsx-dark-blue;
 }
 
 @media screen and (min-width: $large-screen) {
   .nhsuk-header__navigation--nhsx {
-    background-color: $nhsx-blue !important;
+    background-color: $nhsx-dark-blue !important;
   }
 }
 
