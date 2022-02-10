@@ -4,7 +4,7 @@
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <title>
     {% block title_prefix %}{{ TITLE_PREFIX }}{% endblock %}{% block title %}{% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }}{% endif %}{% endblock %}{% if page.get_parent.content_type.name == 'section page' %} - {{page.get_parent.title}}{% endif %}{% block title_suffix %}
-    - NHSX{% endblock %}
+    - NHS Transformation Directorate {% endblock %}
 </title>
 <meta name="description"
     content="{% if page.search_description %}{{ page.search_description }}{% else %}{{ page|fb_og_description:request }}{% endif %}" />
