@@ -6,7 +6,7 @@ phases:
       - echo Build started on `date`
       - echo Entered the pre_build phase...
       - echo Logging in to Amazon ECR...
-      - $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
+      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
       - echo Logging in to docker hub...
       - echo "$DOCKER_ACCESS_TOKEN" | docker login -u "$DOCKER_USERNAME" --password-stdin
       - echo Building the Docker image...
@@ -26,7 +26,55 @@ phases:
       - docker push $REPOSITORY_URI:latest
       - docker push $REPOSITORY_URI:$IMAGE_TAG
       - echo Build completed on `date`
+      - >-
+        if [ -n "$BLUE_GREEN" ];
+        then
+          aws ecs describe-task-definition --task-definition "$TASK_DEFINITION_FAMILY" | jq > latest-task-definition.json;
+          cat latest-task-definition.json | jq -r --arg image "$REPOSITORY_URI:$IMAGE_TAG" '.taskDefinition.containerDefinitions | .[0].image = $image' > new-container-defs.json;
+          NEW_TASK_DEFINITION="$(aws ecs register-task-definition \
+            --family "$TASK_DEFINITION_FAMILY" \
+            --container-definitions file://new-container-defs.json \
+            --task-role-arn "$(cat latest-task-definition.json | jq -r '.taskDefinition.taskRoleArn')" \
+            --execution-role-arn "$(cat latest-task-definition.json | jq -r '.taskDefinition.executionRoleArn')" \
+            --network-mode "$(cat latest-task-definition.json | jq -r '.taskDefinition.networkMode')" \
+            --volumes "$(cat latest-task-definition.json | jq -r '.taskDefinition.volumes')" \
+            --placement-constraints "$(cat latest-task-definition.json | jq -r '.taskDefinition.placementConstraints')" \
+            --requires-compatibilities "$(cat latest-task-definition.json | jq -r '.taskDefinition.requiresCompatibilities')")";
+          NEW_TASK_DEFINITION_ARN=$(echo "$NEW_TASK_DEFINITION" | jq -r '.taskDefinition.taskDefinitionArn')
+          CONTAINER_PORT=$(echo "$NEW_TASK_DEFINITION" | jq -r '.taskDefinition.containerDefinitions[0].portMappings[0].containerPort')
+          APPSPEC=$(jq -rn \
+            --arg task_definition_arn "$NEW_TASK_DEFINITION_ARN" \
+            --arg container_name "$CONTAINER_NAME" \
+            --argjson container_port "$CONTAINER_PORT" \
+            '{
+              Resources: [
+                {
+                  TargetService: {
+                    Type: "AWS::ECS::Service",
+                    Properties: {
+                      TaskDefinition: $task_definition_arn,
+                      LoadBalancerInfo: {
+                        ContainerName: $container_name,
+                        ContainerPort: $container_port
+                      }
+                    }
+                  }
+                }
+              ]
+            }')
+          echo "$APPSPEC" > appspec.json
+        fi
+      - touch appspec.json
       - echo Writing image definitions file...
       - printf '[{"name":"%s","imageUri":"%s"}]' $CONTAINER_NAME $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
 artifacts:
-  files: imagedefinitions.json
+  files:
+    - imagedefinitions.json
+    - appspec.json
+  secondary-artifacts:
+    imagedefinitions:
+      files:
+        - imagedefinitions.json
+    appspec:
+      files:
+        - appspec.json
