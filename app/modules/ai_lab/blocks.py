@@ -55,6 +55,8 @@ resource_link_blocks = [
                 "ai_lab.AiLabGuidance",
                 "ai_lab.AiLabReport",
                 "ai_lab.AiLabExternalResource",
+                "ai_lab.AiLabInternalResource",
+                "ai_lab.AiLabResourceCollection",
             ],
         ),
     ),
