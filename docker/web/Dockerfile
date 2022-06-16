@@ -50,9 +50,6 @@ RUN apk update && apk add --no-cache \
 # Install static asset compilers
 ####################################################################################################
 
-RUN apk add closure-compiler --update-cache --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ --allow-untrusted && \
-    rm -f /tmp/* /etc/apk/cache/* /root/.cache
-
 # work around a bug in the version of node we are using
 # https://github.com/npm/uid-number/issues/3
 # https://github.com/nodejs/docker-node/issues/813
