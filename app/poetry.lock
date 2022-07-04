@@ -1465,7 +1465,7 @@ wagtail = ">=2.2"
 
 [[package]]
 name = "wagtail-nhsuk-frontend"
-version = "0.7.0"
+version = "1.3.1"
 description = "NHSUK Frontend Styles for Wagtail"
 category = "main"
 optional = false
@@ -1473,6 +1473,10 @@ python-versions = "*"
 
 [package.dependencies]
 Wagtail = ">=2.0"
+
+[package.extras]
+linting = ["flake8 (==3.7.5)"]
+testing = ["beautifulsoup4 (==4.8.2)", "Django (>=3.1,<3.2)", "pytest (==4.3.0)", "pytest-django (==3.4.7)", "pytest-pythonpath (==0.7.3)"]
 
 [[package]]
 name = "wagtailfontawesome"
@@ -1604,7 +1608,7 @@ testing = ["pytest (>=4.6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytes
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.6"
-content-hash = "306d4b350e1eb4c49c5c039851cf570ce7ce981d7054bfe55211d769e828decc"
+content-hash = "35cd2aa99a06b25f3f43436082626bcf5f89c2846a1bfee8cf8cda329b99fa74"
 
 [metadata.files]
 aiocontextvars = [
@@ -2363,7 +2367,7 @@ wagtail-modelchooser = [
     {file = "wagtail_modelchooser-2.13.1-py2.py3-none-any.whl", hash = "sha256:b5cd87731c667ede411eeb5487544ead829fd9761e4dbc8ec1e0031d2bf9f64a"},
 ]
 wagtail-nhsuk-frontend = [
-    {file = "wagtail-nhsuk-frontend-0.7.0.tar.gz", hash = "sha256:5dd46dc2411cacd73596832fe6b13bdfdd2635a8edba850783d161dad4b442ef"},
+    {file = "wagtail-nhsuk-frontend-1.3.1.zip", hash = "sha256:c6e8b95cf14680efa1a13589cf5ac93ec65316f3994ebcb553f5a23145aa28aa"},
 ]
 wagtailfontawesome = [
     {file = "wagtailfontawesome-1.2.1-py2.py3-none-any.whl", hash = "sha256:76b1c64c4f1042d468a83e4352f74b57bda4a4aa09cdfeeb8663dead5ed632be"},
