@@ -14,8 +14,8 @@ from django.db import models
 from django.conf import settings
 from modelcluster.fields import ParentalKey
 from modelcluster.models import ClusterableModel
-from wagtail.core.models import Orderable
-from wagtail.admin.edit_handlers import (
+from wagtail.models import Orderable
+from wagtail.admin.panels import (
     FieldPanel,
     InlinePanel,
     MultiFieldPanel,

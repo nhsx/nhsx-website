@@ -19,9 +19,9 @@ from cacheops import cached  # NOQA
 from django.db import models
 from django.db.models import F
 from django.conf import settings
-from wagtail.core import fields
+from wagtail import fields
 from django.utils.text import slugify
-from wagtail.core.models import Page
+from wagtail.models import Page
 from wagtail.search import index
 from modelcluster.fields import ParentalManyToManyField
 from django.core.paginator import Paginator
@@ -30,7 +30,7 @@ from django.utils.translation import ugettext_lazy as _  # NOQA
 from wagtail.utils.decorators import cached_classmethod
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtailcache.cache import WagtailCacheMixin
-from wagtail.admin.edit_handlers import (
+from wagtail.admin.panels import (
     ObjectList,
     TabbedInterface,
     StreamFieldPanel,

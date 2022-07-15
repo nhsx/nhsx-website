@@ -88,7 +88,7 @@ WAGTAIL_APPS = [
     "wagtail.images",
     "wagtail.search",
     "wagtail.admin",
-    "wagtail.core",
+    "wagtail",
     "wagtail.contrib.forms",
     "wagtail.contrib.settings",
     "wagtail.contrib.table_block",

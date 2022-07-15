@@ -1,8 +1,8 @@
 from django.db import models
 from django.conf import settings
 
-from wagtail.core.models import Page
-from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
+from wagtail.models import Page
+from wagtail.admin.panels import FieldPanel, StreamFieldPanel
 from wagtail.images.edit_handlers import ImageChooserPanel
 
 from modules.core.models.abstract import BasePage

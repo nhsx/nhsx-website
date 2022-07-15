@@ -1,11 +1,11 @@
 # 3rd party
 from django.db import models
 
-from wagtail.core import fields
-from wagtail.admin.edit_handlers import StreamFieldPanel, FieldPanel
+from wagtail import fields
+from wagtail.admin.panels import StreamFieldPanel, FieldPanel
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.utils.decorators import cached_classmethod
-from wagtail.core.models import Page
+from wagtail.models import Page
 
 # Project
 from modules.core.blocks import nhsx_blocks

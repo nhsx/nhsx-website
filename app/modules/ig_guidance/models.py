@@ -4,10 +4,10 @@ from django.template.response import TemplateResponse
 from django.conf import settings
 from django.shortcuts import redirect
 
-from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
+from wagtail.admin.panels import FieldPanel, StreamFieldPanel
 from wagtail.snippets.models import register_snippet
-from wagtail.core.models import Page
-from wagtail.core import fields
+from wagtail.models import Page
+from wagtail import fields
 from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.documents.edit_handlers import DocumentChooserPanel

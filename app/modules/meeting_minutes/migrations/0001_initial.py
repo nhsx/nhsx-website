@@ -2,8 +2,8 @@
 
 from django.db import migrations, models
 import django.db.models.deletion
-import wagtail.core.blocks
-import wagtail.core.fields
+import wagtail.blocks
+import wagtail.fields
 
 
 class Migration(migrations.Migration):
@@ -33,33 +33,33 @@ class Migration(migrations.Migration):
                 ("meeting_time", models.TimeField()),
                 (
                     "attendees",
-                    wagtail.core.fields.StreamField(
+                    wagtail.fields.StreamField(
                         [
                             (
                                 "person",
-                                wagtail.core.blocks.StructBlock(
+                                wagtail.blocks.StructBlock(
                                     [
                                         (
                                             "name",
-                                            wagtail.core.blocks.CharBlock(
+                                            wagtail.blocks.CharBlock(
                                                 required=True
                                             ),
                                         ),
                                         (
                                             "organisation",
-                                            wagtail.core.blocks.CharBlock(
+                                            wagtail.blocks.CharBlock(
                                                 required=True
                                             ),
                                         ),
                                         (
                                             "heading",
-                                            wagtail.core.blocks.CharBlock(
+                                            wagtail.blocks.CharBlock(
                                                 required=True
                                             ),
                                         ),
                                         (
                                             "role",
-                                            wagtail.core.blocks.CharBlock(
+                                            wagtail.blocks.CharBlock(
                                                 required=True
                                             ),
                                         ),
@@ -71,33 +71,33 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "apologies",
-                    wagtail.core.fields.StreamField(
+                    wagtail.fields.StreamField(
                         [
                             (
                                 "person",
-                                wagtail.core.blocks.StructBlock(
+                                wagtail.blocks.StructBlock(
                                     [
                                         (
                                             "name",
-                                            wagtail.core.blocks.CharBlock(
+                                            wagtail.blocks.CharBlock(
                                                 required=True
                                             ),
                                         ),
                                         (
                                             "organisation",
-                                            wagtail.core.blocks.CharBlock(
+                                            wagtail.blocks.CharBlock(
                                                 required=True
                                             ),
                                         ),
                                         (
                                             "heading",
-                                            wagtail.core.blocks.CharBlock(
+                                            wagtail.blocks.CharBlock(
                                                 required=True
                                             ),
                                         ),
                                         (
                                             "role",
-                                            wagtail.core.blocks.CharBlock(
+                                            wagtail.blocks.CharBlock(
                                                 required=True
                                             ),
                                         ),
@@ -109,11 +109,11 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "items",
-                    wagtail.core.fields.StreamField(
+                    wagtail.fields.StreamField(
                         [
                             (
                                 "rich_text",
-                                wagtail.core.blocks.RichTextBlock(group=" Content"),
+                                wagtail.blocks.RichTextBlock(group=" Content"),
                             )
                         ]
                     ),

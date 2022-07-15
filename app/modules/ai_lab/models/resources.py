@@ -7,10 +7,10 @@ from django.conf import settings
 from django.utils.text import slugify
 from django.shortcuts import redirect
 
-from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel, PageChooserPanel
+from wagtail.admin.panels import FieldPanel, StreamFieldPanel, PageChooserPanel
 from wagtail.contrib.routable_page.models import RoutablePageMixin, route
-from wagtail.core.models import Page
-from wagtail.core import fields
+from wagtail.models import Page
+from wagtail import fields
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.documents.edit_handlers import DocumentChooserPanel
 from wagtail.snippets.models import register_snippet

@@ -21,7 +21,7 @@ from modules.ai_lab.models.resources import (
 )
 
 from modules.core.tests.factories import CorePageFactory
-from wagtail.core.models import Site
+from wagtail.models import Site
 
 
 class AiLabHomePageFactory(CorePageFactory):
