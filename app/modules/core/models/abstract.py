@@ -461,7 +461,7 @@ class BasePage(WagtailCacheMixin, Page, SocialMetaMixin):
                 for tab in tabs
             ]
         )
-        return edit_handler.bind_to(model=cls)
+        return edit_handler.bind_to_model(cls)
 
 
 ################################################################################
