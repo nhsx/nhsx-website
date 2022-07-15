@@ -4,7 +4,7 @@ from .base import MEDIA_ROOT, BASE_DIR  # NOQA
 
 DEBUG = False
 
-BASE_URL = "https://www.nhsx.nhs.uk"
+BASE_URL = "https://transform.england.nhs.uk"
 
 ####################################################################################################
 # Static assets served by Whitenoise
