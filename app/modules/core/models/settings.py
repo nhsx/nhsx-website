@@ -19,9 +19,9 @@ from wagtail.admin.panels import (
     FieldPanel,
     InlinePanel,
     MultiFieldPanel,
-    PageChooserPanel,
+    FieldPanel,
 )
-from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtail.images.edit_handlers import FieldPanel
 from wagtail.contrib.settings.models import BaseSetting, register_setting
 
 
@@ -106,7 +106,7 @@ class MetaTagSettings(CachedSetting):
         related_name="+",
     )
 
-    panels = [FieldPanel("description"), ImageChooserPanel("image")]
+    panels = [FieldPanel("description"), FieldPanel("image")]
 
 
 @register_setting
@@ -123,7 +123,7 @@ class DefaultImageSettings(CachedSetting):
         related_name="+",
     )
 
-    panels = [ImageChooserPanel("image")]
+    panels = [FieldPanel("image")]
 
 
 @register_setting
@@ -161,14 +161,14 @@ class HeaderSettings(ClusterableModel, BaseSetting):
             [
                 FieldPanel("service_name"),
                 FieldPanel("service_long_name"),
-                PageChooserPanel("service_link"),
+                FieldPanel("service_link"),
                 FieldPanel("transactional"),
             ],
             heading="Service",
         ),
         MultiFieldPanel(
             [
-                PageChooserPanel("logo_link"),
+                FieldPanel("logo_link"),
                 FieldPanel("logo_aria"),
             ],
             heading="Logo",
@@ -193,7 +193,7 @@ class AbstractLink(Orderable):
 
     panels = [
         FieldPanel("label"),
-        PageChooserPanel("page"),
+        FieldPanel("page"),
     ]
 
 

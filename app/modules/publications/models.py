@@ -14,7 +14,7 @@ from wagtail.models import Page
 from wagtail.fields import RichTextField
 from wagtail.utils.decorators import cached_classmethod
 from modelcluster.contrib.taggit import ClusterTaggableManager
-from wagtail.admin.panels import FieldPanel, StreamFieldPanel
+from wagtail.admin.panels import FieldPanel, FieldPanel
 from django.views.decorators.cache import cache_page
 from django.utils.text import slugify
 
@@ -66,7 +66,7 @@ class PublicationPage(BasePage, CanonicalMixin):
         *Page.content_panels,
         FieldPanel("first_published_at"),
         FieldPanel("updated_at"),
-        StreamFieldPanel("body"),
+        FieldPanel("body"),
         FieldPanel("history"),
     ]
 

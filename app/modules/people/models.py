@@ -2,8 +2,8 @@ from django.db import models
 from django.conf import settings
 
 from wagtail.models import Page
-from wagtail.admin.panels import FieldPanel, StreamFieldPanel
-from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtail.admin.panels import FieldPanel
+from wagtail.images.edit_handlers import FieldPanel
 
 from modules.core.models.abstract import BasePage
 from modules.core.models.abstract import BasePage, BaseIndexPage
@@ -28,8 +28,8 @@ class Person(BasePage):
         *Page.content_panels,
         FieldPanel("qualifications"),
         FieldPanel("position"),
-        ImageChooserPanel("photo"),
-        StreamFieldPanel("body"),
+        FieldPanel("photo"),
+        FieldPanel("body"),
     ]
 
     class Meta:

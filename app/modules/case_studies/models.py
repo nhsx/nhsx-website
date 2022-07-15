@@ -11,8 +11,8 @@ from modelcluster.fields import ParentalKey
 from wagtail.models import Page
 from wagtail.utils.decorators import cached_classmethod
 from modelcluster.contrib.taggit import ClusterTaggableManager
-from wagtail.admin.panels import FieldPanel, StreamFieldPanel
-from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtail.admin.panels import FieldPanel
+from wagtail.images.edit_handlers import FieldPanel
 
 # Module
 from modules.case_studies.abstract import (
@@ -65,10 +65,10 @@ class CaseStudyPage(BasePage, InlineHeroMixin, SidebarMixin):
     content_panels = [
         *Page.content_panels,
         FieldPanel("display_order"),
-        ImageChooserPanel("image"),
+        FieldPanel("image"),
         FieldPanel("alt_text"),
         FieldPanel("sub_head"),
-        StreamFieldPanel("body"),
+        FieldPanel("body"),
         FieldPanel("tags"),
     ]
 

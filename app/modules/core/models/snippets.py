@@ -5,7 +5,7 @@ from wagtail import blocks
 from django.db import models
 from wagtail.snippets.models import register_snippet
 from wagtail.fields import RichTextField
-from wagtail.admin.panels import FieldPanel, StreamFieldPanel
+from wagtail.admin.panels import FieldPanel
 
 
 ################################################################################
