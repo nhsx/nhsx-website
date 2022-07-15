@@ -9,15 +9,12 @@ LIBSASS = get_filter(
 
 uglify_js = get_filter("uglifyjs", extra_args=["--source-map", "-c", "-m"])
 
-
-closure_js = get_filter("closure_js")
+js_filters: list = []
 
 if settings.DEBUG:
     css_filters = [LIBSASS]
-    js_filters: list = []
 else:
     css_filters = [LIBSASS, "cssmin"]
-    js_filters = [closure_js]
 
 core_css_files = ["_dev/scss/screen.scss"]
 
@@ -48,12 +45,10 @@ css_admin_bundle = Bundle(
     output="dist/css/admin_extra.min.css"
 )
 
-js_core_bundle = Bundle(
-    *core_js_files, filters=[closure_js], output="dist/js/main.min.js"
-)
+js_core_bundle = Bundle(*core_js_files, filters=[], output="dist/js/main.min.js")
 
 js_admin_bundle = Bundle(
-    *admin_js_files, filters=[closure_js], output="dist/js/admin_extra.min.js"
+    *admin_js_files, filters=[], output="dist/js/admin_extra.min.js"
 )
 
 
