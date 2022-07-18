@@ -3,16 +3,16 @@ import logging
 
 # 3rd party
 from django.db import models
-from wagtail.core import fields
+from wagtail import fields
 from taggit.models import TagBase, ItemBase
 from wagtail.search import index
 from dal_select2.widgets import ModelSelect2Multiple
 from modelcluster.fields import ParentalKey
-from wagtail.core.models import Page
+from wagtail.models import Page
 from wagtail.utils.decorators import cached_classmethod
 from modelcluster.contrib.taggit import ClusterTaggableManager
-from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
-from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtail.admin.panels import FieldPanel
+from wagtail.images.edit_handlers import FieldPanel
 
 # Module
 from modules.case_studies.abstract import (
@@ -65,10 +65,10 @@ class CaseStudyPage(BasePage, InlineHeroMixin, SidebarMixin):
     content_panels = [
         *Page.content_panels,
         FieldPanel("display_order"),
-        ImageChooserPanel("image"),
+        FieldPanel("image"),
         FieldPanel("alt_text"),
         FieldPanel("sub_head"),
-        StreamFieldPanel("body"),
+        FieldPanel("body"),
         FieldPanel("tags"),
     ]
 

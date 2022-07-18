@@ -3,7 +3,7 @@
 from django.conf import settings
 from django.db import migrations, models
 import django.db.models.deletion
-import wagtail.core.fields
+import wagtail.fields
 
 
 class Migration(migrations.Migration):
@@ -28,13 +28,13 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "bio",
-                    wagtail.core.fields.RichTextField(
+                    wagtail.fields.RichTextField(
                         blank=True, null=True, verbose_name="Bio"
                     ),
                 ),
                 (
                     "short_bio",
-                    wagtail.core.fields.RichTextField(
+                    wagtail.fields.RichTextField(
                         blank=True, null=True, verbose_name="Short bio"
                     ),
                 ),

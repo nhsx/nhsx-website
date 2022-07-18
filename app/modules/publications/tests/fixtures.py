@@ -1,12 +1,12 @@
 from typing import List
 import pytest
 
-from wagtail.core.models import Page
+from wagtail.models import Page
 from modules.publications.models import PublicationPage, PublicationIndexPage
-from wagtail.tests.utils.form_data import rich_text, streamfield, nested_form_data
-from wagtail.core.blocks.stream_block import StreamValue
-import wagtail.core.blocks.stream_block
-from wagtail.core.blocks import RichTextBlock
+from wagtail.test.utils.form_data import rich_text, streamfield, nested_form_data
+from wagtail.blocks.stream_block import StreamValue
+import wagtail.blocks.stream_block
+from wagtail.blocks import RichTextBlock
 
 pytestmark = pytest.mark.django_db
 

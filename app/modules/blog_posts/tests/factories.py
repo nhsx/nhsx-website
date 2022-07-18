@@ -6,7 +6,7 @@ from django.utils import timezone
 
 from modules.blog_posts.models import BlogPost
 from modules.core.tests.factories import CorePageFactory
-from wagtail.core.models import Site
+from wagtail.models import Site
 
 
 class BlogPostFactory(CorePageFactory):
