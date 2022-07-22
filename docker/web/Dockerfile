@@ -156,6 +156,10 @@ RUN mv /tmp/config.fish ~/.config/fish/config.fish
 
 WORKDIR /usr/srv/app/
 
+RUN python manage.py assets clean && \
+        python manage.py assets build && \
+        python manage.py collectstatic --no-input -i node_modules
+
 # We'll eventually want these or similar for the production container
 # RUN python manage.py migrate
 
