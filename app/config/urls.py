@@ -5,11 +5,11 @@ import os
 from django.urls import path
 from django.conf import settings
 from django.http import HttpResponse
-from wagtail.core import views as wagtail_views
+from wagtail import views as wagtail_views
 from wagtail.admin import urls as wagtailadmin_urls
 from django.contrib import admin
 from django.conf.urls import url, include
-from wagtail.core.urls import WAGTAIL_FRONTEND_LOGIN_TEMPLATE, serve_pattern
+from wagtail.urls import WAGTAIL_FRONTEND_LOGIN_TEMPLATE, serve_pattern
 from wagtail.documents import urls as wagtaildocs_urls
 from wagtailcache.cache import cache_page
 from django.contrib.auth import views as auth_views

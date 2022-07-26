@@ -6,7 +6,7 @@ from django.test import Client
 from modules.case_studies.tests.factories import *
 from modules.case_studies.models import *
 
-from wagtail.core.models import Page
+from wagtail.models import Page
 
 pytestmark = pytest.mark.django_db
 

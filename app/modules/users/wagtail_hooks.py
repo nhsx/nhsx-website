@@ -1,7 +1,7 @@
 from django.conf.urls import url
 from django.urls import reverse, include
 from django.utils.translation import ugettext_lazy as _
-from wagtail.core import hooks
+from wagtail import hooks
 from wagtail.admin.menu import Menu, MenuItem, SubmenuMenuItem
 
 from .admin import urls as admin_urls

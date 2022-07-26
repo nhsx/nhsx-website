@@ -6,7 +6,7 @@ from modules.ai_lab.models.resources import AiLabCaseStudy, AiLabGuidance, AiLab
 from modules.ai_lab.models.resource_listings import AiLabResourceIndexPage
 from modules.ai_lab.tests.factories import *
 from modules.publications.tests.factories import *
-from wagtail.core.models import Page
+from wagtail.models import Page
 
 pytestmark = pytest.mark.django_db
 

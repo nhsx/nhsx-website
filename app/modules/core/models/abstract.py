@@ -19,21 +19,20 @@ from cacheops import cached  # NOQA
 from django.db import models
 from django.db.models import F
 from django.conf import settings
-from wagtail.core import fields
+from wagtail import fields
 from django.utils.text import slugify
-from wagtail.core.models import Page
+from wagtail.models import Page
 from wagtail.search import index
 from modelcluster.fields import ParentalManyToManyField
 from django.core.paginator import Paginator
 from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _  # NOQA
 from wagtail.utils.decorators import cached_classmethod
-from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtail.images.edit_handlers import FieldPanel
 from wagtailcache.cache import WagtailCacheMixin
-from wagtail.admin.edit_handlers import (
+from wagtail.admin.panels import (
     ObjectList,
     TabbedInterface,
-    StreamFieldPanel,
     FieldPanel,
     MultiFieldPanel,
 )
@@ -81,7 +80,7 @@ class PageLinksMixin(models.Model):
     panels = [
         FieldPanel("sidebar_title"),
         FieldPanel("automatic"),
-        StreamFieldPanel("page_links"),
+        FieldPanel("page_links"),
     ]
 
     automatic = models.BooleanField(
@@ -280,7 +279,7 @@ class SocialMetaMixin(models.Model):
     social_promote_panels = [
         MultiFieldPanel(
             [
-                ImageChooserPanel("twitter_card_image"),
+                FieldPanel("twitter_card_image"),
                 FieldPanel("twitter_card_alt_text"),
                 FieldPanel("twitter_card_title"),
                 FieldPanel("twitter_card_description"),
@@ -289,7 +288,7 @@ class SocialMetaMixin(models.Model):
         ),
         MultiFieldPanel(
             [
-                ImageChooserPanel("fb_og_image"),
+                FieldPanel("fb_og_image"),
                 FieldPanel("fb_og_title"),
                 FieldPanel("fb_og_description"),
             ],
@@ -334,7 +333,7 @@ class HeroImageMixin(HeroMixin):
         related_name="%(class)s_hero_image",
     )
 
-    hero_panels = [ImageChooserPanel("image")]
+    hero_panels = [FieldPanel("image")]
 
 
 class HeroContentMixin(HeroMixin):
@@ -372,7 +371,7 @@ class HeroImageContentMixin(HeroMixin):
     hero_panels = [
         FieldPanel("headline", classname="title"),
         FieldPanel("sub_head"),
-        ImageChooserPanel("image"),
+        FieldPanel("image"),
     ]
 
     extra_search_fields = [
@@ -419,7 +418,7 @@ class BasePage(WagtailCacheMixin, Page, SocialMetaMixin):
     body = fields.StreamField(nhsx_blocks, blank=True, verbose_name="Body blocks")
 
     content_panels = Page.content_panels + [
-        StreamFieldPanel("body"),
+        FieldPanel("body"),
     ]
 
     search_fields = Page.search_fields + [
@@ -461,7 +460,7 @@ class BasePage(WagtailCacheMixin, Page, SocialMetaMixin):
                 for tab in tabs
             ]
         )
-        return edit_handler.bind_to(model=cls)
+        return edit_handler.bind_to_model(cls)
 
 
 ################################################################################
@@ -478,8 +477,8 @@ class BaseIndexPage(BasePage, InlineHeroMixin):
     content_panels = [
         *Page.content_panels,
         FieldPanel("sub_head"),
-        ImageChooserPanel("image"),
-        StreamFieldPanel("body"),
+        FieldPanel("image"),
+        FieldPanel("body"),
     ]
 
     def _paginator(self, request, page_num=1, tags=None):

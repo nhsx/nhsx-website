@@ -18,7 +18,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.utils.functional import cached_property
 from django.contrib.auth.models import BaseUserManager
 from django_extensions.db.fields import AutoSlugField
-from wagtail.core import fields
+from wagtail import fields
 from modelcluster.models import ClusterableModel
 
 

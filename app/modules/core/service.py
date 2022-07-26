@@ -1,7 +1,7 @@
 from helpers.service import Service
 
 from django.contrib.auth.models import Group
-from wagtail.core.models import Collection, Page
+from wagtail.models import Collection, Page
 from django.utils.functional import cached_property
 
 from modules.core.models.pages import SectionPage, ArticlePage

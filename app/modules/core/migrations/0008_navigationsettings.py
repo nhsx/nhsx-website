@@ -2,8 +2,8 @@
 
 from django.db import migrations, models
 import django.db.models.deletion
-import wagtail.core.blocks
-import wagtail.core.fields
+import wagtail.blocks
+import wagtail.fields
 
 
 class Migration(migrations.Migration):
@@ -18,8 +18,8 @@ class Migration(migrations.Migration):
         #     name='NavigationSettings',
         #     fields=[
         #         ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-        #         ('primary', wagtail.core.fields.StreamField([('page', wagtail.core.blocks.StructBlock([('link_page', wagtail.core.blocks.PageChooserBlock(required=True)), ('title_override', wagtail.core.blocks.CharBlock(required=False))]))], blank=True)),
-        #         ('footer', wagtail.core.fields.StreamField([('page', wagtail.core.blocks.StructBlock([('link_page', wagtail.core.blocks.PageChooserBlock(required=True)), ('title_override', wagtail.core.blocks.CharBlock(required=False))]))], blank=True)),
+        #         ('primary', wagtail.fields.StreamField([('page', wagtail.blocks.StructBlock([('link_page', wagtail.blocks.PageChooserBlock(required=True)), ('title_override', wagtail.blocks.CharBlock(required=False))]))], blank=True)),
+        #         ('footer', wagtail.fields.StreamField([('page', wagtail.blocks.StructBlock([('link_page', wagtail.blocks.PageChooserBlock(required=True)), ('title_override', wagtail.blocks.CharBlock(required=False))]))], blank=True)),
         #         ('site', models.OneToOneField(editable=False, on_delete=django.db.models.deletion.CASCADE, to='wagtailcore.Site')),
         #     ],
         #     options={
