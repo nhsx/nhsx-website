@@ -361,7 +361,7 @@ python-versions = ">=3.4"
 Django = ">=1.8,<4"
 
 [package.extras]
-lint = ["isort (==4.3.21)", "flake8 (==3.8.3)", "black (==19.10b0)"]
+lint = ["black (==19.10b0)", "flake8 (==3.8.3)", "isort (==4.3.21)"]
 
 [[package]]
 name = "django-cacheops"
@@ -588,10 +588,10 @@ six = ">=1.9"
 webencodings = "*"
 
 [package.extras]
-all = ["genshi", "chardet (>=2.2)", "lxml"]
-chardet = ["chardet (>=2.2)"]
-genshi = ["genshi"]
 lxml = ["lxml"]
+genshi = ["genshi"]
+chardet = ["chardet (>=2.2)"]
+all = ["lxml", "chardet (>=2.2)", "genshi"]
 
 [[package]]
 name = "idna"
@@ -807,7 +807,7 @@ colorama = {version = ">=0.3.4", markers = "sys_platform == \"win32\""}
 win32-setctime = {version = ">=1.0.0", markers = "sys_platform == \"win32\""}
 
 [package.extras]
-dev = ["codecov (>=2.0.15)", "colorama (>=0.3.4)", "flake8 (>=3.7.7)", "tox (>=3.9.0)", "tox-travis (>=0.12)", "pytest (>=4.6.2)", "pytest-cov (>=2.7.1)", "Sphinx (>=2.2.1)", "sphinx-autobuild (>=0.7.1)", "sphinx-rtd-theme (>=0.4.3)", "black (>=19.10b0)", "isort (>=5.1.1)"]
+dev = ["isort (>=5.1.1)", "black (>=19.10b0)", "sphinx-rtd-theme (>=0.4.3)", "sphinx-autobuild (>=0.7.1)", "Sphinx (>=2.2.1)", "pytest-cov (>=2.7.1)", "pytest (>=4.6.2)", "tox-travis (>=0.12)", "tox (>=3.9.0)", "flake8 (>=3.7.7)", "colorama (>=0.3.4)", "codecov (>=2.0.15)"]
 
 [[package]]
 name = "lxml"
@@ -884,7 +884,7 @@ optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 
 [package.extras]
-testing = ["docopt", "pytest (>=3.0.7)"]
+testing = ["pytest (>=3.0.7)", "docopt"]
 
 [[package]]
 name = "parso"
@@ -962,8 +962,8 @@ python-versions = ">=3.6"
 importlib-metadata = {version = ">=0.12", markers = "python_version < \"3.8\""}
 
 [package.extras]
-dev = ["pre-commit", "tox"]
-testing = ["pytest", "pytest-benchmark"]
+testing = ["pytest-benchmark", "pytest"]
+dev = ["tox", "pre-commit"]
 
 [[package]]
 name = "prompt-toolkit"
@@ -1067,7 +1067,7 @@ coverage = {version = ">=5.2.1", extras = ["toml"]}
 pytest = ">=4.6"
 
 [package.extras]
-testing = ["fields", "hunter", "process-tests", "six", "pytest-xdist", "virtualenv"]
+testing = ["virtualenv", "pytest-xdist", "six", "process-tests", "hunter", "fields"]
 
 [[package]]
 name = "pytest-django"
@@ -1208,7 +1208,7 @@ use_chardet_on_py3 = ["chardet (>=3.0.2,<5)"]
 
 [[package]]
 name = "rollbar"
-version = "0.16.2"
+version = "0.16.3"
 description = "Easy and powerful exception tracking with Rollbar. Send messages and exceptions with arbitrary context, get back aggregates, and debug production issues quickly."
 category = "main"
 optional = false
@@ -1288,7 +1288,7 @@ optional = false
 python-versions = ">=3.5"
 
 [package.extras]
-docs = ["mkdocs (>=1.1,<1.2)", "mkdocs-material (>=6.2,<6.3)"]
+docs = ["mkdocs-material (>=6.2,<6.3)", "mkdocs (>=1.1,<1.2)"]
 
 [[package]]
 name = "termcolor"
@@ -1422,8 +1422,8 @@ six = ">=1.14.0"
 Wagtail = ">=2.10"
 
 [package.extras]
-docs = ["sphinx (>=1.4.1)", "sphinx-rtd-theme (>=0.4.3)"]
-test = ["coverage (==5.5)", "pytest (==6.2.4)", "pytest-cov (==2.12.1)", "pytest-django (==4.4.0)", "flake8 (==3.9.2)", "isort (==5.9.3)", "flake8-blind-except (==0.2.0)", "flake8-debugger (==4.0.0)"]
+test = ["flake8-debugger (==4.0.0)", "flake8-blind-except (==0.2.0)", "isort (==5.9.3)", "flake8 (==3.9.2)", "pytest-django (==4.4.0)", "pytest-cov (==2.12.1)", "pytest (==6.2.4)", "coverage (==5.5)"]
+docs = ["sphinx-rtd-theme (>=0.4.3)", "sphinx (>=1.4.1)"]
 
 [[package]]
 name = "wagtail-cache"
@@ -1449,8 +1449,8 @@ factory-boy = ">=2.8.0"
 wagtail = ">=2.0"
 
 [package.extras]
+test = ["flake8-debugger (==3.1.0)", "flake8-blind-except (==0.1.1)", "flake8 (==3.7.8)", "isort (==4.3.21)", "coverage (==4.5.3)", "psycopg2 (>=2.3.1)", "pytest-pythonpath (==0.7.3)", "pytest-cov (==2.7.1)", "pytest-django (==3.9.0)", "pytest (==6.0.1)"]
 docs = ["sphinx (>=1.4.0)"]
-test = ["pytest (==6.0.1)", "pytest-django (==3.9.0)", "pytest-cov (==2.7.1)", "pytest-pythonpath (==0.7.3)", "psycopg2 (>=2.3.1)", "coverage (==4.5.3)", "isort (==4.3.21)", "flake8 (==3.7.8)", "flake8-blind-except (==0.1.1)", "flake8-debugger (==3.1.0)"]
 
 [[package]]
 name = "wagtail-modelchooser"
@@ -1550,7 +1550,7 @@ optional = false
 python-versions = ">=3.5"
 
 [package.extras]
-dev = ["pytest (>=4.6.2)", "black (>=19.3b0)"]
+dev = ["black (>=19.3b0)", "pytest (>=4.6.2)"]
 
 [[package]]
 name = "wmctrl"
@@ -1569,9 +1569,9 @@ optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, !=3.5.*"
 
 [package.extras]
-build = ["wheel", "twine"]
+test = ["pytest-cov", "pytest"]
 docs = ["sphinx"]
-test = ["pytest", "pytest-cov"]
+build = ["twine", "wheel"]
 
 [[package]]
 name = "xlsxwriter"
@@ -1604,7 +1604,7 @@ testing = ["pytest (>=4.6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytes
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.6"
-content-hash = "306d4b350e1eb4c49c5c039851cf570ce7ce981d7054bfe55211d769e828decc"
+content-hash = "ae08ab9c5410ae3bbedc2fd60e43454438fc5a403ed4730396f454ba1cf95a56"
 
 [metadata.files]
 aiocontextvars = [
@@ -2253,7 +2253,8 @@ requests = [
     {file = "requests-2.26.0.tar.gz", hash = "sha256:b8aa58f8cf793ffd8782d3d8cb19e66ef36f7aba4353eec859e74678b01b07a7"},
 ]
 rollbar = [
-    {file = "rollbar-0.16.2.tar.gz", hash = "sha256:aa3b570062dd8dfb0e11537ba858f9e1633a604680e062a525434b8245540f87"},
+    {file = "rollbar-0.16.3-py3-none-any.whl", hash = "sha256:f06e23b36d7d1b547f32f287da9367b9bf53319f611da0ec9e891859507ac94e"},
+    {file = "rollbar-0.16.3.tar.gz", hash = "sha256:02313dfc60710ec736ab033d0f8c969d857a8b991cd67e0c1a91620e8a04ede2"},
 ]
 s3transfer = [
     {file = "s3transfer-0.5.0-py3-none-any.whl", hash = "sha256:9c1dc369814391a6bda20ebbf4b70a0f34630592c9aa520856bf384916af2803"},
