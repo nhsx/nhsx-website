@@ -14,14 +14,14 @@ from django.db import models
 from django.conf import settings
 from modelcluster.fields import ParentalKey
 from modelcluster.models import ClusterableModel
-from wagtail.models import Orderable
-from wagtail.admin.panels import (
+from wagtail.core.models import Orderable
+from wagtail.admin.edit_handlers import (
     FieldPanel,
     InlinePanel,
     MultiFieldPanel,
-    FieldPanel,
+    PageChooserPanel,
 )
-from wagtail.images.edit_handlers import FieldPanel
+from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.contrib.settings.models import BaseSetting, register_setting
 
 
@@ -106,7 +106,7 @@ class MetaTagSettings(CachedSetting):
         related_name="+",
     )
 
-    panels = [FieldPanel("description"), FieldPanel("image")]
+    panels = [FieldPanel("description"), ImageChooserPanel("image")]
 
 
 @register_setting
@@ -123,7 +123,7 @@ class DefaultImageSettings(CachedSetting):
         related_name="+",
     )
 
-    panels = [FieldPanel("image")]
+    panels = [ImageChooserPanel("image")]
 
 
 @register_setting
@@ -161,14 +161,14 @@ class HeaderSettings(ClusterableModel, BaseSetting):
             [
                 FieldPanel("service_name"),
                 FieldPanel("service_long_name"),
-                FieldPanel("service_link"),
+                PageChooserPanel("service_link"),
                 FieldPanel("transactional"),
             ],
             heading="Service",
         ),
         MultiFieldPanel(
             [
-                FieldPanel("logo_link"),
+                PageChooserPanel("logo_link"),
                 FieldPanel("logo_aria"),
             ],
             heading="Logo",
@@ -193,7 +193,7 @@ class AbstractLink(Orderable):
 
     panels = [
         FieldPanel("label"),
-        FieldPanel("page"),
+        PageChooserPanel("page"),
     ]
 
 

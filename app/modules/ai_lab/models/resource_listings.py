@@ -11,11 +11,11 @@ from django.template.response import TemplateResponse
 
 from modelcluster.fields import ParentalManyToManyField
 
-from wagtail.admin.panels import FieldPanel
+from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
 from wagtail.contrib.routable_page.models import RoutablePageMixin, route
-from wagtail.models import Page
-from wagtail import fields
-from wagtail.images.edit_handlers import FieldPanel
+from wagtail.core.models import Page
+from wagtail.core import fields
+from wagtail.images.edit_handlers import ImageChooserPanel
 
 from modules.core.models.abstract import BasePage
 from modules.core.models.pages import SectionPage, ArticlePage
@@ -154,9 +154,9 @@ class AiLabResourceCollection(AiLabFilterableResourceMixin, SectionPage):
         FieldPanel("title"),
         FieldPanel("summary", widget=forms.Textarea),
         FieldPanel("sub_head"),
-        FieldPanel("featured_image"),
-        FieldPanel("body"),
-        FieldPanel("resources"),
+        ImageChooserPanel("featured_image"),
+        StreamFieldPanel("body"),
+        StreamFieldPanel("resources"),
         FieldPanel("topics", widget=forms.CheckboxSelectMultiple),
     ]
 
@@ -206,7 +206,7 @@ class AiLabResourceIndexPage(AiLabFilterableResourceMixin, BasePage):
     content_panels = [
         FieldPanel("title"),
         FieldPanel("sub_head"),
-        FieldPanel("body"),
+        StreamFieldPanel("body"),
     ]
 
     def _get_resources(self, topic=None, resource_type=None):

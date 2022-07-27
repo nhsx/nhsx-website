@@ -2,8 +2,8 @@
 
 import datetime
 from django.db import migrations, models
-import wagtail.blocks
-import wagtail.fields
+import wagtail.core.blocks
+import wagtail.core.fields
 
 
 class Migration(migrations.Migration):
@@ -33,21 +33,21 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name="meetingminutes",
             name="apologies",
-            field=wagtail.fields.StreamField(
+            field=wagtail.core.fields.StreamField(
                 [
                     (
                         "person",
-                        wagtail.blocks.StructBlock(
+                        wagtail.core.blocks.StructBlock(
                             [
-                                ("name", wagtail.blocks.CharBlock(required=True)),
+                                ("name", wagtail.core.blocks.CharBlock(required=True)),
                                 (
                                     "organisation",
-                                    wagtail.blocks.CharBlock(required=True),
+                                    wagtail.core.blocks.CharBlock(required=True),
                                 ),
-                                ("role", wagtail.blocks.CharBlock(required=True)),
+                                ("role", wagtail.core.blocks.CharBlock(required=True)),
                                 (
                                     "heading",
-                                    wagtail.blocks.CharBlock(required=False),
+                                    wagtail.core.blocks.CharBlock(required=False),
                                 ),
                             ]
                         ),
@@ -58,21 +58,21 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name="meetingminutes",
             name="attendees",
-            field=wagtail.fields.StreamField(
+            field=wagtail.core.fields.StreamField(
                 [
                     (
                         "person",
-                        wagtail.blocks.StructBlock(
+                        wagtail.core.blocks.StructBlock(
                             [
-                                ("name", wagtail.blocks.CharBlock(required=True)),
+                                ("name", wagtail.core.blocks.CharBlock(required=True)),
                                 (
                                     "organisation",
-                                    wagtail.blocks.CharBlock(required=True),
+                                    wagtail.core.blocks.CharBlock(required=True),
                                 ),
-                                ("role", wagtail.blocks.CharBlock(required=True)),
+                                ("role", wagtail.core.blocks.CharBlock(required=True)),
                                 (
                                     "heading",
-                                    wagtail.blocks.CharBlock(required=False),
+                                    wagtail.core.blocks.CharBlock(required=False),
                                 ),
                             ]
                         ),

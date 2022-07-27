@@ -3,15 +3,15 @@ import logging
 
 # 3rd party
 from django.db import models
-from wagtail import fields
+from wagtail.core import fields
 from taggit.models import TaggedItemBase
 from wagtail.search import index
 from dal_select2.widgets import ModelSelect2Multiple
 from modelcluster.fields import ParentalKey
-from wagtail.models import Page
+from wagtail.core.models import Page
 from wagtail.utils.decorators import cached_classmethod
 from modelcluster.contrib.taggit import ClusterTaggableManager
-from wagtail.admin.panels import FieldPanel, StreamFieldPanel
+from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
 
 # Project
 from modules.core.blocks import blog_link_blocks

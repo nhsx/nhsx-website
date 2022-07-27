@@ -1,9 +1,9 @@
 from django.db import models
 
-from wagtail.admin.panels import FieldPanel, StreamFieldPanel
-from wagtail import fields
-from wagtail import blocks
-from wagtail.models import Page
+from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
+from wagtail.core import fields
+from wagtail.core import blocks
+from wagtail.core.models import Page
 
 from modules.core.models.abstract import BasePage, BaseIndexPage, CanonicalMixin
 

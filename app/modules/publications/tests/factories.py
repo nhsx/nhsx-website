@@ -6,7 +6,7 @@ from django.utils import timezone
 
 from modules.publications.models import PublicationPage
 from modules.core.tests.factories import CorePageFactory
-from wagtail.models import Site
+from wagtail.core.models import Site
 
 
 class PublicationFactory(CorePageFactory):

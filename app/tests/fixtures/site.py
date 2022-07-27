@@ -1,5 +1,5 @@
 import pytest
-from wagtail.models import Page
+from wagtail.core.models import Page
 
 
 @pytest.fixture(scope="function")

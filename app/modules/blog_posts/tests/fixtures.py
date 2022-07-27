@@ -1,7 +1,7 @@
 from typing import List
 import pytest
 
-from wagtail.models import Page
+from wagtail.core.models import Page
 from modules.blog_posts.models import BlogPost, BlogPostIndexPage
 
 pytestmark = pytest.mark.django_db

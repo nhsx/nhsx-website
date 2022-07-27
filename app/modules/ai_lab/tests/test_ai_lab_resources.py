@@ -4,7 +4,7 @@ from django.test import Client
 from modules.ai_lab.models.resources import AiLabCaseStudy
 from modules.ai_lab.models.resource_listings import AiLabResourceIndexPage
 from modules.ai_lab.tests.factories import *
-from wagtail.models import Page
+from wagtail.core.models import Page
 
 pytestmark = pytest.mark.django_db
 

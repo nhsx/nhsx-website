@@ -3,7 +3,7 @@ import collections
 
 from bs4 import BeautifulSoup
 
-from wagtail import blocks
+from wagtail.core import blocks
 from wagtail.embeds import embeds
 from wagtail.embeds.blocks import EmbedBlock as WagtailEmbedBlock
 from wagtail.documents.blocks import DocumentChooserBlock

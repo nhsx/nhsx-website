@@ -3,7 +3,7 @@ import factory
 import pytest
 
 from django.utils import timezone
-from wagtail import blocks
+from wagtail.core import blocks
 
 pytestmark = pytest.mark.django_db
 
