@@ -2,8 +2,8 @@
 
 from django.db import migrations
 import modules.core.blocks
-import wagtail.blocks
-import wagtail.fields
+import wagtail.core.blocks
+import wagtail.core.fields
 import wagtail.images.blocks
 import wagtailnhsukfrontend.blocks
 
@@ -18,11 +18,11 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name="ailabcasestudy",
             name="featured_resources",
-            field=wagtail.fields.StreamField(
+            field=wagtail.core.fields.StreamField(
                 [
                     (
                         "link",
-                        wagtail.blocks.PageChooserBlock(
+                        wagtail.core.blocks.PageChooserBlock(
                             label="Page",
                             page_type=[
                                 "ai_lab.AiLabCaseStudy",
@@ -40,11 +40,11 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name="ailabexternalresource",
             name="featured_resources",
-            field=wagtail.fields.StreamField(
+            field=wagtail.core.fields.StreamField(
                 [
                     (
                         "link",
-                        wagtail.blocks.PageChooserBlock(
+                        wagtail.core.blocks.PageChooserBlock(
                             label="Page",
                             page_type=[
                                 "ai_lab.AiLabCaseStudy",
@@ -62,11 +62,11 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name="ailabguidance",
             name="featured_resources",
-            field=wagtail.fields.StreamField(
+            field=wagtail.core.fields.StreamField(
                 [
                     (
                         "link",
-                        wagtail.blocks.PageChooserBlock(
+                        wagtail.core.blocks.PageChooserBlock(
                             label="Page",
                             page_type=[
                                 "ai_lab.AiLabCaseStudy",
@@ -84,26 +84,26 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name="ailabhomepage",
             name="homepage_body",
-            field=wagtail.fields.StreamField(
+            field=wagtail.core.fields.StreamField(
                 [
-                    ("rich_text", wagtail.blocks.RichTextBlock(group=" Content")),
+                    ("rich_text", wagtail.core.blocks.RichTextBlock(group=" Content")),
                     (
                         "block_quote",
-                        wagtail.blocks.BlockQuoteBlock(group=" Content"),
+                        wagtail.core.blocks.BlockQuoteBlock(group=" Content"),
                     ),
                     ("embed", modules.core.blocks.EmbedBlock(group=" Content")),
                     (
                         "captioned_embed",
-                        wagtail.blocks.StructBlock(
+                        wagtail.core.blocks.StructBlock(
                             [
                                 ("embed", modules.core.blocks.EmbedBlock()),
                                 (
                                     "title",
-                                    wagtail.blocks.CharBlock(required=False),
+                                    wagtail.core.blocks.CharBlock(required=False),
                                 ),
                                 (
                                     "sub_title",
-                                    wagtail.blocks.CharBlock(required=False),
+                                    wagtail.core.blocks.CharBlock(required=False),
                                 ),
                             ],
                             group=" Content",
@@ -111,7 +111,7 @@ class Migration(migrations.Migration):
                     ),
                     (
                         "image",
-                        wagtail.blocks.StructBlock(
+                        wagtail.core.blocks.StructBlock(
                             [
                                 (
                                     "content_image",
@@ -121,14 +121,14 @@ class Migration(migrations.Migration):
                                 ),
                                 (
                                     "alt_text",
-                                    wagtail.blocks.CharBlock(
+                                    wagtail.core.blocks.CharBlock(
                                         help_text="Only leave this blank if the image is decorative.",
                                         required=False,
                                     ),
                                 ),
                                 (
                                     "caption",
-                                    wagtail.blocks.CharBlock(required=False),
+                                    wagtail.core.blocks.CharBlock(required=False),
                                 ),
                             ],
                             group=" NHS Components",
@@ -136,15 +136,15 @@ class Migration(migrations.Migration):
                     ),
                     (
                         "panel",
-                        wagtail.blocks.StructBlock(
+                        wagtail.core.blocks.StructBlock(
                             [
                                 (
                                     "label",
-                                    wagtail.blocks.CharBlock(required=False),
+                                    wagtail.core.blocks.CharBlock(required=False),
                                 ),
                                 (
                                     "heading_level",
-                                    wagtail.blocks.IntegerBlock(
+                                    wagtail.core.blocks.IntegerBlock(
                                         default=3,
                                         help_text="The heading level affects users with screen readers. Ignore this if there is no label. Default=3, Min=2, Max=4.",
                                         max_value=4,
@@ -153,7 +153,7 @@ class Migration(migrations.Migration):
                                 ),
                                 (
                                     "body",
-                                    wagtail.blocks.RichTextBlock(required=True),
+                                    wagtail.core.blocks.RichTextBlock(required=True),
                                 ),
                             ],
                             group=" NHS Components",
@@ -161,27 +161,27 @@ class Migration(migrations.Migration):
                     ),
                     (
                         "promo",
-                        wagtail.blocks.StructBlock(
+                        wagtail.core.blocks.StructBlock(
                             [
                                 (
                                     "link_page",
-                                    wagtail.blocks.PageChooserBlock(
+                                    wagtail.core.blocks.PageChooserBlock(
                                         label="Page", required=False
                                     ),
                                 ),
                                 (
                                     "url",
-                                    wagtail.blocks.URLBlock(
+                                    wagtail.core.blocks.URLBlock(
                                         label="URL", required=False
                                     ),
                                 ),
                                 (
                                     "heading",
-                                    wagtail.blocks.CharBlock(required=True),
+                                    wagtail.core.blocks.CharBlock(required=True),
                                 ),
                                 (
                                     "description",
-                                    wagtail.blocks.CharBlock(required=False),
+                                    wagtail.core.blocks.CharBlock(required=False),
                                 ),
                                 (
                                     "content_image",
@@ -191,18 +191,18 @@ class Migration(migrations.Migration):
                                 ),
                                 (
                                     "alt_text",
-                                    wagtail.blocks.CharBlock(required=False),
+                                    wagtail.core.blocks.CharBlock(required=False),
                                 ),
                                 (
                                     "size",
-                                    wagtail.blocks.ChoiceBlock(
+                                    wagtail.core.blocks.ChoiceBlock(
                                         choices=[("", "Default"), ("small", "Small")],
                                         required=False,
                                     ),
                                 ),
                                 (
                                     "heading_level",
-                                    wagtail.blocks.IntegerBlock(
+                                    wagtail.core.blocks.IntegerBlock(
                                         default=3,
                                         help_text="The heading level affects users with screen readers. Default=3, Min=2, Max=4.",
                                         max_value=4,
@@ -215,38 +215,38 @@ class Migration(migrations.Migration):
                     ),
                     (
                         "expander",
-                        wagtail.blocks.StructBlock(
+                        wagtail.core.blocks.StructBlock(
                             [
-                                ("title", wagtail.blocks.CharBlock(required=True)),
+                                ("title", wagtail.core.blocks.CharBlock(required=True)),
                                 (
                                     "body",
-                                    wagtail.blocks.StreamBlock(
+                                    wagtail.core.blocks.StreamBlock(
                                         [
                                             (
                                                 "richtext",
-                                                wagtail.blocks.RichTextBlock(),
+                                                wagtail.core.blocks.RichTextBlock(),
                                             ),
                                             (
                                                 "action_link",
-                                                wagtail.blocks.StructBlock(
+                                                wagtail.core.blocks.StructBlock(
                                                     [
                                                         (
                                                             "text",
-                                                            wagtail.blocks.CharBlock(
+                                                            wagtail.core.blocks.CharBlock(
                                                                 label="Link text",
                                                                 required=True,
                                                             ),
                                                         ),
                                                         (
                                                             "external_url",
-                                                            wagtail.blocks.URLBlock(
+                                                            wagtail.core.blocks.URLBlock(
                                                                 label="URL",
                                                                 required=True,
                                                             ),
                                                         ),
                                                         (
                                                             "new_window",
-                                                            wagtail.blocks.BooleanBlock(
+                                                            wagtail.core.blocks.BooleanBlock(
                                                                 label="Open in new window",
                                                                 required=False,
                                                             ),
@@ -256,11 +256,11 @@ class Migration(migrations.Migration):
                                             ),
                                             (
                                                 "inset_text",
-                                                wagtail.blocks.StructBlock(
+                                                wagtail.core.blocks.StructBlock(
                                                     [
                                                         (
                                                             "body",
-                                                            wagtail.blocks.RichTextBlock(
+                                                            wagtail.core.blocks.RichTextBlock(
                                                                 required=True
                                                             ),
                                                         )
@@ -269,7 +269,7 @@ class Migration(migrations.Migration):
                                             ),
                                             (
                                                 "image",
-                                                wagtail.blocks.StructBlock(
+                                                wagtail.core.blocks.StructBlock(
                                                     [
                                                         (
                                                             "content_image",
@@ -279,14 +279,14 @@ class Migration(migrations.Migration):
                                                         ),
                                                         (
                                                             "alt_text",
-                                                            wagtail.blocks.CharBlock(
+                                                            wagtail.core.blocks.CharBlock(
                                                                 help_text="Only leave this blank if the image is decorative.",
                                                                 required=False,
                                                             ),
                                                         ),
                                                         (
                                                             "caption",
-                                                            wagtail.blocks.CharBlock(
+                                                            wagtail.core.blocks.CharBlock(
                                                                 required=False
                                                             ),
                                                         ),
@@ -295,18 +295,18 @@ class Migration(migrations.Migration):
                                             ),
                                             (
                                                 "grey_panel",
-                                                wagtail.blocks.StructBlock(
+                                                wagtail.core.blocks.StructBlock(
                                                     [
                                                         (
                                                             "label",
-                                                            wagtail.blocks.CharBlock(
+                                                            wagtail.core.blocks.CharBlock(
                                                                 label="heading",
                                                                 required=False,
                                                             ),
                                                         ),
                                                         (
                                                             "heading_level",
-                                                            wagtail.blocks.IntegerBlock(
+                                                            wagtail.core.blocks.IntegerBlock(
                                                                 default=3,
                                                                 help_text="The heading level affects users with screen readers. Ignore this if there is no heading. Default=3, Min=2, Max=4.",
                                                                 max_value=4,
@@ -315,7 +315,7 @@ class Migration(migrations.Migration):
                                                         ),
                                                         (
                                                             "body",
-                                                            wagtail.blocks.RichTextBlock(
+                                                            wagtail.core.blocks.RichTextBlock(
                                                                 required=True
                                                             ),
                                                         ),
@@ -324,18 +324,18 @@ class Migration(migrations.Migration):
                                             ),
                                             (
                                                 "warning_callout",
-                                                wagtail.blocks.StructBlock(
+                                                wagtail.core.blocks.StructBlock(
                                                     [
                                                         (
                                                             "title",
-                                                            wagtail.blocks.CharBlock(
+                                                            wagtail.core.blocks.CharBlock(
                                                                 default="Important",
                                                                 required=True,
                                                             ),
                                                         ),
                                                         (
                                                             "heading_level",
-                                                            wagtail.blocks.IntegerBlock(
+                                                            wagtail.core.blocks.IntegerBlock(
                                                                 default=3,
                                                                 help_text="The heading level affects users with screen readers. Default=3, Min=2, Max=4.",
                                                                 max_value=4,
@@ -345,7 +345,7 @@ class Migration(migrations.Migration):
                                                         ),
                                                         (
                                                             "body",
-                                                            wagtail.blocks.RichTextBlock(
+                                                            wagtail.core.blocks.RichTextBlock(
                                                                 required=True
                                                             ),
                                                         ),
@@ -354,17 +354,17 @@ class Migration(migrations.Migration):
                                             ),
                                             (
                                                 "summary_list",
-                                                wagtail.blocks.StructBlock(
+                                                wagtail.core.blocks.StructBlock(
                                                     [
                                                         (
                                                             "rows",
-                                                            wagtail.blocks.ListBlock(
+                                                            wagtail.core.blocks.ListBlock(
                                                                 wagtailnhsukfrontend.blocks.SummaryListRowBlock
                                                             ),
                                                         ),
                                                         (
                                                             "no_border",
-                                                            wagtail.blocks.BooleanBlock(
+                                                            wagtail.core.blocks.BooleanBlock(
                                                                 default=False,
                                                                 required=False,
                                                             ),
@@ -383,17 +383,17 @@ class Migration(migrations.Migration):
                     ),
                     (
                         "grey_panel",
-                        wagtail.blocks.StructBlock(
+                        wagtail.core.blocks.StructBlock(
                             [
                                 (
                                     "label",
-                                    wagtail.blocks.CharBlock(
+                                    wagtail.core.blocks.CharBlock(
                                         label="heading", required=False
                                     ),
                                 ),
                                 (
                                     "heading_level",
-                                    wagtail.blocks.IntegerBlock(
+                                    wagtail.core.blocks.IntegerBlock(
                                         default=3,
                                         help_text="The heading level affects users with screen readers. Ignore this if there is no heading. Default=3, Min=2, Max=4.",
                                         max_value=4,
@@ -402,7 +402,7 @@ class Migration(migrations.Migration):
                                 ),
                                 (
                                     "body",
-                                    wagtail.blocks.RichTextBlock(required=True),
+                                    wagtail.core.blocks.RichTextBlock(required=True),
                                 ),
                             ],
                             group=" NHS Components",
@@ -410,11 +410,11 @@ class Migration(migrations.Migration):
                     ),
                     (
                         "inset_text",
-                        wagtail.blocks.StructBlock(
+                        wagtail.core.blocks.StructBlock(
                             [
                                 (
                                     "body",
-                                    wagtail.blocks.RichTextBlock(required=True),
+                                    wagtail.core.blocks.RichTextBlock(required=True),
                                 )
                             ],
                             group=" NHS Components",
@@ -422,26 +422,26 @@ class Migration(migrations.Migration):
                     ),
                     (
                         "panel_list",
-                        wagtail.blocks.StructBlock(
+                        wagtail.core.blocks.StructBlock(
                             [
                                 (
                                     "panels",
-                                    wagtail.blocks.ListBlock(
-                                        wagtail.blocks.StructBlock(
+                                    wagtail.core.blocks.ListBlock(
+                                        wagtail.core.blocks.StructBlock(
                                             [
                                                 (
                                                     "left_panel",
-                                                    wagtail.blocks.StructBlock(
+                                                    wagtail.core.blocks.StructBlock(
                                                         [
                                                             (
                                                                 "label",
-                                                                wagtail.blocks.CharBlock(
+                                                                wagtail.core.blocks.CharBlock(
                                                                     required=False
                                                                 ),
                                                             ),
                                                             (
                                                                 "heading_level",
-                                                                wagtail.blocks.IntegerBlock(
+                                                                wagtail.core.blocks.IntegerBlock(
                                                                     default=3,
                                                                     help_text="The heading level affects users with screen readers. Ignore this if there is no label. Default=3, Min=2, Max=4.",
                                                                     max_value=4,
@@ -450,7 +450,7 @@ class Migration(migrations.Migration):
                                                             ),
                                                             (
                                                                 "body",
-                                                                wagtail.blocks.RichTextBlock(
+                                                                wagtail.core.blocks.RichTextBlock(
                                                                     required=True
                                                                 ),
                                                             ),
@@ -459,17 +459,17 @@ class Migration(migrations.Migration):
                                                 ),
                                                 (
                                                     "right_panel",
-                                                    wagtail.blocks.StructBlock(
+                                                    wagtail.core.blocks.StructBlock(
                                                         [
                                                             (
                                                                 "label",
-                                                                wagtail.blocks.CharBlock(
+                                                                wagtail.core.blocks.CharBlock(
                                                                     required=False
                                                                 ),
                                                             ),
                                                             (
                                                                 "heading_level",
-                                                                wagtail.blocks.IntegerBlock(
+                                                                wagtail.core.blocks.IntegerBlock(
                                                                     default=3,
                                                                     help_text="The heading level affects users with screen readers. Ignore this if there is no label. Default=3, Min=2, Max=4.",
                                                                     max_value=4,
@@ -478,7 +478,7 @@ class Migration(migrations.Migration):
                                                             ),
                                                             (
                                                                 "body",
-                                                                wagtail.blocks.RichTextBlock(
+                                                                wagtail.core.blocks.RichTextBlock(
                                                                     required=True
                                                                 ),
                                                             ),
@@ -495,11 +495,11 @@ class Migration(migrations.Migration):
                     ),
                     (
                         "promo_group",
-                        wagtail.blocks.StructBlock(
+                        wagtail.core.blocks.StructBlock(
                             [
                                 (
                                     "column",
-                                    wagtail.blocks.ChoiceBlock(
+                                    wagtail.core.blocks.ChoiceBlock(
                                         choices=[
                                             ("one-half", "One-half"),
                                             ("one-third", "One-third"),
@@ -508,14 +508,14 @@ class Migration(migrations.Migration):
                                 ),
                                 (
                                     "size",
-                                    wagtail.blocks.ChoiceBlock(
+                                    wagtail.core.blocks.ChoiceBlock(
                                         choices=[("", "Default"), ("small", "Small")],
                                         required=False,
                                     ),
                                 ),
                                 (
                                     "heading_level",
-                                    wagtail.blocks.IntegerBlock(
+                                    wagtail.core.blocks.IntegerBlock(
                                         default=3,
                                         help_text="The heading level affects users with screen readers. Default=3, Min=2, Max=4.",
                                         max_value=4,
@@ -524,7 +524,7 @@ class Migration(migrations.Migration):
                                 ),
                                 (
                                     "promos",
-                                    wagtail.blocks.ListBlock(
+                                    wagtail.core.blocks.ListBlock(
                                         modules.core.blocks.BasePromoBlock
                                     ),
                                 ),
@@ -534,17 +534,17 @@ class Migration(migrations.Migration):
                     ),
                     (
                         "warning_callout",
-                        wagtail.blocks.StructBlock(
+                        wagtail.core.blocks.StructBlock(
                             [
                                 (
                                     "title",
-                                    wagtail.blocks.CharBlock(
+                                    wagtail.core.blocks.CharBlock(
                                         default="Important", required=True
                                     ),
                                 ),
                                 (
                                     "heading_level",
-                                    wagtail.blocks.IntegerBlock(
+                                    wagtail.core.blocks.IntegerBlock(
                                         default=3,
                                         help_text="The heading level affects users with screen readers. Default=3, Min=2, Max=4.",
                                         max_value=4,
@@ -554,7 +554,7 @@ class Migration(migrations.Migration):
                                 ),
                                 (
                                     "body",
-                                    wagtail.blocks.RichTextBlock(required=True),
+                                    wagtail.core.blocks.RichTextBlock(required=True),
                                 ),
                             ],
                             group=" NHS Components",
@@ -563,9 +563,9 @@ class Migration(migrations.Migration):
                     ("table", modules.core.blocks.TableBlock(group=" NHS Components")),
                     (
                         "panel_table",
-                        wagtail.blocks.StructBlock(
+                        wagtail.core.blocks.StructBlock(
                             [
-                                ("title", wagtail.blocks.CharBlock()),
+                                ("title", wagtail.core.blocks.CharBlock()),
                                 ("table", modules.core.blocks.TableBlock()),
                             ],
                             group=" NHS Components",
@@ -573,23 +573,23 @@ class Migration(migrations.Migration):
                     ),
                     (
                         "action_link",
-                        wagtail.blocks.StructBlock(
+                        wagtail.core.blocks.StructBlock(
                             [
                                 (
                                     "text",
-                                    wagtail.blocks.CharBlock(
+                                    wagtail.core.blocks.CharBlock(
                                         label="Link text", required=True
                                     ),
                                 ),
                                 (
                                     "external_url",
-                                    wagtail.blocks.URLBlock(
+                                    wagtail.core.blocks.URLBlock(
                                         label="URL", required=True
                                     ),
                                 ),
                                 (
                                     "new_window",
-                                    wagtail.blocks.BooleanBlock(
+                                    wagtail.core.blocks.BooleanBlock(
                                         label="Open in new window", required=False
                                     ),
                                 ),
@@ -599,21 +599,21 @@ class Migration(migrations.Migration):
                     ),
                     (
                         "latest_blog_posts",
-                        wagtail.blocks.StructBlock(
+                        wagtail.core.blocks.StructBlock(
                             [
                                 (
                                     "heading",
-                                    wagtail.blocks.CharBlock(required=True),
+                                    wagtail.core.blocks.CharBlock(required=True),
                                 ),
                                 (
                                     "number_of_posts",
-                                    wagtail.blocks.ChoiceBlock(
+                                    wagtail.core.blocks.ChoiceBlock(
                                         choices=[(1, "One"), (2, "Two"), (3, "Three")]
                                     ),
                                 ),
                                 (
                                     "tag_id",
-                                    wagtail.blocks.ChoiceBlock(
+                                    wagtail.core.blocks.ChoiceBlock(
                                         choices=modules.core.blocks.get_tag_list
                                     ),
                                 ),
@@ -623,27 +623,27 @@ class Migration(migrations.Migration):
                     ),
                     (
                         "promo_banner",
-                        wagtail.blocks.StructBlock(
+                        wagtail.core.blocks.StructBlock(
                             [
                                 (
                                     "link_page",
-                                    wagtail.blocks.PageChooserBlock(
+                                    wagtail.core.blocks.PageChooserBlock(
                                         label="Page", required=False
                                     ),
                                 ),
                                 (
                                     "url",
-                                    wagtail.blocks.URLBlock(
+                                    wagtail.core.blocks.URLBlock(
                                         label="URL", required=False
                                     ),
                                 ),
                                 (
                                     "heading",
-                                    wagtail.blocks.CharBlock(required=True),
+                                    wagtail.core.blocks.CharBlock(required=True),
                                 ),
                                 (
                                     "description",
-                                    wagtail.blocks.CharBlock(required=False),
+                                    wagtail.core.blocks.CharBlock(required=False),
                                 ),
                                 (
                                     "content_image",
@@ -653,15 +653,15 @@ class Migration(migrations.Migration):
                                 ),
                                 (
                                     "alt_text",
-                                    wagtail.blocks.CharBlock(required=False),
+                                    wagtail.core.blocks.CharBlock(required=False),
                                 ),
                                 (
                                     "call_to_action",
-                                    wagtail.blocks.CharBlock(required=True),
+                                    wagtail.core.blocks.CharBlock(required=True),
                                 ),
                                 (
                                     "heading_level",
-                                    wagtail.blocks.IntegerBlock(
+                                    wagtail.core.blocks.IntegerBlock(
                                         default=3,
                                         help_text="The heading level affects users with screen readers. Default=3, Min=2, Max=4.",
                                         max_value=4,
@@ -670,7 +670,7 @@ class Migration(migrations.Migration):
                                 ),
                                 (
                                     "image_alignment",
-                                    wagtail.blocks.ChoiceBlock(
+                                    wagtail.core.blocks.ChoiceBlock(
                                         choices=[("right", "Right"), ("left", "Left")]
                                     ),
                                 ),
@@ -680,15 +680,15 @@ class Migration(migrations.Migration):
                     ),
                     (
                         "resources_listing",
-                        wagtail.blocks.StructBlock(
+                        wagtail.core.blocks.StructBlock(
                             [
                                 (
                                     "heading",
-                                    wagtail.blocks.CharBlock(required=True),
+                                    wagtail.core.blocks.CharBlock(required=True),
                                 ),
                                 (
                                     "description",
-                                    wagtail.blocks.CharBlock(required=False),
+                                    wagtail.core.blocks.CharBlock(required=False),
                                 ),
                             ],
                             group=" Content",
@@ -702,11 +702,11 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name="ailabreport",
             name="featured_resources",
-            field=wagtail.fields.StreamField(
+            field=wagtail.core.fields.StreamField(
                 [
                     (
                         "link",
-                        wagtail.blocks.PageChooserBlock(
+                        wagtail.core.blocks.PageChooserBlock(
                             label="Page",
                             page_type=[
                                 "ai_lab.AiLabCaseStudy",

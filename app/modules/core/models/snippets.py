@@ -1,11 +1,11 @@
 # 3rd party
 from django import forms
 
-from wagtail import blocks
+from wagtail.core import blocks
 from django.db import models
 from wagtail.snippets.models import register_snippet
-from wagtail.fields import RichTextField
-from wagtail.admin.panels import FieldPanel
+from wagtail.core.fields import RichTextField
+from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
 
 
 ################################################################################

@@ -7,12 +7,12 @@ from django.conf import settings
 from django.utils.text import slugify
 from django.shortcuts import redirect
 
-from wagtail.admin.panels import FieldPanel, FieldPanel
+from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel, PageChooserPanel
 from wagtail.contrib.routable_page.models import RoutablePageMixin, route
-from wagtail.models import Page
-from wagtail import fields
-from wagtail.images.edit_handlers import FieldPanel
-from wagtail.documents.edit_handlers import FieldPanel
+from wagtail.core.models import Page
+from wagtail.core import fields
+from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtail.documents.edit_handlers import DocumentChooserPanel
 from wagtail.snippets.models import register_snippet
 from wagtail.utils.decorators import cached_classmethod
 
@@ -53,18 +53,18 @@ class AiLabResourceMixin(models.Model):
     content_panels = [
         FieldPanel("title"),
         FieldPanel("summary", widget=forms.Textarea),
-        FieldPanel("featured_image"),
-        FieldPanel("download"),
+        ImageChooserPanel("featured_image"),
+        DocumentChooserPanel("download"),
         FieldPanel("first_published_at"),
         FieldPanel("topics", widget=forms.CheckboxSelectMultiple),
-        FieldPanel("body"),
+        StreamFieldPanel("body"),
     ]
 
     @cached_classmethod
     def get_admin_tabs(cls):
         tabs = super().get_admin_tabs()
         del tabs[1]
-        tabs.insert(1, ([FieldPanel("featured_resources")], "Featured"))
+        tabs.insert(1, ([StreamFieldPanel("featured_resources")], "Featured"))
         return tabs
 
     def get_template(self, request):
@@ -152,7 +152,7 @@ class AiLabLinkedResourceMixin(AiLabResourceMixin):
     content_panels = [
         FieldPanel("title"),
         FieldPanel("summary", widget=forms.Textarea),
-        FieldPanel("featured_image"),
+        ImageChooserPanel("featured_image"),
         FieldPanel("first_published_at"),
         FieldPanel("topics", widget=forms.CheckboxSelectMultiple),
     ]
@@ -186,7 +186,9 @@ class AiLabInternalResource(AiLabLinkedResourceMixin, Page):
         on_delete=models.SET_NULL,
         related_name="+",
     )
-    content_panels = AiLabLinkedResourceMixin.content_panels + [FieldPanel("page")]
+    content_panels = AiLabLinkedResourceMixin.content_panels + [
+        PageChooserPanel("page")
+    ]
 
     def resource_url(self):
         return self.page.url

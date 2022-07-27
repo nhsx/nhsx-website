@@ -1,6 +1,6 @@
 from django import template
 from modules.core.models import MetaTagSettings
-from wagtail.models import Site
+from wagtail.core.models import Site
 
 register = template.Library()
 

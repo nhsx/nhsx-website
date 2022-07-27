@@ -4,8 +4,8 @@ from django.db import migrations, models
 import django.db.models.deletion
 import modelcluster.fields
 import modules.ai_lab.models.resource_listings
-import wagtail.blocks
-import wagtail.fields
+import wagtail.core.blocks
+import wagtail.core.fields
 
 
 class Migration(migrations.Migration):
@@ -33,11 +33,11 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "resources",
-                    wagtail.fields.StreamField(
+                    wagtail.core.fields.StreamField(
                         [
                             (
                                 "link",
-                                wagtail.blocks.PageChooserBlock(
+                                wagtail.core.blocks.PageChooserBlock(
                                     label="Page",
                                     page_type=[
                                         "ai_lab.AiLabCaseStudy",

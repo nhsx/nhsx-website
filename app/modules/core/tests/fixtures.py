@@ -2,7 +2,7 @@
 import json
 from typing import List
 import pytest
-from wagtail.models import Page
+from wagtail.core.models import Page
 from modules.core.models import SectionPage, ArticlePage
 
 from .blocks import RICHTEXT_BLOCK, PROMO, SMALL_PROMO

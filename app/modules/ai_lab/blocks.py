@@ -1,6 +1,6 @@
 from django import forms
 
-from wagtail import blocks
+from wagtail.core import blocks
 from modules.core.blocks import section_page_blocks
 
 

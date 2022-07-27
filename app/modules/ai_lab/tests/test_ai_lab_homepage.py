@@ -8,7 +8,7 @@ from modules.ai_lab.models.home_page import AiLabHomePage
 from modules.ai_lab.tests.factories import *
 from modules.blog_posts.tests.factories import BlogPostFactory
 
-from wagtail.models import Page
+from wagtail.core.models import Page
 
 pytestmark = pytest.mark.django_db
 

@@ -5,16 +5,16 @@ from collections import Counter
 
 # 3rd party
 from django.db import models
-from wagtail import fields
+from wagtail.core import fields
 from taggit.models import TaggedItemBase
 from wagtail.search import index
 from dal_select2.widgets import ModelSelect2Multiple
 from modelcluster.fields import ParentalKey
-from wagtail.models import Page
-from wagtail.fields import RichTextField
+from wagtail.core.models import Page
+from wagtail.core.fields import RichTextField
 from wagtail.utils.decorators import cached_classmethod
 from modelcluster.contrib.taggit import ClusterTaggableManager
-from wagtail.admin.panels import FieldPanel, FieldPanel
+from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
 from django.views.decorators.cache import cache_page
 from django.utils.text import slugify
 
@@ -66,7 +66,7 @@ class PublicationPage(BasePage, CanonicalMixin):
         *Page.content_panels,
         FieldPanel("first_published_at"),
         FieldPanel("updated_at"),
-        FieldPanel("body"),
+        StreamFieldPanel("body"),
         FieldPanel("history"),
     ]
 

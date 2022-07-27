@@ -1,11 +1,11 @@
 # 3rd party
 from django.db import models
 
-from wagtail import fields
-from wagtail.admin.panels import FieldPanel, FieldPanel
-from wagtail.images.edit_handlers import FieldPanel
+from wagtail.core import fields
+from wagtail.admin.edit_handlers import StreamFieldPanel, FieldPanel
+from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.utils.decorators import cached_classmethod
-from wagtail.models import Page
+from wagtail.core.models import Page
 
 # Project
 from modules.core.blocks import nhsx_blocks
@@ -75,8 +75,8 @@ class SectionPage(BasePage, InlineHeroMixin, SubNavMixin):
     content_panels = [
         *Page.content_panels,
         FieldPanel("sub_head"),
-        FieldPanel("image"),
-        FieldPanel("body"),
+        ImageChooserPanel("image"),
+        StreamFieldPanel("body"),
     ]
 
     settings_panels = [*Page.settings_panels, FieldPanel("page_width")]
