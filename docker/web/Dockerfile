@@ -93,8 +93,7 @@ RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && \
     ln -s /usr/bin/python3 /usr/bin/python && \
     rm -rf /tmp/* /etc/apk/cache/* /root/.cache
 
-RUN curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python && \
-    source $HOME/.poetry/env
+RUN curl -sSL https://install.python-poetry.org | python
 
 RUN mkdir -p /usr/srv/app/
 WORKDIR /usr/srv/app/
@@ -123,9 +122,8 @@ RUN mv ./node_modules/ /usr/srv/deps
 # POETRY (working and installed in django-base)
 COPY ./app/pyproject.toml /usr/srv/app/pyproject.toml
 COPY ./app/poetry.lock /usr/srv/app/poetry.lock
-RUN source $HOME/.poetry/env && \
-    poetry self update && \
-    poetry install
+RUN $HOME/.local/bin/poetry self update && \
+    $HOME/.local/bin/poetry install
 
 
 VOLUME /usr/srv/app/media
