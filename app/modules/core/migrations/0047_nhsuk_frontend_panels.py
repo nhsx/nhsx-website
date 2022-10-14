@@ -12,6 +12,45 @@ from wagtail.core.models import PageRevision
 # With great thanks to Andy Babic for explaining how to migrate
 # https://wagtailcms.slack.com/archives/C81FGJR2S/p1658748123806079
 
+from modules.meeting_minutes.models import  MeetingMinutes, MeetingMinutesListingPage
+from modules.home.models import HomePage
+from modules.blog_posts.models import BlogPost, BlogPostIndexPage
+from modules.core.models.pages import SectionPage, ArticlePage, CookieFormPage
+# mixin may be off on on the next line
+from modules.ai_lab.models.resource_listings import AiLabResourceCollection, AiLabResourceIndexPage, AiLabCategoryIndexPageMixin
+from modules.ai_lab.models.resources import AiLabCaseStudy, AiLabGuidance, AiLabReport, AiLabExternalResource, AiLabInternalResource
+# core pages may be incorrect
+from modules.core.models.abstract import BasePage, BaseIndexPage
+from modules.publications.models import PublicationPage, PublicationIndexPage
+from modules.news.models import News, NewsIndexPage
+from modules.people.models import Person, PeopleListingPage
+# Template may be wrong
+from modules.ig_guidance.models import IGGuidance, GuidanceListingPage, InternalGuidance, ExternalGuidance, IGTemplate
+from modules.case_studies. models import CaseStudyPage
+
+all_page_types = [
+   # MeetingMinutes -- no body
+   MeetingMinutesListingPage,
+HomePage,
+ BlogPost, BlogPostIndexPage,
+ SectionPage, ArticlePage, CookieFormPage,
+ AiLabResourceCollection, AiLabResourceIndexPage,
+ # AiLabCategoryIndexPageMixin -- abstract
+ AiLabCaseStudy, AiLabGuidance, AiLabReport,
+ # AiLabExternalResource, AiLabInternalResource, -- no body
+ # BasePage,  BaseIndexPage,-- abstract
+
+ PublicationPage, PublicationIndexPage,
+ News, NewsIndexPage,
+ Person, PeopleListingPage,
+ # IGGuidance,  -- abstract
+ GuidanceListingPage, InternalGuidance, ExternalGuidance, IGTemplate,
+ CaseStudyPage,
+
+]
+
+
+
 def card_group(data):
     """{'type': 'card_group', 'value': {'column': 'one-half', 'body': [
         {'type': 'card_image',
@@ -26,7 +65,6 @@ def card_group(data):
              'internal_page': None},
         'id': 'c9921c84-bf66-44dc-960e-a671d7080412'}]}, 'id': '0ac8c8c9-ef6d-434e-8954-b2333193539d'}"""
     print (data)
-    breakpoint()
     return data
 
 def promo_group(data):
@@ -126,16 +164,19 @@ def alter_raw_data(page, mapper):
     return json.dumps(new_data), mapped
 
 def migrate(apps, mapper):
-    for page in PublicationPage.objects.all():
-        stream_data, mapped = alter_raw_data(page, mapper)
+    for page_type in all_page_types:
+        print(f"Starting {page_type.__name__}...")
+        for page in page_type.objects.all():
+            print(f"Considering {page_type.__name__}: '{page}'")
+            stream_data, mapped = alter_raw_data(page, mapper)
 
-        if mapped:
-            page.body = stream_data
-            page.save()
-            PageRevision.objects.filter(page_id=page.id).delete()
-    print ("DONE")
+            if mapped:
+                print(f"Modified {page_type.__name__} '{page}'")
+                page.body = stream_data
+                page.save()
+                PageRevision.objects.filter(page_id=page.id).delete()
+        print (f"That was the last {page_type.__name__}")
     breakpoint()
-    # raise RuntimeError()
 
 def forwards(apps, schema_editor):
     migrate(apps, forward_mapper)
