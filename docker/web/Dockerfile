@@ -77,7 +77,8 @@ RUN curl -s https://raw.githubusercontent.com/envkey/envkey-source/master/instal
 ENV POETRY_VIRTUALENVS_CREATE=0 \
     POETRY_VIRTUALENVS_IN_PROJECT=0 \
     POETRY_VIRTUALENVS_PATH="/usr/venvs" \
-    POETRY_REPOSITORIES={}
+    POETRY_REPOSITORIES={} \
+    POETRY_VERSION=1.2.2
 
 # Attempting to fix issues with broken pip installs -- something like:
 # ImportError: cannot import name 'InvalidSchemeCombination' from 'pip._internal.exceptions'
