@@ -27,3 +27,11 @@ repos:
     hooks:
       - id: dockerfilelint
         stages: [commit]
+  - repo: local
+    hooks:
+      - id: pre-commit-django-migrations
+        name: Check django migrations
+        entry: script/manpy makemigrations --check --dry-run
+        language: system
+        types: [python]
+        pass_filenames: false
