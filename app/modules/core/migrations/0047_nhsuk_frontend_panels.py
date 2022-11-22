@@ -64,7 +64,6 @@ def card_group(data):
              'url': 'http://kittenwar.com',
              'internal_page': None},
         'id': 'c9921c84-bf66-44dc-960e-a671d7080412'}]}, 'id': '0ac8c8c9-ef6d-434e-8954-b2333193539d'}"""
-    print (data)
     return data
 
 def promo_group(data):
@@ -73,7 +72,6 @@ def promo_group(data):
             {'link_page': 3, 'url': '', 'heading': 'promogroup promo h',
             'description': 'promo d', 'content_image': 1, 'alt_text': 'alt promo'}
         ]}, 'id': 'bbe1e442-0f77-4929-8cba-46075fda1266'}"""
-    breakpoint()
     promos = data['value']['promos']
     heading_level = data['value']['heading_level']
     for p in promos:
@@ -98,7 +96,6 @@ def panel_list(data):
     for panel in panel_data:
         panels.append(panel['left_panel'])
         panels.append(panel['right_panel'])
-    breakpoint()
     bodies = [{
         'type': 'card_basic',
         'value': {'heading': panel['label'],
@@ -113,8 +110,6 @@ def panel_list(data):
         'type': 'card_group',
         'value': {'column': 'one-half', 'body': bodies},
     }
-    print(data)
-    breakpoint()
     return(data)
 
 def panel(data):
@@ -176,7 +171,6 @@ def migrate(apps, mapper):
                 page.save()
                 PageRevision.objects.filter(page_id=page.id).delete()
         print (f"That was the last {page_type.__name__}")
-    breakpoint()
 
 def forwards(apps, schema_editor):
     migrate(apps, forward_mapper)
