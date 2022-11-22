@@ -1378,7 +1378,7 @@ wagtail = ">=2.0,<3.0"
 
 [[package]]
 name = "wagtail-factories"
-version = "2.1.0"
+version = "3.1.0"
 description = "Factory boy classes for wagtail"
 category = "main"
 optional = false
@@ -1555,7 +1555,7 @@ testing = ["flake8 (<5)", "func-timeout", "jaraco.functools", "jaraco.itertools"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.7"
-content-hash = "ace5653dc2f95ee1a9866dc19daaee090c199d573bc94a0e1adcea7888cbc8ae"
+content-hash = "230d7c6ee18fc02a8a171bc9b39119e42553ab5f7781a8e91b3ee829209bce32"
 
 [metadata.files]
 anyascii = [
@@ -2262,8 +2262,8 @@ wagtail-cache = [
     {file = "wagtail_cache-1.2.1-py3-none-any.whl", hash = "sha256:14a8e013eaa4fbe128a966c20571c21bed22621f886e81907514f6e3ba4f3f40"},
 ]
 wagtail-factories = [
-    {file = "wagtail_factories-2.1.0-py2.py3-none-any.whl", hash = "sha256:bca1538d2c7faad9a9d024c047c7f695e2753d218ea79b78e410bec77913bee3"},
-    {file = "wagtail_factories-2.1.0.tar.gz", hash = "sha256:162cce8f3f7d26aebf19f233e243a24946be74bb281822889ec7f936ba42dbff"},
+    {file = "wagtail_factories-3.1.0-py2.py3-none-any.whl", hash = "sha256:26b42998420005ab556f714e72e4a53427aac59ae595c66d1379a2c141f92be5"},
+    {file = "wagtail_factories-3.1.0.tar.gz", hash = "sha256:ea366dc1d399e9c24218366fc80a104f51c3f18469ed19c576e15023a226c942"},
 ]
 wagtail-modelchooser = [
     {file = "wagtail-modelchooser-2.14.1.tar.gz", hash = "sha256:a406eb27f5023bf9f42d461e8900e2b915082479c23102e7115e8d177f446e8f"},
