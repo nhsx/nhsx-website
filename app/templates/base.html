@@ -43,6 +43,18 @@
             {# Override this in templates to add extra javascript #}
         {% endblock %}
 
+        {% if settings.core.AnalyticsSettings.ga4_id %}
+            <!-- Google tag (gtag.js) -->
+            <script data-cookieconsent="statistics" type="text/plain" async src="https://www.googletagmanager.com/gtag/js?id={{ settings.core.AnalyticsSettings.ga4_id }}"></script>
+            <script data-cookieconsent="statistics" type="text/plain">
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+
+                gtag('config', '{{ settings.core.AnalyticsSettings.ga4_id }}');
+            </script>
+        {% endif %}
+
         {% if settings.core.AnalyticsSettings.property_id %}
             <script data-cookieconsent="statistics" type="text/plain" src="https://www.googletagmanager.com/gtag/js?id={{ settings.core.AnalyticsSettings.property_id }}"></script>
             <script data-cookieconsent="statistics" type="text/plain">
