@@ -52,10 +52,8 @@ class AnalyticsSettings(CachedSetting):
     property_id = models.CharField(
         help_text="Property ID", null=True, blank=True, max_length=32
     )
-    
-    ga4_id = models.CharField(
-        help_text="GA4 ID", null=True, blank=True, max_length=25
-    )
+
+    ga4_id = models.CharField(help_text="GA4 ID", null=True, blank=True, max_length=25)
 
 
 @register_setting
