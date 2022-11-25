@@ -80,6 +80,11 @@ the following command:
 script/manpy COMMAND
 ```
 
+### Precommit hooks
+
+You should run `pre-commit init` so that your code changes will be linted and not fail CI.
+
+
 ## License
 
 Released under the MIT license
