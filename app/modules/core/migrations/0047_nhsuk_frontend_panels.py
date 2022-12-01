@@ -12,6 +12,7 @@ from wagtail.core.models import PageRevision
 # With great thanks to Andy Babic for explaining how to migrate
 # https://wagtailcms.slack.com/archives/C81FGJR2S/p1658748123806079
 
+""" 
 from modules.meeting_minutes.models import  MeetingMinutes, MeetingMinutesListingPage
 from modules.home.models import HomePage
 from modules.blog_posts.models import BlogPost, BlogPostIndexPage
@@ -26,8 +27,10 @@ from modules.news.models import News, NewsIndexPage
 from modules.people.models import Person, PeopleListingPage
 # Template may be wrong
 from modules.ig_guidance.models import IGGuidance, GuidanceListingPage, InternalGuidance, ExternalGuidance, IGTemplate
-from modules.case_studies. models import CaseStudyPage
+from modules.case_studies. models import CaseStudyPage 
+"""
 
+""" 
 all_page_types = [
    # MeetingMinutes -- no body
    MeetingMinutesListingPage,
@@ -47,7 +50,8 @@ HomePage,
  GuidanceListingPage, InternalGuidance, ExternalGuidance, IGTemplate,
  CaseStudyPage,
 
-]
+] 
+"""
 
 
 
@@ -183,7 +187,8 @@ class Migration(migrations.Migration):
     dependencies = [
         ('core', '0046_auto_20210902_1250'),
     ]
-
+'''
     operations = [
         migrations.RunPython(forwards, backwards)
     ]
+'''
