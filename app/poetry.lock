@@ -497,7 +497,7 @@ testing = ["beautifulsoup4 (>=4.4.1,<5)", "coverage (>=4.1.0)", "flake8 (>=3.2.0
 
 [[package]]
 name = "envkey"
-version = "2.1.0"
+version = "2.1.2"
 description = "EnvKey's Python library. Protect API keys and credentials. Keep configuration in sync."
 category = "main"
 optional = false
@@ -1555,7 +1555,7 @@ testing = ["flake8 (<5)", "func-timeout", "jaraco.functools", "jaraco.itertools"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.7"
-content-hash = "ace5653dc2f95ee1a9866dc19daaee090c199d573bc94a0e1adcea7888cbc8ae"
+content-hash = "1d72f9991dc1b42d9404647bb96b91488c78171d0b2d69aecf6f84a766c24207"
 
 [metadata.files]
 anyascii = [
@@ -1782,7 +1782,7 @@ draftjs-exporter = [
     {file = "draftjs_exporter-2.1.7.tar.gz", hash = "sha256:5839cbc29d7bce2fb99837a404ca40c3a07313f2a20e2700de7ad6aa9a9a18fb"},
 ]
 envkey = [
-    {file = "envkey-2.1.0-py2.py3-none-any.whl", hash = "sha256:b1c8f4edbb117fea2b4ae9e6f338aef10bf5a239c84dc0ddf8cdcc2212568968"},
+    {file = "envkey-2.1.2-py2.py3-none-any.whl", hash = "sha256:a95856e795c5875963085c03efd2aa72cfdfaf125b3c5e189ee2ccd3851cadb7"},
 ]
 et-xmlfile = [
     {file = "et_xmlfile-1.1.0-py3-none-any.whl", hash = "sha256:a2ba85d1d6a74ef63837eed693bcb89c3f752169b0e3e7ae5b16ca5e1b3deada"},
