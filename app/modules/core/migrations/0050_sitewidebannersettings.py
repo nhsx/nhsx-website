@@ -19,7 +19,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('banner_enabled', models.BooleanField(default=False, verbose_name='Enable banner')),
                 ('site_wide_banner_theme', models.CharField(choices=[('nhs-dark-pink', 'NHS Dark Pink'), ('nhs-dark-grey', 'NHS Dark Grey'), ('nhs-pale-grey', 'NHS Pale Grey'), ('nhs-light-blue', 'NHS Light Blue')], default='nhs-dark-pink', max_length=15, verbose_name='Banner colour scheme')),
-                ('site_wide_banner_body', wagtail.core.fields.RichTextField(verbose_name='Banner content')),
+                ('site_wide_banner_body', wagtail.core.fields.RichTextField(blank=True, null=True, verbose_name='Banner content')),
                 ('site', models.OneToOneField(editable=False, on_delete=django.db.models.deletion.CASCADE, to='wagtailcore.site')),
             ],
             options={
