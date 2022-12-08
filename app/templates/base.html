@@ -1,4 +1,4 @@
-{% load wagtailcore_tags static wagtailuserbar nhsukfrontend_tags nhsukfrontendsettings_tags %}
+{% load wagtailcore_tags static wagtailuserbar nhsukfrontend_tags nhsukfrontendsettings_tags home_page_tags %}
 <!DOCTYPE html>
 <html class="no-js" lang="en">
     <head>
@@ -20,11 +20,21 @@
     <body class="{% block body_class %}{% endblock %}">
         {% wagtailuserbar %}
 
+
+        {% is_home as local_is_home %}
+
+        {% if not local_is_home %}
+            {% include '_partials/site_wide_banner.html' %}
+        {% endif %}
         {% header %}
 
         {% block breadcrumb %}
         {% endblock %}
 
+        {% if local_is_home %}
+            {% include '_partials/home_page_banner.html' %}
+        {% endif %}
+        
         {% include '_partials/rebrand.html' %}
         {% block content %}
 
