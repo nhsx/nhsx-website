@@ -69,7 +69,9 @@ class HomePageBannerSettings(CachedSetting):
     )
     home_page_banner_body = fields.RichTextField(
         verbose_name="Banner content",
-        features=['bold', 'italic', 'link']
+        features=['bold', 'italic', 'link'],
+        null=True,
+        blank=True,
     )
 
 
