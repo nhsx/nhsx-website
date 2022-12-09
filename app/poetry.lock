@@ -1378,7 +1378,7 @@ wagtail = ">=2.2"
 
 [[package]]
 name = "wagtail-nhsuk-frontend"
-version = "0.7.0"
+version = "0.8.0"
 description = "NHSUK Frontend Styles for Wagtail"
 category = "main"
 optional = false
@@ -1520,7 +1520,7 @@ testing = ["flake8 (<5)", "func-timeout", "jaraco.functools", "jaraco.itertools"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.7"
-content-hash = "cfd5ab06c5d5d1ad9f6616259edebc6fd1cfe94537abf766102aaea9e9c2a550"
+content-hash = "c832c8f2bed3a37e0ee0a69bf6897795e8a54fb5a26252bff86a9e84d1c35474"
 
 [metadata.files]
 anyascii = [
@@ -2227,7 +2227,7 @@ wagtail-modelchooser = [
     {file = "wagtail_modelchooser-2.14.1-py2.py3-none-any.whl", hash = "sha256:47f3d90f235d46c1c9b1887632bd419b65fdbba91a364ae6691504e1366ba993"},
 ]
 wagtail-nhsuk-frontend = [
-    {file = "wagtail-nhsuk-frontend-0.7.0.tar.gz", hash = "sha256:5dd46dc2411cacd73596832fe6b13bdfdd2635a8edba850783d161dad4b442ef"},
+    {file = "wagtail-nhsuk-frontend-0.8.0.tar.gz", hash = "sha256:6d2f65a41af950a2131445e2051c70f526fac1b1e81f3499a4cd92a688eab37b"},
 ]
 wagtailfontawesome = [
     {file = "wagtailfontawesome-1.2.1-py2.py3-none-any.whl", hash = "sha256:76b1c64c4f1042d468a83e4352f74b57bda4a4aa09cdfeeb8663dead5ed632be"},
