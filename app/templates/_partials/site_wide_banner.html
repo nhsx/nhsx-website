@@ -2,9 +2,11 @@
 {% get_settings use_default_site=True %}
 
 {% if settings.core.SiteWideBannerSettings.banner_enabled and settings.core.SiteWideBannerSettings.site_wide_banner_body %}
-    <div class="alert-banner-container nhsuk-width-container {{ settings.core.SiteWideBannerSettings.site_wide_banner_theme }}">
-        <article>
-            {{ settings.core.SiteWideBannerSettings.site_wide_banner_body|richtext  }}
-        </article>
+    <div class="alert-banner-container {{ settings.core.SiteWideBannerSettings.site_wide_banner_theme }}">
+        <div class="nhsuk-width-container">
+            <article>
+                {{ settings.core.SiteWideBannerSettings.site_wide_banner_body|richtext  }}
+            </article>
+        </div>
     </div>
 {% endif %}
