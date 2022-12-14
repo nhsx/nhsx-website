@@ -14,6 +14,7 @@ from django.db import models
 from django.conf import settings
 from modelcluster.fields import ParentalKey
 from modelcluster.models import ClusterableModel
+from wagtail.core import fields
 from wagtail.core.models import Orderable
 from wagtail.admin.edit_handlers import (
     FieldPanel,
@@ -42,6 +43,57 @@ class CachedSetting(BaseSetting):
         """
         instance, created = cls.objects.get_or_create(site=site)
         return instance
+
+
+class ThemeChoices(models.TextChoices):
+    NHS_DARK_PINK = "nhs-dark-pink", "NHS Dark Pink"
+    NHS_DARK_GREY = "nhs-dark-grey", "NHS Dark Grey"
+    NHS_PALE_GREY = "nhs-pale-grey", "NHS Pale Grey"
+    NHS_LIGHT_BLUE = "nhs-light-blue", "NHS Light Blue"
+
+
+@register_setting
+class HomePageBannerSettings(CachedSetting):
+    class Meta:
+        verbose_name = "Home page banner settings"
+
+    home_page_banner_enabled = models.BooleanField(
+        verbose_name="Enable banner", name="banner_enabled", default=False
+    )
+    home_page_banner_theme = models.CharField(
+        verbose_name="Banner colour scheme",
+        max_length=15,
+        choices=ThemeChoices.choices,
+        default=ThemeChoices.NHS_DARK_PINK,
+    )
+    home_page_banner_body = fields.RichTextField(
+        verbose_name="Banner content",
+        features=["bold", "italic", "link"],
+        null=True,
+        blank=True,
+    )
+
+
+@register_setting
+class SiteWideBannerSettings(CachedSetting):
+    class Meta:
+        verbose_name = "Site wide banner settings"
+
+    site_wide_banner_enabled = models.BooleanField(
+        verbose_name="Enable banner", name="banner_enabled", default=False
+    )
+    site_wide_banner_theme = models.CharField(
+        verbose_name="Banner colour scheme",
+        max_length=15,
+        choices=ThemeChoices.choices,
+        default=ThemeChoices.NHS_DARK_PINK,
+    )
+    site_wide_banner_body = fields.RichTextField(
+        verbose_name="Banner content",
+        features=["bold", "italic", "link"],
+        null=True,
+        blank=True,
+    )
 
 
 @register_setting

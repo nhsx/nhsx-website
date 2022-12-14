@@ -1,0 +1,12 @@
+{% load wagtailsettings_tags wagtailcore_tags home_page_tags %}
+{% get_settings use_default_site=True %}
+
+{% if settings.core.HomePageBannerSettings.banner_enabled and settings.core.HomePageBannerSettings.home_page_banner_body %}
+  <div class="alert-banner-container home-page-banner {{ settings.core.HomePageBannerSettings.home_page_banner_theme }}">
+    <div class="nhsuk-width-container">
+      <article>
+          {{ settings.core.HomePageBannerSettings.home_page_banner_body|richtext  }}
+      </article>
+    </div>
+  </div>
+{% endif %}

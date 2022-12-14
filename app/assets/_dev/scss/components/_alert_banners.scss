@@ -1,0 +1,36 @@
+.alert-banner-container {
+    &.home-page-banner {
+        margin: 10px;
+    }
+
+    article {
+        position: relative;
+        padding: 25px 0px 15px;
+    }
+
+    a {
+        color: inherit;
+    }
+
+    p {
+        margin-bottom: 10px;
+    }
+}
+
+.nhs-dark-pink {
+    background-color: $nhs-dark-pink;
+    color: white;
+}
+
+.nhs-dark-grey {
+    background-color: $nhs-dark-grey;
+    color: white;
+}
+
+.nhs-pale-grey {
+    background-color: $nhsx-pale-grey;
+}
+
+.nhs-light-blue {
+    background-color: $nhs-light-blue;
+}
