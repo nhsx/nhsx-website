@@ -123,8 +123,8 @@ RUN mv ./node_modules/ /usr/srv/deps
 # POETRY (working and installed in django-base)
 COPY ./app/pyproject.toml /usr/srv/app/pyproject.toml
 COPY ./app/poetry.lock /usr/srv/app/poetry.lock
-RUN $HOME/.local/bin/poetry self update && \
-    $HOME/.local/bin/poetry install
+#RUN $HOME/.local/bin/poetry self update && \
+RUN $HOME/.local/bin/poetry install
 
 
 VOLUME /usr/srv/app/media
