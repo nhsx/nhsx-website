@@ -123,6 +123,7 @@ RUN mv ./node_modules/ /usr/srv/deps
 # POETRY (working and installed in django-base)
 COPY ./app/pyproject.toml /usr/srv/app/pyproject.toml
 COPY ./app/poetry.lock /usr/srv/app/poetry.lock
+## self update disabled currently due to causing timeout issues in the deploy
 #RUN $HOME/.local/bin/poetry self update && \
 RUN $HOME/.local/bin/poetry install
 
