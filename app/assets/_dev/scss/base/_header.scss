@@ -3,6 +3,20 @@
   background-color: $nhsx-dark-blue;
 }
 
+.nhsuk-header__logo {
+  .nhsuk75-header__link {
+    height: 60px;
+    width: auto;
+    display: block;
+
+    .nhsuk75-logo {
+      height: 60px;
+      width: auto;
+      border: 0;
+    }
+  }
+}
+
 @media screen and (min-width: $large-screen) {
   .nhsuk-header__navigation--nhsx {
     background-color: $nhsx-dark-blue !important;
