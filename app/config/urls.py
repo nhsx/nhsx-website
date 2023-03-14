@@ -5,6 +5,7 @@ import os
 from django.urls import path
 from django.conf import settings
 from django.http import HttpResponse
+from django.shortcuts import redirect
 from wagtail.core import views as wagtail_views
 from wagtail.admin import urls as wagtailadmin_urls
 from django.contrib import admin
@@ -55,6 +56,44 @@ urlpatterns = [
     url(
         r"^analytics\.txt",
         TemplateView.as_view(template_name="analytics.txt", content_type="text/plain"),
+    ),
+    #
+    # 301 redirects.
+    #
+    # https://dxw.zendesk.com/agent/tickets/17352
+    url(
+        r"^improvement/focusondiagnostics/",
+        lambda request: redirect(r"/focusondiagnostics/", permanent=True),
+    ),
+    # https://dxw.zendesk.com/agent/tickets/17538
+    url(
+        r"^key-tools-and-info/get-started-with-nhsx-digital-and-technology-assurance/",
+        lambda request: redirect(
+            r"/key-tools-and-info/get-started-with-digital-and-technology-assurance/",
+            permanent=True,
+        ),
+    ),
+    # https://dxw.zendesk.com/agent/tickets/17711
+    url(
+        r"^covid-19-response/technology-nhs/supporting-transformation-through-innovation-collaborative/",
+        lambda request: redirect(
+            r"/covid-19-response/technology-nhs/innovation-collaborative-for-digital-health/",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^covid-19-response/technology-nhs/the-nhsx-national-innovation-collaborative-podcast/",
+        lambda request: redirect(
+            r"/covid-19-response/technology-nhs/the-innovation-collaborative-podcast/",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^ai-lab/ai-lab-programmes/regulating-the-ai-ecosystem/the-multi-agency-advice-service-maas/",
+        lambda request: redirect(
+            r"/ai-lab/ai-lab-programmes/regulating-the-ai-ecosystem/the-ai-and-digital-regulations-service/",
+            permanent=True,
+        ),
     ),
 ]
 
