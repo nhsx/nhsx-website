@@ -95,6 +95,14 @@ urlpatterns = [
             permanent=True,
         ),
     ),
+    # https://dxw.zendesk.com/agent/tickets/18089
+    url(
+        r"^information-governance/ig-question-time/",
+        lambda request: redirect(
+            r"/information-governance/frequently-asked-questions/",
+            permanent=True,
+        ),
+    ),
 ]
 
 
