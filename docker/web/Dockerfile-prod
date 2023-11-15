@@ -120,7 +120,7 @@ RUN mkdir -p /usr/srv/deps
 RUN mv ./node_modules/ /usr/srv/deps
 
 # POETRY (working and installed in django-base)
-RUN $HOME/.local/bin/poetry self update && \
+RUN $HOME/.local/bin/poetry self update 1.2.2 && \
     $HOME/.local/bin/poetry install
 
 
