@@ -124,7 +124,7 @@ RUN mv ./node_modules/ /usr/srv/deps
 COPY ./app/pyproject.toml /usr/srv/app/pyproject.toml
 COPY ./app/poetry.lock /usr/srv/app/poetry.lock
 ## self update disabled currently due to causing timeout issues in the deploy
-#RUN $HOME/.local/bin/poetry self update && \
+#RUN $HOME/.local/bin/poetry self update 1.2.2 && \
 RUN $HOME/.local/bin/poetry install
 
 

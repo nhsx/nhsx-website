@@ -2,8 +2,8 @@
 name = "NHSX"
 version = "0.1.0"
 description = "NHSX Wagtail site"
-authors = ["andy@hactar.is"]
-maintainers = ["dragon@dxw.com"]
+authors = ["Andy <andy@hactar.is>"]
+maintainers = ["dragon <dragon@dxw.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.7"
@@ -63,5 +63,5 @@ pytest-sugar = "*"
 
 
 [build-system]
-requires = ["poetry>=0.12"]
+requires = ["poetry=1.2.2"]
 build-backend = "poetry.masonry.api"
