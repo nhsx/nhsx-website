@@ -103,6 +103,21 @@ urlpatterns = [
             permanent=True,
         ),
     ),
+    # https://dxw.zendesk.com/agent/tickets/19293
+    url(
+        r"^key-tools-and-info/data-saves-lives/accessing-data-for-research-and-analysis/",
+        lambda request: redirect(
+            r"/key-tools-and-info/data-saves-lives/secure-data-environments/accessing-data-for-research-and-analysis/",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^key-tools-and-info/data-saves-lives/accessing-data-for-research-and-analysis/work-in-progress/",
+        lambda request: redirect(
+            r"/key-tools-and-info/data-saves-lives/secure-data-environments/how-will-secure-data-environments-be-delivered/",
+            permanent=True,
+        ),
+    ),
 ]
 
 
