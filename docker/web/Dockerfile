@@ -71,7 +71,9 @@ RUN pip install --no-cache-dir \
 FROM base AS app
 
 # Install envkey-source
-RUN curl -s https://raw.githubusercontent.com/envkey/envkey-source/master/install.sh | bash
+RUN set -ex && apk add --no-cache sudo \
+    && curl -s https://raw.githubusercontent.com/envkey/envkey-source/master/install.sh | bash \
+    && apk del sudo
 
 # Install and set up Poetry for python dependencies management
 ENV POETRY_VIRTUALENVS_CREATE=0 \
