@@ -127,8 +127,10 @@ COPY ./app/pyproject.toml /usr/srv/app/pyproject.toml
 COPY ./app/poetry.lock /usr/srv/app/poetry.lock
 ## self update disabled currently due to causing timeout issues in the deploy
 #RUN $HOME/.local/bin/poetry self update 1.2.2 && \
-RUN $HOME/.local/bin/poetry install
-
+RUN mkdir -p $HOME/.poetry \
+    && touch $HOME/.poetry/env \
+    && $HOME/.local/bin/poetry install \
+    && ln -s $HOME/.local/bin/poetry /usr/local/bin/poetry
 
 VOLUME /usr/srv/app/media
 
