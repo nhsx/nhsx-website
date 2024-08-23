@@ -71,7 +71,9 @@ RUN pip install --no-cache-dir \
 FROM base AS app
 
 # Install envkey-source
-RUN curl -s https://raw.githubusercontent.com/envkey/envkey-source/master/install.sh | bash
+RUN set -ex && apk add --no-cache sudo \
+    && curl -s https://raw.githubusercontent.com/envkey/envkey-source/master/install.sh | bash \
+    && apk del sudo
 
 # Install and set up Poetry for python dependencies management
 ENV POETRY_VIRTUALENVS_CREATE=0 \
@@ -125,8 +127,10 @@ COPY ./app/pyproject.toml /usr/srv/app/pyproject.toml
 COPY ./app/poetry.lock /usr/srv/app/poetry.lock
 ## self update disabled currently due to causing timeout issues in the deploy
 #RUN $HOME/.local/bin/poetry self update 1.2.2 && \
-RUN $HOME/.local/bin/poetry install
-
+RUN mkdir -p $HOME/.poetry \
+    && touch $HOME/.poetry/env \
+    && $HOME/.local/bin/poetry install \
+    && ln -s $HOME/.local/bin/poetry /usr/local/bin/poetry
 
 VOLUME /usr/srv/app/media
 

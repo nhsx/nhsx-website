@@ -118,6 +118,182 @@ urlpatterns = [
             permanent=True,
         ),
     ),
+    # https://dxw.zendesk.com/agent/tickets/20062
+    url(
+        r"^information-governance/health-and-care-information-governance-panel/",
+        lambda request: redirect(
+            r"https://webarchive.nationalarchives.gov.uk/ukgwa/20240501052114/https://transform.england.nhs.uk/information-governance/health-and-care-information-governance-panel/",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^information-governance/health-and-care-information-governance-panel/about-health-and-care-ig-panel/",
+        lambda request: redirect(
+            r",https://webarchive.nationalarchives.gov.uk/ukgwa/20240501052119/https://transform.england.nhs.uk/information-governance/health-and-care-information-governance-panel/about-health-and-care-ig-panel/",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^information-governance/health-and-care-information-governance-panel/people/",
+        lambda request: redirect(
+            r"https://webarchive.nationalarchives.gov.uk/ukgwa/20240501052102/https://transform.england.nhs.uk/information-governance/health-and-care-information-governance-panel/people/",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^information-governance/health-and-care-information-governance-panel/people/dame-fiona-caldicott/",
+        lambda request: redirect(
+            r"https://webarchive.nationalarchives.gov.uk/ukgwa/20240501052102/https://transform.england.nhs.uk/information-governance/health-and-care-information-governance-panel/people/",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^information-governance/health-and-care-information-governance-panel/people/ian-hulme/",
+        lambda request: redirect(
+            r"https://webarchive.nationalarchives.gov.uk/ukgwa/20240501052102/https://transform.england.nhs.uk/information-governance/health-and-care-information-governance-panel/people/",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^information-governance/health-and-care-information-governance-panel/people/jackie-gray/",
+        lambda request: redirect(
+            r"https://webarchive.nationalarchives.gov.uk/ukgwa/20240501052102/https://transform.england.nhs.uk/information-governance/health-and-care-information-governance-panel/people/",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^information-governance/health-and-care-information-governance-panel/people/edward-morris/",
+        lambda request: redirect(
+            r"https://webarchive.nationalarchives.gov.uk/ukgwa/20240501052102/https://transform.england.nhs.uk/information-governance/health-and-care-information-governance-panel/people/",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^information-governance/health-and-care-information-governance-panel/people/dr-tony-calland/",
+        lambda request: redirect(
+            r"https://webarchive.nationalarchives.gov.uk/ukgwa/20240501052102/https://transform.england.nhs.uk/information-governance/health-and-care-information-governance-panel/people/",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^information-governance/health-and-care-information-governance-panel/people/dawn-monaghan/",
+        lambda request: redirect(
+            r"https://webarchive.nationalarchives.gov.uk/ukgwa/20240501052102/https://transform.england.nhs.uk/information-governance/health-and-care-information-governance-panel/people/",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^information-governance/health-and-care-information-governance-panel/people/andrew-hughes/",
+        lambda request: redirect(
+            r"https://webarchive.nationalarchives.gov.uk/ukgwa/20240501052102/https://transform.england.nhs.uk/information-governance/health-and-care-information-governance-panel/people/",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^information-governance/health-and-care-information-governance-panel/people/elizabeth-bohm/",
+        lambda request: redirect(
+            r"https://webarchive.nationalarchives.gov.uk/ukgwa/20240501052102/https://transform.england.nhs.uk/information-governance/health-and-care-information-governance-panel/people/",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^information-governance/health-and-care-information-governance-panel/people/simon-richardson/",
+        lambda request: redirect(
+            r"https://webarchive.nationalarchives.gov.uk/ukgwa/20240501052102/https://transform.england.nhs.uk/information-governance/health-and-care-information-governance-panel/people/",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^information-governance/health-and-care-information-governance-panel/minutes/",
+        lambda request: redirect(
+            r"https://webarchive.nationalarchives.gov.uk/ukgwa/20240501052022/https://transform.england.nhs.uk/information-governance/health-and-care-information-governance-panel/minutes/",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^information-governance/health-and-care-information-governance-panel/minutes/2019-10-10/",
+        lambda request: redirect(
+            r"https://webarchive.nationalarchives.gov.uk/ukgwa/20240501052022/https://transform.england.nhs.uk/information-governance/health-and-care-information-governance-panel/minutes/",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^information-governance/health-and-care-information-governance-panel/minutes/2020-01-28/",
+        lambda request: redirect(
+            r"https://webarchive.nationalarchives.gov.uk/ukgwa/20240501052022/https://transform.england.nhs.uk/information-governance/health-and-care-information-governance-panel/minutes/",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^information-governance/health-and-care-information-governance-panel/minutes/2020-03-11/",
+        lambda request: redirect(
+            r"https://webarchive.nationalarchives.gov.uk/ukgwa/20240501052022/https://transform.england.nhs.uk/information-governance/health-and-care-information-governance-panel/minutes/",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^information-governance/health-and-care-information-governance-panel/minutes/2020-07-28/",
+        lambda request: redirect(
+            r"https://webarchive.nationalarchives.gov.uk/ukgwa/20240501052022/https://transform.england.nhs.uk/information-governance/health-and-care-information-governance-panel/minutes/",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^information-governance/health-and-care-information-governance-panel/minutes/2020-09-15/",
+        lambda request: redirect(
+            r"https://webarchive.nationalarchives.gov.uk/ukgwa/20240501052022/https://transform.england.nhs.uk/information-governance/health-and-care-information-governance-panel/minutes/",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^information-governance/health-and-care-information-governance-panel/minutes/2020-11-26/",
+        lambda request: redirect(
+            r"https://webarchive.nationalarchives.gov.uk/ukgwa/20240501052022/https://transform.england.nhs.uk/information-governance/health-and-care-information-governance-panel/minutes/",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^information-governance/health-and-care-information-governance-panel/minutes/2021-03-24/",
+        lambda request: redirect(
+            r"https://webarchive.nationalarchives.gov.uk/ukgwa/20240501052022/https://transform.england.nhs.uk/information-governance/health-and-care-information-governance-panel/minutes/",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^information-governance/health-and-care-information-governance-panel/minutes/2021-05-18/",
+        lambda request: redirect(
+            r"https://webarchive.nationalarchives.gov.uk/ukgwa/20240501052022/https://transform.england.nhs.uk/information-governance/health-and-care-information-governance-panel/minutes/",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^information-governance/health-and-care-information-governance-panel/minutes/2021-07-20/",
+        lambda request: redirect(
+            r"https://webarchive.nationalarchives.gov.uk/ukgwa/20240501052022/https://transform.england.nhs.uk/information-governance/health-and-care-information-governance-panel/minutes/",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^information-governance/health-and-care-information-governance-panel/minutes/2021-11-23/",
+        lambda request: redirect(
+            r"https://webarchive.nationalarchives.gov.uk/ukgwa/20240501052022/https://transform.england.nhs.uk/information-governance/health-and-care-information-governance-panel/minutes/",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^information-governance/health-and-care-information-governance-panel/minutes/2022-03-22/",
+        lambda request: redirect(
+            r"https://webarchive.nationalarchives.gov.uk/ukgwa/20240501052022/https://transform.england.nhs.uk/information-governance/health-and-care-information-governance-panel/minutes/",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^information-governance/health-and-care-information-governance-panel/minutes/2022-05-24/",
+        lambda request: redirect(
+            r"https://webarchive.nationalarchives.gov.uk/ukgwa/20240501052022/https://transform.england.nhs.uk/information-governance/health-and-care-information-governance-panel/minutes/",
+            permanent=True,
+        ),
+    ),
 ]
 
 
