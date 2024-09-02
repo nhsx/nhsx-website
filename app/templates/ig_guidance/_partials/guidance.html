@@ -13,7 +13,10 @@
   <div class="nhsuk-promo">
 
     <a href="{{ guidance.url }}" class="nhsuk-promo__link-wrapper">
+
+      {% if guidance.guidance_type != "Panel Guidance" %}
       <span class="nhsai_resource__category">{{ guidance|guidance_type }}</span>
+      {% endif %}
 
       {% if guidance.featured_image %}
       <div class="nhsuk-promo__img_wrapper">
