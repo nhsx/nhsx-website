@@ -294,6 +294,14 @@ urlpatterns = [
             permanent=True,
         ),
     ),
+    # https://dxw.zendesk.com/agent/tickets/20390
+    url(
+        r"^key-tools-and-info/digital-transformation-of-screening/",
+        lambda request: redirect(
+            r"/key-tools-and-info/digital-screening/",
+            permanent=True,
+        ),
+    ),
 ]
 
 
