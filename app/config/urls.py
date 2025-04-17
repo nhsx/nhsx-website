@@ -129,7 +129,7 @@ urlpatterns = [
     url(
         r"^information-governance/health-and-care-information-governance-panel/about-health-and-care-ig-panel/",
         lambda request: redirect(
-            r",https://webarchive.nationalarchives.gov.uk/ukgwa/20240501052119/https://transform.england.nhs.uk/information-governance/health-and-care-information-governance-panel/about-health-and-care-ig-panel/",
+            r"https://webarchive.nationalarchives.gov.uk/ukgwa/20240501052119/https://transform.england.nhs.uk/information-governance/health-and-care-information-governance-panel/about-health-and-care-ig-panel/",
             permanent=True,
         ),
     ),
