@@ -472,7 +472,7 @@ urlpatterns = [
     url(
         r"^ai-lab/explore-all-resources/develop-ai/using-machine-learning-to-identify-patients-at-risk-of-long-term-hospital-stays/",
         lambda request: redirect(
-            r"https://webarchive.nationalarchives.gov.uk/ukgwa/20241101054858/https://transform.england.nhs.uk/ai-lab/explore-all-resources/develop-ai/using-machine-learning-to-identify-patients-at-risk-of-long-term-hospital-stays/",
+            r"https://digital.nhs.uk/services/ai-knowledge-repository/case-studies/using-machine-learning-to-identify-patients-at-risk-of-long-term-hospital-stays",
             permanent=True,
         ),
     ),
@@ -556,7 +556,7 @@ urlpatterns = [
     url(
         r"^ai-lab/explore-all-resources/develop-ai/improving-hospital-bed-allocation-using-ai/",
         lambda request: redirect(
-            r"https://webarchive.nationalarchives.gov.uk/ukgwa/20241101060022/https://transform.england.nhs.uk/ai-lab/explore-all-resources/develop-ai/improving-hospital-bed-allocation-using-ai/",
+            r"https://digital.nhs.uk/services/ai-knowledge-repository/case-studies/improving-hospital-bed-allocation-using-ai",
             permanent=True,
         ),
     ),
@@ -570,7 +570,7 @@ urlpatterns = [
     url(
         r"^ai-lab/explore-all-resources/develop-ai/using-ai-to-identify-tissue-growth-from-ct-scans/",
         lambda request: redirect(
-            r"https://webarchive.nationalarchives.gov.uk/ukgwa/20241101055214/https://transform.england.nhs.uk/ai-lab/explore-all-resources/develop-ai/using-ai-to-identify-tissue-growth-from-ct-scans/",
+            r"https://digital.nhs.uk/services/ai-knowledge-repository/case-studies/using-ai-to-identify-tissue-growth-from-ct-scans",
             permanent=True,
         ),
     ),
@@ -605,7 +605,7 @@ urlpatterns = [
     url(
         r"^ai-lab/explore-all-resources/develop-ai/data-lens-a-fast-access-data-search-in-multiple-languages/",
         lambda request: redirect(
-            r"https://webarchive.nationalarchives.gov.uk/ukgwa/20241101060541/https://transform.england.nhs.uk/ai-lab/explore-all-resources/develop-ai/data-lens-a-fast-access-data-search-in-multiple-languages/",
+            r"https://digital.nhs.uk/services/ai-knowledge-repository/develop-ai/data-lens-a-fast-access-data-search-in-multiple-languages",
             permanent=True,
         ),
     ),
@@ -689,7 +689,7 @@ urlpatterns = [
     url(
         r"^ai-lab/explore-all-resources/understand-ai/ai-adult-social-care/",
         lambda request: redirect(
-            r"https://digital.nhs.uk/services/ai-knowledge-repository/understand-ai",
+            r"https://digital.nhs.uk/services/ai-knowledge-repository/case-studies/ai-in-adult-social-care",
             permanent=True,
         ),
     ),
@@ -703,7 +703,7 @@ urlpatterns = [
     url(
         r"^ai-lab/explore-all-resources/understand-ai/using-ai-to-support-nhs-resolution-with-negligence-claims-prediction/",
         lambda request: redirect(
-            r"https://webarchive.nationalarchives.gov.uk/ukgwa/20241101055118/https://transform.england.nhs.uk/ai-lab/explore-all-resources/understand-ai/using-ai-to-support-nhs-resolution-with-negligence-claims-prediction/",
+            r"https://digital.nhs.uk/services/ai-knowledge-repository/develop-ai/using-ai-to-support-nhs-resolution-with-negligence-claims-prediction",
             permanent=True,
         ),
     ),
