@@ -348,7 +348,8 @@ urlpatterns = [
     url(
         r"^ai-lab/explore-all-resources/adopt-ai/a-buyers-guide-to-ai-in-health-and-care/a-buyers-guide-to-ai-in-health-and-care/$",
         lambda request: redirect(
-            r"https://digital.nhs.uk/services/ai-knowledge-repository", permanent=True
+            r"https://digital.nhs.uk/services/ai-knowledge-repository/develop-ai/a-buyers-guide-to-ai-in-health-and-care",
+            permanent=True,
         ),
     ),
     url(
