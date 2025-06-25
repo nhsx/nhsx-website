@@ -1045,6 +1045,28 @@ urlpatterns = [
             permanent=True,
         ),
     ),
+    # https://dxw.zendesk.com/agent/tickets/20999
+    url(
+        r"^key-tools-and-info/adult-social-care-digital-transformation/$",
+        lambda request: redirect(
+            r"https://beta.digitisingsocialcare.co.uk/",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^key-tools-and-info/adult-social-care-digital-transformation/adult-social-care-technology-innovation-and-digital-skills-reviews/$",
+        lambda request: redirect(
+            r"https://beta.digitisingsocialcare.co.uk/",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^key-tools-and-info/adult-social-care-digital-transformation/digitising-social-care-fund/$",
+        lambda request: redirect(
+            r"https://beta.digitisingsocialcare.co.uk/",
+            permanent=True,
+        ),
+    ),
 ]
 
 
