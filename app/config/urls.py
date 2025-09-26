@@ -1067,6 +1067,14 @@ urlpatterns = [
             permanent=True,
         ),
     ),
+    # https://dxw.zendesk.com/agent/tickets/21255
+    url(
+        r"^key-tools-and-info/digital-podac-fund/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/services/podac",
+            permanent=True,
+        ),
+    ),
 ]
 
 
