@@ -1086,6 +1086,14 @@ urlpatterns = [
             permanent=True,
         ),
     ),
+    # https://dxw.zendesk.com/agent/tickets/21274
+    url(
+        r"^key-tools-and-info/cyber-security/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/cyber",
+            permanent=True,
+        ),
+    ),
 ]
 
 
