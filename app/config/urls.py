@@ -1094,6 +1094,14 @@ urlpatterns = [
             permanent=True,
         ),
     ),
+    # https://dxw.zendesk.com/agent/tickets/21285
+    url(
+        r"^key-tools-and-info/data-saves-lives/improving-care-through-research-and-innovation/opensafely-secure-access-to-data-to-deepen-our-understanding-of-covid-19/$",
+        lambda request: redirect(
+            r"/key-tools-and-info/data-saves-lives/improving-care-through-research-and-innovation/expansion-of-opensafely-secure-research-platform/",
+            permanent=True,
+        ),
+    ),
 ]
 
 
