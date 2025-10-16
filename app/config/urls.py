@@ -1102,6 +1102,14 @@ urlpatterns = [
             permanent=True,
         ),
     ),
+    # https://dxw.zendesk.com/agent/tickets/21312
+    url(
+        r"^about-us/working-for/job-opportunities/$",
+        lambda request: redirect(
+            r"https://www.england.nhs.uk/about/working-for/",
+            permanent=True,
+        ),
+    ),
 ]
 
 
