@@ -1076,13 +1076,14 @@ urlpatterns = [
         ),
     ),
     # https://dxw.zendesk.com/agent/tickets/21265
+    # https://dxw.zendesk.com/agent/tickets/21321 (amends)
     #
     # NOTE: This redirect captures all child pages (around 300 of them) as
     # directed by the client in the above ticket.
     url(
         r"^key-tools-and-info/digital-playbooks/",
         lambda request: redirect(
-            r"https://digital.nhs.uk/services/blueprinting/",
+            r"https://www.england.nhs.uk/digitaltechnology/blueprinting/",
             permanent=True,
         ),
     ),
