@@ -1111,6 +1111,14 @@ urlpatterns = [
             permanent=True,
         ),
     ),
+    # https://dxw.zendesk.com/agent/tickets/21358
+    url(
+        r"^key-tools-and-info/digital-screening/$",
+        lambda request: redirect(
+            r"https://www.digital-prevention-services.nhs.uk/screening/",
+            permanent=True,
+        ),
+    ),
 ]
 
 
