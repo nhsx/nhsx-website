@@ -1119,6 +1119,28 @@ urlpatterns = [
             permanent=True,
         ),
     ),
+    # https://dxw.zendesk.com/agent/tickets/21370
+    url(
+        r"^key-tools-and-info/a-guide-to-setting-up-technology-enabled-virtual-wards/$",
+        lambda request: redirect(
+            r"https://www.england.nhs.uk/long-read/a-guide-to-setting-up-technology-enabled-virtual-wards/",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^covid-19-response/technology-nhs/virtual-wards-enabled-by-technology-guidance-on-selecting-and-procuring-a-technology-platform/$",
+        lambda request: redirect(
+            r"https://www.england.nhs.uk/long-read/virtual-wards-enabled-by-technology-guidance-on-selecting-and-procuring-a-technology-platform/#appendix-1-the-moscow-approach",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^information-governance/guidance/virtual-wards/$",
+        lambda request: redirect(
+            r"https://www.england.nhs.uk/long-read/virtual-wards-information-governance-guidance/",
+            permanent=True,
+        ),
+    ),
 ]
 
 
