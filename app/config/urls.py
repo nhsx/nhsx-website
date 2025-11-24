@@ -1167,12 +1167,12 @@ urlpatterns = [
     ),
     # https://dxw.zendesk.com/agent/tickets/21370 - additional
     url(
-            r"^information-governance/guidance/virtual-wards/$",
-            lambda request: redirect(
-                r"https://www.england.nhs.uk/long-read/virtual-wards-information-governance-guidance/",
-                permanent=True,
-            ),
+        r"^information-governance/guidance/virtual-wards/$",
+        lambda request: redirect(
+            r"https://www.england.nhs.uk/long-read/virtual-wards-information-governance-guidance/",
+            permanent=True,
         ),
+    ),
 ]
 
 
