@@ -1160,6 +1160,14 @@ urlpatterns = [
             permanent=True,
         ),
     ),
+    # https://dxw.zendesk.com/agent/tickets/21436
+    url(
+        r"^key-tools-and-info/nhsx-analytics-unit/nhsx-internship-projects/$",
+        lambda request: redirect(
+            r"https://nhsengland.github.io/datascience/PhDInterns/",
+            permanent=True,
+        ),
+    ),
 ]
 
 
