@@ -144,6 +144,7 @@ MIDDLEWARE = [
     "wagtail_2fa.middleware.VerifyUserMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     # ROLLBAR
+    "modules.core.middleware.IframeReferrerMiddleware",
     "rollbar.contrib.django.middleware.RollbarNotifierMiddleware",
     # CACHE
     "wagtailcache.cache.FetchFromCacheMiddleware",  # MUST BE LAST
