@@ -4,4 +4,11 @@ class IframeReferrerMiddleware:
 
     def __call__(self, request):
         response = self.get_response(request)
+
+        if "text/html" in response.get("Content-Type", ""):
+            content = response.content.decode("utf-8")
+
+            if "<iframe" in content.lower():
+                response["Referrer-Policy"] = "no-referrer"
+
         return response
