@@ -48,7 +48,6 @@ SECURE_CONTENT_TYPE_NOSNIFF = True
 SECURE_BROWSER_XSS_FILTER = True
 X_FRAME_OPTIONS = "DENY"
 CSRF_USE_SESSIONS = False
-
 WAGTAIL_2FA_REQUIRED = False
 
 
@@ -467,10 +466,8 @@ if os.environ.get("SECURE_CONTENT_TYPE_NOSNIFF", "true").lower().strip() == "tru
 
 
 # Referrer-policy header settings.
-# https://django-referrer-policy.readthedocs.io/en/1.0/
-
-REFERRER_POLICY = os.environ.get(
-    "SECURE_REFERRER_POLICY", "no-referrer-when-downgrade"
+SECURE_REFERRER_POLICY = os.environ.get(
+    "SECURE_REFERRER_POLICY", "strict-origin-when-cross-origin"
 ).strip()
 
 
