@@ -1185,6 +1185,28 @@ urlpatterns = [
             permanent=True,
         ),
     ),
+    # https://dxw.zendesk.com/agent/tickets/21549
+    url(
+        r"^key-tools-and-info/digital-health-partnership-award/$",
+        lambda request: redirect(
+            r"https://webarchive.nationalarchives.gov.uk/ukgwa/20251103060531/https://transform.england.nhs.uk/key-tools-and-info/digital-health-partnership-award/",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^key-tools-and-info/digital-health-partnership-award/digital-health-partnership-award-winners-phase-1/$",
+        lambda request: redirect(
+            r"https://webarchive.nationalarchives.gov.uk/ukgwa/20251103060531/https://transform.england.nhs.uk/key-tools-and-info/digital-health-partnership-award/",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^key-tools-and-info/digital-health-partnership-award/digital-health-partnership-award-winners-phase-2/$",
+        lambda request: redirect(
+            r"https://webarchive.nationalarchives.gov.uk/ukgwa/20251103060531/https://transform.england.nhs.uk/key-tools-and-info/digital-health-partnership-award/",
+            permanent=True,
+        ),
+    ),
 ]
 
 
