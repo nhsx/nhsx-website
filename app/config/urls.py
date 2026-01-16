@@ -1209,16 +1209,16 @@ urlpatterns = [
     ),
     # https://dxw.zendesk.com/agent/tickets/21556
     url(
-        r'^information-governance/guidance/use-mobile-messaging-software-health-and-care-settings/$',
+        r"^information-governance/guidance/use-mobile-messaging-software-health-and-care-settings/$",
         lambda request: redirect(
-            '/information-governance/guidance/texting-emailing-and-messaging-patients-and-service-users/',
+            "/information-governance/guidance/texting-emailing-and-messaging-patients-and-service-users/",
             permanent=True,
         ),
     ),
     url(
-        r'^information-governance/guidance/email-and-text-message-communications/$',
+        r"^information-governance/guidance/email-and-text-message-communications/$",
         lambda request: redirect(
-            '/information-governance/guidance/texting-emailing-and-messaging-patients-and-service-users/',
+            "/information-governance/guidance/texting-emailing-and-messaging-patients-and-service-users/",
             permanent=True,
         ),
     ),
