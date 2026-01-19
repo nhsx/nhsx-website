@@ -1222,6 +1222,16 @@ urlpatterns = [
             permanent=True,
         ),
     ),
+    # https://dxw.zendesk.com/agent/tickets/21564
+    # Note these are both "this page and all associated child pages", hence no
+    # trailing $ in the regexp.
+    url(
+        r"^covid-19-response/technology-nhs/",
+        lambda request: redirect(
+            "https://webarchive.nationalarchives.gov.uk/ukgwa/20250905141205/https:/transform.england.nhs.uk/covid-19-response/",
+            permanent=True,
+        ),
+    ),
 ]
 
 
