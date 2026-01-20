@@ -1,4 +1,5 @@
 # stdlib
+from email import header
 import logging
 import lxml.html
 from collections import Counter
@@ -81,8 +82,9 @@ class PublicationPage(BasePage, CanonicalMixin):
         # NOTE: we import as HTML because we don't have a wrapping tag
         root = lxml.html.fromstring(html)
         for tag_name in header_tags:
-            for tag in root.xpath(f"//{tag_name}"):
+            for tag in root.xpath(f"//{tag_name} | //{tag_name}//*"):
                 # create a slugged name for the tag of the form tag-text-3
+                if not tag.text: continue 
                 header_name = tag.text
                 bare_slug = slugify(header_name, allow_unicode=True)
                 self.slug_count[bare_slug] += 1
