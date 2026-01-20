@@ -1232,6 +1232,21 @@ urlpatterns = [
             permanent=True,
         ),
     ),
+    # https://dxw.zendesk.com/agent/tickets/21571
+    url(
+        r"^digitise-connect-transform/digitising-the-frontline/$",
+        lambda request: redirect(
+            "https://www.england.nhs.uk/digitaltechnology/digitising-the-frontline/",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^digitise-connect-transform/our-strategy-to-digitise-connect-and-transform/$",
+        lambda request: redirect(
+            "https://transform.england.nhs.uk/digitise-connect-transform/",
+            permanent=True,
+        ),
+    ),
 ]
 
 
