@@ -1290,6 +1290,13 @@ urlpatterns = [
             permanent=True,
         ),
     ),
+    url(
+        r"^covid-19-response/$",
+        lambda request: redirect(
+            "https://webarchive.nationalarchives.gov.uk/ukgwa/20250905141205/https://transform.england.nhs.uk/covid-19-response/",
+            permanent=True,
+        ),
+    ),
     # The next batch of redirects for this ticket include subpaths and so
     # do not have a trailing $ in the regexp.
     url(
