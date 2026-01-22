@@ -1247,6 +1247,65 @@ urlpatterns = [
             permanent=True,
         ),
     ),
+    # https://dxw.zendesk.com/agent/tickets/21574
+    url(
+        r"^key-tools-and-info/public-key-infrastructures/$",
+        lambda request: redirect(
+            "https://webarchive.nationalarchives.gov.uk/ukgwa/20251103060640/https:/transform.england.nhs.uk/key-tools-and-info/public-key-infrastructures/",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^key-tools-and-info/public-key-infrastructures/csca/$",
+        lambda request: redirect(
+            "https://webarchive.nationalarchives.gov.uk/ukgwa/20251103060645/https:/transform.england.nhs.uk/key-tools-and-info/public-key-infrastructures/csca/",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^covid-19-response/nhs-covid-19-app/$",
+        lambda request: redirect(
+            "https://webarchive.nationalarchives.gov.uk/ukgwa/20250905141205/https://transform.england.nhs.uk/covid-19-response/",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^covid-19-response/eu-gateway/$",
+        lambda request: redirect(
+            "https://webarchive.nationalarchives.gov.uk/ukgwa/20250905141205/https://transform.england.nhs.uk/covid-19-response/",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^covid-19-response/nhs-covid-pass-privacy-notice-for-5-to-11-year-olds-nhs-covid-pass-travel-letter/$",
+        lambda request: redirect(
+            "https://webarchive.nationalarchives.gov.uk/ukgwa/20250905141205/https://transform.england.nhs.uk/covid-19-response/",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^covid-19-response/covid-19-vaccination-status-vulnerability-disclosure-policy/$",
+        lambda request: redirect(
+            "https://webarchive.nationalarchives.gov.uk/ukgwa/20250905141205/https://transform.england.nhs.uk/covid-19-response/",
+            permanent=True,
+        ),
+    ),
+    # The next batch of redirects for this ticket include subpaths and so
+    # do not have a trailing $ in the regexp.
+    url(
+        r"^covid-19-response/data-and-covid-19/",
+        lambda request: redirect(
+            "https://webarchive.nationalarchives.gov.uk/ukgwa/20250905141205/https://transform.england.nhs.uk/covid-19-response/",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^covid-19-response/social-care/",
+        lambda request: redirect(
+            "https://webarchive.nationalarchives.gov.uk/ukgwa/20250905141205/https://transform.england.nhs.uk/covid-19-response/",
+            permanent=True,
+        ),
+    ),
 ]
 
 
