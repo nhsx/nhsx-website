@@ -1313,6 +1313,28 @@ urlpatterns = [
             permanent=True,
         ),
     ),
+    # https://dxw.zendesk.com/agent/tickets/21593
+    url(
+        r"^digitise-connect-transform/digitising-the-frontline/digitising-the-frontline-in-the-midlands/$",
+        lambda request: redirect(
+            "https://webarchive.nationalarchives.gov.uk/ukgwa/20251103060800/https://transform.england.nhs.uk/digitise-connect-transform/digitising-the-frontline/digitising-the-frontline-in-the-midlands/",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^digitise-connect-transform/digitising-the-frontline/digitising-the-frontline-in-the-south-west/$",
+        lambda request: redirect(
+            "https://webarchive.nationalarchives.gov.uk/ukgwa/20251103060754/https://transform.england.nhs.uk/digitise-connect-transform/digitising-the-frontline/digitising-the-frontline-in-the-south-west/",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^digitise-connect-transform/digitising-the-frontline/digitising-the-frontline-in-the-north-east-and-yorkshire/$",
+        lambda request: redirect(
+            "https://webarchive.nationalarchives.gov.uk/ukgwa/20251103060940/https://transform.england.nhs.uk/digitise-connect-transform/digitising-the-frontline/digitising-the-frontline-in-the-north-east-and-yorkshire/",
+            permanent=True,
+        ),
+    ),
 ]
 
 
