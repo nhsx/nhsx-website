@@ -1335,6 +1335,14 @@ urlpatterns = [
             permanent=True,
         ),
     ),
+    # https://dxw.zendesk.com/agent/tickets/21626
+    url(
+        r"^digitise-connect-transform/who-does-what/$",
+        lambda request: redirect(
+            "https://webarchive.nationalarchives.gov.uk/ukgwa/20251103060946/https:/transform.england.nhs.uk/digitise-connect-transform/who-does-what/",
+            permanent=True,
+        ),
+    ),
 ]
 
 
