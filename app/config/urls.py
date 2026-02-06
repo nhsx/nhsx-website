@@ -1343,6 +1343,21 @@ urlpatterns = [
             permanent=True,
         ),
     ),
+    # https://dxw.zendesk.com/agent/tickets/21627
+    url(
+        r"^digitise-connect-transform/who-pays-for-what/$",
+        lambda request: redirect(
+            "https://webarchive.nationalarchives.gov.uk/ukgwa/20251103060815/https:/transform.england.nhs.uk/digitise-connect-transform/who-pays-for-what/",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^digitise-connect-transform/who-pays-for-what/who-pays-for-what-proposals/$",
+        lambda request: redirect(
+            "https://webarchive.nationalarchives.gov.uk/ukgwa/20251103060859/https:/transform.england.nhs.uk/digitise-connect-transform/who-pays-for-what/who-pays-for-what-proposals/",
+            permanent=True,
+        ),
+    ),
 ]
 
 
