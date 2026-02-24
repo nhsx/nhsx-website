@@ -1358,6 +1358,14 @@ urlpatterns = [
             permanent=True,
         ),
     ),
+    # https://dxw.zendesk.com/agent/tickets/21671
+    url(
+        r"^information-governance/guidance/understanding-health-data-access-uhda/$",
+        lambda request: redirect(
+            "https://transform.england.nhs.uk/information-governance/guidance/",
+            permanent=True,
+        ),
+    ),
 ]
 
 
