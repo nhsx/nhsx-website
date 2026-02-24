@@ -1366,6 +1366,14 @@ urlpatterns = [
             permanent=True,
         ),
     ),
+    # https://dxw.zendesk.com/agent/tickets/21673
+    url(
+        r"^information-governance/guidance/using-video-conferencing-tools-communicate-colleagues/$",
+        lambda request: redirect(
+            "https://transform.england.nhs.uk/information-governance/guidance/",
+            permanent=True,
+        ),
+    ),
 ]
 
 
