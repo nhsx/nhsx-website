@@ -1374,6 +1374,35 @@ urlpatterns = [
             permanent=True,
         ),
     ),
+    # https://dxw.zendesk.com/agent/tickets/21726
+    url(
+        r"^digitise-connect-transform/digitising-the-frontline/digitising-the-frontline-in-london/$",
+        lambda request: redirect(
+            "https://www.england.nhs.uk/digitaltechnology/digitising-the-frontline/",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^digitise-connect-transform/digitising-the-frontline/digitising-the-frontline-in-the-north-west/$",
+        lambda request: redirect(
+            "https://www.england.nhs.uk/digitaltechnology/digitising-the-frontline/",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^digitise-connect-transform/digitising-the-frontline/digitising-the-frontline-in-the-east-of-england/$",
+        lambda request: redirect(
+            "https://www.england.nhs.uk/digitaltechnology/digitising-the-frontline/",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^digitise-connect-transform/digitising-the-frontline/digitising-the-frontline-in-the-south-east/$",
+        lambda request: redirect(
+            "https://www.england.nhs.uk/digitaltechnology/digitising-the-frontline/",
+            permanent=True,
+        ),
+    ),
 ]
 
 
