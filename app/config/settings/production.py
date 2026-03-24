@@ -7,7 +7,7 @@ DEBUG = False
 BASE_URL = "https://transform.england.nhs.uk"
 
 BANNER_EXCLUDED_PAGE_URLS = [
-    "information-governance/guidance/child-protection-information-system-cp-is-template-dpia/"
+    "/information-governance/guidance/child-protection-information-system-cp-is-template-dpia/"
 ]
 
 ####################################################################################################
