@@ -12,6 +12,9 @@ BASIC_AUTH_LOGIN = os.environ.get("BASIC_AUTH_LOGIN", "")
 BASIC_AUTH_PASSWORD = os.environ.get("BASIC_AUTH_PASSWORD", "")
 BASIC_AUTH_DISABLE_CONSUMING_AUTHORIZATION_HEADER = True
 
+# Added for testing https://dxw.zendesk.com/agent/tickets/21744
+BANNER_EXCLUDED_PAGE_URLS = ["/about-us/who-we-are/", "/about-us/what-we-do/"]
+
 ####################################################################################################
 # Static assets served by Whitenoise
 ####################################################################################################

@@ -1,11 +1,12 @@
-{% load wagtailsettings_tags wagtailcore_tags %}
+{% load wagtailsettings_tags wagtailcore_tags banner_tags %}
 {% get_settings use_default_site=True %}
+{% banner_excluded_urls as excluded_urls %}
 
-{% if settings.core.SiteWideBannerSettings.banner_enabled and settings.core.SiteWideBannerSettings.site_wide_banner_body %}
+{% if settings.core.SiteWideBannerSettings.banner_enabled and settings.core.SiteWideBannerSettings.site_wide_banner_body and page.url not in excluded_urls %}
     <div class="alert-banner-container {{ settings.core.SiteWideBannerSettings.site_wide_banner_theme }}">
         <div class="nhsuk-width-container">
             <article>
-                {{ settings.core.SiteWideBannerSettings.site_wide_banner_body|richtext  }}
+                {{ settings.core.SiteWideBannerSettings.site_wide_banner_body|richtext }}
             </article>
         </div>
     </div>
