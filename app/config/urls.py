@@ -1403,6 +1403,14 @@ urlpatterns = [
             permanent=True,
         ),
     ),
+    # https://dxw.zendesk.com/agent/tickets/21779
+    url(
+        r"^key-tools-and-info/digital-clinical-safety-strategy/$",
+        lambda request: redirect(
+            "https://www.england.nhs.uk/long-read/digital-clinical-safety-strategy/",
+            permanent=True,
+        ),
+    ),
 ]
 
 
