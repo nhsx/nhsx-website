@@ -1,5 +1,6 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags static wagtailuserbar nhsukfrontend_tags wagtailimages_tags guidance_tags %}
+{% load wagtailcore_tags static wagtailuserbar nhsukfrontend_tags wagtailimages_tags guidance_tags banner_tags %}
+{% banner_excluded_urls as excluded_urls %}
 
 {% block body_class %}template-guidance{% endblock %}
 
@@ -13,7 +14,9 @@
 {% block content %}
 <div class="template-guidance__warning">
   <div class="nhsuk-width-container">
-    <p class="template-guidance__warning__body"><strong>This guidance has been reviewed by the Health and Care Information Governance Working Group, including the Information Commissioner's Office (ICO) and National Data Guardian (NDG).</strong></p>
+    {% if page.url not in excluded_urls %}
+      <p class="template-guidance__warning__body"><strong>This guidance has been reviewed by the Health and Care Information Governance Working Group, including the Information Commissioner's Office (ICO) and National Data Guardian (NDG).</strong></p>
+    {% endif %}
     <p class="template-guidance__warning__body">Have we done a good job? <a href="https://nhsplatform.corestream.co.uk/public/form/IGPolicyQuery">Let us know</a>.</p>
   </div>
 </div>
