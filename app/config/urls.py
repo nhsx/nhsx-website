@@ -1411,6 +1411,21 @@ urlpatterns = [
             permanent=True,
         ),
     ),
+    # https://dxw.zendesk.com/agent/tickets/21809
+    url(
+        r"^digitise-connect-transform/digitising-the-frontline/adopting-ambient-scribing-products-in-health-and-care-settings/$",
+        lambda request: redirect(
+            "https://digital.nhs.uk/services/ambient-scribing",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^digitise-connect-transform/digitising-the-frontline/ambient-voice-technology-self-certified-supplier-registry/$",
+        lambda request: redirect(
+            "https://digital.nhs.uk/services/ambient-scribing/ambient-voice-technology-self-certified-supplier-registry",
+            permanent=True,
+        ),
+    ),
 ]
 
 
