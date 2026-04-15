@@ -1426,6 +1426,35 @@ urlpatterns = [
             permanent=True,
         ),
     ),
+    # https://dxw.zendesk.com/agent/tickets/21824
+    url(
+        r"^key-tools-and-info/digital-technology-assessment-criteria-dtac/value-proposition-non-assessed-section/$",
+        lambda request: redirect(
+            "https://transform.england.nhs.uk/key-tools-and-info/digital-technology-assessment-criteria-dtac/",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^key-tools-and-info/digital-technology-assessment-criteria-dtac/assessment-criteria-assessed-section/$",
+        lambda request: redirect(
+            "https://transform.england.nhs.uk/key-tools-and-info/digital-technology-assessment-criteria-dtac/",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^key-tools-and-info/digital-technology-assessment-criteria-dtac/key-principles-success/$",
+        lambda request: redirect(
+            "https://transform.england.nhs.uk/key-tools-and-info/digital-technology-assessment-criteria-dtac/",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^key-tools-and-info/digital-technology-assessment-criteria-dtac/how-to-use-the-dtac/$",
+        lambda request: redirect(
+            "https://transform.england.nhs.uk/key-tools-and-info/digital-technology-assessment-criteria-dtac/",
+            permanent=True,
+        ),
+    ),
 ]
 
 
