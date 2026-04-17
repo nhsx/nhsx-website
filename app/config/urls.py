@@ -1455,6 +1455,28 @@ urlpatterns = [
             permanent=True,
         ),
     ),
+    # https://dxw.zendesk.com/agent/tickets/21832
+    url(
+        r"^key-tools-and-info/funding-opportunities-to-improve-digital-pathways/$",
+        lambda request: redirect(
+            "https://webarchive.nationalarchives.gov.uk/ukgwa/20251103060602/https:/transform.england.nhs.uk/key-tools-and-info/funding-opportunities-to-improve-digital-pathways/",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^key-tools-and-info/funding-opportunities-to-improve-digital-pathways/how-teledermatology-is-shaping-the-future-of-nhs-care/$",
+        lambda request: redirect(
+            "https://webarchive.nationalarchives.gov.uk/ukgwa/20251103060602/https:/transform.england.nhs.uk/key-tools-and-info/funding-opportunities-to-improve-digital-pathways/",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^key-tools-and-info/funding-opportunities-to-improve-digital-pathways/electronic-eyecare-referral-and-image-sharing-systems-additional-funding/$",
+        lambda request: redirect(
+            "https://webarchive.nationalarchives.gov.uk/ukgwa/20251103060602/https:/transform.england.nhs.uk/key-tools-and-info/funding-opportunities-to-improve-digital-pathways/",
+            permanent=True,
+        ),
+    ),
 ]
 
 
