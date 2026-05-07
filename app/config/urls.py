@@ -1477,6 +1477,392 @@ urlpatterns = [
             permanent=True,
         ),
     ),
+    # https://dxw.zendesk.com/agent/tickets/21894
+    url(
+        r"^information-governance/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/information-governance",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^information-governance/confidentiality-advisory-group-cag-risk-stratification-application-template/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/information-governance/templates/confidentiality-advisory-group-cag-risk-stratification-application-template",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^information-governance/frequently-asked-questions/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/information-governance/guidance",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^information-governance/guidance/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/information-governance/guidance",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^information-governance/guidance/access-to-patient-records-through-the-nhs-app/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/information-governance/guidance/access-to-patient-records-through-the-nhs-app",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^information-governance/guidance/access-to-the-health-and-care-records-of-deceased-people/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/information-governance/guidance/access-to-the-health-and-care-records-of-deceased-people",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^information-governance/guidance/a-just-culture-guide-for-information-governance-and-cyber-security/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/information-governance/guidance/a-just-culture-guide-for-information-governance-and-cyber-security",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^information-governance/guidance/amending-patient-and-service-user-records/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/information-governance/guidance/amending-patient-and-service-user-records",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^information-governance/guidance/artificial-intelligence/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/information-governance/guidance/artificial-intelligence",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^information-governance/guidance/bring-your-own-devices-byod-ig-guidance/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/information-governance/guidance/bring-your-own-device-byod-guidance",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^information-governance/guidance/child-protection-information-system-cp-is-template-dpia/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/information-governance/templates/cp-is-template-dpia",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^information-governance/guidance/consent-and-confidential-patient-information/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/information-governance/guidance/consent-and-confidential-patient-information",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^information-governance/guidance/cyber-incident-ig-checklist-and-template-notification-letter/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/information-governance/templates/cyber-incident-ig-checklist-and-template-notification-letter",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^information-governance/guidance/freedom-to-speak-up/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/information-governance/guidance/freedom-to-speak-up",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^information-governance/guidance/hiv-and-sexually-transmitted-infections-stis/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/information-governance/guidance/hiv-and-sexually-transmitted-infections-stis",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^information-governance/guidance/identifying-controllers-and-processors-in-health-and-care/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/information-governance/guidance/identifying-controllers-and-processors-in-health-and-care",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^information-governance/guidance/information-governance-guidance-support-multidisciplinary-teams-mdts/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/information-governance/guidance/information-sharing-in-multidisciplinary-teams",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^information-governance/guidance/information-risk-and-impacts-to-individuals-following-personal-data-breaches/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/information-governance/guidance/information-risk-and-impacts-to-individuals-following-personal-data-breaches",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^information-governance/guidance/information-sharing-between-private-healthcare-services-and-nhs-england/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/information-governance/guidance/information-sharing-between-private-healthcare-services-and-nhs-england",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^information-governance/guidance/information-sharing-in-social-care/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/information-governance/guidance/information-sharing-in-social-care",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^information-governance/guidance/information-sharing-with-the-department-for-work-and-pensions-dwp/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/information-governance/guidance/information-sharing-with-the-department-for-work-and-pensions-dwp",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^information-governance/guidance/inquiries-reviews-investigations-and-court-orders-in-health-and-social-care-services/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/information-governance/guidance/inquiries-reviews-investigations-and-court-orders-in-health-and-social-care-services",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^information-governance/guidance/integrated-care-systems-icss-integrated-care-boards-icbs-and-integrated-care-partnerships-icps-a-quick-guide/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/information-governance/guidance/integrated-care-systems-integrated-care-boards-and-integrated-care-partnerships-a-quick-guide",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^information-governance/guidance/microsoft-365-copilot/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/information-governance/guidance/microsoft-365-copilot",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^information-governance/guidance/o365-migration-dpia-templates/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/information-governance/templates/o365-migration-dpia-templates",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^information-governance/guidance/open-safely-dpia-templates/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/information-governance/templates/opensafely-dpia-templates",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^information-governance/guidance/personal-data-breaches/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/information-governance/guidance/personal-data-breaches-and-related-incidents",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^information-governance/guidance/personal-health-budget-holders-data-protection-advice/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/information-governance/guidance/personal-health-budget-holders-data-protection-advice",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^information-governance/guidance/preparing-for-the-uk-covid-19-inquiry/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/information-governance/guidance/the-uk-covid-19-inquiry-information-governance-guidance",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^information-governance/guidance/records-management-code/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/information-governance/guidance/records-management-code-of-practice",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^information-governance/guidance/records-management-code/records-management-code-of-practice/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/information-governance/guidance/records-management-code-of-practice",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^information-governance/guidance/records-management-code/updates-to-the-records-management-code-of-practice/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/information-governance/guidance/records-management-code-of-practice",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^information-governance/guidance/requesting-information-from-a-public-body-freedom-of-information-foi/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/information-governance/guidance/requesting-information-from-a-public-body",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^information-governance/guidance/sharing-information-about-patients-and-service-users-voluntary-sector/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/information-governance/guidance/sharing-information-with-the-voluntary-sector",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^information-governance/guidance/sharing-information-during-major-incidents-and-emergencies/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/information-governance/guidance/sharing-information-during-major-incidents-and-emergencies",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^information-governance/guidance/sharing-information-relating-to-infected-blood-compensation-authority-claims/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/information-governance/guidance/sharing-information-relating-to-infected-blood-compensation-authority-claims",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^information-governance/guidance/sharing-information-with-the-police/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/information-governance/guidance/sharing-information-with-the-police",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^information-governance/guidance/sharing-information-with-unpaid-carers/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/information-governance/guidance/sharing-information-with-unpaid-carers",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^information-governance/guidance/subject-access-requests/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/information-governance/guidance/subject-access-requests",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^information-governance/guidance/subject-access-request-sar-form/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/information-governance/templates/subject-access-request-sar-form",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^information-governance/guidance/summary-of-information-governance-framework-shared-care-records/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/information-governance/guidance/information-governance-framework-shared-care-records",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^information-governance/guidance/summary-of-information-governance-framework-shared-care-records/information-governance-framework-for-integrated-health-and-care-shared-care-records/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/information-governance/guidance/information-governance-framework-shared-care-records/ig-framework-shared-care-records",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^information-governance/guidance/texting-emailing-and-messaging-patients-and-service-users/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/information-governance/guidance/texting-emailing-and-messaging-patients-and-service-users",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^information-governance/guidance/universal-ig-templates-faqs/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/information-governance/templates/universal-ig-templates",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^information-governance/guidance/use-and-share-information-confidence/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/information-governance/guidance/use-and-share-information-with-confidence",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^information-governance/guidance/use-mobile-devices-patients-hospitals/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/information-governance/guidance/use-of-mobile-devices-by-patients-in-hospitals",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^information-governance/guidance/using-ai-enabled-ambient-scribing-products-in-health-and-care-settings/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/information-governance/guidance/using-ai-enabled-ambient-scribing-products-in-health-and-care-settings",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^information-governance/guidance/using-information-for-reflective-practice/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/information-governance/guidance/using-information-for-reflective-practice",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^information-governance/guidance/using-video-conferencing-and-consultation-tools/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/information-governance/guidance/using-video-conferencing-and-consultation-tools",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^information-governance/guidance/virtual-wards/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/information-governance/guidance/virtual-wards",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^information-governance/guidance/virtual-wards/virtual-wards-templates/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/information-governance/templates/virtual-wards-templates",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^information-governance/guidance/what-is-and-isnt-direct-marketing/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/information-governance/guidance/what-is-and-isnt-direct-marketing",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^information-governance/health-and-care-staff-must-share-information-effectively-to-support-individuals-care/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/information-governance/statement-from-the-ndg-ico-and-cmo/health-and-care-staff-must-share-information-effectively-to-support-individuals-care",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^information-governance/information-governance-templates/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/information-governance/templates",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^information-governance/statement-from-the-ndg-ico-and-cmo-on-sharing-information-for-direct-care/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/information-governance/statement-from-the-ndg-ico-and-cmo",
+            permanent=True,
+        ),
+    ),
 ]
 
 
