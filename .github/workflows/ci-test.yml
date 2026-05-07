@@ -4,9 +4,8 @@ on: [push]
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v6
       - name: Run tests in Docker
         run: script/cibuild
-

@@ -88,7 +88,7 @@ ENV POETRY_VIRTUALENVS_CREATE=0 \
 
 # Linking of pip/python and deleting of directories from original pip install: not known if needed.
 
-RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && \
+RUN curl https://bootstrap.pypa.io/pip/3.9/get-pip.py -o get-pip.py && \
     python3 get-pip.py --force-reinstall && \
     rm /usr/bin/pip && \
     ln -s /usr/bin/pip3 /usr/bin/pip && \
