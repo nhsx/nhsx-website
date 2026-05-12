@@ -1863,6 +1863,21 @@ urlpatterns = [
             permanent=True,
         ),
     ),
+    # https://dxw.zendesk.com/agent/tickets/21903
+    url(
+        r"^information-governance/strategic-information-governance-networks-signs/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/information-governance/national-sign",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^information-governance/caf-aligned-dspt-evolution-of-our-assurance-model/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/information-governance/evolution-of-our-assurance-model",
+            permanent=True,
+        ),
+    ),
 ]
 
 
