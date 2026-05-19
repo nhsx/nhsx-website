@@ -1900,6 +1900,28 @@ urlpatterns = [
             permanent=True,
         ),
     ),
+    # https://dxw.zendesk.com/agent/tickets/21916
+    url(
+        r"^about-us/$",
+        lambda request: redirect(
+            r"https://www.england.nhs.uk/about/",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^about-us/get-involved/$",
+        lambda request: redirect(
+            r"https://www.england.nhs.uk/get-involved/",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^contact-us/$",
+        lambda request: redirect(
+            r"https://www.england.nhs.uk/contact-us/",
+            permanent=True,
+        ),
+    ),
 ]
 
 
