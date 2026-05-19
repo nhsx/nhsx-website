@@ -1878,6 +1878,28 @@ urlpatterns = [
             permanent=True,
         ),
     ),
+    # https://dxw.zendesk.com/agent/tickets/21913
+    url(
+        r"^digitise-connect-transform/what-good-looks-like/$",
+        lambda request: redirect(
+            r"https://future.nhs.uk/WhatGoodLooksLikeKnowledge/grouphome",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^digitise-connect-transform/what-good-looks-like/what-good-looks-like-publication/$",
+        lambda request: redirect(
+            r"https://future.nhs.uk/WhatGoodLooksLikeKnowledge/grouphome",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^digitise-connect-transform/what-good-looks-like/guidance-for-nursing-on-what-good-looks-like/$",
+        lambda request: redirect(
+            r"https://future.nhs.uk/WhatGoodLooksLikeKnowledge/grouphome",
+            permanent=True,
+        ),
+    ),
 ]
 
 
