@@ -1922,6 +1922,14 @@ urlpatterns = [
             permanent=True,
         ),
     ),
+    # https://dxw.zendesk.com/agent/tickets/21920
+    url(
+        r"^key-tools-and-info/digital-technology-assessment-criteria-dtac/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/services/digital-technology-assessment-criteria-dtac",
+            permanent=True,
+        ),
+    ),
 ]
 
 
