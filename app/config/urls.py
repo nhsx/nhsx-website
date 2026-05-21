@@ -1930,6 +1930,70 @@ urlpatterns = [
             permanent=True,
         ),
     ),
+    # https://dxw.zendesk.com/agent/tickets/21927
+    url(
+        r"^key-tools-and-info/data-saves-lives/national-public-engagement-on-the-use-of-health-data/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/keeping-data-safe-and-benefitting-the-public/national-public-engagement-in-the-use-of-health-and-care-data",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^key-tools-and-info/data-saves-lives/national-public-engagement-on-the-use-of-health-data/large-scale-public-engagement-steering-group-terms-of-reference/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/keeping-data-safe-and-benefitting-the-public/national-public-engagement-in-the-use-of-health-and-care-data/large-scale-public-engagement---steering-group-terms-of-reference",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^key-tools-and-info/data-saves-lives/national-public-engagement-on-the-use-of-health-data/national-engagement-on-data-cohort-1-report/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/keeping-data-safe-and-benefitting-the-public/national-public-engagement-in-the-use-of-health-and-care-data/cohort-1---principles-of-data-use-and-access",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^key-tools-and-info/data-saves-lives/national-public-engagement-on-the-use-of-health-data/national-engagement-on-data-cohort-2-report/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/keeping-data-safe-and-benefitting-the-public/national-public-engagement-in-the-use-of-health-and-care-data/cohort-2---linking-primary-and-secondary-care-data",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^key-tools-and-info/data-saves-lives/national-public-engagement-on-the-use-of-health-data/national-engagement-on-data-cohort-3-report/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/keeping-data-safe-and-benefitting-the-public/national-public-engagement-in-the-use-of-health-and-care-data/cohort-3---the-opt-out-landscape-and-patient-choice",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^key-tools-and-info/data-saves-lives/health-and-social-care-data-public-panel/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/keeping-data-safe-and-benefitting-the-public/national-public-engagement-in-the-use-of-health-and-care-data/health-and-social-care-data-public-panel",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^key-tools-and-info/data-saves-lives/health-and-social-care-data-public-panel/terms-of-reference-health-data-patient-and-public-engagement-and-communications-advisory-panel/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/keeping-data-safe-and-benefitting-the-public/national-public-engagement-in-the-use-of-health-and-care-data/health-and-social-care-data-public-panel-terms-of-reference",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^key-tools-and-info/data-saves-lives/data-strategy-advisory-panel/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/keeping-data-safe-and-benefitting-the-public/data-strategy-advisory-panel",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^key-tools-and-info/data-saves-lives/data-strategy-advisory-panel/terms-of-reference-data-strategy-advisory-panel/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/keeping-data-safe-and-benefitting-the-public/data-strategy-advisory-panel/data-strategy-advisory-panel-terms-of-reference",
+            permanent=True,
+        ),
+    ),
 ]
 
 
