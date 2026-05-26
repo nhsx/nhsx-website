@@ -1994,6 +1994,336 @@ urlpatterns = [
             permanent=True,
         ),
     ),
+    # https://dxw.zendesk.com/agent/tickets/21936
+    url(
+        r"^key-tools-and-info/data-saves-lives/response-to-developing-a-data-pact-a-report-on-the-public-engagement-undertaken-by-the-patients-association/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/keeping-data-safe-and-benefitting-the-public/data-strategy-advisory-panel#data-saves-lives-strategy",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^key-tools-and-info/data-saves-lives/data-saves-lives-implementation-update/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/keeping-data-safe-and-benefitting-the-public/data-strategy-advisory-panel#data-saves-lives-strategy",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^key-tools-and-info/data-saves-lives/how-nhs-and-care-data-is-protected/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/keeping-data-safe-and-benefitting-the-public/data-strategy-advisory-panel#data-saves-lives-strategy",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^key-tools-and-info/data-saves-lives/patients-and-service-users/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/keeping-data-safe-and-benefitting-the-public/data-strategy-advisory-panel#data-saves-lives-strategy",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^key-tools-and-info/data-saves-lives/your-feedback-on-the-draft-data-strategy/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/keeping-data-safe-and-benefitting-the-public/data-strategy-advisory-panel#data-saves-lives-strategy",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^key-tools-and-info/data-saves-lives/what-does-the-strategy-mean-for/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/keeping-data-safe-and-benefitting-the-public/data-strategy-advisory-panel#data-saves-lives-strategy",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^key-tools-and-info/data-saves-lives/researchers-analysts-and-innovators/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/keeping-data-safe-and-benefitting-the-public/data-strategy-advisory-panel#data-saves-lives-strategy",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^key-tools-and-info/data-saves-lives/national-and-local-leaders/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/keeping-data-safe-and-benefitting-the-public/data-strategy-advisory-panel#data-saves-lives-strategy",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^key-tools-and-info/data-saves-lives/adult-social-care/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/keeping-data-safe-and-benefitting-the-public/data-strategy-advisory-panel#data-saves-lives-strategy",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^key-tools-and-info/data-saves-lives/frontline-staff/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/keeping-data-safe-and-benefitting-the-public/data-strategy-advisory-panel#data-saves-lives-strategy",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^key-tools-and-info/data-saves-lives/feedback-responses/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/keeping-data-safe-and-benefitting-the-public/data-strategy-advisory-panel#data-saves-lives-strategy",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^key-tools-and-info/data-saves-lives/data-and-covid-19/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/keeping-data-safe-and-benefitting-the-public/data-strategy-advisory-panel#data-saves-lives-strategy",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^key-tools-and-info/data-saves-lives/improving-care-through-research-and-innovation/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/keeping-data-safe-and-benefitting-the-public/data-strategy-advisory-panel#data-saves-lives-strategy",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^key-tools-and-info/data-saves-lives/improving-care-through-research-and-innovation/nhs-digitrials-enables-improved-treatments-to-transform-lives/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/keeping-data-safe-and-benefitting-the-public/data-strategy-advisory-panel#data-saves-lives-strategy",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^key-tools-and-info/data-saves-lives/improving-care-through-research-and-innovation/co-connect-enabling-research-on-covid-19-immunity/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/keeping-data-safe-and-benefitting-the-public/data-strategy-advisory-panel#data-saves-lives-strategy",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^key-tools-and-info/data-saves-lives/improving-care-through-research-and-innovation/uk-biobank-understanding-immunity-to-covid-19/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/keeping-data-safe-and-benefitting-the-public/data-strategy-advisory-panel#data-saves-lives-strategy",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^key-tools-and-info/data-saves-lives/improving-care-through-research-and-innovation/national-covid-19-chest-imaging-database-case-study/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/keeping-data-safe-and-benefitting-the-public/data-strategy-advisory-panel#data-saves-lives-strategy",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^key-tools-and-info/data-saves-lives/improving-health-and-care-services-for-everyone/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/keeping-data-safe-and-benefitting-the-public/data-strategy-advisory-panel#data-saves-lives-strategy",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^key-tools-and-info/data-saves-lives/improving-health-and-care-services-for-everyone/the-nhs-covid-19-data-store-putting-data-at-the-centre-of-decision-making/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/keeping-data-safe-and-benefitting-the-public/data-strategy-advisory-panel#data-saves-lives-strategy",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^key-tools-and-info/data-saves-lives/improving-health-and-care-services-for-everyone/using-data-to-build-a-bigger-picture-of-peoples-needs/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/keeping-data-safe-and-benefitting-the-public/data-strategy-advisory-panel#data-saves-lives-strategy",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^key-tools-and-info/data-saves-lives/improving-health-and-care-services-for-everyone/identifying-critical-points-when-children-need-extra-support/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/keeping-data-safe-and-benefitting-the-public/data-strategy-advisory-panel#data-saves-lives-strategy",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^key-tools-and-info/data-saves-lives/improving-health-and-care-services-for-everyone/tackling-physical-health-inequalities-through-data/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/keeping-data-safe-and-benefitting-the-public/data-strategy-advisory-panel#data-saves-lives-strategy",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^key-tools-and-info/data-saves-lives/improving-health-and-care-services-for-everyone/using-data-to-understand-and-treat-cardiovascular-disease/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/keeping-data-safe-and-benefitting-the-public/data-strategy-advisory-panel#data-saves-lives-strategy",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^key-tools-and-info/data-saves-lives/improving-health-and-care-services-for-everyone/shielding-and-protecting-the-most-vulnerable/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/keeping-data-safe-and-benefitting-the-public/data-strategy-advisory-panel#data-saves-lives-strategy",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^key-tools-and-info/data-saves-lives/improving-health-and-care-services-for-everyone/the-benefits-of-using-data-in-population-health-management/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/keeping-data-safe-and-benefitting-the-public/data-strategy-advisory-panel#data-saves-lives-strategy",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^key-tools-and-info/data-saves-lives/improving-health-and-care-services-for-everyone/nhs-covid-19-app-preventing-600000-cases-of-covid-19/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/keeping-data-safe-and-benefitting-the-public/data-strategy-advisory-panel#data-saves-lives-strategy",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^key-tools-and-info/data-saves-lives/improving-health-and-care-services-for-everyone/new-ways-of-working-to-transform-local-services/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/keeping-data-safe-and-benefitting-the-public/data-strategy-advisory-panel#data-saves-lives-strategy",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^key-tools-and-info/data-saves-lives/improving-health-and-care-services-for-everyone/data-to-support-the-recovery-of-cancer-services/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/keeping-data-safe-and-benefitting-the-public/data-strategy-advisory-panel#data-saves-lives-strategy",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^key-tools-and-info/data-saves-lives/improving-health-and-care-services-for-everyone/screening-to-act-fast-on-sepsis-at-nottingham-university-hospitals/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/keeping-data-safe-and-benefitting-the-public/data-strategy-advisory-panel#data-saves-lives-strategy",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^key-tools-and-info/data-saves-lives/improving-health-and-care-services-for-everyone/a-sea-change-in-understanding-the-value-of-data/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/keeping-data-safe-and-benefitting-the-public/data-strategy-advisory-panel#data-saves-lives-strategy",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^key-tools-and-info/data-saves-lives/improving-health-and-care-services-for-everyone/improving-the-care-of-mothers-and-babies/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/keeping-data-safe-and-benefitting-the-public/data-strategy-advisory-panel#data-saves-lives-strategy",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^key-tools-and-info/data-saves-lives/improving-health-and-care-services-for-everyone/using-data-to-improve-safety-in-the-nhs/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/keeping-data-safe-and-benefitting-the-public/data-strategy-advisory-panel#data-saves-lives-strategy",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^key-tools-and-info/data-saves-lives/improving-health-and-care-services-for-everyone/driving-the-biggest-vaccination-programme-in-the-uks-history/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/keeping-data-safe-and-benefitting-the-public/data-strategy-advisory-panel#data-saves-lives-strategy",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^key-tools-and-info/data-saves-lives/improving-health-and-care-services-for-everyone/early-warning-for-covid-19-outbreaks-through-wastewater-monitoring/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/keeping-data-safe-and-benefitting-the-public/data-strategy-advisory-panel#data-saves-lives-strategy",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^key-tools-and-info/data-saves-lives/improving-health-and-care-services-for-everyone/cultivating-the-seeds-of-change-in-adult-social-care/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/keeping-data-safe-and-benefitting-the-public/data-strategy-advisory-panel#data-saves-lives-strategy",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^key-tools-and-info/data-saves-lives/improving-health-and-care-services-for-everyone/the-use-of-data-and-data-sharing-within-social-care/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/keeping-data-safe-and-benefitting-the-public/data-strategy-advisory-panel#data-saves-lives-strategy",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^key-tools-and-info/data-saves-lives/improving-individual-care-and-patient-safety/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/keeping-data-safe-and-benefitting-the-public/data-strategy-advisory-panel#data-saves-lives-strategy",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^key-tools-and-info/data-saves-lives/improving-individual-care-and-patient-safety/public-covid-19-dashboards-allows-people-to-check-local-infection-rates/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/keeping-data-safe-and-benefitting-the-public/data-strategy-advisory-panel#data-saves-lives-strategy",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^key-tools-and-info/data-saves-lives/improving-individual-care-and-patient-safety/why-joined-up-care-matters-a-patient-perspective/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/keeping-data-safe-and-benefitting-the-public/data-strategy-advisory-panel#data-saves-lives-strategy",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^key-tools-and-info/data-saves-lives/improving-individual-care-and-patient-safety/building-a-health-and-care-system-that-knows-what-matters-to-people/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/keeping-data-safe-and-benefitting-the-public/data-strategy-advisory-panel#data-saves-lives-strategy",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^key-tools-and-info/data-saves-lives/improving-individual-care-and-patient-safety/a-patients-perspective-of-using-data/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/keeping-data-safe-and-benefitting-the-public/data-strategy-advisory-panel#data-saves-lives-strategy",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^key-tools-and-info/data-saves-lives/improving-individual-care-and-patient-safety/technology-and-data-integral-in-transforming-social-care-delivery/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/keeping-data-safe-and-benefitting-the-public/data-strategy-advisory-panel#data-saves-lives-strategy",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^key-tools-and-info/data-saves-lives/improving-individual-care-and-patient-safety/smartphone-app-for-patients-to-monitor-their-vision-remotely/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/keeping-data-safe-and-benefitting-the-public/data-strategy-advisory-panel#data-saves-lives-strategy",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^key-tools-and-info/data-saves-lives/improving-individual-care-and-patient-safety/life-saving-information-to-help-treat-patients-during-the-covid-19-emergency/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/keeping-data-safe-and-benefitting-the-public/data-strategy-advisory-panel#data-saves-lives-strategy",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^key-tools-and-info/data-saves-lives/improving-individual-care-and-patient-safety/the-benefits-of-digitisation-in-social-care/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/keeping-data-safe-and-benefitting-the-public/data-strategy-advisory-panel#data-saves-lives-strategy",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^key-tools-and-info/data-saves-lives/improving-individual-care-and-patient-safety/mastercall-healthcare-and-dignio-connected-care-case-study/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/keeping-data-safe-and-benefitting-the-public/data-strategy-advisory-panel#data-saves-lives-strategy",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^key-tools-and-info/data-saves-lives/improving-individual-care-and-patient-safety/patients-securely-accessing-health-records-via-a-health-app/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/keeping-data-safe-and-benefitting-the-public/data-strategy-advisory-panel#data-saves-lives-strategy",
+            permanent=True,
+        ),
+    ),
 ]
 
 
