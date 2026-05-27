@@ -2324,6 +2324,70 @@ urlpatterns = [
             permanent=True,
         ),
     ),
+    # https://dxw.zendesk.com/agent/tickets/21939
+    url(
+        r"^key-tools-and-info/guidance-for-designing-delivering-and-sustaining-rpa-within-the-nhs/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/services/digital-services-for-integrated-care/guidance-for-designing-delivering-and-sustaining-rpa-within-the-nhs",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^key-tools-and-info/guidance-for-designing-delivering-and-sustaining-rpa-within-the-nhs/introduction/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/services/digital-services-for-integrated-care/guidance-for-designing-delivering-and-sustaining-rpa-within-the-nhs/introduction",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^key-tools-and-info/guidance-for-designing-delivering-and-sustaining-rpa-within-the-nhs/understanding-rpa/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/services/digital-services-for-integrated-care/guidance-for-designing-delivering-and-sustaining-rpa-within-the-nhs/understanding-rpa",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^key-tools-and-info/guidance-for-designing-delivering-and-sustaining-rpa-within-the-nhs/getting-started-with-rpa/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/services/digital-services-for-integrated-care/guidance-for-designing-delivering-and-sustaining-rpa-within-the-nhs/getting-started-with-rpa",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^key-tools-and-info/guidance-for-designing-delivering-and-sustaining-rpa-within-the-nhs/delivering-rpa/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/services/digital-services-for-integrated-care/guidance-for-designing-delivering-and-sustaining-rpa-within-the-nhs/delivering-rpa",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^key-tools-and-info/guidance-for-designing-delivering-and-sustaining-rpa-within-the-nhs/sustaining-rpa/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/services/digital-services-for-integrated-care/guidance-for-designing-delivering-and-sustaining-rpa-within-the-nhs/sustaining-rpa",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^key-tools-and-info/guidance-for-designing-delivering-and-sustaining-rpa-within-the-nhs/technology-for-rpa/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/services/digital-services-for-integrated-care/guidance-for-designing-delivering-and-sustaining-rpa-within-the-nhs/technology-for-rpa",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^key-tools-and-info/guidance-for-designing-delivering-and-sustaining-rpa-within-the-nhs/checklist/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/services/digital-services-for-integrated-care/guidance-for-designing-delivering-and-sustaining-rpa-within-the-nhs/checklist",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^key-tools-and-info/guidance-for-designing-delivering-and-sustaining-rpa-within-the-nhs/additional-information/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/services/digital-services-for-integrated-care/guidance-for-designing-delivering-and-sustaining-rpa-within-the-nhs/additional-information",
+            permanent=True,
+        ),
+    ),
 ]
 
 
