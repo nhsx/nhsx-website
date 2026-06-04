@@ -2388,6 +2388,36 @@ urlpatterns = [
             permanent=True,
         ),
     ),
+    # https://dxw.zendesk.com/agent/tickets/21966
+    url(
+        r"^information-governance/the-laws-that-health-and-care-organisations-rely-on-when-using-your-information/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/information-governance/the-laws-that-health-and-care-organisations-rely-on-when-using-your-information",
+            permanent=True,
+        ),
+    ),
+    # https://dxw.zendesk.com/agent/tickets/21963
+    url(
+        r"^key-tools-and-info/data-saves-lives/secure-data-environments/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/research-powered-by-data",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^key-tools-and-info/data-saves-lives/secure-data-environments/accessing-data-for-research-and-analysis/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/research-powered-by-data",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^key-tools-and-info/data-saves-lives/secure-data-environments/how-will-secure-data-environments-be-delivered/$",
+        lambda request: redirect(
+            r"https://digital.nhs.uk/data-and-information/research-powered-by-data",
+            permanent=True,
+        ),
+    ),
 ]
 
 
