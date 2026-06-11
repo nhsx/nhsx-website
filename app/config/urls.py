@@ -2418,6 +2418,70 @@ urlpatterns = [
             permanent=True,
         ),
     ),
+    # https://dxw.zendesk.com/agent/tickets/21993
+    url(
+        r"^key-tools-and-info/involving-people-and-communities-in-digital-services/$",
+        lambda request: redirect(
+            r"https://www.england.nhs.uk/get-involved/involvementguidance/",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^key-tools-and-info/involving-people-and-communities-in-digital-services/representation-in-decision-making-and-governance/$",
+        lambda request: redirect(
+            r"https://www.england.nhs.uk/get-involved/involvementguidance/",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^key-tools-and-info/involving-people-and-communities-in-digital-services/patient-carer-charity-and-citizen-networks/$",
+        lambda request: redirect(
+            r"https://www.england.nhs.uk/get-involved/involvementguidance/",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^key-tools-and-info/involving-people-and-communities-in-digital-services/resources-for-involving-people-and-communities/$",
+        lambda request: redirect(
+            r"https://www.england.nhs.uk/get-involved/involvementguidance/",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^key-tools-and-info/involving-people-and-communities-in-digital-services/representing-diversity/$",
+        lambda request: redirect(
+            r"https://www.england.nhs.uk/get-involved/involvementguidance/",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^key-tools-and-info/involving-people-and-communities-in-digital-services/digital-methods-for-engaging-people/$",
+        lambda request: redirect(
+            r"https://www.england.nhs.uk/get-involved/involvementguidance/",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^key-tools-and-info/involving-people-and-communities-in-digital-services/representation-in-research-and-service-design/$",
+        lambda request: redirect(
+            r"https://www.england.nhs.uk/get-involved/involvementguidance/",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^key-tools-and-info/involving-people-and-communities-in-digital-services/why-we-involve-people-and-communities-in-digital-services/$",
+        lambda request: redirect(
+            r"https://www.england.nhs.uk/get-involved/involvementguidance/",
+            permanent=True,
+        ),
+    ),
+    url(
+        r"^key-tools-and-info/involving-people-and-communities-in-digital-services/principles-for-involving-people-and-communities/$",
+        lambda request: redirect(
+            r"https://www.england.nhs.uk/get-involved/involvementguidance/",
+            permanent=True,
+        ),
+    ),
 ]
 
 
